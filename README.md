@@ -24,6 +24,10 @@ The plan is to use AI to help/do mathematical and computational science on super
 
 We use LLM adversarial review then post them in public.
 
+**If you have a paper that you think needs more math effort invested please contact us. **
+
+nick@sledgeworx.dev
+
 ** Our Papers ** 
 
 

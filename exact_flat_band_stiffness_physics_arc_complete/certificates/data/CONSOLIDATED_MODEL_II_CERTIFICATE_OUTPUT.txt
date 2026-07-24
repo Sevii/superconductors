@@ -1,0 +1,9 @@
+Model-II pair-dispersion certificate
+  direct Q-block vs exact pair formula: max error = 4.259e-16
+  electronic twist vs Q=2A: max error = 5.881e-16
+  finite-grid pair-mass Hessian: max error = 3.558e-09
+  thermodynamic Bessel form factor: max error = 3.217e-16
+  many-body finite-size curvature: max error = 2.496e-09
+  exact mass tensor: m_pair^{-1} = |U| xi^2/8 * I_2
+  exact finite-size stiffness: kappa_n = V/(V-1) nu(1-nu) |U|xi^2/8 * I_2
+PASS

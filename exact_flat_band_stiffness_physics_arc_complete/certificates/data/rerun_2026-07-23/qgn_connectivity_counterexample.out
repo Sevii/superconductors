@@ -1,0 +1,32 @@
+Structural diagnostics on M=8:
+  idempotency_error: 1.11022302462516e-16
+  upc0_orb0: 0.5
+  upc0_orb1: 0.5
+  upcA_orb0: 0.5
+  upcA_orb1: 0.5
+  period_pi_error: 9.99200722162641e-16
+
+Exact-diagonalization checks (raw electronic-twist curvature):
+  M   n      nu  connected            E0          gap  deg*            Epp           pred            R         defect
+  5   1  0.2000       True   4.99711e-17     0.172746     1              4              4            1              0
+  5   2  0.4000       True  -1.17479e-17     0.172746     1              6              6            1 5.35334443e-10
+  6   1  0.1667      False  -7.12396e-17         0.25     2              4              4            1              0
+  6   2  0.3333      False   2.84403e-17         0.25     3              4            6.4        0.625           -2.4
+  6   3  0.5000      False  -3.70074e-17         0.25     4 -1.9868874e-09            7.2 -2.75956584e-10           -7.2
+  8   1  0.1250      False   2.70784e-17         0.25     2              4              4            1              0
+  8   2  0.2500      False    2.1313e-17         0.25     3     5.33333333     6.85714286  0.777777778    -1.52380953
+*deg is the degeneracy visible in the requested low-spectrum window.
+
+Exact one-pair statement for every M>=6:
+  E_pair(Q) = (U/2) sin^2 Q; m_pair^(-1) = 1
+At nu=1/2, N_flat=2:
+  conjectured D_s = U/4 = 0.25
+  exact D_s = 0 on every even M, hence R_M(1/2)=0 and R_M-1=-1.
+  residual ||H(A)|Phi_even>|| for M=6, A=+0.000: 0.000e+00
+  residual ||H(A)|Phi_even>|| for M=6, A=+0.137: 0.000e+00
+  residual ||H(A)|Phi_even>|| for M=6, A=-0.241: 0.000e+00
+  residual ||H(A)|Phi_even>|| for M=8, A=+0.000: 0.000e+00
+  residual ||H(A)|Phi_even>|| for M=8, A=+0.137: 0.000e+00
+  residual ||H(A)|Phi_even>|| for M=8, A=-0.241: 0.000e+00
+
+Wrote /mnt/data/qgn_connectivity_counterexample_results.csv

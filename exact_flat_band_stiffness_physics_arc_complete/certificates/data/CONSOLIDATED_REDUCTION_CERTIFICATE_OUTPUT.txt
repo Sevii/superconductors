@@ -1,0 +1,39 @@
+Restricted QGN reduction certificate
+{
+  "L": 4,
+  "number_modes": 8,
+  "seed": 20260723,
+  "pairing_skew_error": 3.3801052111814357e-16,
+  "pairing_unitarity_error": 2.379079667312207e-15,
+  "scalar_basis_dimension": 36,
+  "expected_scalar_basis_dimension": 36,
+  "scalar_condition_error": 5.356367041325366e-14,
+  "symbolic_agp_ratio": "-n*(-L + n)/(L - 1)",
+  "gamma_tensor": [
+    [
+      0.00011829492648190994,
+      1.5748829070534e-06
+    ],
+    [
+      1.5748829070534e-06,
+      8.345367173415439e-05
+    ]
+  ],
+  "one_pair_curvature_tensor": [
+    [
+      0.0029485418681379355,
+      -3.819875275819988e-06
+    ],
+    [
+      -3.819875275819988e-06,
+      0.0029837722370285084
+    ]
+  ],
+  "maximum_tensor_identity_error": 1.2486776878510411e-18,
+  "maximum_finite_difference_error": 5.174419365292643e-08
+}
+{'L': 4, 'n': 1, 'sector_dimension': 28, 'ground_energy': 2.6645352591003757e-15, 'gap': 3.9999999999999853, 'agp_overlap': 0.9999999999999998, 'rho_n': 1.0, 'tensor_error': 0.0, 'finite_difference_error': 1.5925398503830596e-08}
+{'L': 4, 'n': 2, 'sector_dimension': 70, 'ground_energy': 2.7533531010703882e-14, 'gap': 3.9999999999999596, 'agp_overlap': 1.0000000000000004, 'rho_n': 1.3333333333333333, 'tensor_error': 1.2486776878510411e-18, 'finite_difference_error': 5.174419365292643e-08}
+{'L': 4, 'n': 3, 'sector_dimension': 28, 'ground_energy': 0.0, 'gap': 3.9999999999999876, 'agp_overlap': 1.0, 'rho_n': 1.0, 'tensor_error': 5.189983140145044e-19, 'finite_difference_error': 1.7120574151083257e-09}
+PASS
+Wrote outputs to /mnt/data/restricted_qgn_certificate_output

@@ -1,0 +1,388 @@
+--- /mnt/data/exact_flat_band_stiffness_physics_arc(2).md	2026-07-23 20:38:28.653934376 +0000
++++ /mnt/data/exact_flat_band_stiffness_physics_arc_corrected.md	2026-07-23 20:52:52.389924651 +0000
+@@ -4,7 +4,7 @@
+ author: "Nicholas Sledgianowski"
+ date: "July 23, 2026"
+ geometry: margin=0.88in
+-fontsize: 10.5pt
++fontsize: 10pt
+ header-includes:
+   - \usepackage{amsmath,amssymb,mathtools,bm}
+   - \usepackage{booktabs}
+@@ -14,8 +14,8 @@
+ abstract: |
+   Gao, Han, and Khalaf conjectured that the thermodynamic flat-connection stiffness of a quantum-geometric-nesting (QGN) superconductor is exactly the hard-core filling factor times the inverse two-particle pair mass. We prove this equality for their projected-Hubbard Model II and derive a broader restricted reduction theorem. The route to the theorem passes through two exact boundary cases: a period-circumference winding deformation shows that finite-torus twist curvature is underdetermined unless a displacement lift is specified, while a fixed-local reducible QGN model shows that locality and positive pair mass do not suffice without irreducibility of the paired ground branch. Under H1-H4 in the Hermitian positive-square class, the fixed-pair-number Hessian obeys
+   $C^{(n)}=\frac{n(L-n)}{L-1}C^{(1)}+(n^2-\frac{n(L-n)}{L-1})\Gamma$,
+-  where the longitudinal tensor $\Gamma$ is positive semidefinite and is a pure winding observable under a translation-covariant flat connection. In the projected PSD-Hubbard subclass, connectedness of the projected-orbital frame is equivalent to uniqueness of the antisymmetrized-geminal-power ground state in every nonsingular filling sector. For Model II, the frame is connected on every rectangular torus for $0<\xi<\pi/2$, $\Gamma=0$ exactly with no finite-size correction, and
+-  $(m_{\mathrm{pair}}^{-1})_{ij}=|U|\xi^2\delta_{ij}/8$ for every $N_x,N_y\ge3$. Hence
++  where the longitudinal tensor $\Gamma$ is positive semidefinite and is a pure winding observable under a translation-covariant flat connection. In the projected PSD-Hubbard subclass, connectedness of the projected-orbital frame is equivalent to uniqueness of the antisymmetrized-geminal-power ground state in every nonsingular filling sector. For Model II, the frame is connected on every rectangular torus for $0<\xi<\pi/2$, $\Gamma=0$ exactly with no finite-size correction, and the lifted finite-volume inverse mass equals the thermodynamic pair mass,
++  $(m_{\mathrm{pair}}^{-1})_{ij}=|U|\xi^2\delta_{ij}/8$, for every $N_x,N_y\ge3$. Hence
+   $\kappa_{ij}^{(n)}=[V/(V-1)]\nu(1-\nu)|U|\xi^2\delta_{ij}/8$
+   at finite size and
+   $D_{s,ij}=\nu(1-\nu)(m_{\mathrm{pair}}^{-1})_{ij}$
+@@ -65,13 +65,14 @@
+ \tag{T2}
+ $$
+ 
+-The two-particle bound branch has
++For $\mathbf N=(N_x,N_y)$, the lifted finite-volume one-pair Hessian defined in Section 10 is independent of $\mathbf N$ and equals the thermodynamic pair mass:
+ 
+ $$
+ \boxed{
+-(m_{\mathrm{pair}}^{-1})_{ij}
++(m_{\mathrm{pair},\mathbf N}^{-1})_{ij}
++=(m_{\mathrm{pair}}^{-1})_{ij}
+ =
+-\frac{|U|\xi^2}{8}\delta_{ij}>0,
++\frac{|U|\xi^2}{8}\delta_{ij}>0.
+ }
+ \tag{T3}
+ $$
+@@ -160,7 +161,7 @@
+ \tag{O5}
+ $$
+ 
+-The four-cell realization has a unique gapped branch and an exact normalized defect $g/24$ at $n=2$. A nonresonant $M=8$, harmonic-four control obeys the filling law, whereas the resonant harmonic-eight deformation violates it again. The failure is therefore not caused by a generic high harmonic; it is a period-circumference winding resonance.
++The explicit four-cell certificate uses $M=4$, $q=1$, $c=1/8$, $\phi(k)=(\pi/2)\sin k$, and $n=2$. Equation (O5) then gives a raw extra curvature $2g/3$; with the finite-volume convention $\kappa=E''/(4M)$, the exact normalized defect is $g/24$. The branch is unique and gapped. A nonresonant $M=8$, harmonic-four control obeys the filling law, whereas the resonant harmonic-eight deformation violates it again. The failure is therefore not caused by a generic high harmonic; it is a period-circumference winding resonance.
+ 
+ The structural conclusion is more important than the example:
+ 
+@@ -197,7 +198,7 @@
+ \tag{O8}
+ $$
+ 
+-The one-pair branch is nevertheless
++The analytic one-pair branch through $Q=0$ is nevertheless
+ 
+ $$
+ E_{\mathrm{pair}}(Q)=\frac U2\sin^2Q,
+@@ -206,7 +207,7 @@
+ \tag{O9}
+ $$
+ 
+-Thus
++Only the local curvature of this branch at $Q=0$ is used; no assertion that it remains the global lowest eigenvalue for all $Q$ is needed. Thus
+ 
+ $$
+ \boxed{
+@@ -257,15 +258,17 @@
+ 
+ The states $|n\rangle$ form the spin-$S=L/2$ multiplet, with $m=n-L/2$.
+ 
+-Let $A=(A_1,\ldots,A_d)$ be an electronic flat connection. In the sector with $2n$ particles, assume
++Let $A=(A_1,\ldots,A_d)$ be an electronic flat connection. Assume that all number sectors are restrictions of one analytic, particle-number-preserving family on the common fermionic Fock space, with the same square factors in every sector:
+ 
+ $$
+-H_n(A)=\frac12\sum_{\lambda=1}^{M_s}
++H(A)=\frac12\sum_{\lambda=1}^{M_s}
+ S_\lambda(A)^\dagger S_\lambda(A),
++\qquad
++H_n(A)=H(A)|_{\mathcal H_{2n}}.
+ \tag{5}
+ $$
+ 
+-where the $S_\lambda(A)$ are analytic, Hermitian, particle-number-preserving operators. The index $\lambda$ may include real-space position, QGN channel, and a factorization index of the positive interaction kernel. We impose:
++Here $\mathcal H_{2n}$ is the fixed-$2n$-particle sector, and the $S_\lambda(A)$ are analytic, Hermitian, particle-number-preserving Fock-space operators. The index $\lambda$ may include real-space position, QGN channel, and a factorization index of the positive interaction kernel. We impose:
+ 
+ **H1: QGN scalar condition at zero twist.** With $S_\lambda=S_\lambda(0)$,
+ 
+@@ -316,6 +319,8 @@
+ \tag{10a}
+ $$
+ 
++Each $p_x$ is a rank-one positive operator. It need not be an orthogonal projector because the frame vector $v_x$ need not be normalized.
++
+ The projected PSD-Hubbard factors are
+ 
+ $$
+@@ -383,7 +388,26 @@
+ \tag{10i}
+ $$
+ 
+-One proof orders the frame along a spanning tree. If $\mathfrak u(W)$ has already been generated and the next vector has nonzero components in both $W$ and a new orthogonal direction, two commutators with its rank-one projector generate the symmetric and antisymmetric couplings to that direction; their commutator generates its diagonal projector. Induction reaches all of $\mathcal V$.
++To prove (10i), order the active frame vectors along a spanning tree and let $W$ be the span generated so far. The first nonzero vector generates $\mathfrak u(\operatorname{span}v)$ because $ip_v$ is a nonzero multiple of the one-dimensional identity. Suppose inductively that $\mathfrak u(W)$ has been generated and that the next frame vector $v$ enlarges the span. Its overlap with its parent in the tree implies that, in the orthogonal decomposition $v=w+z$ with $w\in W$ and $z\in W^\perp$, both $w$ and $z$ are nonzero. Put
++
++$$
++p_w=|w\rangle\langle w|,
++\quad p_z=|z\rangle\langle z|,
++\quad C_-=|w\rangle\langle z|-|z\rangle\langle w|,
++\quad C_+=|w\rangle\langle z|+|z\rangle\langle w|,
++$$
++
++and $a=\|w\|^2$, $b=\|z\|^2$. Since $ip_w\in\mathfrak u(W)$ and $ip_v$ is one of the generators,
++
++$$
++\begin{aligned}
++[ip_w,ip_v]&=-aC_-,\\
++[ip_w,C_-]&=iaC_+,\\
++[C_-,iC_+]&=2i(bp_w-ap_z).
++\end{aligned}
++$$
++
++Thus $C_-$, $iC_+$, and $ip_z$ are generated. Commuting the two cross couplings with $\mathfrak u(W)$ produces $|u\rangle\langle z|-|z\rangle\langle u|$ and $i(|u\rangle\langle z|+|z\rangle\langle u|)$ for every $u\in W$. Together with $\mathfrak u(W)$ and $ip_z$, these span $\mathfrak u(W\oplus\mathbb Cz)$. Vectors already lying in $W$ require no enlargement. Induction reaches all of $\mathcal V$ because the Parseval identity in (10a) implies that the frame spans $\mathcal V$.
+ 
+ The exterior-power representation of $U(\mathcal V)$ on $\Lambda^n\mathcal V$ is irreducible for $0<n<L$. Schur's lemma therefore reduces the commutant in (10h) to scalar multiples of the identity. Its vectorization is the AGP state. Conversely, if the graph has components of span dimensions $L_1,\ldots,L_c$, the zero-mode dimension is
+ 
+@@ -503,7 +527,7 @@
+ 
+ The following lemma closes the multiband step. It uses only the skew-unitarity of $J$ and therefore does not require a band-diagonal, spin-diagonal, or topologically trivial representation.
+ 
+-**Lemma 2 (one-body action on an AGP multiplet).** Let $B=d\Gamma(b)$ be any number-conserving one-body operator and define
++**Lemma 2 (one-body action on an AGP multiplet).** Assume $L\ge2$ and $1\le n\le L-1$. Let $B=d\Gamma(b)$ be any number-conserving one-body operator and define
+ 
+ $$
+ \beta_B=\langle1|B|1\rangle=\frac1L\operatorname{Tr}_{\mathfrak h}b.
+@@ -660,7 +684,13 @@
+ \tag{33}
+ $$
+ 
+-Suppose there are finitely many translated Hermitian QGN null operators $X_{R,a}(A)$ and an $A$-independent positive translation kernel $\mathcal V_{ab}(R-R')$:
++Suppose there are finitely many translated Hermitian QGN null operators $X_{R,a}(A)$ and an $A$-independent real translation kernel $\mathcal V_{ab}(R-R')$ satisfying
++
++$$
++\mathcal V_{ab}(R)=\mathcal V_{ba}(-R)\in\mathbb R.
++$$
++
++Regarded as a matrix on the combined real index $(R,a)$, assume $\mathcal V$ is positive semidefinite. It therefore admits a real square root. With $S_\lambda(A)=\sum_{R,a}W_{\lambda;R,a}X_{R,a}(A)$, equation (34) equals $\frac12\sum_\lambda S_\lambda(A)^2$, and every factor is Hermitian, as required in Theorem 1. Explicitly, the Hamiltonian is
+ 
+ $$
+ H(A)=\frac12\sum_{R,R'\in\Lambda_{\mathbf N}}
+@@ -671,7 +701,18 @@
+ \tag{34}
+ $$
+ 
+-Let $\widehat{\mathcal V}(q)$ be its Fourier transform. Positivity means $\widehat{\mathcal V}(q)\succeq0$ for every finite-torus momentum.
++We use the finite-torus Fourier convention
++
++$$
++\widehat{\mathcal V}_{ab}(q)
++=\sum_{R\in\Lambda_{\mathbf N}}\mathcal V_{ab}(R)e^{-iq\cdot R},
++\qquad
++\mathcal V_{ab}(R)
++=\frac1V\sum_q\widehat{\mathcal V}_{ab}(q)e^{iq\cdot R}.
++\tag{34a}
++$$
++
++With this convention, positivity is equivalent to $\widehat{\mathcal V}(q)\succeq0$ for every finite-torus momentum.
+ 
+ Translation invariance of $|1\rangle$ makes
+ 
+@@ -696,7 +737,7 @@
+ \tag{36}
+ $$
+ 
+-Equation (36) is invariant under any real Hermitian square-root factorization of the positive kernel. The existence of such a factorization is included in the Hermitian-kernel hypothesis.
++Equation (36) is invariant under the choice of real square root of the positive kernel. The real-symmetric condition above is the precise Hermitian-kernel hypothesis used in this section.
+ 
+ # 8. Winding formula in arbitrary dimension
+ 
+@@ -790,7 +831,7 @@
+    \tag{45}
+ $$
+ 
+-   with $C_0,\mu>0$ independent of $\mathbf N$, then there are constants $C_1,C_2$ depending only on $d,\mu$, the channel number, and $V_0$ such that, for all sufficiently large $N_{\min}$,
++   with $C_0,\mu>0$ independent of $\mathbf N$, then there are constants $C_1,C_2$ depending only on $C_0,d,\mu$, the channel number, and $V_0$ such that, for all sufficiently large $N_{\min}$,
+ 
+ $$
+    |\beta_{a,i}^{(\mathbf N)}|
+@@ -846,39 +887,47 @@
+    \tag{50}
+ $$
+ 
+-3. A pair contains two electrons, so its center-of-mass momentum is
++3. A pair contains two electrons, so the physical center-of-mass shift associated with the electronic connection is
+ 
+ $$
+    Q=2A.
+    \tag{51}
+ $$
+ 
+-4. Define the one-pair dispersion by
++4. On a finite torus, ordinary total momenta are discrete. The specified displacement lift nevertheless defines a continuous *lifted pair family* near $Q=0$ by
+ 
+ $$
+-   E_{\mathrm{pair}}(Q)
+-   =E_{\mathrm{pair}}(0)
+-   +\frac12Q_i(m_{\mathrm{pair}}^{-1})_{ij}Q_j+o(|Q|^2).
+-   \tag{52}
++\begin{aligned}
++H_{\mathrm{pair},\mathbf N}^{\mathrm{lift}}(Q)
++&:=H_1(Q/2)|_{K=0},\\
++E_{\mathrm{pair},\mathbf N}^{\mathrm{lift}}(Q)
++&:=\lambda_{\min}H_{\mathrm{pair},\mathbf N}^{\mathrm{lift}}(Q)\\
++&=E_{\mathrm{pair},\mathbf N}^{\mathrm{lift}}(0)
+++\frac12Q_i(m_{\mathrm{pair},\mathbf N}^{-1})_{ij}Q_j
+++o(|Q|^2).
++\end{aligned}
++\tag{52}
+ $$
+ 
+-**Lemma 3 (flat connection is pair momentum).** For a translation-covariant projected interaction in which the electronic flat connection is inserted as $u_\sigma(k)\mapsto u_\sigma(k+A)$, the zero-label one-pair block is the untwisted two-particle block at total momentum $Q=2A$:
++This continuous family is fixed by the same lift that defines the electronic twist. It should not, for arbitrary continuous $Q$, be identified with an ordinary untwisted finite-torus momentum block: the relative-momentum grid is quantized and generally is not preserved by a shift of $Q/2$. When that shifted grid does coincide with the original grid, the usual block identification is recovered.
++
++**Lemma 3 (flat connection is lifted pair momentum).** For a translation-covariant projected interaction in which the electronic flat connection is inserted as $u_\sigma(k)\mapsto u_\sigma(k+A)$, the simple one-pair ground branch obeys
+ 
+ $$
+-H_1(A)|_{K=0}\cong H_{\mathrm{pair}}(Q=2A),
+-\qquad
+-E_1(A)=E_{\mathrm{pair}}(2A).
++E_1(A)=E_{\mathrm{pair},\mathbf N}^{\mathrm{lift}}(2A).
+ \tag{52a}
+ $$
+ 
+ Consequently,
+ 
+ $$
+-   \boxed{C_{ij}^{(1)}=4(m_{\mathrm{pair}}^{-1})_{ij}.}
++   \boxed{C_{ij}^{(1)}=4(m_{\mathrm{pair},\mathbf N}^{-1})_{ij}.}
+    \tag{53}
+ $$
+ 
+-*Proof.* A zero-label pair under the electronic shift has physical constituent momenta $k+A$ and $-k+A$, whose sum is $2A$. Relabeling the relative momentum identifies the complete matrix block, not merely its lowest eigenvalue. Translation labels remain good for the flat-connection family, and H4 makes the zero-label ground state simple and isolated; its Kato continuation therefore stays in that block for sufficiently small $A$. Two derivatives then give (53). $\square$
++*Proof.* Translation covariance decomposes $H_1(A)$ into discrete crystal-momentum-label sectors. At $A=0$ the one-pair AGP state is the simple $K=0$ ground state, and H4 ensures that its Kato continuation remains in that label sector for sufficiently small $A$. Its physical constituent momenta are $k+A$ and $-k+A$, whose sum is $2A$. Definition (52) therefore gives (52a), and the chain rule gives (53). No relabeling of a continuously shifted finite momentum grid is required. $\square$
++
++When a thermodynamic continuous pair dispersion exists, $m_{\mathrm{pair}}^{-1}$ denotes its Hessian at $Q=0$. At finite volume, $m_{\mathrm{pair},\mathbf N}^{-1}$ below always refers to the lifted family (52).
+ 
+ ## 10.1 Exact Model-II pair dispersion and positive mass
+ 
+@@ -906,11 +955,11 @@
+ 
+ The two orbital weights are pointwise constant, $|u_{1\sigma}(k)|^2=|u_{2\sigma}(k)|^2=1/2$.
+ 
+-**Lemma 4 (two-line Model-II pair dispersion).** In the one-up/one-down sector on a rectangular torus, the lowest branch at total momentum $Q$ is
++**Lemma 4 (two-line Model-II pair dispersion).** In the one-up/one-down sector on a rectangular torus, the lowest eigenvalue of the lifted pair family (52) is
+ 
+ $$
+ \boxed{
+-E_{\mathrm{pair},\mathbf N}(Q)
++E_{\mathrm{pair},\mathbf N}^{\mathrm{lift}}(Q)
+ =\frac{|U|}{4}[1-|F_{\mathbf N}(Q)|],
+ \qquad
+ F_{\mathbf N}(Q)=\frac1V\sum_{k\in\mathcal K_{\mathbf N}}
+@@ -924,17 +973,17 @@
+ $$
+ \boxed{
+ (m_{\mathrm{pair},\mathbf N}^{-1})_{ij}
+-=\left.\partial_{Q_i}\partial_{Q_j}E_{\mathrm{pair},\mathbf N}(Q)\right|_{Q=0}
++=\left.\partial_{Q_i}\partial_{Q_j}E_{\mathrm{pair},\mathbf N}^{\mathrm{lift}}(Q)\right|_{Q=0}
+ =\frac{|U|\xi^2}{8}\delta_{ij}\succ0
+ \quad(\xi\ne0).
+ }
+ \tag{M4}
+ $$
+ 
+-*Proof.* In the relative-momentum basis $|k;Q\rangle$, the PSD-Hubbard one-pair block is
++*Proof.* In the fixed relative-label basis $k\in\mathcal K_{\mathbf N}$ of the lifted family, the PSD-Hubbard one-pair matrix is
+ 
+ $$
+-H_Q=|U|\left[\frac12I-\frac1V\sum_{a=1}^2
++H_Q^{\mathrm{lift}}=|U|\left[\frac12I-\frac1V\sum_{a=1}^2
+ |g_{a,Q}\rangle\langle g_{a,Q}|\right],
+ \tag{M5}
+ $$
+@@ -987,14 +1036,32 @@
+ \tag{M10}
+ $$
+ 
+-which independently reproduces (M4). **Corollary 4.1 (exact absence of the longitudinal correction).** The pointwise constant orbital weights imply that every longitudinal trace derivative vanishes. Therefore
++which independently reproduces (M4).
++
++**Corollary 4.1 (exact absence of the longitudinal correction).** Let $s_{Ra}(A)$ be the one-body matrix of the local density-difference factor $S_{Ra}(A)$ and put
++
++$$
++w_a(A)=\frac1V\sum_{k\in\mathcal K_{\mathbf N}}
++|u_{a\uparrow}(k+A)|^2.
++$$
++
++Time reversal makes the corresponding down-spin trace equal to $w_a(-A)$. Hence, for $b_{Ra,i}=\partial_{A_i}s_{Ra}(A)|_0$,
++
++$$
++\operatorname{Tr}b_{Ra,i}
++=\left.\partial_{A_i}[w_a(A)-w_a(-A)]\right|_{A=0}
++=2\,\partial_{A_i}w_a(0).
++\tag{M10a}
++$$
++
++In Model II the orbital weights are pointwise constant, so $w_a(A)=1/2$ for every $A$. Therefore $\operatorname{Tr}b_{Ra,i}=0$, $\beta_{Ra,i}=V^{-1}\operatorname{Tr}b_{Ra,i}=0$, and
+ 
+ $$
+ \boxed{\Gamma_{ij}^{\mathrm{Model\ II}}=0}
+ \tag{M11}
+ $$
+ 
+-on every finite torus. Equation (M11) is exact: there is no winding, locality, or finite-size correction to estimate.
++Equation (M11) is exact on every finite torus: there is no winding, locality, or finite-size correction to estimate.
+ 
+ With these conventions, define the finite-volume canonical Drude curvature
+ 
+@@ -1020,7 +1087,7 @@
+ =
+ \frac{N_{\mathrm{flat}}}2\nu(1-\nu)
+ \frac{L}{L-1}
+-(m_{\mathrm{pair}}^{-1})_{ij}
++(m_{\mathrm{pair},\mathbf N}^{-1})_{ij}
+ +
+ \frac{n^2-\rho_n}{4V}\Gamma_{ij}.
+ }
+@@ -1036,11 +1103,11 @@
+ =
+ \frac{v_i\kappa_{ij}^{(n)}v_j}
+ {(N_{\mathrm{flat}}/2)\nu(1-\nu)
+- v_i(m_{\mathrm{pair}}^{-1})_{ij}v_j}.
++ v_i(m_{\mathrm{pair},\mathbf N}^{-1})_{ij}v_j}.
+ \tag{57}
+ $$
+ 
+-Using $C^{(1)}=4m_{\mathrm{pair}}^{-1}$,
++Using $C^{(1)}=4m_{\mathrm{pair},\mathbf N}^{-1}$,
+ 
+ $$
+ \boxed{
+@@ -1060,7 +1127,7 @@
+ 
+ $$
+ \liminf_{\mathbf N\to\infty}
+- v_i(m_{\mathrm{pair}}^{-1})_{ij}v_j>0.
++ v_i(m_{\mathrm{pair},\mathbf N}^{-1})_{ij}v_j>0.
+ \tag{59}
+ $$
+ 
+@@ -1084,6 +1151,8 @@
+ 
+ *Proof.* The finite-range statement follows from (44), (56), and (58). In the exponential case, (47) and $L=(N_{\mathrm{flat}}/2)V$ show that the longitudinal correction in (58) is bounded by a polynomial factor times $e^{-2\mu N_{\min}}$. Assumption (59) prevents division by a vanishing pair curvature. The first term in (58) tends to one. $\square$
+ 
++If the lifted finite-volume mass converges to a thermodynamic pair mass, $(m_{\mathrm{pair},\mathbf N}^{-1})_{ij}\to(m_{\mathrm{pair}}^{-1})_{ij}$, then (60) is the corresponding thermodynamic stiffness/pair-mass equality.
++
+ Gao, Han, and Khalaf define their target response through the second derivative of the ground-state energy under a flat connection and denote the thermodynamic quantity $D_s$ [1]. With that literal definition, no additional charge-gap hypothesis is needed to state their conjecture. Their finite-size calculations are more precisely Drude curvatures, and a stricter dynamical identification with a zero-frequency transport coefficient may still require an order-of-limits argument.
+ 
+ ## 11.1 Headline application: Model II Hubbard
+@@ -1187,13 +1256,14 @@
+ |---|---|
+ | Winding obstruction | Exact SymPy Kohn response; independent fixed-number projected-density implementation; resonant and nonresonant controls. |
+ | Reducible obstruction | Fixed-local range-two ED; exact zero-curvature component-polarized state; positive one-pair mass. |
+-| General reduction | Random full-rank multiband skew-unitary pairing matrix; tensor identity residual $<1.3\times10^{-18}$. |
+-| Longitudinal formula | Independent trace derivative reproduces all filling defects and the winding-model PSD defect. |
+-| H4 connectivity | Random path-like and block-linked Parseval frames; exact zero-mode counts; Model-I/II graph audit. |
+-| Model-II closure | Direct $Q$-block versus closed pair formula, $Q=2A$, mass Hessian, exact $\Gamma=0$, and many-body curvature. |
+-| Published models | Independent projected-Hubbard ED for Gao-Han-Khalaf Models I and II at several finite tori. |
++| General reduction | Random full-rank multiband skew-unitary pairing matrix; exact tensor identity and direct finite-difference cross-check. |
++| Longitudinal formula | Independent trace-derivative certificate source for the filling-dependent defect. |
++| H4 connectivity | Connected and disconnected random Parseval frames; full Lie dimensions and exact zero-mode counts; 55 Model-I/II graph audits. |
++| Model-II closure | Direct lifted $Q$-family versus the closed formula, $Q=2A$, mass Hessian, exact $\Gamma=0$, and many-body curvature. |
++| Sector-gap evidence | 160 rank-one frame cases and independent Gram-versus-dense validations; retained as non-load-bearing evidence. |
++| Published-model implementation | Independent projected-Hubbard ED code for Gao-Han-Khalaf Models I and II is included in the archive. |
+ 
+-The Model-II certificate agrees with the direct pair block to $4.3\times10^{-16}$, verifies $E_1(A)=E_{\mathrm{pair}}(2A)$ to $5.9\times10^{-16}$, and reproduces the many-body finite-size formula to approximately $2.5\times10^{-9}$, the finite-difference floor. The H4 theorem was independently stress-tested on minimal path graphs and on two large frame blocks joined by a $10^{-6}$ overlap; both generate the full $\mathfrak u(L)$ as predicted.
++The supplied consolidated output files report PASS throughout. The exact four-cell winding certificate independently gives the raw defect $2/3$ and the normalized defect $1/24$ at $g=1$, matching (O5). The general reduction certificate has maximum tensor-identity error $1.25\times10^{-18}$ and maximum finite-difference error $5.17\times10^{-8}$. The H4 certificate attains the full dimensions $16$ and $25$ for $\mathfrak u(4)$ and $\mathfrak u(5)$, reproduces every connected and disconnected nullity count, finds all 55 audited Gao-Han-Khalaf frame graphs connected, and has maximum Parseval-frame error $8.10\times10^{-16}$. The Model-II certificate agrees with the direct lifted pair matrix to $4.26\times10^{-16}$, verifies the electronic-twist identity to $5.88\times10^{-16}$, reproduces the finite-grid mass Hessian to $3.56\times10^{-9}$, and reproduces the many-body finite-size formula to $2.50\times10^{-9}$. The separate sector-gap certificate finds filling-independent gaps in 160 retained rank-one cases to worst relative deviation $1.02\times10^{-13}$, while a generic non-rank-one Hermitian control has gap ratio $0.432639$; these gap observations are not used in the proof.
+ 
+ The original counterexamples are now boundary tests of the final theorem rather than disconnected side projects. The winding defect is exactly the longitudinal tensor in a nonlocal resonant lift, and the even/odd counterexample is exactly the disconnected ground-space degeneracy counted by the H4 theorem.
+ 
+@@ -1228,6 +1298,8 @@
+ 
+ # References
+ 
++\footnotesize
++
+ [1] Q. Gao, Z. Han, and E. Khalaf, “Bootstrapping Flatband Superconductors: Rigorous Lower Bounds on Superfluid Stiffness,” *Physical Review Letters* **136**, 076503 (2026), DOI 10.1103/gw85-5r92; arXiv:2506.18969v4.
+ 
+ [2] Z. Han, J. Herzog-Arbeitman, B. A. Bernevig, and S. A. Kivelson, “Quantum Geometric Nesting and Solvable Model Flat-Band Systems,” *Physical Review X* **14**, 041004 (2024); arXiv:2401.04163v3.

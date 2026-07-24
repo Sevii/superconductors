@@ -1,0 +1,602 @@
+--- exact_flat_band_stiffness_physics_arc.md
++++ exact_flat_band_stiffness_physics_arc_revised.md
+@@ -12,9 +12,9 @@
+   - \usepackage{array}
+   - \allowdisplaybreaks
+ abstract: |
+-  Gao, Han, and Khalaf conjectured that the thermodynamic flat-connection stiffness of a quantum-geometric-nesting (QGN) superconductor is exactly the hard-core filling factor times the inverse two-particle pair mass. We prove this equality for their projected-Hubbard Model II and derive a broader restricted reduction theorem. The route to the theorem passes through two exact boundary cases: a period-circumference winding deformation shows that finite-torus twist curvature is underdetermined unless a displacement lift is specified, while a fixed-local reducible QGN model shows that locality and positive pair mass do not suffice without irreducibility of the paired ground branch. In the connected Hermitian positive-square class, the fixed-pair-number Hessian obeys
++  Gao, Han, and Khalaf conjectured that the thermodynamic flat-connection stiffness of a quantum-geometric-nesting (QGN) superconductor is exactly the hard-core filling factor times the inverse two-particle pair mass. We prove this equality for their projected-Hubbard Model II and derive a broader restricted reduction theorem. The route to the theorem passes through two exact boundary cases: a period-circumference winding deformation shows that finite-torus twist curvature is underdetermined unless a displacement lift is specified, while a fixed-local reducible QGN model shows that locality and positive pair mass do not suffice without irreducibility of the paired ground branch. Under H1-H4 in the Hermitian positive-square class, the fixed-pair-number Hessian obeys
+   $C^{(n)}=\frac{n(L-n)}{L-1}C^{(1)}+(n^2-\frac{n(L-n)}{L-1})\Gamma$,
+-  where the longitudinal tensor $\Gamma$ is positive semidefinite and is a pure winding observable under a translation-covariant flat connection. A connected projected-orbital frame is equivalent to uniqueness of the antisymmetrized-geminal-power ground state in every nonsingular filling sector. For Model II, the frame is connected on every rectangular torus for $0<\xi<\pi/2$, $\Gamma=0$ exactly with no finite-size correction, and
++  where the longitudinal tensor $\Gamma$ is positive semidefinite and is a pure winding observable under a translation-covariant flat connection. In the projected PSD-Hubbard subclass, connectedness of the projected-orbital frame is equivalent to uniqueness of the antisymmetrized-geminal-power ground state in every nonsingular filling sector. For Model II, the frame is connected on every rectangular torus for $0<\xi<\pi/2$, $\Gamma=0$ exactly with no finite-size correction, and
+   $(m_{\mathrm{pair}}^{-1})_{ij}=|U|\xi^2\delta_{ij}/8$ for every $N_x,N_y\ge3$. Hence
+   $\kappa_{ij}^{(n)}=[V/(V-1)]\nu(1-\nu)|U|\xi^2\delta_{ij}/8$
+   at finite size and
+@@ -47,7 +47,7 @@
+ -t[\sigma_x\sin\alpha_k+\sigma_y\cos\alpha_k],
+ \qquad
+ \alpha_k=\xi(\cos k_x+\cos k_y),
+-\tag{1a}
++\tag{T1}
+ $$
+ 
+ and project the positive-semidefinite Hubbard interaction onto its lower time-reversal-related flat bands. For $0<\xi<\pi/2$, every rectangular torus with $N_x,N_y\ge3$, $V=N_xN_y$, and $1\le n\le V-1$ has a unique analytic AGP ground branch with exact curvature
+@@ -62,7 +62,7 @@
+ \qquad
+ \nu=\frac nV.
+ }
+-\tag{1b}
++\tag{T2}
+ $$
+ 
+ The two-particle bound branch has
+@@ -73,7 +73,7 @@
+ =
+ \frac{|U|\xi^2}{8}\delta_{ij}>0,
+ }
+-\tag{1c}
++\tag{T3}
+ $$
+ 
+ so along every regular sequence with $n_V/V\to\nu\in(0,1)$,
+@@ -84,7 +84,7 @@
+ =
+ \nu(1-\nu)(m_{\mathrm{pair}}^{-1})_{ij}.
+ }
+-\tag{1d}
++\tag{T4}
+ $$
+ 
+ Here $D_s$ is exactly the thermodynamic ground-energy curvature under the flat gauge connection used in Ref. [1]. The finite-size factor $V/(V-1)$ is explicit and universal.
+@@ -98,9 +98,11 @@
+ | Connected-model search | All surviving deviations reduce to one nonnegative longitudinal tensor. | Suggests an exact algebraic reduction rather than another counterexample. |
+ | General Hermitian-QGN theorem | $C^{(n)}=\rho_nC^{(1)}+(n^2-\rho_n)\Gamma$. | Isolates the only finite-size defect. |
+ | H4 connectivity theorem | Connected projected frame $\Longleftrightarrow$ unique AGP zero mode. | Removes the branch hypothesis in projected Hubbard models. |
+-| Model-II dispersion lemma | Pair mass is exact and positive; $\Gamma=0$ exactly. | Closes every remaining hypothesis and proves (1b)-(1d). |
++| Model-II dispersion lemma | Pair mass is exact and positive; $\Gamma=0$ exactly. | Closes every remaining hypothesis and proves (T2)-(T4). |
+ 
+ The standard QGN ideal Hamiltonians use Hermitian local null operators and a positive interaction kernel [2]. The abstract theorem below is restricted to that positive-square class, a full-rank equal-singular-value pairing matrix, and a specified translation-covariant twist lift. The final Model-II result is unconditional in the range stated above.
++
++**Notation.** Throughout, $L$ is the number of collective pair orbitals, $\mathbf N=(N_1,\ldots,N_d)$ are torus side lengths, and $V=\prod_jN_j$ is the number of unit cells. The one-spin flat-band space is denoted $\mathcal V$. The filling is always $\nu=n/L$; for Model II, $L=V$. In Section 2.1, $g>0$ denotes the magnitude of an attractive coupling. From Section 2.2 onward, $U>0$ denotes the coefficient of a positive-semidefinite square, while the Model-II formulas use $|U|$.
+ 
+ # 2. Two exact obstructions and the corrected theorem class
+ 
+@@ -128,7 +130,7 @@
+ \tag{O2}
+ $$
+ 
+-is independent of $m$. For the projected onsite attraction this gives the exact operator factorization
++is independent of $m$. For a projected onsite attraction of magnitude $g>0$, the shifted deformation angle $x_A=c\sin(qMA)$ is independent of $k_m$. The two orbital pair amplitudes obey $\cos(\pi/4+x_A)\cos(\pi/4-x_A)=\sin(\pi/4+x_A)\sin(\pi/4-x_A)=\tfrac12\cos(2x_A)$. Every projected interaction matrix element therefore acquires the same squared factor, giving the exact operator factorization
+ 
+ $$
+ H_c(A)=
+@@ -136,12 +138,12 @@
+ \tag{O3}
+ $$
+ 
+-If $E_n(0)=-Un/2$, then
++If $E_n(0)=-gn/2$, then
+ 
+ $$
+ E_{n,c}''(0)
+ =
+-E_{n,0}''(0)+4Uc^2q^2M^2n.
++E_{n,0}''(0)+4gc^2q^2M^2n.
+ \tag{O4}
+ $$
+ 
+@@ -153,12 +155,12 @@
+ =
+ \bigl(E_{n,0}''-\rho_nE_{1,0}''\bigr)
+ +
+-4Uc^2q^2M^2\frac{n(n-1)}{M-1}.
++4gc^2q^2M^2\frac{n(n-1)}{M-1}.
+ }
+ \tag{O5}
+ $$
+ 
+-The four-cell realization has a unique gapped branch and an exact normalized defect $U/24$ at $n=2$. A nonresonant $M=8$, harmonic-four control obeys the filling law, whereas the resonant harmonic-eight deformation violates it again. The failure is therefore not caused by a generic high harmonic; it is a period-circumference winding resonance.
++The four-cell realization has a unique gapped branch and an exact normalized defect $g/24$ at $n=2$. A nonresonant $M=8$, harmonic-four control obeys the filling law, whereas the resonant harmonic-eight deformation violates it again. The failure is therefore not caused by a generic high harmonic; it is a period-circumference winding resonance.
+ 
+ The structural conclusion is more important than the example:
+ 
+@@ -298,12 +300,19 @@
+ 
+ **H4: Simple analytic branch.** At $A=0$, zero is a simple eigenvalue of $H_n(0)$ in the fixed-$2n$ sector and is separated from the rest of that finite-dimensional sector by a positive gap. Hence the ground eigenvalue $E_n(A)$ and eigenvector are analytic near $A=0$. No gap uniform in system size is assumed here.
+ 
++Define the exact electronic-twist Hessian
++
++$$
++C_{ij}^{(n)}=\left.\partial_{A_i}\partial_{A_j}E_n(A)\right|_{A=0}.
++\tag{10}
++$$
++
+ ## 3.1 Automatic H1-H3 for projected PSD-Hubbard models
+ 
+-Let $V$ be the spin-up flat-band space, let the spin-down space be its time-reversal conjugate, and define projected orbital vectors
+-
+-$$
+-v_x=P|x\rangle,\qquad p_x=|v_x\rangle\langle v_x|,\qquad \sum_xp_x=I_V.
++Let $\mathcal V$ be the spin-up flat-band space, let the spin-down space be its time-reversal conjugate, and define projected orbital vectors
++
++$$
++v_x=P|x\rangle,\qquad p_x=|v_x\rangle\langle v_x|,\qquad \sum_xp_x=I_{\mathcal V}.
+ \tag{10a}
+ $$
+ 
+@@ -321,7 +330,7 @@
+ \tag{10c}
+ $$
+ 
+-Thus H1 is automatic; H2 follows because the factors annihilate the vacuum; and differentiation of a twisted projector keeps the source one body, proving H3. Uniform pairing of the orbital weights is not needed for these algebraic facts.
++Thus H1 is automatic; H2 follows from H1 because the factors annihilate the vacuum; and differentiation of a twisted projector keeps the source one body, proving H3. Uniform pairing of the orbital weights is not needed for these algebraic facts.
+ 
+ ## 3.2 Connectivity theorem closing H4 in the Hubbard subclass
+ 
+@@ -344,11 +353,11 @@
+ 
+ the AGP is the unique zero-energy state in every total-$2n$ sector, $1\le n\le L-1$, if and only if the overlap graph is connected. Consequently the zero eigenvalue has a positive finite-size sector gap and its continuation under an analytic twist is a simple analytic ground branch.
+ 
+-*Proof.* Any zero-energy state is annihilated by every square factor. Summing those null equations and using $\sum_xp_x=I_V$ gives $N_\uparrow=N_\downarrow=n$. Identify
+-
+-$$
+-\Lambda^nV\otimes\overline{\Lambda^nV}
+-\simeq\operatorname{End}(\Lambda^nV)
++*Proof.* Any zero-energy state is annihilated by every square factor. Summing those null equations and using $\sum_xp_x=I_{\mathcal V}$ gives $N_\uparrow=N_\downarrow=n$. Identify
++
++$$
++\Lambda^n\mathcal V\otimes\overline{\Lambda^n\mathcal V}
++\simeq\operatorname{End}(\Lambda^n\mathcal V)
+ \tag{10f}
+ $$
+ 
+@@ -370,13 +379,13 @@
+ Connectedness implies
+ 
+ $$
+-\operatorname{Lie}_{\mathbb R}\{ip_x\}=\mathfrak u(V).
++\operatorname{Lie}_{\mathbb R}\{ip_x\}=\mathfrak u(\mathcal V).
+ \tag{10i}
+ $$
+ 
+-One proof orders the frame along a spanning tree. If $\mathfrak u(W)$ has already been generated and the next vector has nonzero components in both $W$ and a new orthogonal direction, two commutators with its rank-one projector generate the symmetric and antisymmetric couplings to that direction; their commutator generates its diagonal projector. Induction reaches all of $V$.
+-
+-The exterior-power representation of $U(V)$ on $\Lambda^nV$ is irreducible for $0<n<L$. Schur's lemma therefore reduces the commutant in (10h) to scalar multiples of the identity. Its vectorization is the AGP state. Conversely, if the graph has components of span dimensions $L_1,\ldots,L_c$, the zero-mode dimension is
++One proof orders the frame along a spanning tree. If $\mathfrak u(W)$ has already been generated and the next vector has nonzero components in both $W$ and a new orthogonal direction, two commutators with its rank-one projector generate the symmetric and antisymmetric couplings to that direction; their commutator generates its diagonal projector. Induction reaches all of $\mathcal V$.
++
++The exterior-power representation of $U(\mathcal V)$ on $\Lambda^n\mathcal V$ is irreducible for $0<n<L$. Schur's lemma therefore reduces the commutant in (10h) to scalar multiples of the identity. Its vectorization is the AGP state. Conversely, if the graph has components of span dimensions $L_1,\ldots,L_c$, the zero-mode dimension is
+ 
+ $$
+ [z^n]\prod_{r=1}^c(1+z+\cdots+z^{L_r}),
+@@ -387,14 +396,46 @@
+ 
+ For a positive interaction kernel $H_K=\frac12\sum_{x,y}K_{xy}S_xS_y$, the same result holds whenever $K$ is strictly positive on the span of the active density-difference constraints. If the kernel loses rank, the correct replacement is irreducibility of the one-body Lie algebra generated by the surviving square factors.
+ 
+-For the Gao-Han-Khalaf Hubbard models, the condition is concrete. In Model I, the lower-band projector on every isolated $N\times N$ torus has nonzero nearest-neighbor diagonal Fourier coefficients in both lattice directions; each orbital layer is connected, and a nonzero off-diagonal coefficient joins the layers. In Model II, the off-diagonal projector phase is $e^{i\xi(\cos k_x+\cos k_y)}$. For $0<\xi<\pi/2$, its finite-grid Fourier coefficients at displacements $0$, $e_x$, and $e_y$ are nonzero on every rectangular torus, so the frame graph is connected. This includes $\xi=1$. A separate gauge-invariant audit found connected graphs in 55 additional Model-I/Model-II finite cases, including rectangular Model-I tori and Model II through $\xi=2$; those extra cases are certificates rather than all-size proofs.
+-
+-Define the exact electronic-twist Hessian
+-
+-$$
+-C_{ij}^{(n)}=\left.\partial_{A_i}\partial_{A_j}E_n(A)\right|_{A=0}.
+-\tag{10}
+-$$
++For Model II, the all-size connectivity claim can be proved directly. Define the one-dimensional finite-grid coefficient
++
++$$
++c_r^{(N)}(\xi)
++=\frac1N\sum_{m=0}^{N-1}
++e^{i\xi\cos k_m}e^{-irk_m},
++\qquad k_m=\frac{2\pi m}{N}.
++\tag{C1}
++$$
++
++For $0<\xi<\pi/2$,
++
++$$
++\operatorname{Re}c_0^{(N)}(\xi)
++=\frac1N\sum_m\cos(\xi\cos k_m)>0,
++\tag{C2}
++$$
++
++because every summand is strictly positive. Inversion symmetry of the grid cancels the term odd in $\sin k_m$ and gives
++
++$$
++c_1^{(N)}(\xi)
++=\frac1N\sum_m \cos k_m\,e^{i\xi\cos k_m},
++\qquad
++\operatorname{Im}c_1^{(N)}(\xi)
++=\frac1N\sum_m \cos k_m\sin(\xi\cos k_m)>0.
++\tag{C3}
++$$
++
++The last inequality follows because $x\sin(\xi x)>0$ for every nonzero $x\in[-1,1]$, and the grid contains $k=0$. Hence $c_0^{(N)}$ and $c_1^{(N)}$ are nonzero for every $N\ge2$. The two-dimensional off-diagonal projector coefficient factorizes, up to a fixed nonzero phase, as
++
++$$
++\widehat P_{12}(r_x,r_y)
++\propto c_{r_x}^{(N_x)}(\xi)c_{r_y}^{(N_y)}(\xi).
++\tag{C4}
++$$
++
++It is therefore nonzero at displacements $(0,0)$, $(1,0)$, and $(0,1)$. The first edge joins the two orbital layers within a cell, while the latter two join neighboring cells through opposite layers; two-step paths connect equal-orbital vertices across both lattice directions. Thus the projected-frame graph is connected on every rectangular torus for $0<\xi<\pi/2$. The restriction is imposed by the $c_0$ positivity argument, not by pair-mass positivity.
++
++The analogous all-size Model-I statement is not used below. A separate gauge-invariant audit found connected graphs in the tested Model-I tori and in additional Model-II cases through $\xi=2$, but those results are retained as finite certificates rather than promoted to all-size theorems.
+ 
+ # 4. Frustration-free least-squares curvature
+ 
+@@ -612,17 +653,17 @@
+ 
+ # 7. Translation-invariant positive kernels
+ 
+-The factorized notation (5) is convenient for the proof, but locality is clearer before factorizing the interaction kernel. Let $\Lambda_{\mathbf L}$ be a $d$-dimensional rectangular torus with side lengths $\mathbf L=(L_1,\ldots,L_d)$ and volume
+-
+-$$
+-V=\prod_{j=1}^dL_j.
++The factorized notation (5) is convenient for the proof, but locality is clearer before factorizing the interaction kernel. Let $\Lambda_{\mathbf N}$ be a $d$-dimensional rectangular torus with side lengths $\mathbf N=(N_1,\ldots,N_d)$ and volume
++
++$$
++V=\prod_{j=1}^dN_j.
+ \tag{33}
+ $$
+ 
+ Suppose there are finitely many translated Hermitian QGN null operators $X_{R,a}(A)$ and an $A$-independent positive translation kernel $\mathcal V_{ab}(R-R')$:
+ 
+ $$
+-H(A)=\frac12\sum_{R,R'\in\Lambda_{\mathbf L}}
++H(A)=\frac12\sum_{R,R'\in\Lambda_{\mathbf N}}
+ \sum_{a,b}
+ X_{R,a}(A)^\dagger
+ \mathcal V_{ab}(R-R')
+@@ -635,7 +676,7 @@
+ Translation invariance of $|1\rangle$ makes
+ 
+ $$
+-\beta_{a,i}^{(\mathbf L)}
++\beta_{a,i}^{(\mathbf N)}
+ =\left\langle1\left|
+ \partial_{A_i}X_{0,a}(A)|_0
+ \right|1\right\rangle
+@@ -646,11 +687,11 @@
+ 
+ $$
+ \boxed{
+-\Gamma_{ij}^{(\mathbf L)}
++\Gamma_{ij}^{(\mathbf N)}
+ =V\,\operatorname{Re}
+-\left[(\vec\beta_i^{(\mathbf L)})^\dagger
++\left[(\vec\beta_i^{(\mathbf N)})^\dagger
+ \widehat{\mathcal V}(0)
+-\vec\beta_j^{(\mathbf L)}\right].
++\vec\beta_j^{(\mathbf N)}\right].
+ }
+ \tag{36}
+ $$
+@@ -662,10 +703,10 @@
+ Let
+ 
+ $$
+-\mathcal K_{\mathbf L}
++\mathcal K_{\mathbf N}
+ =\left\{
+-\left(\frac{2\pi m_1}{L_1},\ldots,\frac{2\pi m_d}{L_d}\right):
+-0\le m_j<L_j
++\left(\frac{2\pi m_1}{N_1},\ldots,\frac{2\pi m_d}{N_d}\right):
++0\le m_j<N_j
+ \right\}.
+ \tag{37}
+ $$
+@@ -674,7 +715,7 @@
+ 
+ $$
+ \langle1|X_{0,a}(A)|1\rangle
+-=\frac1V\sum_{k\in\mathcal K_{\mathbf L}}f_a(k+A)+\text{constant}.
++=\frac1V\sum_{k\in\mathcal K_{\mathbf N}}f_a(k+A)+\text{constant}.
+ \tag{38}
+ $$
+ 
+@@ -690,28 +731,28 @@
+ **Proposition 2 (multidimensional roots-of-unity filter).** The finite-grid average obeys
+ 
+ $$
+-\frac1V\sum_{k\in\mathcal K_{\mathbf L}}f_a(k+A)
++\frac1V\sum_{k\in\mathcal K_{\mathbf N}}f_a(k+A)
+ =
+ \sum_{\ell\in\mathbb Z^d}
+-\widehat f_a(\ell\odot\mathbf L)
+-\,e^{i(\ell\odot\mathbf L)\cdot A},
++\widehat f_a(\ell\odot\mathbf N)
++\,e^{i(\ell\odot\mathbf N)\cdot A},
+ \tag{40}
+ $$
+ 
+-where $\ell\odot\mathbf L=(\ell_1L_1,\ldots,\ell_dL_d)$. Consequently,
+-
+-$$
+-\boxed{
+-\beta_{a,i}^{(\mathbf L)}
++where $\ell\odot\mathbf N=(\ell_1N_1,\ldots,\ell_dN_d)$. Consequently,
++
++$$
++\boxed{
++\beta_{a,i}^{(\mathbf N)}
+ =
+ \sum_{\ell\ne0}
+- i\ell_iL_i\,
+-\widehat f_a(\ell\odot\mathbf L).
++ i\ell_iN_i\,
++\widehat f_a(\ell\odot\mathbf N).
+ }
+ \tag{41}
+ $$
+ 
+-*Proof.* Substitute (39) into the left side of (40). The product of the $d$ discrete roots-of-unity sums is one exactly when every component of $R$ is divisible by the corresponding $L_j$, and zero otherwise. Differentiation gives (41). $\square$
++*Proof.* Substitute (39) into the left side of (40). The product of the $d$ discrete roots-of-unity sums is one exactly when every component of $R$ is divisible by the corresponding $N_j$, and zero otherwise. Differentiation gives (41). $\square$
+ 
+ Thus the longitudinal term is a pure winding observable. It is absent in the Brillouin-zone integral and can survive at finite size only through Fourier coefficients at displacement vectors that wrap around the torus.
+ 
+@@ -724,21 +765,21 @@
+ \tag{42}
+ $$
+ 
+-Let $L_{\min}=\min_jL_j$ and $L_{\max}=\max_jL_j$.
+-
+-1. **Strict finite range.** If there is an $R_0$ independent of $\mathbf L$ such that
++Let $N_{\min}=\min_jN_j$ and $N_{\max}=\max_jN_j$.
++
++1. **Strict finite range.** If there is an $R_0$ independent of $\mathbf N$ such that
+ 
+ $$
+    \widehat f_a(R)=0\quad\text{whenever }|R|_\infty>R_0,
+    \tag{43}
+ $$
+ 
+-   then for every torus with $L_{\min}>R_0$,
+-
+-$$
+-   \beta_{a,i}^{(\mathbf L)}=0,
++   then for every torus with $N_{\min}>R_0$,
++
++$$
++   \beta_{a,i}^{(\mathbf N)}=0,
+    \qquad
+-   \Gamma_{ij}^{(\mathbf L)}=0.
++   \Gamma_{ij}^{(\mathbf N)}=0.
+    \tag{44}
+ $$
+ 
+@@ -749,35 +790,35 @@
+    \tag{45}
+ $$
+ 
+-   with $C_0,\mu>0$ independent of $\mathbf L$, then there are constants $C_1,C_2$ depending only on $d,\mu$, the channel number, and $V_0$ such that, for all sufficiently large $L_{\min}$,
+-
+-$$
+-   |\beta_{a,i}^{(\mathbf L)}|
+-   \le C_1L_{\max}e^{-\mu L_{\min}},
++   with $C_0,\mu>0$ independent of $\mathbf N$, then there are constants $C_1,C_2$ depending only on $d,\mu$, the channel number, and $V_0$ such that, for all sufficiently large $N_{\min}$,
++
++$$
++   |\beta_{a,i}^{(\mathbf N)}|
++   \le C_1N_{\max}e^{-\mu N_{\min}},
+    \tag{46}
+ $$
+ 
+    and
+ 
+ $$
+-   \|\Gamma^{(\mathbf L)}\|
+-   \le C_2V L_{\max}^2e^{-2\mu L_{\min}}.
++   \|\Gamma^{(\mathbf N)}\|
++   \le C_2V N_{\max}^2e^{-2\mu N_{\min}}.
+    \tag{47}
+ $$
+ 
+-*Proof.* Part 1 follows immediately from (41): every nonzero $\ell\odot\mathbf L$ has $|\ell\odot\mathbf L|_\infty\ge L_{\min}$.
++*Proof.* Part 1 follows immediately from (41): every nonzero $\ell\odot\mathbf N$ has $|\ell\odot\mathbf N|_\infty\ge N_{\min}$.
+ 
+ For Part 2, (41) gives
+ 
+ $$
+-|\beta_{a,i}^{(\mathbf L)}|
+-\le C_0L_i
++|\beta_{a,i}^{(\mathbf N)}|
++\le C_0N_i
+ \sum_{\ell\ne0}|\ell_i|
+-\exp\left[-\mu\sum_j|\ell_j|L_j\right].
++\exp\left[-\mu\sum_j|\ell_j|N_j\right].
+ \tag{48}
+ $$
+ 
+-The product geometric series is bounded by a constant times $e^{-\mu L_{\min}}$ for large $L_{\min}$, proving (46). Substituting (46) into (36) gives (47). $\square$
++The product geometric series is bounded by a constant times $e^{-\mu N_{\min}}$ for large $N_{\min}$, proving (46). Substituting (46) into (36) gives (47). $\square$
+ 
+ ## 9.1 Why topology does not obstruct the estimate
+ 
+@@ -797,11 +838,11 @@
+ We now freeze conventions. Set the lattice constants, electron charge magnitude, and $\hbar$ to one.
+ 
+ 1. $A$ is a uniform electronic crystal-momentum shift, implemented as $k\mapsto k+A$ in the projected interaction.
+-2. The boundary phase is $\phi_i=L_iA_i$. Thus
++2. The boundary phase is $\phi_i=N_iA_i$. Thus
+ 
+ $$
+    \partial_{A_i}\partial_{A_j}
+-   =L_iL_j\partial_{\phi_i}\partial_{\phi_j}.
++   =N_iN_j\partial_{\phi_i}\partial_{\phi_j}.
+    \tag{50}
+ $$
+ 
+@@ -918,7 +959,7 @@
+ \tag{M7}
+ $$
+ 
+-namely $(1\pm|F_{\mathbf N}|)/4$, proving (M3). Moreover,
++namely $(1\pm|F_{\mathbf N}|)/4$. The corresponding energies are $|U|(1\mp|F_{\mathbf N}|)/4$, while every state orthogonal to the rank-two kernel has energy $|U|/2$. Since $0\le|F_{\mathbf N}|\le1$, the branch in (M3) is the lowest one. Moreover,
+ 
+ $$
+ \delta\alpha_k(Q)
+@@ -991,7 +1032,7 @@
+ For an anisotropic tensor, compare along a fixed real direction $v$. Define
+ 
+ $$
+-R_{\mathbf L,v}
++R_{\mathbf N,v}
+ =
+ \frac{v_i\kappa_{ij}^{(n)}v_j}
+ {(N_{\mathrm{flat}}/2)\nu(1-\nu)
+@@ -1003,7 +1044,7 @@
+ 
+ $$
+ \boxed{
+-R_{\mathbf L,v}
++R_{\mathbf N,v}
+ =
+ \frac{L}{L-1}
+ +
+@@ -1015,10 +1056,10 @@
+ 
+ # 11. Thermodynamic restricted reduction theorem
+ 
+-**Theorem 3 (thermodynamic QGN reduction).** Consider a sequence of regular tori with $L_{\min}\to\infty$ and bounded aspect ratio. Assume H1-H4 at each size, a fixed finite-range or uniformly exponentially local lift as in Theorem 2, and fillings $n_{\mathbf L}/L\to\nu\in(0,1)$. Suppose that in a direction $v$ the one-pair inverse mass remains nonzero:
+-
+-$$
+-\liminf_{\mathbf L\to\infty}
++**Theorem 3 (thermodynamic QGN reduction).** Consider a sequence of regular tori with $N_{\min}\to\infty$ and bounded aspect ratio. Assume H1-H4 at each size, a fixed finite-range or uniformly exponentially local lift as in Theorem 2, and fillings $n_{\mathbf N}/L\to\nu\in(0,1)$. Suppose that in a direction $v$ the one-pair inverse mass remains nonzero:
++
++$$
++\liminf_{\mathbf N\to\infty}
+  v_i(m_{\mathrm{pair}}^{-1})_{ij}v_j>0.
+ \tag{59}
+ $$
+@@ -1027,21 +1068,21 @@
+ 
+ $$
+ \boxed{
+-R_{\mathbf L,v}\longrightarrow1.
++R_{\mathbf N,v}\longrightarrow1.
+ }
+ \tag{60}
+ $$
+ 
+-For fixed strict finite range, $\Gamma^{(\mathbf L)}=0$ exactly once the torus exceeds the support, and
+-
+-$$
+-R_{\mathbf L,v}=\frac{L}{L-1}
++For fixed strict finite range, $\Gamma^{(\mathbf N)}=0$ exactly once the torus exceeds the support, and
++
++$$
++R_{\mathbf N,v}=\frac{L}{L-1}
+ \tag{61}
+ $$
+ 
+-at every larger size. For uniform exponential locality, the second term in (58) is bounded by a polynomial in the side lengths times $e^{-2\mu L_{\min}}$, and therefore vanishes.
+-
+-*Proof.* The finite-range statement follows from (44), (56), and (58). In the exponential case, (47) and $L=(N_{\mathrm{flat}}/2)V$ show that the longitudinal correction in (58) is bounded by a polynomial factor times $e^{-2\mu L_{\min}}$. Assumption (59) prevents division by a vanishing pair curvature. The first term in (58) tends to one. $\square$
++at every larger size. For uniform exponential locality, the second term in (58) is bounded by a polynomial in the side lengths times $e^{-2\mu N_{\min}}$, and therefore vanishes.
++
++*Proof.* The finite-range statement follows from (44), (56), and (58). In the exponential case, (47) and $L=(N_{\mathrm{flat}}/2)V$ show that the longitudinal correction in (58) is bounded by a polynomial factor times $e^{-2\mu N_{\min}}$. Assumption (59) prevents division by a vanishing pair curvature. The first term in (58) tends to one. $\square$
+ 
+ Gao, Han, and Khalaf define their target response through the second derivative of the ground-state energy under a flat connection and denote the thermodynamic quantity $D_s$ [1]. With that literal definition, no additional charge-gap hypothesis is needed to state their conjecture. Their finite-size calculations are more precisely Drude curvatures, and a stricter dynamical identification with a zero-frequency transport coefficient may still require an order-of-limits argument.
+ 
+@@ -1093,41 +1134,13 @@
+ 
+ Dividing by $4V$ proves (M13); taking $V\to\infty$ proves (M14). $\square$
+ 
+-# 12. Finite-volume isolation and the closing collective branch
+-
+-Proposition 1 proves that a connected projected frame has a unique AGP zero mode and therefore a positive spectral gap at each fixed finite torus. No lower bound uniform in volume is needed anywhere in the curvature proof.
+-
+-The operator-space representation also gives one useful filling-independent comparison. Writing $p_x=w_xq_x$ with $q_x$ rank one and $r_x=I-2q_x$, vectorization yields
+-
+-$$
+-\mathcal H_{L,n}
+-=
+-\frac U4\sum_xw_x^2
+-\bigl[I-\operatorname{Ad}(\Lambda^nr_x)\bigr].
+-\tag{61a}
+-$$
+-
+-The conjugation representation contains the traceless one-pair representation at every nonsingular filling. Hence
+-
+-$$
+-\boxed{
+-\Delta_{L,n}\le\Delta_{L,1}.
+-}
+-\tag{61b}
+-$$
+-
+-For a fixed smooth translation-invariant projector, an overlap-map trial operator at the smallest nonzero transfer momentum gives
+-
+-$$
+-\boxed{
+-\Delta_{\mathbf N,1}=O(N_{\min}^{-2}),
+-\qquad
+-\Delta_{\mathbf N,n}\le\Delta_{\mathbf N,1}.
+-}
+-\tag{61c}
+-$$
+-
+-Thus the full fixed-number sector gap necessarily closes along the thermodynamic sequence. This does not threaten the present theorem: uniqueness and analyticity are used at each finite size, while the thermodynamic result follows by taking the limit of an exact finite-size curvature identity. The stronger representation-theoretic question of whether all filling-sector gaps equal the one-pair gap is mathematically attractive but is not load-bearing here. It is removed from the physics proof and deferred to a standalone mathematical note.
++# 12. Finite-volume isolation and the deferred sector-gap problem
++
++Proposition 1 gives a unique AGP zero mode and a strictly positive spectral gap on every fixed connected torus. That finite-volume isolation is the only gap input used by Lemma 1 and Theorem 1. Neither Theorem 3 nor Theorem 4 assumes a lower bound uniform in volume.
++
++The representation-theoretic decomposition of the full sector spectrum, comparisons of gaps across fillings, and the rank-one Aldous question are mathematically interesting but are not load-bearing for the stiffness theorem. They are deferred to a standalone mathematical note. No finite-size sector-gap ordering or $O(N^{-2})$ scaling claim is asserted or used in this paper.
++
++This separation is deliberate: the Gao-Han-Khalaf conjecture addressed by Theorem 4 is stated in terms of thermodynamic flat-connection ground-energy curvature. A stricter dynamical identification and its order of limits are scoped as a subsequent project in Section 13.3.
+ 
+ # 13. Relation to prior work and theorem boundary
+ 
+@@ -1146,7 +1159,7 @@
+ 3. it gives a necessary-and-sufficient connectivity criterion for uniqueness of the AGP zero mode in projected PSD-Hubbard models; and
+ 4. it combines these results with an exact Model-II pair branch to prove the GHK equality, rather than infer it from mean field, a variational upper bound, or numerical saturation.
+ 
+-The connectivity theorem is a superconducting operator-space analogue of the irreducibility criteria in rigorous flat-band ferromagnetism. Mielke proved necessary-and-sufficient uniqueness conditions in terms of irreducibility of the one-particle density matrix [8,9]. Here vectorization converts the paired zero-mode problem into a commutant on $\Lambda^nV$, and connected rank-one projected orbitals generate the full one-body unitary algebra.
++The connectivity theorem is a superconducting operator-space analogue of the irreducibility criteria in rigorous flat-band ferromagnetism. Mielke proved necessary-and-sufficient uniqueness conditions in terms of irreducibility of the one-particle density matrix [8,9]. Here vectorization converts the paired zero-mode problem into a commutant on $\Lambda^n\mathcal V$, and connected rank-one projected orbitals generate the full one-body unitary algebra.
+ 
+ ## 13.2 Non-Hermitian QGN boundary
+ 
+@@ -1164,7 +1177,7 @@
+ 
+ The theorem does not presently cover degenerate fixed-number ground spaces, several inequivalent singular-value blocks of the pairing matrix, rank-deficient interaction kernels without a separate Lie-algebra audit, or general non-Hermitian generalized-QGN constructions. The reducible counterexample classifies the first boundary exactly. The natural replacement in the multi-block case is a block-resolved filling law with several pseudospins.
+ 
+-Ref. [1] calls the thermodynamic ground-energy curvature under a flat connection $D_s$, and that literal conjecture is what Theorem 4 proves for Model II. A stricter identification with a dynamical zero-frequency superfluid response can depend on the order of thermodynamic, zero-momentum, and zero-frequency limits. Because the complete collective sector contains an $O(N^{-2})$ branch, that question cannot be settled by assuming a uniform global gap. We leave this dynamical order-of-limits problem as the next project rather than attaching it as an unnecessary hypothesis to the result proved here.
++Ref. [1] calls the thermodynamic ground-energy curvature under a flat connection $D_s$, and that literal conjecture is what Theorem 4 proves for Model II. A stricter identification with a dynamical zero-frequency superfluid response can depend on the order of thermodynamic, zero-momentum, and zero-frequency limits. No uniform-in-volume gap is assumed or needed here, and no sector-gap scaling statement is used. We leave the dynamical order-of-limits problem as the next project rather than attaching it as an unnecessary hypothesis to the result proved here.
+ 
+ # 14. Reproducibility and cross-package verification
+ 
+@@ -1188,7 +1201,7 @@
+ 
+ The research arc began with a broad attempt to prove an exact many-body/two-body reduction and initially produced two counterexamples. The first showed that continuous finite-torus twist curvature is not determined by untwisted samples unless the displacement lift is fixed. The second showed that even a fixed-local, twist-stable QGN model can evade the pair-mass value when its paired ground space is reducible. Those failures identified, rather than destroyed, the theorem.
+ 
+-For the connected Hermitian positive-square class, the exact finite-size identity is
++Under H1-H4 in the Hermitian positive-square class, the exact finite-size identity is
+ 
+ $$
+ \boxed{
+@@ -1205,7 +1218,7 @@
+ \tag{62}
+ $$
+ 
+-The longitudinal tensor is a winding observable. Fixed locality removes it, and projected-frame connectivity is exactly the condition that removes competing AGP occupancy sectors. In Model II, the cancellation is stronger: $\Gamma=0$ exactly on every finite torus, with no correction, while the one-pair mass is strictly positive and known in closed form. The resulting finite-size formula (M13) and thermodynamic equality (M14) prove the restricted Gao-Han-Khalaf conjecture for the projected-Hubbard Model II throughout $0<\xi<\pi/2$, and on any additional finite torus whose frame connectivity is certified.
++The longitudinal tensor is a winding observable. Fixed locality removes it. In the projected PSD-Hubbard subclass, projected-frame connectivity is exactly the condition that supplies H4 by removing competing AGP occupancy sectors. In Model II, the cancellation is stronger: $\Gamma=0$ exactly on every finite torus, with no correction, while the one-pair mass is strictly positive and known in closed form. The resulting finite-size formula (M13) and thermodynamic equality (M14) prove the restricted Gao-Han-Khalaf conjecture for the projected-Hubbard Model II throughout $0<\xi<\pi/2$, and on any additional finite torus whose frame connectivity is certified.
+ 
+ The next physics project is extension, not completion of this case: determine the largest Hermitian QGN interaction class for which the intertwiner proof survives, derive the multi-singular-value block law, and address the dynamical order of limits under transport definitions stricter than the flat-connection curvature used in Ref. [1].
+ 
+@@ -1219,7 +1232,7 @@
+ 
+ [2] Z. Han, J. Herzog-Arbeitman, B. A. Bernevig, and S. A. Kivelson, “Quantum Geometric Nesting and Solvable Model Flat-Band Systems,” *Physical Review X* **14**, 041004 (2024); arXiv:2401.04163v3.
+ 
+-[3] T. Kato, *Perturbation Theory for Linear Operators*, Springer.
++[3] T. Kato, *Perturbation Theory for Linear Operators*, 2nd ed., Springer-Verlag, Berlin-Heidelberg-New York (1976).
+ 
+ [4] D. J. Scalapino, S. R. White, and S. Zhang, “Insulator, Metal, or Superconductor: The Criteria,” *Physical Review B* **47**, 7995-8007 (1993).
+ 
+@@ -1235,7 +1248,7 @@
+ 
+ [10] K.-E. Huhtinen, J. Herzog-Arbeitman, A. Chew, B. A. Bernevig, and P. Törmä, “Revisiting Flat Band Superconductivity: Dependence on Minimal Quantum Metric and Band Touchings,” *Physical Review B* **106**, 014518 (2022).
+ 
+-[11] J. Herzog-Arbeitman, A. Chew, K.-E. Huhtinen, P. Törmä, and B. A. Bernevig, “Many-Body Superconductivity in Topological Flat Bands,” *Communications Physics* (2026), DOI 10.1038/s42005-026-02732-2.
++[11] J. Herzog-Arbeitman, A. Chew, K.-E. Huhtinen, P. Törmä, and B. A. Bernevig, “Many-Body Superconductivity in Topological Flat Bands,” *Communications Physics*, published online 4 July 2026, DOI 10.1038/s42005-026-02732-2.
+ 
+ [12] S. Peotta and P. Törmä, “Superfluidity in Topologically Nontrivial Flat Bands,” *Nature Communications* **6**, 8944 (2015).
+ 

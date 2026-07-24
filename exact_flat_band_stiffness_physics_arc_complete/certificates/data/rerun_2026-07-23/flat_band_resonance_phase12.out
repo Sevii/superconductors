@@ -1,0 +1,21 @@
+
+[M4_r4_resonant] M=4, r=4, c=0.125, convention=cross
+  n=1: E(0)=-0.500000000000, gap=0.250000000000, E''=2.233700550469, rho_n E_1''=2.233700550469, defect=+0.000e+00, E''/rho_n=2.233700550469
+  n=2: E(0)=-1.000000000000, gap=0.250000000000, E''=3.644934066797, rho_n E_1''=2.978267400626, defect=+6.667e-01, E''/rho_n=2.733700550098
+  n=3: E(0)=-1.500000000000, gap=0.250000000000, E''=4.233700546943, rho_n E_1''=2.233700550469, defect=+2.000e+00, E''/rho_n=4.233700546943
+  factorization diagnostic at A=0.137: best/analytic scalar=0.9831318732041695, max|difference|=1.110e-16, relative Frobenius=1.986e-16
+  resonance formula, n=2: predicted defect=0.666666666667, numerical=0.666666666171
+  resonance formula, n=3: predicted defect=2.000000000000, numerical=1.999999996474
+
+[M8_r4_nonresonant_control] M=8, r=4, c=0.125, convention=cross
+  n=1: E(0)=-0.500000000000, gap=0.082495652968, E''=2.233700549148, rho_n E_1''=2.233700549148, defect=+0.000e+00, E''/rho_n=2.233700549148
+  n=2: E(0)=-1.000000000000, gap=0.082495652968, E''=3.829200942383, rho_n E_1''=3.829200941396, defect=+9.872e-10, E''/rho_n=2.233700549724
+  factorization diagnostic at A=0.137: best/analytic scalar=(0.9954894813870908-2.2723741573855968e-18j), max|difference|=1.615e-02, relative Frobenius=7.364e-02
+
+[M8_r8_resonant] M=8, r=8, c=0.125, convention=cross
+  n=1: E(0)=-0.500000000000, gap=0.082495652968, E''=5.233700549362, rho_n E_1''=5.233700549362, defect=+0.000e+00, E''/rho_n=5.233700549362
+  n=2: E(0)=-1.000000000000, gap=0.082495652968, E''=10.114915226866, rho_n E_1''=8.972058084621, defect=+1.143e+00, E''/rho_n=5.900367215672
+  factorization diagnostic at A=0.137: best/analytic scalar=0.9513714027636524, max|difference|=1.110e-16, relative Frobenius=3.581e-16
+  resonance formula, n=2: predicted defect=1.142857142857, numerical=1.142857142245
+
+Wrote phase12_results.csv

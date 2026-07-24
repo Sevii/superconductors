@@ -1,0 +1,19 @@
+AGP source norm ratio: -n*(-L + n)/(L - 1)
+M=5: Gamma_M(trace)=0.0784767087382601
+  n=2: defect=0.196191767328613, predicted=0.19619177184565, residual=-4.517e-09
+  n=3: defect=0.588575309775896, predicted=0.588575315536951, residual=-5.761e-09
+  n=4: defect=1.17715062550899, predicted=1.1771506310739, residual=-5.565e-09
+M=6: Gamma_M(trace)=0.0016763739811454
+  n=2: defect=0.0040232930310804, predicted=0.00402329755474896, residual=-4.524e-09
+  n=3: defect=0.0120698858313704, predicted=0.0120698926642469, residual=-6.833e-09
+  n=4: defect=0.0241397809756014, predicted=0.0241397853284937, residual=-4.353e-09
+  n=5: defect=0.0402329751258383, predicted=0.0402329755474896, residual=-4.217e-10
+M=7: Gamma_M(trace)=0.000308341383259396
+  n=2: defect=0.000719455640722622, predicted=0.000719463227605258, residual=-7.587e-09
+  n=3: defect=0.0021583755445489, predicted=0.00215838968281577, residual=-1.414e-08
+  n=4: defect=0.00431676523232749, predicted=0.00431677936563155, residual=-1.413e-08
+  n=5: defect=0.00719462469269683, predicted=0.00719463227605258, residual=-7.583e-09
+  n=6: defect=0.0107919486465216, predicted=0.0107919484140789, residual=2.324e-10
+worst residual: 1.4138266877117972e-08
+PASS
+wrote /mnt/data/qgn_no_counterexample_evidence.csv

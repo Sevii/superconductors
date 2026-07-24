@@ -1,0 +1,85 @@
+H4 random-frame certificate: PASS
+{'case': 'connected-L4', 'L': 4, 'n': 1, 'components': 1, 'component_dims': '4', 'frame_error': np.float64(4.604880359952465e-16), 'lie_dimension': 16, 'uL_dimension': 16, 'zero_modes': 1, 'predicted_zero_modes': 1, 'gap': 0.08465862342215844}
+{'case': 'connected-L4', 'L': 4, 'n': 2, 'components': 1, 'component_dims': '4', 'frame_error': np.float64(4.604880359952465e-16), 'lie_dimension': 16, 'uL_dimension': 16, 'zero_modes': 1, 'predicted_zero_modes': 1, 'gap': 0.08465862342215831}
+{'case': 'connected-L4', 'L': 4, 'n': 3, 'components': 1, 'component_dims': '4', 'frame_error': np.float64(4.604880359952465e-16), 'lie_dimension': 16, 'uL_dimension': 16, 'zero_modes': 1, 'predicted_zero_modes': 1, 'gap': 0.08465862342215791}
+{'case': 'connected-L5', 'L': 5, 'n': 1, 'components': 1, 'component_dims': '5', 'frame_error': np.float64(8.100106136542571e-16), 'lie_dimension': 25, 'uL_dimension': 25, 'zero_modes': 1, 'predicted_zero_modes': 1, 'gap': 0.14457192336304392}
+{'case': 'connected-L5', 'L': 5, 'n': 2, 'components': 1, 'component_dims': '5', 'frame_error': np.float64(8.100106136542571e-16), 'lie_dimension': 25, 'uL_dimension': 25, 'zero_modes': 1, 'predicted_zero_modes': 1, 'gap': 0.14457192336304375}
+{'case': 'connected-L5', 'L': 5, 'n': 3, 'components': 1, 'component_dims': '5', 'frame_error': np.float64(8.100106136542571e-16), 'lie_dimension': 25, 'uL_dimension': 25, 'zero_modes': 1, 'predicted_zero_modes': 1, 'gap': 0.14457192336304367}
+{'case': 'connected-L5', 'L': 5, 'n': 4, 'components': 1, 'component_dims': '5', 'frame_error': np.float64(8.100106136542571e-16), 'lie_dimension': 25, 'uL_dimension': 25, 'zero_modes': 1, 'predicted_zero_modes': 1, 'gap': 0.14457192336304403}
+{'case': 'disconnected-2+2', 'L': 4, 'n': 1, 'components': 2, 'component_dims': '2+2', 'frame_error': np.float64(4.542498235259766e-16), 'lie_dimension': 8, 'uL_dimension': 16, 'zero_modes': 2, 'predicted_zero_modes': 2, 'gap': 0.02994701209896277}
+{'case': 'disconnected-2+2', 'L': 4, 'n': 2, 'components': 2, 'component_dims': '2+2', 'frame_error': np.float64(4.542498235259766e-16), 'lie_dimension': 8, 'uL_dimension': 16, 'zero_modes': 3, 'predicted_zero_modes': 3, 'gap': 0.02994701209896247}
+{'case': 'disconnected-2+2', 'L': 4, 'n': 3, 'components': 2, 'component_dims': '2+2', 'frame_error': np.float64(4.542498235259766e-16), 'lie_dimension': 8, 'uL_dimension': 16, 'zero_modes': 2, 'predicted_zero_modes': 2, 'gap': 0.029947012098962784}
+{'case': 'disconnected-2+3', 'L': 5, 'n': 1, 'components': 2, 'component_dims': '2+3', 'frame_error': np.float64(4.3506773839543168e-16), 'lie_dimension': 13, 'uL_dimension': 25, 'zero_modes': 2, 'predicted_zero_modes': 2, 'gap': 0.009271682149071375}
+{'case': 'disconnected-2+3', 'L': 5, 'n': 2, 'components': 2, 'component_dims': '2+3', 'frame_error': np.float64(4.3506773839543168e-16), 'lie_dimension': 13, 'uL_dimension': 25, 'zero_modes': 3, 'predicted_zero_modes': 3, 'gap': 0.009271682149070166}
+{'case': 'disconnected-2+3', 'L': 5, 'n': 3, 'components': 2, 'component_dims': '2+3', 'frame_error': np.float64(4.3506773839543168e-16), 'lie_dimension': 13, 'uL_dimension': 25, 'zero_modes': 3, 'predicted_zero_modes': 3, 'gap': 0.009271682149071063}
+{'case': 'disconnected-2+3', 'L': 5, 'n': 4, 'components': 2, 'component_dims': '2+3', 'frame_error': np.float64(4.3506773839543168e-16), 'lie_dimension': 13, 'uL_dimension': 25, 'zero_modes': 2, 'predicted_zero_modes': 2, 'gap': 0.009271682149070907}
+
+GHK frame graph audit: PASS
+{'model': 'I', 'Nx': 2, 'Ny': 2, 'L': 4, 'components': 1, 'component_dims': '4', 'connected': True}
+{'model': 'I', 'Nx': 2, 'Ny': 3, 'L': 6, 'components': 1, 'component_dims': '6', 'connected': True}
+{'model': 'I', 'Nx': 3, 'Ny': 3, 'L': 9, 'components': 1, 'component_dims': '9', 'connected': True}
+{'model': 'I', 'Nx': 3, 'Ny': 4, 'L': 12, 'components': 1, 'component_dims': '12', 'connected': True}
+{'model': 'I', 'Nx': 4, 'Ny': 4, 'L': 16, 'components': 1, 'component_dims': '16', 'connected': True}
+{'model': 'I', 'Nx': 5, 'Ny': 5, 'L': 25, 'components': 1, 'component_dims': '25', 'connected': True}
+{'model': 'I', 'Nx': 6, 'Ny': 6, 'L': 36, 'components': 1, 'component_dims': '36', 'connected': True}
+{'model': 'I', 'Nx': 7, 'Ny': 7, 'L': 49, 'components': 1, 'component_dims': '49', 'connected': True}
+{'model': 'I', 'Nx': 7, 'Ny': 9, 'L': 63, 'components': 1, 'component_dims': '63', 'connected': True}
+{'model': 'I', 'Nx': 8, 'Ny': 8, 'L': 64, 'components': 1, 'component_dims': '64', 'connected': True}
+{'model': 'I', 'Nx': 9, 'Ny': 9, 'L': 81, 'components': 1, 'component_dims': '81', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 2, 'Ny': 2, 'L': 4, 'components': 1, 'component_dims': '4', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 2, 'Ny': 3, 'L': 6, 'components': 1, 'component_dims': '6', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 3, 'Ny': 3, 'L': 9, 'components': 1, 'component_dims': '9', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 3, 'Ny': 4, 'L': 12, 'components': 1, 'component_dims': '12', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 4, 'Ny': 4, 'L': 16, 'components': 1, 'component_dims': '16', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 5, 'Ny': 5, 'L': 25, 'components': 1, 'component_dims': '25', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 6, 'Ny': 6, 'L': 36, 'components': 1, 'component_dims': '36', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 7, 'Ny': 7, 'L': 49, 'components': 1, 'component_dims': '49', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 7, 'Ny': 9, 'L': 63, 'components': 1, 'component_dims': '63', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 8, 'Ny': 8, 'L': 64, 'components': 1, 'component_dims': '64', 'connected': True}
+{'model': 'II-xi0.5', 'Nx': 9, 'Ny': 9, 'L': 81, 'components': 1, 'component_dims': '81', 'connected': True}
+{'model': 'II-xi1', 'Nx': 2, 'Ny': 2, 'L': 4, 'components': 1, 'component_dims': '4', 'connected': True}
+{'model': 'II-xi1', 'Nx': 2, 'Ny': 3, 'L': 6, 'components': 1, 'component_dims': '6', 'connected': True}
+{'model': 'II-xi1', 'Nx': 3, 'Ny': 3, 'L': 9, 'components': 1, 'component_dims': '9', 'connected': True}
+{'model': 'II-xi1', 'Nx': 3, 'Ny': 4, 'L': 12, 'components': 1, 'component_dims': '12', 'connected': True}
+{'model': 'II-xi1', 'Nx': 4, 'Ny': 4, 'L': 16, 'components': 1, 'component_dims': '16', 'connected': True}
+{'model': 'II-xi1', 'Nx': 5, 'Ny': 5, 'L': 25, 'components': 1, 'component_dims': '25', 'connected': True}
+{'model': 'II-xi1', 'Nx': 6, 'Ny': 6, 'L': 36, 'components': 1, 'component_dims': '36', 'connected': True}
+{'model': 'II-xi1', 'Nx': 7, 'Ny': 7, 'L': 49, 'components': 1, 'component_dims': '49', 'connected': True}
+{'model': 'II-xi1', 'Nx': 7, 'Ny': 9, 'L': 63, 'components': 1, 'component_dims': '63', 'connected': True}
+{'model': 'II-xi1', 'Nx': 8, 'Ny': 8, 'L': 64, 'components': 1, 'component_dims': '64', 'connected': True}
+{'model': 'II-xi1', 'Nx': 9, 'Ny': 9, 'L': 81, 'components': 1, 'component_dims': '81', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 2, 'Ny': 2, 'L': 4, 'components': 1, 'component_dims': '4', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 2, 'Ny': 3, 'L': 6, 'components': 1, 'component_dims': '6', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 3, 'Ny': 3, 'L': 9, 'components': 1, 'component_dims': '9', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 3, 'Ny': 4, 'L': 12, 'components': 1, 'component_dims': '12', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 4, 'Ny': 4, 'L': 16, 'components': 1, 'component_dims': '16', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 5, 'Ny': 5, 'L': 25, 'components': 1, 'component_dims': '25', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 6, 'Ny': 6, 'L': 36, 'components': 1, 'component_dims': '36', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 7, 'Ny': 7, 'L': 49, 'components': 1, 'component_dims': '49', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 7, 'Ny': 9, 'L': 63, 'components': 1, 'component_dims': '63', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 8, 'Ny': 8, 'L': 64, 'components': 1, 'component_dims': '64', 'connected': True}
+{'model': 'II-xi1.5', 'Nx': 9, 'Ny': 9, 'L': 81, 'components': 1, 'component_dims': '81', 'connected': True}
+{'model': 'II-xi2', 'Nx': 2, 'Ny': 2, 'L': 4, 'components': 1, 'component_dims': '4', 'connected': True}
+{'model': 'II-xi2', 'Nx': 2, 'Ny': 3, 'L': 6, 'components': 1, 'component_dims': '6', 'connected': True}
+{'model': 'II-xi2', 'Nx': 3, 'Ny': 3, 'L': 9, 'components': 1, 'component_dims': '9', 'connected': True}
+{'model': 'II-xi2', 'Nx': 3, 'Ny': 4, 'L': 12, 'components': 1, 'component_dims': '12', 'connected': True}
+{'model': 'II-xi2', 'Nx': 4, 'Ny': 4, 'L': 16, 'components': 1, 'component_dims': '16', 'connected': True}
+{'model': 'II-xi2', 'Nx': 5, 'Ny': 5, 'L': 25, 'components': 1, 'component_dims': '25', 'connected': True}
+{'model': 'II-xi2', 'Nx': 6, 'Ny': 6, 'L': 36, 'components': 1, 'component_dims': '36', 'connected': True}
+{'model': 'II-xi2', 'Nx': 7, 'Ny': 7, 'L': 49, 'components': 1, 'component_dims': '49', 'connected': True}
+{'model': 'II-xi2', 'Nx': 7, 'Ny': 9, 'L': 63, 'components': 1, 'component_dims': '63', 'connected': True}
+{'model': 'II-xi2', 'Nx': 8, 'Ny': 8, 'L': 64, 'components': 1, 'component_dims': '64', 'connected': True}
+{'model': 'II-xi2', 'Nx': 9, 'Ny': 9, 'L': 81, 'components': 1, 'component_dims': '81', 'connected': True}
+
+SUMMARY
+{
+  "random_certificate_rows": 14,
+  "ghk_graph_cases": 55,
+  "all_ghk_audit_graphs_connected": true,
+  "max_frame_error": 8.100106136542571e-16,
+  "min_connected_gap": 0.08465862342215791,
+  "outputs": [
+    "/root/work/package/certificates/qgn_h4_random_certificate.csv",
+    "/root/work/package/certificates/qgn_h4_ghk_graph_audit.csv"
+  ]
+}

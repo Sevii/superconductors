@@ -1,0 +1,21 @@
+QGN sector-gap certificate rerun
+Date: July 23, 2026
+Command:
+  python /mnt/data/qgn_sector_gap_certificate.py
+
+Output:
+rank-one tests: retained=160, worst relative deviation=1.019e-13
+GHK Gram/dense validations: PASS
+generic Hermitian control: gap2/gap1= 0.432639
+{
+  "rank_one_cases": 160,
+  "rank_one_worst_relative_deviation": 1.0191847366058937e-13,
+  "gram_validation_worst_absolute_error": 4.996003610813204e-16,
+  "generic_hermitian_gap_ratio": 0.43263851495259864,
+  "model_II_asymptotic_targets": {
+    "0.5": 0.6168502750680849,
+    "1.0": 2.4674011002723395,
+    "1.5": 5.551652475612764
+  }
+}
+PASS

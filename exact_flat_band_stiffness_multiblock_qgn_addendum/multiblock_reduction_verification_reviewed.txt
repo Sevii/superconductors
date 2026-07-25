@@ -1,0 +1,3 @@
+maximum identity error: 3.553e-14
+minimal-counterexample eigenvalues: [0. 4.]
+PASS

@@ -1,0 +1,14 @@
+MANIFEST.txt
+README.md
+multiblock_connectivity_open_problem.md
+multiblock_connectivity_solution.md
+multiblock_connectivity_verification_reviewed.txt
+multiblock_qgn_addendum_reviewed.md
+multiblock_qgn_addendum_reviewed.pdf
+multiblock_qgn_addendum_reviewed.tex
+multiblock_qgn_addendum_reviewed_CHANGELOG.md
+multiblock_qgn_addendum_reviewed_build.log
+multiblock_reduction_law.md
+multiblock_reduction_verification_reviewed.txt
+verify_multiblock_connectivity_reviewed.py
+verify_multiblock_reduction.py

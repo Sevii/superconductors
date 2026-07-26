@@ -1,0 +1,55 @@
+multiplet UV completion audit
+physical mode order: (1L up/down, 1R up/down, 2L up/down, 2R up/down)
+
+=== Algebraic identities ===
+[Pi12,B] residual                         = 0.000e+00
+Pi12=Pi1+Pi2-2 Pi1 Pi2 residual          = 0.000e+00
+full-Fock normal-order B^2 residual       = 0.000e+00
+seniority-zero B^2 formula residual       = 0.000e+00
+seniority-zero K^2 formula residual       = 0.000e+00
+rank-three decomposition residual         = 0.000e+00
+spec(K^2|seniority zero)                  = [-0. -0. -0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  4.  4.  4.]
+P_Z B^2 P_Z in basis (|1,0>,|0,1>):
+[[2. 2.]
+ [2. 2.]]
+min spec(9 Pi12-K^2)                      = -6.499e-15
+
+=== Base parent ===
+base kernel dimension                       = 9 (expected 9)
+base next eigenvalue                        = 0.500000000000
+
+=== Passive odd-multiplet route ===
+gamma=t^2/Delta_a                          = 0.032000000000
+uniform full-Fock sufficient bound          = 0.055555555556
+min spec(H_base-gamma K^2)                  = -4.103e-15
+effective kernel dimension                  = 9
+passive zero-energy Schur residual          = 3.040e-16
+passive UV min eigenvalue                   = -1.688e-14
+passive UV kernel dimension                 = 9
+passive one-pair composition curvature:
+[[1.744 0.256]
+ [0.256 2.344]]
+passive curvature eigenvalues               = [1.64961947 2.43838053]
+
+=== Compensated two-multiplet route ===
+beta=t^2/Delta_s                           = 0.053333333333
+alpha=t^2(1/Delta_s-1/Delta_a)             = 0.021333333333
+positive zero-energy Schur residual         = 4.629e-15
+compensated UV min eigenvalue               = -3.205e-15
+compensated UV kernel dimension             = 9
+compensated one-pair composition curvature:
+[[ 2.17066667 -0.17066667]
+ [-0.17066667  2.77066667]]
+compensated curvature eigenvalues            = [2.12551871 2.81581462]
+
+=== Peierls covariance of the Schur complement ===
+twisted compensated Schur residual           = 4.657e-15
+
+=== Isolated positive-penalty spectral scaling ===
+t=1.60: E_UV=0.332672852962, 4alpha=0.341333333333, error=8.660e-03, error/t^4=0.001321484432
+t=0.80: E_UV=0.084788377421, 4alpha=0.085333333333, error=5.450e-04, error/t^4=0.001330458769
+t=0.40: E_UV=0.021299218253, 4alpha=0.021333333333, error=3.412e-05, error/t^4=0.001332620330
+t=0.20: E_UV=0.005331200285, 4alpha=0.005333333333, error=2.133e-06, error/t^4=0.001333155444
+t=0.10: E_UV=0.001333200004, 4alpha=0.001333333333, error=1.333e-07, error/t^4=0.001333288992
+
+All microscopic multiplet checks passed.

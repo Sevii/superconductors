@@ -1,0 +1,43 @@
+BUILD AND TEST RESULTS
+======================
+Revision: second review-integrated draft, July 26, 2026
+
+Paper build
+-----------
+Command:
+  latexmk -pdf -interaction=nonstopmode -halt-on-error \
+    microscopic_origins_multiplicative_qgn_draft.tex
+
+Result: PASS
+Output: microscopic_origins_multiplicative_qgn_draft.pdf
+Pages: 27
+Undefined references/citations: 0
+Overfull boxes: 0
+Underfull boxes: 2 (typographic only; no clipping)
+
+Verification programs
+---------------------
+check_multiplet_uv_completion.py: PASS
+check_electron_only_parity_channels.py: PASS
+check_all_filling_active_remote_completion.py: PASS
+check_global_lattice_downfolding.py: PASS (one-pair active sector)
+check_kramers_closed_shell_embedding.py: PASS
+
+Kramers closed-shell audit
+--------------------------
+Microscopic time-reversal residuals: 0 to machine precision
+Partner denominator mismatch: 0
+alpha_bar: 0.0018375
+Minimum sampled high-block gap: 7.742895821901
+error/lambda^8 at lambda=0.15: 0.002415690537
+Tail-ratio convergence diagnostic: 3.51e-6
+
+PDF quality checks
+------------------
+Preflight: PASS
+Openable: yes
+Encrypted: no
+Pages: 27
+Rendered pages inspected: 27/27 at 180 dpi
+Visual defects found: none
+Comparison against the prior 23-page draft: completed; expected changes on all pages due reflow and four new appendix pages

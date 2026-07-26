@@ -1,0 +1,20 @@
+Reproduction environment
+Generated: 2026-07-26
+
+Linux-6.12.13-x86_64-with-glibc2.41
+
+Python: 3.13.5 (main, May  5 2026, 21:05:52) [GCC 14.2.0]
+NumPy: 2.3.5
+SciPy: 1.17.0
+
+pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+Latexmk, John Collins, 11 Dec. 2024. Version 4.86
+
+Verification status:
+- check_multiplet_uv_completion.py: PASS
+- check_electron_only_parity_channels.py: PASS
+- check_all_filling_active_remote_completion.py: PASS
+- check_global_lattice_downfolding.py: PASS (one-pair sector)
+- check_kramers_closed_shell_embedding.py: PASS
+- LaTeX build: PASS, 27 pages, no undefined references or citations
+- PDF render inspection: PASS, all 27 pages rendered and visually checked

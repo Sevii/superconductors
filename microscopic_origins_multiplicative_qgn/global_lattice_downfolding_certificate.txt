@@ -1,0 +1,24 @@
+GLOBAL TRANSLATION-INVARIANT LATTICE DOWNFOLDING CERTIFICATE
+===========================================================
+
+1. Overlapping three-cell Feshbach check
+t_B=0.200  error=3.171489222920e-05  error/t_B^4=1.982180764325e-02
+t_B=0.140  error=7.608959011016e-06  error/t_B^4=1.980674461427e-02
+t_B=0.100  error=1.979966405773e-06  error/t_B^4=1.979966405773e-02
+t_B=0.070  error=4.752996687995e-07  error/t_B^4=1.979590457308e-02
+t_B=0.050  error=1.237133493643e-07  error/t_B^4=1.979413589829e-02
+one-control high gap: 6.550510257217e+00
+second-order translation commutator: 2.220446049250e-16
+F(+t_B)-F(-t_B): 0.000000000000e+00
+
+2. Weighted exact Schrieffer--Wolff check
+lambda=0.340  error=1.365259395945e-06  error/lambda^8=7.645111746670e-03
+lambda=0.300  error=5.013068521910e-07  error/lambda^8=7.640708004741e-03
+lambda=0.260  error=1.594711148295e-07  error/lambda^8=7.636515657263e-03
+lambda=0.220  error=4.188494716572e-08  error/lambda^8=7.632670692383e-03
+lambda=0.180  error=8.407447740594e-09  error/lambda^8=7.629290216250e-03
+lambda=0.150  error=1.954746765871e-09  error/lambda^8=7.627117391600e-03
+alpha_bar: 1.837500000000e-03
+seniority-zero test dimension: 4
+
+OVERALL: PASS

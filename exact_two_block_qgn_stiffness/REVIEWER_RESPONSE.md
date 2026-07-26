@@ -95,14 +95,14 @@ python scripts/check_bridge_covariance.py \
 
 python scripts/interaction_singular_subbundle_scan_revised.py \
   --mode verify \
-  --output data/projector_verified_candidates
+  --output data
 
 OPENBLAS_NUM_THREADS=1 python \
   scripts/check_projector_geometry_convergence.py \
   --output data/projector_geometry_convergence.json
 
 pdflatex -interaction=nonstopmode -halt-on-error \
-  two_block_qgn_reviewer_revised.tex
+  two_block_qgn_stiffness.tex
 pdflatex -interaction=nonstopmode -halt-on-error \
-  two_block_qgn_reviewer_revised.tex
+  two_block_qgn_stiffness.tex
 ```

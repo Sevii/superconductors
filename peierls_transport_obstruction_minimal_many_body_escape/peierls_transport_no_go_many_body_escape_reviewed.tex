@@ -1,0 +1,838 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\I}{\mathrm i}
+\newcommand{\be}{\mathbf e}
+\newcommand{\bn}{\mathbf n}
+
+\title{\textbf{Peierls-Transport Obstruction and the Minimal Many-Body Escape}\\[0.35em]
+\large Exact multi-block one-body no-go theorem and a fully covariant local null-row model}
+\author{Nicholas Sledgianowski}
+\date{Review-integrated revision, July 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove a sharp obstruction to composition-space hopping in exact multi-block
+projected-Hubbard and quantum-geometric-nesting parents.  If the complete zero
+manifold contains the separate one-pair antisymmetrized-geminal-power states,
+then every number-conserving one-body null row is block preserving already at
+zero twist.  A complete covering-lattice Peierls connection transports the
+isolated interaction singular subbundles by one common analytic unitary.  The
+resulting commutator source lies in the range of the unperturbed null map and
+is removed exactly by the frustration-free least-squares projection.  The
+surviving source preserves every block charge, so the exact composition-space
+curvature operator has no off-diagonal entries.  Fixed finite range or uniform
+exponential locality removes the only finite-torus alias loophole.  The blocks
+may be interaction subbundles rather than normal-state energy bands.
+
+We then give a strictly nearest-neighbor, translation-invariant, positive-square
+many-body null-row model with two extensive inequivalent blocks, a complete
+product-AGP zero manifold in every even sector, a termwise covariant Peierls
+lift, and an exact non-diagonal one-pair composition operator
+\[
+ Q^{(1)}=
+ \begin{pmatrix}
+ 2j_1+4g^2&-4g^2\\
+ -4g^2&2j_2+4g^2
+ \end{pmatrix}.
+\]
+The escape is minimal at the level of theorem hypotheses: every assumption is
+retained except that the transfer-generating null row is multiplicative and
+many body rather than additive and one body.
+\end{abstract}
+
+\section{Introduction}
+
+Quantum-geometric nesting (QGN) and projected positive-semidefinite Hubbard
+constructions provide frustration-free superconducting parents whose paired
+zero states and flat-connection curvatures can be computed exactly
+\cite{Parent2026}.  With one interaction singular block, the fixed-number
+zero state is a single antisymmetrized geminal power (AGP).  With two or more
+inequivalent extensive singular subbundles, the zero manifold instead contains
+one product AGP for every allowed distribution of pairs among the blocks
+\cite{Addendum2026}.
+
+This degeneracy makes the action of electromagnetic flux qualitatively
+important.  If the physical twist preserves each block charge, the
+fixed-total-number response is only the lower envelope of independent
+composition branches.  A genuine transfer source would instead produce an
+operator on the composition lattice: neighboring compositions would hybridize,
+and the physical curvature would be the smallest eigenvalue of that matrix
+rather than the minimum of its diagonal entries.  Finding a local microscopic
+realization of this composition hopping was therefore the final unresolved
+step in the two-block program.
+
+Two natural one-body candidates failed for covariance reasons.  A smooth common
+hybridization of the blocks produces only a removable frame-transport
+commutator, while a band-filtered multi-site bridge remains a zero row when the
+bridge kernel and the projectors are Peierls twisted consistently
+\cite{TwoBlock2026}.  The purpose of this note is to decide whether those
+failures were accidental.  We prove that they are structural throughout the
+exact local one-body class, including interaction-defined blocks that need not
+coincide with normal-state energy bands.  We then construct a strictly
+range-one many-body null row that keeps every other desired hypothesis and
+produces an exact non-diagonal composition response.
+
+\section{Multi-block zero manifold and curvature map}
+
+Let
+\begin{equation}
+ \mathfrak h=\bigoplus_{a=1}^q\mathfrak h_a,
+ \qquad \dim\mathfrak h_a=2L_a,
+ \label{eq:h-decomp}
+\end{equation}
+and let each block carry a skew-unitary pairing form $J_a$.  Define
+\begin{equation}
+ \eta_a^+=\frac12c^\dagger J_ac^\dagger,
+ \qquad
+ |\bn\rangle
+ =\bigotimes_{a=1}^q
+ \left[\frac{(L_a-n_a)!}{n_a!L_a!}\right]^{1/2}
+ (\eta_a^+)^{n_a}|0\rangle.
+ \label{eq:product-agp}
+\end{equation}
+At fixed total pair number $n$, put
+\begin{equation}
+ \cC_n=\{\bn:0\le n_a\le L_a,\ \sum_an_a=n\},
+ \qquad
+ \cZ_n=\Span\{|\bn\rangle:\bn\in\cC_n\}.
+ \label{eq:zero-manifold}
+\end{equation}
+
+Consider an analytic positive-square family
+\begin{equation}
+ H(A)=\frac12D(A)^\dagger D(A)
+ =\frac12\sum_\lambda S_\lambda(A)^\dagger S_\lambda(A).
+ \label{eq:H-positive}
+\end{equation}
+Assume that $\cZ_n=\ker D(0)$ in the sector under consideration and that the
+zero cluster is separated from the positive spectrum at the fixed finite size.
+For a real twist direction $v$, define
+\begin{equation}
+ \cB_v|\psi\rangle
+ =\bigl(\partial_vS_\lambda(0)|\psi\rangle\bigr)_\lambda,
+ \qquad
+ \Pi=P_{\ker D(0)^\dagger}.
+ \label{eq:source-map}
+\end{equation}
+Degenerate frustration-free perturbation theory gives the exact second-order
+operator
+\begin{equation}
+ Q_v^{(n)}=T_v^\dagger T_v,
+ \qquad
+ T_v=\Pi\cB_v|_{\cZ_n}.
+ \label{eq:Q-T}
+\end{equation}
+Thus composition hopping is present precisely when projected source vectors
+from two different product-AGP compositions have nonzero overlap.
+
+For comparison with the multi-block reduction, write
+\begin{equation}
+ b_{\lambda v}^{ab}=P_a\,\partial_vs_\lambda(0)\,P_b,
+ \qquad
+ \bm{\zeta}_v^{a\leftarrow b}
+ =\bigl(d\Gamma(b_{\lambda v}^{ab})|\be_b\rangle\bigr)_\lambda
+ \quad(a\ne b).
+ \label{eq:transfer-seed-def}
+\end{equation}
+Let $\Pi_{ab}$ denote the restriction of the target-kernel projector to the
+sector with one fermion in each of blocks $a$ and $b$.  The reduced transfer
+norm and opposite-direction overlap are
+\begin{equation}
+ k_v^{a\leftarrow b}
+ =\|\Pi_{ab}\bm{\zeta}_v^{a\leftarrow b}\|^2,
+ \qquad
+ \omega_v^{ab}
+ =\left\langle
+ \Pi_{ab}\bm{\zeta}_v^{b\leftarrow a},
+ \Pi_{ab}\bm{\zeta}_v^{a\leftarrow b}
+ \right\rangle.
+ \label{eq:transfer-data-def}
+\end{equation}
+For two blocks at fixed total filling, $\omega_v^{ab}$ multiplies the only
+possible off-diagonal matrix element between neighboring compositions
+$\bn$ and $\bn+\be_a-\be_b$.  The resulting composition matrix is tridiagonal,
+so we call these nearest-neighbor entries \emph{Jacobi hopping}.
+
+\section{One-pair rigidity of one-body parents}
+
+\begin{lemma}[Separate one-pair zero modes force block preservation]
+\label{lem:one-pair-rigidity}
+Let a zero-twist null row be a number-conserving one-body operator
+$S=d\Gamma(s)$.  Suppose
+\begin{equation}
+ S|\be_b\rangle=0
+ \label{eq:annihilate-one-pair}
+\end{equation}
+for the normalized one-pair AGP in every paired block $b$.  Then
+\begin{equation}
+ P_asP_b=0
+ \qquad(a\ne b)
+ \label{eq:one-body-block-diag}
+\end{equation}
+between all paired blocks.  If $S$ is Hermitian, the same conclusion includes
+any unpaired complement coupled to a paired block.
+\end{lemma}
+
+\begin{proof}
+Fix ordered blocks $a\ne b$, put
+\begin{equation}
+ x=P_asP_b,
+ \qquad
+ B_x=c_a^\dagger xc_b,
+\end{equation}
+and project $S|\be_b\rangle$ onto the charge sector with one fermion in block
+$a$ and one in block $b$.  That component is exactly $B_x|\be_b\rangle$.
+The target block is empty in $|\be_b\rangle$.  Moreover,
+$|\be_b\rangle=L_b^{-1/2}\eta_b^+|0\rangle$, and a direct contraction gives
+\begin{equation}
+ \langle\be_b|c_{b,i}^\dagger c_{b,j}|\be_b\rangle
+ =\frac{(J_bJ_b^\dagger)_{ji}}{L_b}
+ =\frac{\delta_{ij}}{L_b},
+ \label{eq:onepair-rdm}
+\end{equation}
+where the last equality is exactly the skew-unitarity of $J_b$.  Therefore
+\begin{align}
+ \|B_x|\be_b\rangle\|^2
+ &=\langle\be_b|
+ c_b^\dagger x^\dagger c_ac_a^\dagger xc_b
+ |\be_b\rangle\nonumber\\
+ &=\frac1{L_b}\Tr(x^\dagger x).
+ \label{eq:transfer-norm}
+\end{align}
+The left side vanishes by \eqref{eq:annihilate-one-pair}, so $x=0$.
+Repeating the argument for every ordered pair proves
+\eqref{eq:one-body-block-diag}.  For a complement without its own pair state,
+Hermiticity supplies the reverse matrix block.
+\end{proof}
+
+\begin{remark}[Stronger than Hermitian projected Hubbard]
+The paired-block part of the lemma does not require Hermiticity.  If the
+complete zero manifold contains the separate one-pair AGPs, no additive
+one-body row in a general $S^\dagger S$ factorization can hide interblock
+transfer at zero twist.  A many-body row can annihilate the same states through
+a multiplicative null mechanism; a one-body row cannot.
+\end{remark}
+
+\section{Peierls transport of exact interaction subbundles}
+
+Let the finite tori be restrictions of fixed translation-covariant
+covering-lattice kernels.  Let $P_a(k)$ be isolated analytic projectors onto
+interaction singular subbundles.  The factor label $\lambda$ may include a
+cell, microscopic channel, and positive-kernel factorization index.  Assume
+that the zero-twist one-body kernels obey
+\begin{equation}
+ P_a(k)s_\lambda(k,k')P_b(k')=0,
+ \qquad a\ne b,
+ \label{eq:kernel-block-identity}
+\end{equation}
+for all $k,k'$ on the Brillouin torus.
+
+In a covering-lattice Bloch convention, a complete uniform Peierls connection
+shifts every momentum argument of every one-body kernel,
+\begin{equation}
+ s_\lambda(A;k,k')=s_\lambda(k+A,k'+A),
+ \label{eq:complete-peierls-shift}
+\end{equation}
+with fixed orbital-embedding factors included in the symbols.  Equation
+\eqref{eq:kernel-block-identity}, evaluated at $(k+A,k'+A)$, says that the
+twisted row is block diagonal in the shifted decomposition $P_a(k+A)$.
+
+Because the projectors are isolated and analytic, they admit one transport
+unitary common to every factor label.  To make this explicit, adjoin the
+orthogonal complement $P_0=I-\sum_aP_a$ and, along a directional path
+$A=tv$, write $P_\alpha(t;k)=P_\alpha(k+tv)$.  The anti-Hermitian Kato
+generator
+\begin{equation}
+ \mathcal K_v(t;k)
+ =\frac12\sum_\alpha
+ [\dot P_\alpha(t;k),P_\alpha(t;k)]
+ =\sum_\alpha\dot P_\alpha(t;k)P_\alpha(t;k)
+ \label{eq:kato-generator}
+\end{equation}
+satisfies $[\mathcal K_v,P_\alpha]=\dot P_\alpha$.  Hence the fiberwise
+solution
+\begin{equation}
+ \dot R_v(t;k)=\mathcal K_v(t;k)R_v(t;k),
+ \qquad R_v(0;k)=I,
+ \label{eq:kato-ode}
+\end{equation}
+obeys
+\begin{equation}
+ R_v(t;k)P_\alpha(k)R_v(t;k)^\dagger=P_\alpha(k+tv)
+ \label{eq:kato-transport}
+\end{equation}
+for the entire mutually orthogonal projector family
+\cite[Chap.~II]{Kato1976}.  The dependence on $k$ is suppressed below.  The
+crucial point is that $R_v$ depends only on the common block decomposition,
+not on $\lambda$.  Let $\widehat R_v(t)$ be its number-conserving Fock lift.
+
+\section{Sharp one-body Peierls-transport no-go theorem}
+
+\begin{theorem}[Peierls-transport obstruction]
+\label{thm:one-body-no-go}
+Assume:
+\begin{enumerate}[label=\textup{(H\arabic*)},leftmargin=3.8em]
+ \item $H(A)$ has the analytic positive-square form \eqref{eq:H-positive};
+ \item every $S_\lambda(A)$ is a number-conserving one-body row;
+ \item the same zero-twist factor family annihilates every separate one-pair
+       state $|\be_a\rangle$, and at total pair number $n$ its complete kernel
+       is the product-AGP span \eqref{eq:zero-manifold};
+ \item the interaction singular subbundles are isolated and analytic; and
+ \item the physical field dependence is the complete covering-lattice Peierls
+       shift of fixed finite-range or uniformly exponentially local kernels.
+\end{enumerate}
+Then the exact curvature map preserves every block composition.  Equivalently,
+\begin{equation}
+ \boxed{
+ (Q_v^{(n)})_{\mathbf m\mathbf n}=0
+ \quad\text{for every }\mathbf m\ne\mathbf n.}
+ \label{eq:no-offdiag-Q}
+\end{equation}
+In the reduced multi-block notation,
+\begin{equation}
+ \boxed{
+ k_v^{a\leftarrow b}=0,
+ \qquad
+ \omega_v^{ab}=0
+ \quad(a\ne b).}
+ \label{eq:no-transfer-data}
+\end{equation}
+Thus a physical Peierls twist may generate distinct nonzero block masses,
+diagonal block curvatures, and a nontrivial lower envelope over compositions,
+but it cannot generate Jacobi hopping between exact one-body interaction
+blocks.
+\end{theorem}
+
+\begin{proof}
+By \cref{lem:one-pair-rigidity}, every zero-twist row preserves the exact block
+decomposition.  Under the complete Peierls shift it preserves the shifted
+decomposition.  Pull the shifted family back with the common Kato unitary:
+\begin{equation}
+ S_\lambda(tv)
+ =\widehat R_v(t)\widetilde S_\lambda(tv)\widehat R_v(t)^\dagger,
+ \label{eq:transport-factorization}
+\end{equation}
+where each $\widetilde S_\lambda(tv)$ preserves the fixed charges $N_a$.
+
+Write
+\begin{equation}
+ G_v=\partial_t\widehat R_v(t)|_{t=0},
+ \qquad
+ \widetilde B_{\lambda v}^{\rm bp}
+ =\partial_t\widetilde S_\lambda(tv)|_{t=0}.
+\end{equation}
+Differentiating \eqref{eq:transport-factorization} gives
+\begin{equation}
+ B_{\lambda v}
+ =[G_v,S_\lambda]+\widetilde B_{\lambda v}^{\rm bp}.
+ \label{eq:source-split}
+\end{equation}
+For any $|\psi\rangle\in\cZ_n$,
+\begin{equation}
+ [G_v,S_\lambda]|\psi\rangle
+ =-S_\lambda G_v|\psi\rangle.
+\end{equation}
+After stacking the factor labels,
+\begin{equation}
+ \bigl([G_v,S_\lambda]|\psi\rangle\bigr)_\lambda
+ =-D(0)G_v|\psi\rangle
+ \in\operatorname{ran}D(0).
+ \label{eq:comm-source-range}
+\end{equation}
+The least-squares projector $\Pi=P_{\ker D(0)^\dagger}$ annihilates this
+entire common-transport source.  Hence
+\begin{equation}
+ T_v
+ =\Pi\bigl(\widetilde B_{\lambda v}^{\rm bp}\bigr)_\lambda
+ \big|_{\cZ_n}.
+ \label{eq:T-bp}
+\end{equation}
+Every surviving row commutes with every fixed block charge.  The zero-twist
+map $D(0)$ therefore intertwines the block-charge action on Fock space with the
+diagonal action on its row target.  Consequently $\operatorname{ran}D(0)$,
+$\ker D(0)^\dagger$, and the projector $\Pi$ are all invariant under those
+charges.  It follows that $T_v|\bn\rangle$ and
+$T_v|\mathbf m\rangle$ lie in orthogonal target charge sectors whenever
+$\bn\ne\mathbf m$.  Their inner product is zero, proving
+\eqref{eq:no-offdiag-Q}.  Equation \eqref{eq:no-transfer-data} is the same
+statement expressed through the projected transfer seeds.
+\end{proof}
+
+\begin{remark}[Factor-gauge invariance]
+An analytic unitary rotation among factor labels contributes a term proportional to
+$D(0)|\psi\rangle$, which vanishes on the zero manifold.  The theorem is therefore
+independent of the chosen square root of a positive interaction kernel.
+\end{remark}
+
+\begin{remark}[The blocks need not be energy bands]
+No normal-state spectral projector occurs in the proof.  The $P_a(k)$ may be
+eigenprojectors of an interaction Gram operator or any other isolated
+interaction-defined singular decomposition.  Forcing them to coincide with
+energy bands is unnecessary.
+\end{remark}
+
+\section{Locality and the finite-torus loophole}
+
+On one isolated finite torus, an off-block kernel can vanish only on the
+sampled momentum grid because of an alias or circumference-winding
+cancellation.  A continuous shift of those samples can reveal a derivative.
+
+That is not a fixed-local thermodynamic realization.  For a common finite-range
+or uniformly exponentially local infinite-lattice kernel, the matrix-valued
+functions
+\begin{equation}
+ F_\lambda^{ab}(k,k')
+ =P_a(k)s_\lambda(k,k')P_b(k')
+\end{equation}
+are continuous, and in the exponential case analytic in a strip.  If they
+vanish on the momentum grids of an unbounded regular sequence of tori, they
+vanish on a dense subset of the Brillouin torus and hence vanish identically.
+The full kernel identity \eqref{eq:kernel-block-identity} follows.
+
+Therefore the only finite-torus evasion is nonuniform: its displacement
+support or Fourier harmonic must scale with the circumference.  This is a
+winding/lift obstruction rather than a local one-body counterexample.
+
+\section{Minimal algebraic escape}
+
+\cref{lem:one-pair-rigidity} identifies what must change.  An additive
+one-body row cannot contain interblock transfer while annihilating both
+separate one-pair AGPs.  The smallest structural replacement is a
+multiplicative null row
+\begin{equation}
+ K=\Pi_{\rm null}B,
+ \label{eq:multiplicative-row}
+\end{equation}
+where $B$ is an interblock transfer bilinear, $\Pi_{\rm null}$ is a local
+many-body projector annihilating the zero manifold, and
+$[\Pi_{\rm null},B]=0$.  The transfer is present in the operator but hidden at
+zero twist behind a null projector.  This mechanism is impossible for an
+additive one-body row and is exactly where \cref{thm:one-body-no-go} stops.
+
+The construction below is minimal at the level of theorem hypotheses: it
+retains translation invariance, strict locality, number conservation,
+positivity, an auditable complete zero manifold, isolated extensive blocks,
+and a complete Peierls twist.  Only the condition ``every null row is one
+body'' is dropped.  We do not claim minimality in orbital count or polynomial
+degree.
+
+\section{Strictly local covariant many-body null-row model}
+
+Take a periodic chain
+\begin{equation}
+ \Lambda_V=\mathbb Z/V\mathbb Z,
+ \qquad V\ge2,
+\end{equation}
+with two spinful blocks $a=1,2$.  Let
+\begin{equation}
+ p_{a,x}^\dagger
+ =c_{a,x,\uparrow}^\dagger c_{a,x,\downarrow}^\dagger,
+ \qquad
+ \eta_a^+=\sum_xp_{a,x}^\dagger.
+ \label{eq:pair-ops}
+\end{equation}
+Each block has pair capacity $L_a=V$.  The blocks are made inequivalent by
+choosing distinct positive interaction couplings
+\begin{equation}
+ j_1\ne j_2>0.
+ \label{eq:distinct-couplings}
+\end{equation}
+Thus no block-exchange symmetry identifies their one-pair curvatures; no
+additional weighted pairing form is needed in the Hamiltonian.
+
+\subsection{Local rows}
+
+The onsite seniority projector is
+\begin{equation}
+ q_{a,x}=(n_{a,x,\uparrow}-n_{a,x,\downarrow})^2.
+ \label{eq:q-row}
+\end{equation}
+Let $W_{a,x}$ be the fermionic unitary that swaps the two complete spinful
+sites $(a,x)$ and $(a,x+1)$, and define
+\begin{equation}
+ \Pi_{a,x}=\frac{1-W_{a,x}}2.
+ \label{eq:swap-projector}
+\end{equation}
+Let
+\begin{equation}
+ W_{12,x}=W_{1,x}W_{2,x},
+ \qquad
+ \Pi_{12,x}=\frac{1-W_{12,x}}2.
+ \label{eq:sim-swap}
+\end{equation}
+Define the crossed interblock transfer
+\begin{equation}
+ X_x=\sum_\sigma
+ \left(
+ c_{1,x+1,\sigma}^\dagger c_{2,x,\sigma}
+ +c_{1,x,\sigma}^\dagger c_{2,x+1,\sigma}
+ \right),
+ \qquad
+ B_x=X_x+X_x^\dagger.
+ \label{eq:B-cross}
+\end{equation}
+The simultaneous swap exchanges the two terms in $X_x$, so
+$[\Pi_{12,x},B_x]=0$.  Hence
+\begin{equation}
+ K_x=\Pi_{12,x}B_x=B_x\Pi_{12,x}
+ \label{eq:K-row}
+\end{equation}
+is Hermitian, number conserving, and supported on one nearest-neighbor bond.
+
+\subsection{Complete bondwise Peierls lift}
+
+Orient every covering-lattice bond as $x\to x+1$.  Put
+\begin{equation}
+ Y_{a,x}=n_{a,x+1,\uparrow}+n_{a,x+1,\downarrow},
+ \qquad
+ Y_x=Y_{1,x}+Y_{2,x}.
+\end{equation}
+For the boundary bond, $x+1$ means the lifted right endpoint even though its
+torus label is zero.  The accumulated phase around the ring is therefore
+$\Phi=VA$: this is the standard flux-threading twist, not a globally removable
+pure gauge.  Define
+\begin{equation}
+ \Pi_{a,x}(A)
+ =e^{-\I AY_{a,x}}\Pi_{a,x}e^{\I AY_{a,x}},
+ \qquad
+ K_x(A)=e^{-\I AY_x}K_xe^{\I AY_x}.
+ \label{eq:bond-peierls}
+\end{equation}
+Every monomial in the complete swap projector and in the complete product row
+receives its covering-lattice Peierls phase.  Nothing is held fixed while
+another part is twisted.
+
+The Hamiltonian is
+\begin{equation}
+ \boxed{
+ H_V(A)=
+ \frac12\sum_{a,x}(\sqrt U\,q_{a,x})^2
+ +\frac12\sum_{a,x}(\sqrt{j_a}\,\Pi_{a,x}(A))^2
+ +\frac12\sum_x(gK_x(A))^2,}
+ \label{eq:escape-H}
+\end{equation}
+with $U,j_1,j_2>0$ and $g\ne0$.  It is translation invariant and strictly
+range one, uniformly in $V$.
+
+\section{Complete zero manifold of the escape model}
+
+\begin{theorem}[Exact kernel]
+\label{thm:escape-kernel}
+At total particle number $2n$,
+\begin{equation}
+ \boxed{
+ \ker H_V(0)|_{2n}
+ =\Span\left\{
+ |n_1,n_2\rangle:
+ n_1+n_2=n,\ 0\le n_a\le V
+ \right\}.}
+ \label{eq:escape-kernel}
+\end{equation}
+Consequently,
+\begin{equation}
+ \boxed{
+ \dim\ker H_V(0)|_{2n}
+ =\min(V,n)-\max(0,n-V)+1.}
+ \label{eq:escape-nullity}
+\end{equation}
+Every odd-particle sector has zero nullity.
+\end{theorem}
+
+\begin{proof}
+Because the Hamiltonian is a sum of positive squares, a zero state is
+annihilated by every row.  The equations $q_{a,x}|\psi\rangle=0$ force every
+local block orbital to be empty or doubly occupied.  Thus each block reduces
+to a hard-core pair configuration.
+
+On this seniority-zero subspace, $W_{a,x}$ acts as the ordinary adjacent
+transposition of the pair occupations at $x$ and $x+1$.  The equations
+$\Pi_{a,x}|\psi\rangle=0$ make the state invariant under every adjacent
+transposition.  These transpositions generate the full permutation group
+$S_V$.  At fixed block filling $n_a$, its invariant subspace is one
+dimensional and is spanned by
+\begin{equation}
+ |n_a\rangle_a
+ =\binom V{n_a}^{-1/2}
+ \sum_{|A|=n_a}\prod_{x\in A}p_{a,x}^\dagger|0\rangle
+ \propto(\eta_a^+)^{n_a}|0\rangle.
+ \label{eq:dicke-agp}
+\end{equation}
+Hence the first two row families already have exactly the product-AGP span in
+\eqref{eq:escape-kernel}.
+
+Every product AGP is separately invariant under $W_{1,x}$ and $W_{2,x}$,
+hence under $W_{12,x}$.  Therefore
+$\Pi_{12,x}|n_1,n_2\rangle=0$.  Using
+$K_x=B_x\Pi_{12,x}$, every cross row also annihilates every product AGP.
+Adding the cross squares cannot create new zero modes and removes none of the
+existing ones.  This proves \eqref{eq:escape-kernel}.  Counting the allowed
+compositions gives \eqref{eq:escape-nullity}.  Odd particle number is
+incompatible with vanishing onsite seniority on every local orbital.
+\end{proof}
+
+\section{Exact non-diagonal composition curvature}
+
+Work in the one-pair zero basis
+\begin{equation}
+ |1\rangle=|1,0\rangle,
+ \qquad
+ |2\rangle=|0,1\rangle.
+ \label{eq:onepair-basis}
+\end{equation}
+Let
+\begin{equation}
+ |a;x\rangle=p_{a,x}^\dagger|0\rangle,
+ \qquad
+ |a\rangle=\frac1{\sqrt V}\sum_x|a;x\rangle.
+\end{equation}
+
+\subsection{Swap-row sources}
+
+For the oriented bond $L=x$, $R=x+1$, define
+\begin{equation}
+ |\phi_{a,x}\rangle
+ =\frac{|a;R\rangle-|a;L\rangle}{\sqrt2}.
+\end{equation}
+Direct differentiation of \eqref{eq:bond-peierls} gives
+\begin{equation}
+ \partial_A(\sqrt{j_a}\Pi_{a,x}(A))|_0|a\rangle
+ =\I\sqrt{\frac{2j_a}{V}}\,|\phi_{a,x}\rangle,
+ \label{eq:swap-source}
+\end{equation}
+and it annihilates the one-pair state in the other block.  Moreover,
+\begin{equation}
+ \sum_x\Pi_{a,x}|\phi_{a,x}\rangle
+ \propto\sum_x(|a;x+1\rangle-|a;x\rangle)=0.
+\end{equation}
+Thus the stacked swap source lies in $\ker D(0)^\dagger$ and requires no
+least-squares subtraction.  Its curvature contribution is
+\begin{equation}
+ Q_{\rm swap}^{(1)}
+ =2\begin{pmatrix}j_1&0\\0&j_2\end{pmatrix}.
+ \label{eq:Q-swap}
+\end{equation}
+
+\subsection{Cross-row source}
+
+Choose normalized split-singlet states $|\chi_x\rangle$ on each bond so that,
+after a harmless phase convention,
+\begin{equation}
+ \partial_A(gK_x(A))|_0|1\rangle
+ =\frac{2\I g}{\sqrt V}|\chi_x\rangle,
+ \qquad
+ \partial_A(gK_x(A))|_0|2\rangle
+ =-\frac{2\I g}{\sqrt V}|\chi_x\rangle.
+ \label{eq:cross-source}
+\end{equation}
+One explicit choice is
+\begin{align}
+ |\chi_x\rangle=\frac12\bigl(&
+ c_{1,R,\uparrow}^\dagger c_{2,L,\downarrow}^\dagger
+ -c_{1,R,\downarrow}^\dagger c_{2,L,\uparrow}^\dagger\nonumber\\
+ &-c_{1,L,\uparrow}^\dagger c_{2,R,\downarrow}^\dagger
+ +c_{1,L,\downarrow}^\dagger c_{2,R,\uparrow}^\dagger
+ \bigr)|0\rangle.
+ \label{eq:chi-state}
+\end{align}
+The local action of $K_x$ on this state is proportional to
+\begin{equation}
+ (|1;R\rangle-|1;L\rangle)
+ -( |2;R\rangle-|2;L\rangle).
+ \label{eq:K-on-chi}
+\end{equation}
+Summing \eqref{eq:K-on-chi} over the ring telescopes to zero.  Hence the
+stacked cross source also lies in $\ker D(0)^\dagger$.  Since the factor-row
+labels are orthogonal in the target, \eqref{eq:cross-source} gives
+\begin{equation}
+ Q_K^{(1)}
+ =4g^2
+ \begin{pmatrix}
+ 1&-1\\
+ -1&1
+ \end{pmatrix}.
+ \label{eq:Q-cross}
+\end{equation}
+
+\begin{theorem}[Exact one-pair composition operator]
+\label{thm:escape-Q}
+The exact second-order operator is
+\begin{equation}
+ \boxed{
+ Q^{(1)}=
+ \begin{pmatrix}
+ 2j_1+4g^2&-4g^2\\
+ -4g^2&2j_2+4g^2
+ \end{pmatrix}.}
+ \label{eq:exact-Q}
+\end{equation}
+The sign of the off-diagonal entry changes under a phase reversal of one
+composition basis vector, but its magnitude does not.  Its eigenvalues are
+\begin{equation}
+ \boxed{
+ \lambda_\pm
+ =j_1+j_2+4g^2
+ \pm\sqrt{(j_1-j_2)^2+16g^4}.}
+ \label{eq:Q-eigs}
+\end{equation}
+For $j_1,j_2>0$ and $g\ne0$, $\lambda_->0$ and
+$(Q^{(1)})_{12}\ne0$.  Thus
+\begin{equation}
+ E_\pm(A)=\frac{A^2}{2}\lambda_\pm+o(A^2),
+\end{equation}
+and the analytic curvature eigenbranches are coherent superpositions of the
+two block compositions.
+\end{theorem}
+
+\begin{proof}
+The swap and cross factor labels occupy orthogonal summands of the target
+space, so their projected Gram matrices add.  Equations
+\eqref{eq:Q-swap} and \eqref{eq:Q-cross} give \eqref{eq:exact-Q}.
+Diagonalization gives \eqref{eq:Q-eigs}.  Positivity of the lower eigenvalue
+follows from
+\begin{equation}
+ (j_1+j_2+4g^2)^2-\bigl[(j_1-j_2)^2+16g^4\bigr]
+ =4j_1j_2+8g^2(j_1+j_2)>0.
+\end{equation}
+\end{proof}
+
+\begin{remark}[Extensive-filling scaling]
+The one-pair hopping $(Q^{(1)})_{12}=-4g^2$ is independent of $V$, and the
+finite verifier also finds nonzero off-diagonal response in the $V=3$, $n=2$
+composition sector.  We make no thermodynamic claim here at fixed nonzero
+pair density $n/V$.  Determining whether an off-diagonal curvature density
+survives, vanishes, or requires a coupling rescaling in extensive sectors is a
+separate open problem.
+\end{remark}
+
+\section{Sharpness and interpretation}
+
+The theorem and escape model meet at an exact algebraic boundary:
+\begin{center}
+\begin{tabular}{@{}p{0.47\linewidth}cc@{}}
+\toprule
+Property & One-body class & Many-body escape\\
+\midrule
+Translation invariant & yes & yes\\
+Strictly or uniformly local & yes & strictly range one\\
+Complete covering-lattice Peierls twist & yes & yes\\
+Two extensive inequivalent interaction blocks & yes & $L_1=L_2=V$, $j_1\ne j_2$\\
+Complete auditable zero manifold & assumed or certified & proved exactly\\
+Positive-square Hamiltonian & yes & yes\\
+Additive one-body null rows only & yes & no\\
+Off-diagonal composition response & impossible & exact and nonzero\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The many-body row $K_x=\Pi_{12,x}B_x$ is the minimal structural escape because
+it combines one null projector with one transfer bilinear.  It contains
+genuine transfer while still annihilating every zero state at $A=0$.
+\cref{lem:one-pair-rigidity} proves that an additive one-body row cannot
+realize that pattern.
+
+The remaining ways to evade \cref{thm:one-body-no-go} are not equivalent local
+one-body realizations: a nonuniform circumference-winding family, a
+non-Peierls field dependence, a singular-value crossing that destroys
+isolated transport, or abandonment of the complete separate-composition zero
+manifold.
+
+\section{Computational certificates}
+
+Two independent deterministic scripts accompany this note.  Both now print the
+composition-basis convention in their headers.  The one-body audit uses the
+ordered basis $(|1,0\rangle,|0,1\rangle)$ and verifies that a common transported
+off-block source has projected norm below $10^{-15}$, that arbitrary
+block-preserving intrinsic derivatives leave $Q$ diagonal, and that a
+deliberately noncovariant factor-dependent source produces a large
+off-diagonal response.  The many-body verifier uses the same order, checks the
+exact kernel in every pair-number sector at $V=2$ and $V=3$, verifies
+\eqref{eq:exact-Q} through $V=5$ to errors below $2\times10^{-15}$, finds
+nonzero off-diagonal response in a higher-composition sector, and matches
+direct finite differences.  The seeded one-body control and explicit basis
+headers make the certificate output exactly reproducible.
+
+For
+\begin{equation}
+ U=2,
+ \qquad j_1=1,
+ \qquad j_2=1.3,
+ \qquad g=0.7,
+\end{equation}
+one obtains
+\begin{equation}
+ Q^{(1)}=
+ \begin{pmatrix}
+ 3.96&-1.96\\
+ -1.96&4.56
+ \end{pmatrix},
+ \qquad
+ \operatorname{spec}Q^{(1)}
+ =\{2.27717373,6.24282627\}.
+\end{equation}
+
+\section{Conclusion}
+
+The physical two-block program has a sharp answer.  Exact local one-body
+projected-Hubbard or QGN parents with isolated interaction subbundles cannot
+acquire composition hopping from a complete electromagnetic Peierls twist.
+Their apparent off-block motion is common subbundle transport and is
+eliminated by the frustration-free least-squares projection.
+
+A local many-body multiplicative null row is the minimal exact escape in
+hypothesis space.  It can hide interblock transfer at zero twist, retain a
+completely auditable product-AGP zero manifold, and produce a fully covariant
+non-diagonal composition-space response.  The failed search for a final
+one-body example is therefore replaced by a structural theorem and by the
+first exact model beyond its boundary.
+
+\begin{thebibliography}{9}
+
+\bibitem{Parent2026}
+N.~Sledgianowski,
+``Exact Flat-Band Stiffness from Pair Mobility in a QGN Model,''
+manuscript (2026).
+
+\bibitem{Addendum2026}
+N.~Sledgianowski,
+``Multi-Block Reduction and Irreducibility Laws for QGN Superconductors,''
+manuscript (2026).
+
+\bibitem{TwoBlock2026}
+N.~Sledgianowski,
+``Exact Two-Block QGN Stiffness and Twist-Covariance Obstructions,''
+manuscript (2026).
+
+\bibitem{Kato1976}
+T.~Kato,
+\emph{Perturbation Theory for Linear Operators}, 2nd ed.
+(Springer, Berlin, 1976).
+
+\end{thebibliography}
+
+\end{document}

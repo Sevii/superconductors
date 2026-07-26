@@ -1,0 +1,20 @@
+FINAL VERIFICATION RESULTS
+==========================
+
+Python compilation: PASS
+Bridge covariance audit: PASS
+  fixed_kernel_derivative_error_X: 1.64484606029e-10
+  fixed_kernel_derivative_error_Y: 1.64484606029e-10
+  covariant_projected_value_max: 2.80660889198e-16
+  covariant_projected_derivative_max: 1.98699682586e-10
+Transfer-dark zero modes: PASS
+  X: residual=3.78460629688e-15, lambda_min=-2.43407933114e-14
+  Y: residual=3.78460629688e-15, lambda_min=-2.43407933114e-14
+Middle-filling predicted limit: 0.09125
+Middle-filling V=120 value: 0.0912080563877
+Projector-difference archived-candidate verification: PASS
+  balanced: max step spread=3.30456759041e-07
+  max_hopping: max step spread=4.91484068357e-07
+  most_controlled: max step spread=9.23878114305e-08
+LaTeX two-pass compilation with no warnings: PASS
+PDF preflight: PASS (21 pages, warnings=[])

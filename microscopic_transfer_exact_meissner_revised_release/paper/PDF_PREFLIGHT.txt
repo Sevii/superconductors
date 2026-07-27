@@ -1,0 +1,8 @@
+PDF: /mnt/data/microscopic_transfer_exact_meissner_revised_release/paper/microscopic_transfer_exact_meissner.pdf
+Pages: 20
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False
+Font embedding (pdffonts): PASS; every listed font is embedded and subsetted.
+Visual render inspection: PASS; see VISUAL_INSPECTION.txt.

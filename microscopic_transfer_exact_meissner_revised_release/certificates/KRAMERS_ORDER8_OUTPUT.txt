@@ -1,0 +1,31 @@
+KRAMERS CLOSED-SHELL DEGREE-EIGHT AUDIT
+==============================================================================
+The duplicate-partner bridge sector changes
+  V_single = dm^-3 [sum B_e^4 + 1/2 sum_{e<f}[B_e,B_f]^*[B_e,B_f]]
+to
+  V_closed = dm^-3 [1/2 sum B_e^4 + 1/2 sum_{e<f}[B_e,B_f]^*[B_e,B_f]].
+
+n=1, comps=[(0, 1), (1, 0)]
+  best b                         = 2.863782461091e-01
+  minimum source norm            = 2.487693448040e-12
+  compression norm               = 2.487693448040e-12
+  cross-source norm              = 3.497848749946e-28
+  compression eigenvalues        = [-2.48769345e-12, +0.00000000e+00]
+
+n=2, comps=[(0, 2), (1, 1), (2, 0)]
+  best b                         = 1.670198407192e-01
+  minimum source norm            = 8.658699648981e-04
+  compression norm               = 8.658699648981e-04
+  cross-source norm              = 8.016302439902e-04
+  compression eigenvalues        = [-8.65869965e-04, -3.27291520e-04, -1.53211180e-19]
+
+n=3, comps=[(0, 3), (1, 2), (2, 1), (3, 0)]
+  best b                         = 1.670198400476e-01
+  minimum source norm            = 8.658699684876e-04
+  compression norm               = 8.658699684876e-04
+  cross-source norm              = 8.016302290397e-04
+  compression eigenvalues        = [-8.65869968e-04, -3.27291535e-04, +2.76529672e-19, +2.76745205e-04]
+
+one-pair cancellation exists: YES
+all-filling Kramers cancellation: NO
+OVERALL: PASS

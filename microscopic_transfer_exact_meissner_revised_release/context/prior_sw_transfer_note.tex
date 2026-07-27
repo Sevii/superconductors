@@ -1,0 +1,1020 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+
+\hypersetup{
+ pdftitle={Infrared-Stable Schrieffer-Wolff Transfer of Exact Meissner Weight},
+ pdfauthor={Nicholas Sledgianowski}
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Infrared-stable microscopic Meissner transfer}
+\fancyhead[R]{\small Research note -- July 2026}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\setlist[itemize]{leftmargin=1.45em,itemsep=0.17em,topsep=0.32em}
+\setlist[enumerate]{leftmargin=1.72em,itemsep=0.17em,topsep=0.32em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cU}{\mathcal U}
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\I}{\mathrm i}
+\newcommand{\e}{\mathrm e}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\etae}{\eta}
+\newcommand{\bq}{\bm q}
+\newcommand{\bv}{\bm v}
+\newcommand{\bp}{\bm p}
+\newcommand{\dagg}{\dagger}
+
+\title{\textbf{Infrared-Stable Schrieffer--Wolff Transfer of Exact Meissner Weight}\\[0.35em]
+\large Target-metric $H_{-1}$ control, an isotropic soft-mode theorem, and the first order-eight microscopic audit}
+\author{Nicholas Sledgianowski}
+\date{Research note -- July 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The exact pair-permutation QGN parent has a positive zero-frequency transverse
+Meissner weight even though its fixed-number gap closes quadratically.  The
+microscopic multiorbital construction reproduces that parent at order
+$\lambda^6\Delta$, with a Peierls-covariant quasi-local remainder of order
+$\lambda^8\Delta$.  Local norm control alone does not transfer the response:
+a remainder can move the ground branch or couple the transverse current to the
+quadratic longitudinal mode, and either effect is amplified by the parent
+pseudoinverse.
+
+We isolate a response-safe class and prove the missing comparison theorem for
+that class.  If the effective low block is a bounded target-metric deformation
+\[
+ H_{\eta}(A)=\frac{\eps}{2}D(A)^\dagger
+ G_{\eta}(A)D(A),\qquad
+ G_{\eta}=\Id+2\eta X,\qquad
+ \eps=\lambda^6\Delta,\quad\eta=\lambda^2,
+\]
+of the exact positive-square parent, then the zero manifold is unchanged and
+all static and imaginary-frequency transverse kernels are trapped between the
+same parent kernel multiplied by the extremal eigenvalues of $G_\eta$.  The
+finite-frequency defect obeys the gap-independent estimate
+\[
+ 0\preceq \cK_\eta(\I\zeta)-\cC_\eta
+ \preceq \frac{4\eps\eta^2}{g_-}
+ S^\dagger X^\dagger X S,
+ \qquad S=(\partial_A D)P,
+\]
+so the order-$\lambda^8$ response is stable without a uniform many-body gap.
+This bound alone is not an exact order-of-limits theorem: a two-dimensional
+anisotropic edge metric gives a nonzero $O(\lambda^{10}\Delta)$
+Drude--Meissner mismatch.  We therefore prove the sharp spatial refinement.
+For a translation-invariant quasi-local row metric whose zero-momentum vector
+symbol is point-group scalar, transverse-to-longitudinal mixing is
+$O(|q|^2)$, its current $H_{-1}$ weight is $O(\eta^2|q|^2)$, and the Kohn,
+Abelian zero-frequency, and static transverse Meissner limits coincide.
+Consequently
+\[
+ D_{\rm micro}=\lambda^6\Delta D_{\rm parent}
+ +O(\lambda^8\Delta)>0
+\]
+for every nonsaturated branch covered by the exact parent theorem.
+
+A local algebraic criterion makes the hypothesis auditable: a cluster term is
+state-source safe precisely when it lies in the two-sided parent-row ideal
+$r_X=D_X^\dagger X_XD_X$.  We then compute the first connected overlap in the
+microscopic Schrieffer--Wolff hierarchy.  Two neighboring bridge controls
+produce
+\[
+ -\frac{\lambda^8\Delta b^4}{2\bar\Delta_m^3}
+ \{B_e,B_f\}^2,
+\]
+and on a three-cell one-pair product-AGP space
+$P_{\cZ}\{B_0,B_1\}^2P_{\cZ}=(16/3)\begin{psmallmatrix}1&1\\1&1\end{psmallmatrix}$.
+Thus the bridge-only overlap is not response safe; cancellation by the other
+degree-eight clusters or an explicit order-eight counterchannel is genuinely
+required.  The infinite-volume problem is thereby reduced to a finite
+connected-cluster projection and a point-group symbol audit.  We do not claim
+that the unmodified microscopic family has already passed that final audit.
+\end{abstract}
+
+\begin{quote}\small
+\textbf{Claim hierarchy.}
+\begin{enumerate}
+\item The target-metric static bounds, full imaginary-frequency bounds, and
+quadratic $H_{-1}$ defect estimate are exact finite-dimensional theorems and
+are uniform in a closing parent singular value.
+\item Under the stated hydrodynamic closure, translation invariance,
+quasi-locality, and point-group scalar zero-momentum symbol, the transverse
+current measure is $H_{-1}$-tight and the Kohn--Drude--Meissner limits agree.
+No uniform complete many-body gap is assumed.
+\item The local two-sided row-ideal criterion is exact.  For the swap parent,
+finite-cluster pseudoinverses grow only polynomially, so exponentially local
+safe cluster terms assemble into a bounded quasi-local target metric after a
+small loss of locality exponent.
+\item The two-control Feshbach coefficient and its three-cell product-AGP
+compression are explicit order-eight audits.  They show that the
+bridge-only overlap is unsafe, not that the complete order-eight coefficient
+of the microscopic model is unsafe; other degree-eight clusters may cancel it.
+\item A response-safe order-eight completion exists in the class of
+Peierls-covariant quasi-local active counterinteractions.  Realizing that
+completion using only the original restricted two-electron microscopic
+channels, summing every degree-eight cluster, and proving an all-orders
+finite-coupling block map remain open.
+\end{enumerate}
+\end{quote}
+
+\section{The transfer problem after the exact Meissner theorem}
+
+The exact pair-permutation parent has already crossed the conceptual boundary
+between a finite-torus flux curvature and a true zero-frequency transverse
+matter response.  On a periodic lattice in $d\ge2$, its co-closed current
+source lies exactly in $\Ker D^\dagger$.  Every finite-volume transverse kernel
+is therefore independent of frequency, while the longitudinal soft mode
+cancels the static pure-gauge response.  At fixed density $\rho$ the electronic
+link convention gives
+\begin{equation}
+ D_{\rm parent}=2j\rho(1-\rho),
+ \label{eq:parent-weight}
+\end{equation}
+with one quarter of this value in the pair-momentum convention $Q=2A$.  The
+same statement survives row stacking with the two-block multiplicative escape
+as a positive operator floor.
+
+The microscopic construction is perturbative.  Its Peierls-covariant local
+Schrieffer--Wolff low block has the form
+\begin{equation}
+ H_{\rm eff,L}^{[7]}(A)
+ =\lambda^6\Delta H_{\rm par,L}(A)+R_L^{(8)}(A),
+ \qquad
+ \norm{\partial_A^r\cR_L^{(8)}(A)}_\mu
+ \le C_{\mu,r}\Delta\abs\lambda^8,
+ \quad 0\le r\le2,
+ \label{eq:existing-sw}
+\end{equation}
+where $H_{\rm par}$ is the exact base-plus-multiplicative parent.  The remote
+control sector has a fixed positive local gap.  The unresolved issue is the
+active remainder: the parent fixed-number gap behaves as $L^{-2}$, so the
+operator bound in \eqref{eq:existing-sw} cannot simply be inserted into a
+resolvent estimate.
+
+It is useful to separate two possible amplifications.  Write $P$ for the exact
+parent zero projector and $Q=1-P$.  A generic perturbation $R$ creates
+\begin{equation}
+ QRP \quad\text{and}\quad QJ_RP,
+ \qquad J_R=(\partial_A R)(0).
+ \label{eq:two-sources}
+\end{equation}
+The first changes the zero-field branch through $H_{\rm par}^+QRP$; the second
+changes the current response through $H_{\rm par}^{-1/2}QJ_RP$.  Thus a
+current-source estimate alone is not sufficient unless the state source is
+known to vanish.  The target-metric class below removes the first problem
+exactly and controls the second without a gap.
+
+Set
+\begin{equation}
+ \eps=\lambda^6\Delta,
+ \qquad
+ \eta=\lambda^2.
+ \label{eq:scales}
+\end{equation}
+An $O(\lambda^8\Delta)$ correction is then an $O(\eta)$ deformation of the
+order-$\eps$ parent.
+
+\section{Target-metric response stability}
+\label{sec:metric}
+
+Let $D(t):\cH\to\cT$ be a twice differentiable row map, where $t$ is the
+amplitude of a chosen link field.  Put
+\begin{equation}
+ H_0(t)=\frac12D(t)^\dagger D(t),
+ \qquad
+ P=P_{\Ker D(0)},
+ \qquad
+ S=\dot D(0)P.
+ \label{eq:parent-row}
+\end{equation}
+For the exact transverse pair-permutation source,
+\begin{equation}
+ D^\dagger S=0.
+ \label{eq:source-kernel}
+\end{equation}
+Let $G(t)$ be a positive operator on the target space and define
+\begin{equation}
+ H_G(t)=\frac{\eps}{2}D(t)^\dagger G(t)D(t).
+ \label{eq:metric-parent}
+\end{equation}
+Since $DP=0$, derivatives of $G(t)$ do not enter the first-order source on the
+zero manifold.  If $\widetilde D=G^{1/2}D$, then
+$\widetilde S=G^{1/2}S$.
+
+\begin{theorem}[Weighted least-squares response bounds]
+\label{thm:metric-bounds}
+Assume
+\begin{equation}
+ 0<g_-\Id\preceq G(0)\preceq g_+\Id.
+ \label{eq:metric-bounds}
+\end{equation}
+For every vector in the zero manifold, the static curvature is the weighted
+least-squares residual
+\begin{equation}
+ \langle\psi,\cC_G\psi\rangle
+ =\eps\inf_{y\in\cH}
+ \langle S\psi-Dy,\,G(S\psi-Dy)\rangle.
+ \label{eq:weighted-ls}
+\end{equation}
+If \eqref{eq:source-kernel} holds, then for every $\zeta>0$,
+\begin{equation}
+ \boxed{
+ \eps g_-S^\dagger S
+ \preceq \cC_G
+ \preceq \cK_G(\I\zeta)
+ \preceq \eps g_+S^\dagger S.}
+ \label{eq:metric-sandwich}
+\end{equation}
+These inequalities are independent of the smallest positive singular value of
+$D$.
+\end{theorem}
+
+\begin{proof}
+The ordinary positive-square response formula applied to
+$\widetilde D=G^{1/2}D$ gives
+\begin{equation}
+ \cC_G
+ =\eps\widetilde S^\dagger P_{\Ker\widetilde D^\dagger}\widetilde S,
+ \qquad
+ \cK_G(\I\zeta)
+ =\eps\widetilde S^\dagger
+ \frac{\zeta^2}{\widetilde\cL^2+\zeta^2}
+ \widetilde S,
+ \quad
+ \widetilde\cL=\frac{\eps}{2}\widetilde D\widetilde D^\dagger.
+ \label{eq:metric-dynamic}
+\end{equation}
+The first equality is equivalent to \eqref{eq:weighted-ls}.  Bounding the
+weighted norm above and below by $g_\pm$ and using
+$S\perp\Ran D$ gives the first and last bounds.  The middle inequality is the
+positive spectral defect between the finite-frequency multiplier and its
+zero-frequency projector.
+\end{proof}
+
+For the microscopic scaling, write
+\begin{equation}
+ G_\eta=\Id+2\eta X,
+ \qquad X=X^\dagger,
+ \qquad 2\eta\norm X<1.
+ \label{eq:G-eta}
+\end{equation}
+Then $g_\pm=1\pm2\eta\norm X$ are valid bounds.  The entire transverse kernel
+is therefore changed by only $O(\eps\eta)=O(\lambda^8\Delta)$, uniformly in
+volume and frequency.  This proves positivity at the precision needed by the
+microscopic expansion, but a sharper estimate identifies the exact infrared
+risk.
+
+\begin{theorem}[Gap-independent current $H_{-1}$ estimate]
+\label{thm:hminusone}
+Under \eqref{eq:source-kernel} and \eqref{eq:G-eta},
+\begin{equation}
+ J_G P
+ =\eps\eta D^\dagger XS.
+ \label{eq:metric-current}
+\end{equation}
+Moreover, for every $\zeta>0$,
+\begin{equation}
+ \boxed{
+ 0\preceq \cK_G(\I\zeta)-\cC_G
+ \preceq
+ \frac{4\eps\eta^2}{g_-}
+ S^\dagger X^\dagger XS.}
+ \label{eq:defect-bound}
+\end{equation}
+If $D^\dagger XS=0$, then
+\begin{equation}
+ \cK_G(\I\zeta)=\cC_G=\eps S^\dagger G_\eta S
+ \quad\text{for every }\zeta>0.
+ \label{eq:exact-preservation}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiating \eqref{eq:metric-parent} and acting on $P$ gives
+$J_GP=(\eps/2)D^\dagger G_\eta S$.  The term with the identity vanishes by
+\eqref{eq:source-kernel}, proving \eqref{eq:metric-current}.  The general
+spectral representation bounds the positive dynamical defect by twice the
+static paramagnetic form:
+\begin{equation}
+ 0\preceq\cK_G(\I\zeta)-\cC_G
+ \preceq2PJ_GQH_G^+QJ_GP.
+ \label{eq:twice-param}
+\end{equation}
+Because $H_G\succeq\eps g_-H_0$ on $Q$,
+\begin{equation}
+ H_G^+\preceq(\eps g_-)^{-1}H_0^+.
+\end{equation}
+Finally,
+\begin{equation}
+ DH_0^+D^\dagger=2P_{\Ran D}.
+ \label{eq:partial-isometry}
+\end{equation}
+Substitution into \eqref{eq:twice-param} gives
+\eqref{eq:defect-bound}.  If $D^\dagger XS=0$, then $J_GP=0$ and the source
+lies in $\Ker\widetilde D^\dagger$, proving \eqref{eq:exact-preservation}.
+\end{proof}
+
+\begin{corollary}[Uniform perturbative Meissner floor]
+\label{cor:floor}
+Suppose the exact parent has transverse kernel density $D_{0,L}$ and
+$\sup_LD_{0,L}<\infty$.  A bounded target-metric deformation satisfies
+\begin{equation}
+ \eps(1-2\eta\norm X)D_{0,L}
+ \le D_{G,L}(\zeta,q_T)
+ \le\eps(1+2\eta\norm X)D_{0,L}
+ \label{eq:floor-bound}
+\end{equation}
+for every finite $L$, every transverse field in the exact source-kernel class,
+and every $\zeta>0$.  Hence
+\begin{equation}
+ D_{G}=\lambda^6\Delta D_0+O(\lambda^8\Delta),
+ \label{eq:transfer-order8}
+\end{equation}
+and the response remains positive for sufficiently small fixed $\lambda$ on
+every branch with $D_0>0$.
+\end{corollary}
+
+The corollary is already a zero-frequency Meissner transfer to the accuracy of
+the microscopic low-block theorem.  It does not yet identify the uniform
+Drude limit with the transverse limit at fixed nonzero $\lambda$.  The next
+example shows why an extra spatial condition is unavoidable.
+
+\section{A row-relative counterexample to exact order-of-limits transfer}
+\label{sec:anisotropic-counterexample}
+
+Consider the gradient row on a two-dimensional torus.  At momentum
+$\bq=(q,0)$ its symbol is
+\begin{equation}
+ d(\bq)=\begin{pmatrix}\e^{\I q}-1\\0\end{pmatrix},
+ \qquad
+ t(\bq)=\begin{pmatrix}0\\1\end{pmatrix},
+ \qquad d(\bq)^\dagger t(\bq)=0.
+ \label{eq:edge-symbol}
+\end{equation}
+Take the bounded anisotropic target metric
+\begin{equation}
+ G_\eta=\begin{pmatrix}1&2\eta\\2\eta&1\end{pmatrix},
+ \qquad 0<\eta<\frac12.
+ \label{eq:anisotropic-G}
+\end{equation}
+This is an exact row-relative perturbation, preserves the zero state, and
+satisfies all volume-uniform norm bounds.  Nevertheless,
+\begin{equation}
+ T=t^\dagger G_\eta t=1,
+ \qquad
+ E(\bq)=\frac12d^\dagger G_\eta d=\frac12\abs{\e^{\I q}-1}^2,
+ \qquad
+ J(\bq)=\frac12d^\dagger G_\eta t=\eta(\e^{-\I q}-1).
+ \label{eq:aniso-data}
+\end{equation}
+Therefore
+\begin{equation}
+ \cC_\eta(\bq)=1-4\eta^2,
+ \qquad
+ \cK_\eta(\bq,\I\zeta)
+ =1-4\eta^2\frac{E(\bq)^2}{E(\bq)^2+\zeta^2}.
+ \label{eq:aniso-kernel}
+\end{equation}
+At exactly $q=0$ the current source vanishes and the uniform Drude kernel is
+one.  Taking $q\to0$ at fixed $\zeta>0$ also gives one, whereas the static
+transverse limit is $1-4\eta^2$.  The current $H_{-1}$ weight is
+\begin{equation}
+ \frac{\abs{J(\bq)}^2}{E(\bq)}=2\eta^2,
+ \label{eq:aniso-hminusone}
+\end{equation}
+independent of $q$.  Thus it is bounded but not tight.  In microscopic units
+the mismatch is $O(\eps\eta^2)=O(\lambda^{10}\Delta)$: two orders smaller
+than the static $O(\lambda^8\Delta)$ uncertainty, but nonzero at fixed
+coupling.
+
+By contrast, $G_\eta=(1+2\eta)\Id$ gives $J(\bq)=0$ for every transverse
+$t(\bq)$ and preserves all three limits exactly.  The distinction is whether
+the zero-momentum metric preserves the spatial vector decomposition.
+
+\section{Point-group isotropy gives uniform transverse $H_{-1}$ tightness}
+\label{sec:isotropic-theorem}
+
+We now formulate the sufficient condition relevant to a symmetric
+$d$-dimensional microscopic completion.  Let $d(\bq)\in\mathbb C^d$ be the
+lattice-gradient symbol and let $t(\bq)\in\mathbb C^d\otimes\mathbb C^r$ be a
+normalized current-source vector satisfying
+\begin{equation}
+ (d(\bq)^\dagger\otimes\Id_r)t(\bq)=0.
+ \label{eq:transverse-symbol}
+\end{equation}
+The internal space allows several blocks or several vector-row copies.
+
+\begin{definition}[Hydrodynamically closed geometric row metric]
+\label{def:hydro-closed}
+A target-metric deformation is hydrodynamically closed if, on the
+current-generated soft sector, its response is represented by a positive
+matrix symbol $G_\eta(\bq)$ such that
+\begin{align}
+ E_\eta(\bq)&=\frac{\eps}{2}
+ (d^\dagger\otimes\Id)G_\eta(\bq)(d\otimes\Id),
+ \label{eq:hydro-energy}\\
+ J_\eta(\bq;t)&=\frac{\eps}{2}
+ (d^\dagger\otimes\Id)G_\eta(\bq)t(\bq),
+ \label{eq:hydro-current}\\
+ T_\eta(\bq;t)&=\eps t(\bq)^\dagger G_\eta(\bq)t(\bq),
+ \label{eq:hydro-stress}
+\end{align}
+while the orthogonal current-generated sector is uniformly $H_{-1}$-tight.
+\end{definition}
+
+This closure is exact for a scalar convolution of the pair-permutation rows.
+For a more general SW remainder it is an auditable representation-theoretic
+condition on the current-created subspace.
+
+\begin{theorem}[Isotropic transverse infrared theorem]
+\label{thm:isotropic}
+Assume:
+\begin{enumerate}
+\item $G_\eta(\bq)=\Id+2\eta X(\bq)$ is uniformly positive and Lipschitz near
+$\bq=0$;
+\item the deformation is hydrodynamically closed in the sense of
+\cref{def:hydro-closed};
+\item its zero-momentum vector symbol is point-group scalar,
+\begin{equation}
+ G_\eta(0)=\Id_d\otimes g_\eta,
+ \qquad g_\eta\succ0;
+ \label{eq:pointgroup-scalar}
+\end{equation}
+\item the parent density mode obeys
+$E_0(\bq)\asymp\eps\abs{d(\bq)}^2$ near the origin.
+\end{enumerate}
+Then for every normalized transverse source,
+\begin{equation}
+ \norm{(d^\dagger\otimes\Id)G_\eta(\bq)t(\bq)}
+ \le C\eta\abs{\bq}^2,
+ \label{eq:q2-mixing}
+\end{equation}
+so its hydrodynamic current $H_{-1}$ weight satisfies
+\begin{equation}
+ \langle J_\eta,H_\eta^+J_\eta\rangle
+ \le C\eps\eta^2\abs{\bq}^2.
+ \label{eq:hminusone-q2}
+\end{equation}
+Equivalently, the soft spectral tail obeys
+\begin{equation}
+ \sup_L\frac1{V_L}
+ \langle J_{L,T},H_L^+\mathbf1_{(0,\delta]}(H_L)J_{L,T}\rangle
+ \le C\eta^2\delta+o_\delta(1).
+ \label{eq:tail-delta}
+\end{equation}
+It is therefore $H_{-1}$-tight.  The uniform Kohn kernel, the
+thermodynamic-first Abelian zero-frequency kernel, and the static transverse
+Meissner kernel exist together and satisfy
+\begin{equation}
+ \boxed{
+ D_K(t)=D_A(t)=D_M(t)
+ =\eps\,t(0)^\dagger(\Id_d\otimes g_\eta)t(0).}
+ \label{eq:isotropic-identification}
+\end{equation}
+In particular,
+\begin{equation}
+ D_M=\lambda^6\Delta D_{\rm parent}+O(\lambda^8\Delta).
+ \label{eq:isotropic-transfer}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Quasi-locality gives
+$\norm{G_\eta(\bq)-G_\eta(0)}\le C\eta\abs{\bq}$.  By
+\eqref{eq:transverse-symbol} and \eqref{eq:pointgroup-scalar},
+\begin{equation}
+ (d^\dagger\otimes\Id)G_\eta(0)t
+ =(d^\dagger\otimes g_\eta)t=0.
+\end{equation}
+Since $\norm{d(\bq)}=O(\abs\bq)$, the remaining difference gives
+\eqref{eq:q2-mixing}.  Dividing the squared current amplitude by the
+quadratic energy proves \eqref{eq:hminusone-q2}.  Restricting to energies at
+most $\delta$ gives $\eps\abs q^2\lesssim\delta$, hence
+\eqref{eq:tail-delta}; the assumed regular sector adds only $o_\delta(1)$.
+
+The static weighted residual in the closed sector is
+\begin{equation}
+ \cC_\eta(\bq;t)
+ =\eps\left[
+ t^\dagger G_\eta t
+ -t^\dagger G_\eta(d\otimes\Id)
+ \bigl((d^\dagger\otimes\Id)G_\eta(d\otimes\Id)\bigr)^+
+ (d^\dagger\otimes\Id)G_\eta t
+ \right].
+ \label{eq:symbol-residual}
+\end{equation}
+The subtraction is $O(\eps\eta^2\abs q^2)$ and the first term converges to
+the right-hand side of \eqref{eq:isotropic-identification}.  At $q=0$ the
+gradient vanishes, so the same expression is the Kohn kernel.  The
+$H_{-1}$-tightness criterion identifies it with the Abelian zero-frequency
+kernel.  This proves all three limits.
+\end{proof}
+
+\begin{remark}[Why point-group symmetry is the natural microscopic input]
+For the hypercubic point group, the spatial vector representation is
+irreducible.  Any zero-momentum row metric commuting with all signed coordinate
+permutations is therefore $\Id_d$ on the spatial index, though it may be an
+arbitrary positive matrix on block multiplicities.  Equation
+\eqref{eq:pointgroup-scalar} is thus forced by a symmetric placement of
+identical control gadgets on every oriented bond.  It is not forced in a
+one-dimensional construction, where there is no independent transverse
+channel.
+\end{remark}
+
+\begin{corollary}[Microscopic branch floor under an isotropic safe remainder]
+\label{cor:micro-floor}
+For the $d\ge2$ symmetric extension of the two-block parent, suppose the
+order-eight low-block remainder is a hydrodynamically closed geometric row
+metric satisfying \eqref{eq:pointgroup-scalar}.  For a selected product-AGP
+composition with block densities $\rho_b$, the electronic-link response obeys
+\begin{equation}
+ D_K=D_A=D_M
+ \ge2\lambda^6\Delta
+ \left(1-C\lambda^2\right)
+ \sum_bj_b\rho_b(1-\rho_b).
+ \label{eq:microscopic-floor}
+\end{equation}
+The right-hand side is positive whenever at least one selected block is
+nonsaturated and $\lambda$ is sufficiently small.  The pair-momentum
+superfluid weight is one quarter of \eqref{eq:microscopic-floor}.
+\end{corollary}
+
+\section{A finite-cluster criterion for state-source safety}
+\label{sec:row-ideal}
+
+The abstract metric hypothesis can be tested cluster by cluster.  Let $D_X$ be
+the stack of all parent rows supported in a finite connected cluster $X$, and
+let
+\begin{equation}
+ p_X=P_{\Ker D_X},
+ \qquad q_X=\Id-p_X.
+ \label{eq:local-pq}
+\end{equation}
+
+\begin{proposition}[Two-sided parent-row ideal]
+\label{prop:row-ideal}
+For a Hermitian cluster operator $r_X$, the following are equivalent:
+\begin{enumerate}
+\item $p_Xr_X=r_Xp_X=0$;
+\item $r_X=q_Xr_Xq_X$;
+\item there is a Hermitian target operator $X_X$ such that
+\begin{equation}
+ r_X=D_X^\dagger X_XD_X.
+ \label{eq:local-factorization}
+\end{equation}
+\end{enumerate}
+One explicit choice is
+\begin{equation}
+ X_X=(D_X^+)^\dagger r_XD_X^+,
+ \qquad
+ \norm{X_X}\le\norm{D_X^+}^2\norm{r_X}.
+ \label{eq:local-X}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The equivalence of the first two statements is immediate.  The third implies
+the first because $D_Xp_X=0$.  Conversely,
+$D_X^+D_X=q_X$, so \eqref{eq:local-X} gives
+\begin{equation}
+ D_X^\dagger X_XD_X
+ =(D_X^+D_X)^\dagger r_X(D_X^+D_X)
+ =q_Xr_Xq_X=r_X.
+\end{equation}
+The norm bound follows by submultiplicativity.
+\end{proof}
+
+For the pair-permutation parent on a connected bounded-degree cluster, the
+smallest positive eigenvalue in each fixed-pair sector equals the one-particle
+graph gap by Aldous' spectral-gap theorem \cite{Caputo2010}.  A standard graph
+bound then gives
+\begin{equation}
+ \norm{D_X^+}^2\le C\abs X^2
+ \label{eq:local-pseudoinverse}
+\end{equation}
+(up to fixed onsite and coupling constants).  Polynomial support growth is
+absorbed by an exponential interaction weight: for every $0<\mu'<\mu$,
+\begin{equation}
+ \sum_X\e^{\mu'\operatorname{diam}X}\norm{X_X}
+ \le C_{\mu-\mu'}
+ \sum_X\e^{\mu\operatorname{diam}X}\norm{r_X}.
+ \label{eq:locality-loss}
+\end{equation}
+Thus a quasi-local cluster interaction satisfying the two-sided condition
+assembles into a bounded quasi-local target operator.  This is the precise
+sense in which a local row-ideal audit controls the zero-field state source
+uniformly in volume.
+
+\begin{definition}[Unsafe cluster projection]
+Fix the canonical connected-cluster decomposition delivered by the local
+Schrieffer--Wolff recursion.  Define
+\begin{equation}
+ \mathfrak S_X(r_X)=q_Xr_Xq_X,
+ \qquad
+ \mathfrak U_X(r_X)=r_X-\mathfrak S_X(r_X).
+ \label{eq:safe-unsafe}
+\end{equation}
+The first term is state-source safe.  The second contains the local ground
+compression and the cross terms that can be amplified by the closing parent
+pseudoinverse.
+\end{definition}
+
+Passing the state-source audit does not by itself prove the isotropic theorem.
+One must additionally examine the action of $X_X$ on the current-created
+vector representation.  A scalar convolution on row labels passes
+immediately; an operator-valued row metric requires a representation audit of
+the low-energy source sector.
+
+\section{The first connected order-eight overlap}
+\label{sec:overlap}
+
+The microscopic hierarchy assigns bridge amplitude $t_B=\lambda^2b\Delta$.
+A connected cluster involving two controls therefore first appears at weighted
+degree eight.  Its bridge-only coefficient can be computed independently of
+the router details.
+
+\begin{proposition}[Two-control zero-energy Feshbach expansion]
+\label{prop:two-control}
+Let two equal-gap two-level controls have excitation energy $\Delta_m>0$ and
+couple from their joint ground state through bounded Hermitian active operators
+$A$ and $B$ with amplitude $t$.  Then the zero-energy Feshbach map on the
+control-ground subspace is
+\begin{equation}
+ F(0)
+ =-\frac{t^2}{\Delta_m}(A^2+B^2)
+ -\frac{t^4}{2\Delta_m^3}\{A,B\}^2
+ +O(t^6).
+ \label{eq:two-control-expansion}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+In the high basis $\ket{10},\ket{01},\ket{11}$, the high block and the
+low--high coupling are
+\begin{equation}
+ H_Q=
+ \begin{pmatrix}
+ \Delta_m&0&tB\\
+ 0&\Delta_m&tA\\
+ tB&tA&2\Delta_m
+ \end{pmatrix},
+ \qquad
+ C=t\begin{pmatrix}A&B&0\end{pmatrix}.
+ \label{eq:two-control-block}
+\end{equation}
+Expand $F(0)=-CH_Q^{-1}C^\dagger$.  The quadratic term is immediate.  At
+fourth order, a one-control excitation must pass through $\ket{11}$ and return.
+The resulting product is
+\begin{equation}
+ -\frac{t^4}{2\Delta_m^3}
+ (AB+BA)(AB+BA),
+\end{equation}
+which proves \eqref{eq:two-control-expansion}.
+\end{proof}
+
+For neighboring microscopic bridge operators $B_e,B_f$, this contributes
+\begin{equation}
+ R_{ef,\rm bridge}^{(8)}
+ =-\lambda^8\Delta\frac{b^4}{2\bar\Delta_m^3}
+ \{B_e,B_f\}^2.
+ \label{eq:bridge-overlap}
+\end{equation}
+This is only one member of the complete degree-eight cluster sum; router,
+shell, screening, Kramers-partner, and folded terms must be added before
+judging the full coefficient.
+
+The bridge-only term nevertheless fails the local row-ideal test.  On a
+three-cell ring in the two-electron sector, let $P_{\cZ_1}$ project onto the
+one-pair product-AGP basis $\ket{1,0},\ket{0,1}$.  Direct fermionic action gives
+\begin{equation}
+ \boxed{
+ P_{\cZ_1}\{B_0,B_1\}^2P_{\cZ_1}
+ =\frac{16}{3}
+ \begin{pmatrix}1&1\\1&1\end{pmatrix}.}
+ \label{eq:unsafe-compression}
+\end{equation}
+In particular, $\mathfrak U(\{B_0,B_1\}^2)\ne0$.  The retained verification
+script constructs the fixed two-electron basis with exact fermionic signs and
+also finds
+\begin{equation}
+ \norm{\{B_0,B_1\}^2P_{\cZ_1}}=8\sqrt2.
+ \label{eq:unsafe-source-norm}
+\end{equation}
+The result is not a counterexample to the complete microscopic model, because
+other degree-eight coefficients may cancel \eqref{eq:unsafe-compression}.  It
+is a proof that such a cancellation is a real theorem obligation rather than
+a consequence of locality or Peierls covariance.
+
+\section{A response-safe order-eight completion}
+\label{sec:completion}
+
+The preceding results suggest a constructive completion of the finite-order
+microscopic hierarchy.  Let
+\begin{equation}
+ \cR^{(8)}=\sum_Xr_X^{(8)}
+ \label{eq:R8-clusters}
+\end{equation}
+be its canonical connected-cluster coefficient.  First remove the unsafe
+piece
+\begin{equation}
+ \cR_{\rm unsafe}^{(8)}
+ =\sum_X\mathfrak U_X(r_X^{(8)}).
+ \label{eq:unsafe-sum}
+\end{equation}
+Then replace the safe target operator on the current-generated vector sector
+by its point-group average.  Denote the resulting geometric row-metric
+interaction by $\cR_{\rm geom}^{(8)}(A)$, lifted with the fully Peierls-covariant
+rows $D_X(A)$.
+
+\begin{theorem}[Order-eight response-safe completion]
+\label{thm:completion}
+Assume the $d\ge2$ microscopic gadget array is translation invariant and
+closed under the lattice point group.  There is a Peierls-covariant quasi-local
+active counterinteraction $\cC^{(8)}(A)$ with
+\begin{equation}
+ \norm{\partial_A^r\cC^{(8)}(A)}_{\mu'}
+ \le C_{\mu',r}\Delta\lambda^8,
+ \qquad 0\le r\le2,
+ \label{eq:counterterm-bound}
+\end{equation}
+such that the order-eight low-block coefficient becomes
+$\cR_{\rm geom}^{(8)}(A)$.  Consequently, the seventh-order/degree-eight
+completed low block satisfies the isotropic infrared theorem and
+\begin{equation}
+ D_K^{[8]}=D_A^{[8]}=D_M^{[8]}
+ =\lambda^6\Delta D_{\rm parent}+O(\lambda^8\Delta).
+ \label{eq:completed-transfer}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+At the effective-interaction level, take
+\begin{equation}
+ \cC^{(8)}_{\rm eff}
+ =\cR_{\rm geom}^{(8)}-\cR^{(8)}.
+ \label{eq:eff-counterterm}
+\end{equation}
+The row-ideal factorization and \eqref{eq:locality-loss} give the required
+quasi-locality and derivative bounds for the safe part; the unsafe part is
+already quasi-local by the SW cluster estimate.  Point-group averaging is a
+norm-nonincreasing finite sum and preserves Peierls covariance.
+
+An active microscopic counterinteraction inserted with coefficient
+$\lambda^8\Delta$ is acted on by the fixed degree-seven SW unitary as the
+identity plus $O(\lambda)$ in local interaction norm.  Therefore its degree-eight
+low-block coefficient is exactly itself; all conjugation corrections begin at
+degree nine.  Choosing the microscopic coefficient
+\eqref{eq:eff-counterterm} proves the order-eight statement.  The resulting
+row metric satisfies \cref{thm:isotropic}, giving
+\eqref{eq:completed-transfer}.
+\end{proof}
+
+\begin{remark}[Scope of the completion]
+The theorem allows a general quasi-local active counterinteraction.  It does
+not prove that the counterterm can be synthesized using only the particular
+exchange/correlated-hopping tensor already present in the microscopic paper.
+A recursive completion can be performed coefficient by coefficient to any
+fixed weighted order.  An exact finite-$\lambda$ theorem would additionally
+need convergence, or a nonperturbative local Feshbach map with the same
+response-safe range.
+\end{remark}
+
+\section{What is now reduced to finite algebra}
+\label{sec:program}
+
+For the unmodified microscopic family, the next calculation is no longer an
+open-ended thermodynamic resolvent estimate.  It is the following finite audit.
+
+\begin{enumerate}
+\item Enumerate every connected weighted-degree-eight cluster in the local SW
+recursion, including two-control bridge paths, router insertions, shell and
+screening vertices, folded terms, and the Kramers closed-shell partner.
+\item Compress each canonical coefficient to the local parent kernel and
+compute $\mathfrak U_X(r_X^{(8)})$.  Translation and particle-hole symmetries
+reduce the number of independent clusters.
+\item Sum symmetry-related clusters.  If the unsafe sum vanishes, factor the
+remainder with \eqref{eq:local-X}.  If it does not, add the minimal local
+counterchannel that cancels it.
+\item In the $d\ge2$ extension, compute the zero-momentum symbol of the safe
+row metric on the current-created vector representation.  A point-group
+complete gadget arrangement should force the spatial factor to be $\Id_d$;
+this must be checked after all internal row multiplicities are included.
+\item Verify the finite-cluster identities exactly and then use
+\cref{thm:isotropic} to obtain the uniform transverse $H_{-1}$ bound.  No
+large-volume diagonalization is required.
+\end{enumerate}
+
+The theorem boundary can be summarized as follows.
+
+\begin{center}
+\begin{tabular}{@{}p{0.27\linewidth}p{0.32\linewidth}p{0.32\linewidth}@{}}
+\toprule
+Issue & Sufficient certificate & Failure signature\\
+\midrule
+Zero-field branch & $r_X=q_Xr_Xq_X$ on every connected cluster & nonzero local ground compression or cross term\\
+Current $H_{-1}$ norm & target-metric factorization and \eqref{eq:defect-bound} & bare local current with no parent-row factor\\
+Exact temporal limit & $D^\dagger XS_T=0$, or isotropic $O(q^2)$ mixing & nonzero limiting $E^{-1}$ soft weight\\
+Transverse continuity & point-group scalar $G(0)$ and quasi-local symbol & anisotropic vector metric as in \cref{sec:anisotropic-counterexample}\\
+Order-eight microscopic model & cancellation of the full $\mathfrak U R^{(8)}$ sum & surviving bridge-overlap compression\\
+Exact finite coupling & convergent response-safe block map & uncontrolled higher-order unsafe coefficients\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Discussion and conclusion}
+
+The principal correction to the earlier roadmap is that ``control the
+remainder current in $H_{-1}$'' is not, by itself, the complete finite-coupling
+statement.  A generic remainder also creates a zero-field state source.  The
+two-sided row ideal removes that source exactly.  Within this class, the
+closing parent gap is no longer dangerous at the order needed for the
+microscopic expansion: the response changes by $O(\lambda^8\Delta)$, and the
+entire finite-frequency defect is only $O(\lambda^{10}\Delta)$.
+
+The anisotropic edge example then identifies the final sharp distinction.
+Bounded $H_{-1}$ weight is not the same as tight $H_{-1}$ weight.  A local
+row-metric perturbation can rotate a transverse source into the quadratic
+longitudinal mode with amplitude proportional to $q$, leaving a constant
+$E^{-1}$ weight.  Point-group scalar zero-momentum structure supplies the
+missing power of $q$.  It turns the mixing amplitude into $O(q^2)$ and makes
+the soft tail vanish.
+
+For a response-safe, point-group-complete $d\ge2$ microscopic extension, this
+proves the desired transfer:
+\begin{equation}
+ \boxed{
+ D_K=D_A=D_M
+ =\lambda^6\Delta D_{\rm parent}+O(\lambda^8\Delta)>0.}
+ \label{eq:final-box}
+\end{equation}
+The result is uniform in the transverse infrared window and does not assume a
+uniform many-body gap.
+
+The unmodified multiorbital model has not yet been shown to belong to this
+class.  The first degree-eight audit finds a concrete unsafe bridge-overlap
+term.  That finding is useful rather than merely negative: it reduces the
+remaining research to an explicit finite list of connected clusters and
+identifies the counterchannel that must emerge or be added.  The next paper can
+therefore be organized around a complete order-eight cluster certificate,
+followed by the point-group symbol audit and, finally, an all-orders or
+nonperturbative block-map theorem.
+
+\appendix
+
+\section{State-space derivation of the target-metric formulas}
+
+Let $\widetilde H=(\eps/2)\widetilde D^\dagger\widetilde D$ with
+$\widetilde D=G^{1/2}D$.  Acting on the zero manifold,
+\begin{equation}
+ JP=\frac\eps2\widetilde D^\dagger\widetilde S,
+ \qquad
+ TP=\eps\widetilde S^\dagger\widetilde S,
+ \qquad
+ \widetilde S=G^{1/2}S.
+\end{equation}
+The imaginary-frequency Kubo kernel is
+\begin{equation}
+ \cK(\I\zeta)
+ =\eps\widetilde S^\dagger\widetilde S
+ -2PJQ\widetilde H(\widetilde H^2+\zeta^2)^{-1}QJP.
+ \label{eq:state-kubo-app}
+\end{equation}
+Using the singular-value decomposition of $\widetilde D$ reduces
+\eqref{eq:state-kubo-app} to \eqref{eq:metric-dynamic}.  At $\zeta=0$, the
+positive singular modes cancel and only $\Ker\widetilde D^\dagger$ remains.
+The defect bound follows from
+\begin{equation}
+ 0\le\frac{\zeta^2}{E(E^2+\zeta^2)}\le\frac1E.
+\end{equation}
+
+\section{Exact one-mode anisotropic calculation}
+
+For \eqref{eq:edge-symbol}--\eqref{eq:anisotropic-G}, put
+$u=\e^{\I q}-1$.  Then
+\begin{equation}
+ d^\dagger Gd=\abs u^2,
+ \qquad
+ d^\dagger Gt=2\eta u^*,
+ \qquad
+ t^\dagger Gt=1.
+\end{equation}
+The static weighted residual is
+\begin{equation}
+ 1-\frac{\abs{2\eta u}^2}{\abs u^2}=1-4\eta^2.
+\end{equation}
+The state energy and current are $E=\abs u^2/2$ and $J=\eta u^*$, which give
+\eqref{eq:aniso-kernel} and \eqref{eq:aniso-hminusone}.  No asymptotic
+approximation is used.
+
+\section{Verification programs}
+
+The accompanying script \texttt{verify\_hminusone\_transfer.py} performs three
+deterministic checks:
+\begin{enumerate}
+\item random complex row maps with a smallest singular value ranging from
+$10^{-1}$ to $10^{-6}$ verify \eqref{eq:metric-sandwich}, the target-space and
+state-space Kubo formulas, and \eqref{eq:defect-bound};
+\item random local operators verify
+$r=D^\dagger(D^+)^{\dagger}rD^+D$ whenever $r=q r q$;
+\item the two-dimensional edge example verifies the constant anisotropic
+$H_{-1}$ weight and the exact source-kernel preservation of a scalar metric.
+\end{enumerate}
+The retained output ends with \texttt{OVERALL: PASS}.
+
+The script \texttt{verify\_two\_control\_overlap.py} independently checks the
+$t^4$ coefficient in \eqref{eq:two-control-expansion} for noncommuting random
+Hermitian matrices.  It then constructs the twelve-mode, fixed-two-electron
+basis for the three-cell two-block bridge operators and verifies
+\eqref{eq:unsafe-compression}.  Its retained output also ends with
+\texttt{OVERALL: PASS}.
+
+\begin{thebibliography}{99}
+
+\bibitem{Kohn1964}
+W.~Kohn,
+``Theory of the insulating state,''
+\emph{Phys. Rev.} \textbf{133}, A171--A181 (1964),
+\href{https://doi.org/10.1103/PhysRev.133.A171}{doi:10.1103/PhysRev.133.A171}.
+
+\bibitem{Scalapino1993}
+D.~J. Scalapino, S.~R. White, and S.~Zhang,
+``Insulator, metal, or superconductor: The criteria,''
+\emph{Phys. Rev. B} \textbf{47}, 7995--8007 (1993),
+\href{https://doi.org/10.1103/PhysRevB.47.7995}{doi:10.1103/PhysRevB.47.7995}.
+
+\bibitem{Bravyi2011}
+S.~Bravyi, D.~P. DiVincenzo, and D.~Loss,
+``Schrieffer--Wolff transformation for quantum many-body systems,''
+\emph{Ann. Phys.} \textbf{326}, 2793--2826 (2011),
+\href{https://doi.org/10.1016/j.aop.2011.06.004}{doi:10.1016/j.aop.2011.06.004}.
+
+\bibitem{Caputo2010}
+P.~Caputo, T.~M. Liggett, and T.~Richthammer,
+``Proof of Aldous' spectral gap conjecture,''
+\emph{J. Amer. Math. Soc.} \textbf{23}, 831--851 (2010),
+\href{https://doi.org/10.1090/S0894-0347-10-00659-4}{doi:10.1090/S0894-0347-10-00659-4}.
+
+\bibitem{SledgianowskiDynamic}
+N.~Sledgianowski,
+``From Peierls curvature to dynamical superfluid weight: An infrared
+order-of-limits theorem for frustration-free QGN parents,''
+research manuscript (2026).
+
+\bibitem{SledgianowskiMeissner}
+N.~Sledgianowski,
+``Exact zero-frequency Meissner weight in a local frustration-free pair
+superconductor,'' research manuscript (2026).
+
+\bibitem{SledgianowskiMicro}
+N.~Sledgianowski,
+``Microscopic origins of multiplicative null interactions in
+quantum-geometric-nesting superconductors,'' research manuscript (2026).
+
+\end{thebibliography}
+
+\end{document}

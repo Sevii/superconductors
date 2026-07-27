@@ -1,0 +1,23 @@
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+KSPMFS+LMRoman12-Bold                Type 1            Custom           yes yes yes    112  0
+ANKMVH+LMRoman12-Regular             Type 1            Custom           yes yes yes    113  0
+GKHROX+LMRoman10-Bold                Type 1            Custom           yes yes yes    114  0
+SIJSTN+LMRoman10-Regular             Type 1            Custom           yes yes yes    115  0
+PJKAXV+LMMathItalic10-Regular        Type 1            Custom           yes yes yes    116  0
+XCFZCZ+LMMathSymbols7-Regular        Type 1            Custom           yes yes yes    117  0
+PMJADT+LMRoman7-Regular              Type 1            Custom           yes yes yes    118  0
+SIJSTN+LMRoman10-Regular             Type 1            Custom           yes yes yes    119  0
+WYWRYJ+LMMathSymbols10-Regular       Type 1            Custom           yes yes yes    120  0
+VQMMRZ+LMMathItalic7-Regular         Type 1            Custom           yes yes yes    121  0
+TIXBHW+LMRoman8-Regular              Type 1            Custom           yes yes yes    149  0
+BIBZGI+LMMathItalic8-Regular         Type 1            Custom           yes yes yes    169  0
+YNUUVV+LMMathSymbols8-Regular        Type 1            Custom           yes yes yes    171  0
+BFQTZP+MSBM10                        Type 1            Builtin          yes yes yes    173  0
+BIVGGX+LMMathExtension10-Regular     Type 1            Custom           yes yes yes    175  0
+BHNRQF+LMMathItalic6-Regular         Type 1            Custom           yes yes yes    195  0
+KTITXT+LMMathSymbols6-Regular        Type 1            Custom           yes yes yes    197  0
+GJRGPQ+LMRoman10-Italic              Type 1            Custom           yes yes yes    200  0
+GKHROX+LMRoman10-Bold                Type 1            Custom           yes yes yes    272  0
+IXCWBH+LMMathItalic10-Bold           Type 1            Custom           yes yes yes    319  0
+JPMLMI+LMMono10-Regular              Type 1            Custom           yes yes yes    457  0

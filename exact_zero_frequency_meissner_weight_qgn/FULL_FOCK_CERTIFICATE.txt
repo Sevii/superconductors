@@ -1,0 +1,87 @@
+INDEPENDENT FULL-FOCK SWAP-QGN CHECK
+python 3.13.5
+numpy 2.3.5
+scipy 1.17.0
+--------------------------------------------------------------------------------------------------------------------
+P3: complete swaps are Hermitian involutions                                   PASS  error=0.000e+00  tol=8.0e-10
+P3: twisted swaps are Hermitian involutions                                    PASS  error=4.882e-17  tol=8.0e-10
+P3: full Hamiltonian Hermiticity                                               PASS  error=0.000e+00  tol=8.0e-10
+P3: full Hamiltonian positivity                                                PASS  error=0.000e+00  tol=8.0e-10
+P3: Dicke state N=0 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+P3: fermionic Dicke signs N=0                                                  PASS  error=0.000e+00  tol=2.0e-10
+P3: odd sector N=1 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+P3: Dicke state N=2 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+P3: even-sector kernel N=2 is one-dimensional                                  PASS  error=2.220e-15  tol=1.1e-08
+P3: fermionic Dicke signs N=2                                                  PASS  error=2.220e-16  tol=2.0e-10
+P3: odd sector N=3 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+P3: Dicke state N=4 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+P3: even-sector kernel N=4 is one-dimensional                                  PASS  error=3.109e-15  tol=1.1e-08
+P3: fermionic Dicke signs N=4                                                  PASS  error=2.220e-16  tol=2.0e-10
+P3: odd sector N=5 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+P3: Dicke state N=6 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+P3: fermionic Dicke signs N=6                                                  PASS  error=0.000e+00  tol=2.0e-10
+P3: full-Fock gauge covariance                                                 PASS  error=8.902e-16  tol=2.0e-10
+P3: charge-two paired compression n=0                                          PASS  error=0.000e+00  tol=2.0e-10
+P3: charge-two paired compression n=1                                          PASS  error=0.000e+00  tol=2.0e-10
+P3: charge-two paired compression n=2                                          PASS  error=0.000e+00  tol=2.0e-10
+P3: charge-two paired compression n=3                                          PASS  error=1.465e-34  tol=2.0e-10
+C3: complete swaps are Hermitian involutions                                   PASS  error=0.000e+00  tol=8.0e-10
+C3: twisted swaps are Hermitian involutions                                    PASS  error=4.727e-17  tol=8.0e-10
+C3: full Hamiltonian Hermiticity                                               PASS  error=0.000e+00  tol=8.0e-10
+C3: full Hamiltonian positivity                                                PASS  error=1.332e-15  tol=8.0e-10
+C3: Dicke state N=0 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C3: fermionic Dicke signs N=0                                                  PASS  error=0.000e+00  tol=2.0e-10
+C3: odd sector N=1 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+C3: Dicke state N=2 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C3: even-sector kernel N=2 is one-dimensional                                  PASS  error=2.220e-16  tol=1.1e-08
+C3: fermionic Dicke signs N=2                                                  PASS  error=2.220e-16  tol=2.0e-10
+C3: odd sector N=3 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+C3: Dicke state N=4 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C3: even-sector kernel N=4 is one-dimensional                                  PASS  error=6.661e-16  tol=1.1e-08
+C3: fermionic Dicke signs N=4                                                  PASS  error=2.220e-16  tol=2.0e-10
+C3: odd sector N=5 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+C3: Dicke state N=6 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C3: fermionic Dicke signs N=6                                                  PASS  error=0.000e+00  tol=2.0e-10
+C3: full-Fock gauge covariance                                                 PASS  error=9.143e-16  tol=2.0e-10
+C3: charge-two paired compression n=0                                          PASS  error=0.000e+00  tol=2.0e-10
+C3: charge-two paired compression n=1                                          PASS  error=1.110e-16  tol=2.0e-10
+C3: charge-two paired compression n=2                                          PASS  error=1.110e-16  tol=2.0e-10
+C3: charge-two paired compression n=3                                          PASS  error=1.024e-34  tol=2.0e-10
+C4: complete swaps are Hermitian involutions                                   PASS  error=0.000e+00  tol=8.0e-10
+C4: twisted swaps are Hermitian involutions                                    PASS  error=1.144e-16  tol=8.0e-10
+C4: full Hamiltonian Hermiticity                                               PASS  error=0.000e+00  tol=8.0e-10
+C4: full Hamiltonian positivity                                                PASS  error=5.137e-15  tol=8.0e-10
+C4: Dicke state N=0 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C4: fermionic Dicke signs N=0                                                  PASS  error=0.000e+00  tol=2.0e-10
+C4: odd sector N=1 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+C4: Dicke state N=2 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C4: even-sector kernel N=2 is one-dimensional                                  PASS  error=5.329e-15  tol=1.1e-08
+C4: fermionic Dicke signs N=2                                                  PASS  error=0.000e+00  tol=2.0e-10
+C4: odd sector N=3 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+C4: Dicke state N=4 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C4: even-sector kernel N=4 is one-dimensional                                  PASS  error=2.665e-15  tol=1.1e-08
+C4: fermionic Dicke signs N=4                                                  PASS  error=2.220e-16  tol=2.0e-10
+C4: odd sector N=5 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+C4: Dicke state N=6 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C4: even-sector kernel N=6 is one-dimensional                                  PASS  error=4.441e-15  tol=1.1e-08
+C4: fermionic Dicke signs N=6                                                  PASS  error=0.000e+00  tol=2.0e-10
+C4: odd sector N=7 has no zero mode                                            PASS  error=0.000e+00  tol=1.1e-08
+C4: Dicke state N=8 is exactly null                                            PASS  error=0.000e+00  tol=8.0e-10
+C4: fermionic Dicke signs N=8                                                  PASS  error=0.000e+00  tol=2.0e-10
+C4: full-Fock gauge covariance                                                 PASS  error=8.957e-16  tol=2.0e-10
+C4: charge-two paired compression n=0                                          PASS  error=0.000e+00  tol=2.0e-10
+C4: charge-two paired compression n=1                                          PASS  error=1.110e-16  tol=2.0e-10
+C4: charge-two paired compression n=2                                          PASS  error=1.110e-16  tol=2.0e-10
+C4: charge-two paired compression n=3                                          PASS  error=1.110e-16  tol=2.0e-10
+C4: charge-two paired compression n=4                                          PASS  error=1.675e-34  tol=2.0e-10
+C4: commutator current equals five-point finite difference                     PASS  error=2.559e-12  tol=2.0e-09
+C4: commutator stress equals five-point finite difference                      PASS  error=1.776e-09  tol=2.0e-08
+C4: full-Fock static Kubo equals Hodge formula                                 PASS  error=1.110e-14  tol=3.0e-10
+C4: full-Fock imaginary-frequency graph filter                                 PASS  error=1.776e-15  tol=3.0e-10
+C4: oriented cycle profile is divergence free                                  PASS  error=0.000e+00  tol=8.0e-10
+C4: transverse current annihilates full-Fock Dicke state                       PASS  error=0.000e+00  tol=8.0e-10
+C4: transverse static response is diamagnetic                                  PASS  error=1.332e-15  tol=8.0e-10
+C4: transverse response is frequency independent                               PASS  error=1.332e-15  tol=8.0e-10
+C4 transverse full-Fock response                                               VALUE 3.73333333333
+--------------------------------------------------------------------------------------------------------------------
+OVERALL: PASS

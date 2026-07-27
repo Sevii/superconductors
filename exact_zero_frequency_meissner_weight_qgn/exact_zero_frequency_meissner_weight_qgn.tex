@@ -1,0 +1,1452 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.86in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+ pdftitle={Exact Zero-Frequency Meissner Weight in a Gapless Frustration-Free QGN Parent},
+ pdfauthor={Nicholas Sledgianowski},
+ pdfsubject={Graph-Hodge response and zero-frequency Meissner weight}
+}
+\usepackage[nameinlink,capitalise]{cleveref}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\I}{\mathrm i}
+\newcommand{\e}{\mathrm e}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\braket}[1]{\langle #1\rangle}
+\newcommand{\Pcyc}{P_{\mathrm{cyc}}}
+\newcommand{\Pker}{P_{\ker}}
+
+\title{\textbf{Exact Zero-Frequency Meissner Weight\\
+in a Gapless Frustration-Free QGN Parent}\\[0.35em]
+\large Graph-Hodge response, sharp Kohn--Drude limit criteria,\\
+and protected multiblock stiffness}
+\author{Nicholas Sledgianowski}
+\date{Reviewer-revised research draft, July 27, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Finite-volume Peierls curvature is an adiabatic Kohn response, not automatically a bulk zero-frequency
+Meissner or superfluid weight.  The thermodynamic, frequency, and transverse-momentum limits can fail
+to commute.  We separate and solve these issues in a frustration-free paired lattice setting.
+
+First, for an arbitrary analytic finite-volume ground cluster, the imaginary-frequency current kernel
+exceeds the Kohn curvature by an explicit positive spectral defect.  After volume normalization, the
+thermodynamic-first Abelian kernel equals the thermodynamic Kohn curvature if and only if the
+current-generated spectral measure is uniformly tight at zero energy in the $H^{-1}$ norm, assuming a
+uniform total $H^{-1}$ bound.  A uniform current-sector gap is sufficient but not necessary.  For every
+positive-square parent $H(A)=D(A)^\dagger D(A)/2$, the entire finite-frequency response is the exact
+regularized least-squares residual
+\[
+ \cK_L(\I\zeta)
+ =S_L^\dagger\frac{\zeta^2}{\cL_L^2+\zeta^2}S_L,
+ \qquad
+ S_L=(\partial_A D_L)(0)P_L,
+ \quad
+ \cL_L=\frac12D_LD_L^\dagger.
+\]
+
+Second, we close the independent transverse limit for an explicit local paired parent.  On a connected
+graph, complete gauge-covariant site-swap rows turn the static least-squares subtraction into graph Hodge
+decomposition.  In the fixed-$n$ Dicke/AGP ground state,
+\[
+ \cC_{G,n}[a]
+ =j\gamma_{N,n}\ip{a}{P_{\ker B}a},
+ \qquad
+ \cK_{G,n}(\I\zeta;a)
+ =j\gamma_{N,n}\ip{a}{
+ \frac{\zeta^2}{(jB^*B/4)^2+\zeta^2}a},
+ \qquad
+ \gamma_{N,n}=\frac{2n(N-n)}{N(N-1)},
+\]
+where $B$ is the oriented incidence matrix.  Every lattice-transverse field satisfies $Ba=0$, so its
+static and dynamical kernels coincide at every finite size, wave vector, and positive frequency regulator.
+On a periodic lattice in $d\ge2$, with $n/N\to\rho\in(0,1)$,
+\[
+ \boxed{\kappa_{\rm K}=D_{\rm A}=D_{\rm M}=2j\rho(1-\rho)>0}
+\]
+in the electronic-link convention, or $D_s=j\rho(1-\rho)/2$ in the pair-phase convention.  The same
+state has exact pair off-diagonal long-range order, while its fixed-number gap closes as $L^{-2}$; no
+uniform many-body gap is used.  Finally, any multiblock positive-square extension containing the swap
+backbone inherits a frequency-independent positive transverse operator floor.  The result is a genuine
+zero-temperature matter Meissner theorem for the exact parent.  Transfer to finite-coupling microscopic
+downfoldings is deliberately left to a separate stability analysis.
+\end{abstract}
+
+\begin{quote}\small
+\textbf{Claim hierarchy.}
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.12em,topsep=0.2em]
+\item The finite-volume Kubo--Kohn identity, the positive defect, the $H^{-1}$ criterion, and the
+positive-square dynamical least-squares formula are exact finite-dimensional theorems.
+\item Under a uniform total current $H^{-1}$ bound, temporal Kohn--Drude equality is equivalent to
+uniform low-energy $H^{-1}$ tightness.  A closing complete many-body gap is allowed.
+\item A Meissner statement requires an independent transverse limit.  Temporal equality alone is not
+enough; a clean normal metal is a counterexample.
+\item For the gauge-covariant swap-QGN/AGP parent, both temporal and transverse problems are solved
+algebraically at finite size.  The resulting Meissner weight is positive at every interior filling.
+\item Multiblock extensions inherit a protected transverse floor in every selected product composition.
+No scalar lowest-branch claim is made without a branch or state selector.
+\item No finite-temperature theorem, unrestricted real-axis conductivity decomposition, material
+parameter extraction, or finite-coupling microscopic transfer theorem is claimed here.
+\end{enumerate}
+\end{quote}
+
+\section{Introduction}
+
+Exact paired parent Hamiltonians make static response unusually accessible.  A complete Peierls twist
+defines an analytic finite-volume Hamiltonian; frustration freeness identifies the exact zero manifold;
+and second-order perturbation theory reduces the curvature to a positive least-squares residual.  These
+ingredients underlie quantum-geometric-nesting (QGN) constructions, projected attractive-Hubbard
+models, and recent lower bounds on flat-band stiffness \cite{Han2024,Gao2026}.  They also meet the
+broader flat-band superfluid-weight literature, where quantum geometry supplies rigorous or mean-field
+bounds rather than the exact many-body response identity obtained below
+\cite{Peotta2015,Torma2022}.
+
+The remaining distinction is physical rather than terminological.  Kohn curvature is obtained by taking
+the frequency to zero at fixed finite volume and only then sending the volume to infinity
+\cite{Kohn1964}.  A bulk uniform electric response takes the thermodynamic limit first.  A Meissner
+response is a static transverse response at nonzero wave vector, followed by the transverse
+zero-momentum limit.  The three limits diagnose different phenomena and are distinguished in the
+standard current-correlation criteria for an insulator, metal, or superconductor
+\cite{Scalapino1992,Scalapino1993,Resta2018,Watanabe2020}.  Tada and Koma's no-go analysis likewise
+shows why the order of limits and the class of applied fields must be specified in a superconductivity
+claim \cite{Tada2016}.  Explicit examples are known in which finite-size Kohn and thermodynamic Drude
+orders differ \cite{Takasan2023}; even when they agree, a clean normal metal can have Drude weight but
+no transverse Meissner response.
+
+This paper gives a standalone resolution in two layers.
+
+The first layer is general.  We derive a positive operator measuring the difference between the
+finite-frequency kernel and static Kohn curvature.  Its thermodynamic limit vanishes precisely when the
+current-generated low-energy spectral measure is uniformly integrable after weighting by inverse
+excitation energy.  For positive-square parents, the same statement becomes a source-singular-mode
+criterion in the target space of the null map.
+
+The second layer is model specific and exact.  We introduce a gauge-covariant complete site-swap parent
+on a connected graph.  Its seniority-zero compression is the symmetric-exclusion or ferromagnetic
+hard-core-boson generator associated with the Matsubara--Matsuda correspondence
+\cite{Matsubara1956}.  The current source is the graph divergence of the bond field.  Static relaxation is
+therefore precisely Hodge projection onto gradients, while the residual is the graph cycle-space norm.
+Every divergence-free profile lies in the target kernel and has a frequency-independent response.  On a
+periodic lattice this includes all lattice-transverse Fourier modes and the uniform harmonic flux.
+
+The outcome is an exact gapless example with
+\[
+ \kappa_{\rm K}=D_{\rm A}=D_{\rm M}>0.
+\]
+The paired Dicke state also has Yang off-diagonal long-range order \cite{Yang1962}, but the response
+identity is proved independently of that correlator.  This distinction complements results deriving a
+Meissner effect from ODLRO under additional algebraic or thermodynamic hypotheses
+\cite{Sewell1990,Nieh1995}: here the finite-size current kernel itself is evaluated exactly before any
+thermodynamic limit.  The state is also a zero-momentum relative of the $\eta$-pairing family, whose ODLRO
+does not by itself settle the transport question \cite{Yang1989}.  The fixed-number spectral gap closes
+quadratically; the theorem works because gauge geometry separates transverse sources from the soft
+longitudinal sector, not because a hidden uniform gap survives.
+
+\section{Three responses and their limit orders}
+\label{sec:responses}
+
+\subsection{Gauge-covariant finite tori and profile-dependent kernels}
+
+Let $\Lambda_L$ be a periodic $d$-dimensional lattice of volume $V_L$, and fix a conserved
+particle-number sector.  Let $H_L[A]$ be a finite-range or uniformly exponentially local Hamiltonian
+coupled to a real bond vector potential by a complete Peierls prescription.  Gauge covariance means
+\begin{equation}
+ H_L[A+\nabla\phi]=U_\phi H_L[A]U_\phi^\dagger.
+ \label{eq:gauge-covariance}
+\end{equation}
+For any real bond profile $a$ on $\Lambda_L$, set
+\begin{equation}
+ H_L(t;a)=H_L[ta],
+ \qquad
+ J_L[a]=\partial_tH_L(t;a)|_{t=0},
+ \qquad
+ T_L[a]=\partial_t^2H_L(t;a)|_{t=0}.
+ \label{eq:JT-profile}
+\end{equation}
+A uniform flat connection in direction $v$ is the harmonic profile
+$a^{\rm harm}_{L,v}$; when no argument is displayed below,
+$J_L$, $T_L$, $\cC_L$, and $\cK_L$ refer to that profile.
+
+Let $E_L$ be the lowest zero-field energy, $P_L$ the projector onto the complete finite-volume ground
+cluster, $Q_L=\Id-P_L$, and
+\begin{equation}
+ \widehat H_L=H_L[0]-E_L\succeq0.
+ \label{eq:Hhat}
+\end{equation}
+The cluster is assumed isolated for each finite $L$, but no size-independent gap is assumed.  For each
+profile used in a response coefficient we impose
+\begin{equation}
+ P_LJ_L[a]P_L=0.
+ \label{eq:no-linear}
+\end{equation}
+This holds automatically for positive-square parents and for time-reversal-symmetric zero-current
+branches.  If it fails, first-order splitting or a cusp can precede any quadratic response.
+
+\subsection{Kohn, Abelian, and transverse Meissner kernels}
+
+For an arbitrary profile $a$, finite-dimensional degenerate perturbation theory gives the second-order
+Kohn operator
+\begin{equation}
+ \cC_L[a]
+ =P_LT_L[a]P_L-2P_LJ_L[a]Q_L\widehat H_L^+Q_LJ_L[a]P_L,
+ \label{eq:Kohn-operator}
+\end{equation}
+and, for $\zeta>0$, the imaginary-frequency or Abel-regularized kernel
+\begin{equation}
+ \cK_L(\I\zeta;a)
+ =P_LT_L[a]P_L
+ -2P_LJ_L[a]Q_L\frac{\widehat H_L}{\widehat H_L^2+\zeta^2}Q_LJ_L[a]P_L.
+ \label{eq:Abelian-kernel}
+\end{equation}
+Write
+\begin{equation}
+ c_L[a]=\frac{\cC_L[a]}{V_L},
+ \qquad
+ k_L(\zeta;a)=\frac{\cK_L(\I\zeta;a)}{V_L},
+ \qquad
+ k_L(0;a):=c_L[a].
+ \label{eq:profile-normalized}
+\end{equation}
+The value at $\zeta=0$ is therefore, by definition, the finite-volume static curvature; it is not a
+thermodynamic-first frequency limit.
+
+For the harmonic uniform profile, abbreviate
+$c_L(v)=c_L[a^{\rm harm}_{L,v}]$ and
+$k_L(\zeta;v)=k_L(\zeta;a^{\rm harm}_{L,v})$.  When the limits exist, define
+\begin{align}
+ \kappa_{\rm K}(v)&=\lim_{L\to\infty}c_L(v),
+ \label{eq:kappaK}\\
+ D_{\rm A}(v)&=\lim_{\zeta\downarrow0}\lim_{L\to\infty}k_L(\zeta;v).
+ \label{eq:DA}
+\end{align}
+The first takes the static limit at finite volume; the second takes the thermodynamic limit first.
+
+For $d\ge2$, let $a_{L,q,v}$ be a real lattice-transverse bond profile with Fourier support at $\pm q$,
+polarization $v$, exact lattice divergence zero, and normalization
+$\norm{a_{L,q,v}}^2=V_L$.  Define
+\begin{equation}
+ \cK_{L,T}(q,\I\zeta;v):=\cK_L(\I\zeta;a_{L,q,v}),
+ \qquad
+ k_{L,T}(q,\zeta;v):=\frac{\cK_{L,T}(q,\I\zeta;v)}{V_L},
+ \label{eq:finite-q-kernel}
+\end{equation}
+with
+\begin{equation}
+ \cK_{L,T}(q,0;v):=\cC_L[a_{L,q,v}],
+ \qquad
+ k_{L,T}(q,0;v):=c_L[a_{L,q,v}].
+ \label{eq:finite-q-static-convention}
+\end{equation}
+Thus every occurrence of $k_{L,T}(q,0;v)$ means that $\zeta\downarrow0$ has already been taken at
+fixed finite $L$.
+
+The allowed momenta depend on $L$.  An admissible transverse zero-momentum limit is a sequence
+$q_m\to0$ together with, for each $m$, a cofinal subsequence of tori on which
+$q_m\in\Lambda_L^*$ and the profiles $a_{L,q_m,v}$ are defined.  For rational reciprocal vectors one
+may, for example, take $L$ through integer multiples of a common period.  The matter Meissner weight is
+\begin{equation}
+ D_{\rm M}(v)
+ =\lim_{m\to\infty}\lim_{\substack{L\to\infty\\q_m\in\Lambda_L^*}}
+ k_{L,T}(q_m,0;v),
+ \label{eq:DM}
+\end{equation}
+when the result is independent of the admissible sequence.  The alternative quantity
+\begin{equation}
+ \lim_{m\to\infty}\lim_{\zeta\downarrow0}\lim_{\substack{L\to\infty\\q_m\in\Lambda_L^*}}
+ k_{L,T}(q_m,\zeta;v)
+\end{equation}
+is a separate order of limits unless temporal uniformity has also been established at nonzero $q$.  In the
+exact swap model below the two definitions coincide already at finite size because the transverse kernel is
+independent of $q$ and $\zeta$.
+
+The adjective ``transverse'' is lattice exact: the polarization is annihilated by the lattice divergence
+symbol, which approaches $q\cdot v=0$ at small momentum.
+
+\begin{remark}[Matter response]
+The coefficient in \eqref{eq:DM} is the zero-temperature matter current kernel before coupling to the
+Maxwell field.  Conventional factors of electric charge and optical $\pi$ multiply all three coefficients
+and do not affect the order-of-limits statements.
+\end{remark}
+
+\section{Exact finite-volume Kubo--Kohn identity}
+\label{sec:finite-identity}
+
+\begin{theorem}[Positive finite-frequency defect]
+\label{thm:positive-defect}
+Under the hypotheses of \cref{sec:responses}, for every finite $L$, every profile $a$ satisfying
+\eqref{eq:no-linear}, and every $\zeta>0$,
+\begin{equation}
+ \boxed{
+ \cK_L(\I\zeta;a)-\cC_L[a]
+ =2\zeta^2P_LJ_L[a]Q_L\widehat H_L^+
+ (\widehat H_L^2+\zeta^2)^{-1}Q_LJ_L[a]P_L\succeq0.}
+ \label{eq:positive-defect}
+\end{equation}
+Consequently $\cK_L(\I\zeta;a)$ decreases in the Loewner order to $\cC_L[a]$ as
+$\zeta\downarrow0$.
+\end{theorem}
+
+\begin{proof}
+Subtract \eqref{eq:Kohn-operator} from \eqref{eq:Abelian-kernel}.  On the positive spectrum,
+\begin{equation}
+ \frac1E-\frac{E}{E^2+\zeta^2}
+ =\frac{\zeta^2}{E(E^2+\zeta^2)}\ge0.
+\end{equation}
+Functional calculus gives \eqref{eq:positive-defect}.  The scalar multiplier is increasing in $\zeta$,
+which gives monotonicity.
+\end{proof}
+
+The theorem makes the finite-size statement exact.  At fixed $L$, static curvature and the
+zero-frequency Kubo kernel coincide.  The only temporal issue is uniformity in $L$.
+
+\subsection{Operator-valued current spectral measure}
+
+Let $P_{\widehat H_L}(B)$ be the spectral projection of $\widehat H_L$ for a Borel set
+$B\subset(0,\infty)$.  Define the positive operator-valued measure on $P_L\cH_L$ by
+\begin{equation}
+ \Sigma_L(B)
+ =\frac1{V_L}P_LJ_LQ_LP_{\widehat H_L}(B)Q_LJ_LP_L.
+ \label{eq:spectral-measure}
+\end{equation}
+Also put $d_L=V_L^{-1}P_LT_LP_L$.  Then
+\begin{align}
+ c_L&=d_L-2\int_{(0,\infty)}\frac1E\,\dd\Sigma_L(E),
+ \label{eq:c-spectral}\\
+ k_L(\zeta)&=d_L-2\int_{(0,\infty)}\frac{E}{E^2+\zeta^2}\,\dd\Sigma_L(E),
+ \label{eq:k-spectral}\\
+ k_L(\zeta)-c_L
+ &=2\int_{(0,\infty)}\frac{\zeta^2}{E(E^2+\zeta^2)}\,\dd\Sigma_L(E).
+ \label{eq:defect-spectral}
+\end{align}
+At finite volume these are finite sums.  State-resolved formulas follow by taking expectations in a
+selected ground-state density matrix.
+
+\begin{lemma}[The relevant gap is a current-sector gap]
+\label{lem:charge-gap}
+Suppose $[H_L,N_L]=0$ and the Peierls coupling preserves particle number.  Then every matrix element in
+\eqref{eq:spectral-measure} lies in the same fixed-number sector as the ground cluster.  An
+addition/removal charge gap therefore does not bound the denominators in \eqref{eq:c-spectral}.  A
+uniform gap in the current-generated fixed-number subspace is sufficient.
+\end{lemma}
+
+\begin{proof}
+Particle-number conservation gives $[J_L,N_L]=0$.  Hence $J_LP_L$ lies in the same number sector as
+$P_L$, and only that sector enters the spectral measure.
+\end{proof}
+
+\section{Sharp temporal order-of-limits criterion}
+\label{sec:Hminus1}
+
+\begin{definition}[$H^{-1}$ boundedness and tightness]
+Define
+\begin{equation}
+ M=\sup_L\left\|\int_{(0,\infty)}E^{-1}\,\dd\Sigma_L(E)\right\|.
+ \label{eq:Hminus1-bound}
+\end{equation}
+The current measures are uniformly $H^{-1}$-tight at zero (equivalently, uniformly $H^{-1}$ equi-integrable at zero energy) if
+\begin{equation}
+ \lim_{\delta\downarrow0}\limsup_{L\to\infty}
+ \left\|\int_{(0,\delta]}E^{-1}\,\dd\Sigma_L(E)\right\|=0.
+ \label{eq:Hminus1-tightness}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Sharp temporal criterion]
+\label{thm:sharp-temporal}
+Assume $M<\infty$.  Then the following are equivalent:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+\item the current measures satisfy \eqref{eq:Hminus1-tightness};
+\item the finite-frequency defect vanishes uniformly in the thermodynamic limit,
+\begin{equation}
+ \lim_{\zeta\downarrow0}\limsup_{L\to\infty}
+ \norm{k_L(\zeta)-c_L}=0.
+ \label{eq:uniform-defect-zero}
+\end{equation}
+\end{enumerate}
+More quantitatively, put
+\begin{equation}
+ t(\delta)=\limsup_{L\to\infty}
+ \left\|\int_{(0,\delta]}E^{-1}\,\dd\Sigma_L(E)\right\|.
+\end{equation}
+Then
+\begin{equation}
+ t(\zeta)
+ \le\limsup_{L\to\infty}\norm{k_L(\zeta)-c_L},
+ \label{eq:lower-tail-bound}
+\end{equation}
+and, for $0<\zeta<\delta$,
+\begin{equation}
+ \limsup_{L\to\infty}\norm{k_L(\zeta)-c_L}
+ \le2t(\delta)+2\frac{\zeta^2}{\delta^2}M.
+ \label{eq:upper-tail-bound}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $0<E\le\zeta$,
+\begin{equation}
+ 2\frac{\zeta^2}{E(E^2+\zeta^2)}\ge\frac1E,
+\end{equation}
+so positivity of the operator-valued measure gives \eqref{eq:lower-tail-bound}.  To prove
+\eqref{eq:upper-tail-bound}, split \eqref{eq:defect-spectral} at $\delta$.  Below $\delta$, the scalar
+kernel is at most $2/E$.  Above $\delta$, it is at most
+$2(\zeta^2/\delta^2)E^{-1}$.  The triangle inequality for positive operator integrals yields the bound.
+The equivalence follows by first taking $L\to\infty$, then $\zeta\downarrow0$, and in the upper bound
+finally $\delta\downarrow0$.
+\end{proof}
+
+\begin{corollary}[Kohn equals the bulk Abelian kernel]
+\label{cor:Kohn-Drude}
+Assume \cref{thm:sharp-temporal}, assume $c_L\to\kappa_{\rm K}$ in operator norm, and assume
+$k_L(\zeta)$ has a thermodynamic limit for every fixed $\zeta>0$.  Then
+\begin{equation}
+ \boxed{D_{\rm A}=\kappa_{\rm K}.}
+\end{equation}
+The same statement holds after taking an expectation in any consistently selected sequence of states or
+density matrices in the ground cluster.
+\end{corollary}
+
+\begin{corollary}[Uniform current-sector gap]
+\label{cor:current-gap}
+If the spectral support of $Q_LJ_LP_L$ lies in $[\Delta,\infty)$ with $\Delta>0$ independent of $L$,
+and if \eqref{eq:Hminus1-bound} holds, then \eqref{eq:Hminus1-tightness} holds.  The converse is false:
+the full gap may close while the current matrix elements vanish sufficiently rapidly.
+\end{corollary}
+
+\begin{remark}[Mode-by-mode diagnostic]
+For a selected scalar ground state, let a low mode have energy $\Delta_L$ and normalized current weight
+\begin{equation}
+ w_L=\frac1{V_L}\abs{\bra{m_L}J_L\ket{\Omega_L}}^2.
+\end{equation}
+Its contribution to the tightness functional is $w_L/\Delta_L$.  The mode is harmless if this ratio tends
+to zero and obstructing if it has a positive limit.  The theorem is therefore a matrix-element statement,
+not merely a dispersion statement.
+\end{remark}
+
+\section{Positive-square parents: dynamical least squares}
+\label{sec:least-squares}
+
+Let
+\begin{equation}
+ H_L(a)=\frac12D_L(a)^\dagger D_L(a),
+ \qquad
+ D_L(a):\cH_L\to\cT_L
+ \label{eq:positive-square}
+\end{equation}
+be analytic, and let $P_L=P_{\ker D_L(0)}$.  Positivity gives $E_L=0$, so throughout this section
+$\widehat H_L=H_L(0)$.  Put
+\begin{equation}
+ D_L=D_L(0),
+ \qquad
+ S_L=(\partial_aD_L)(0)P_L,
+ \qquad
+ \cL_L=\frac12D_LD_L^\dagger.
+ \label{eq:source-target-Laplacian}
+\end{equation}
+The map $S_L$ is the stacked Peierls source and $\cL_L$ is the target-space Laplacian.
+
+\begin{theorem}[Dynamical least-squares identity]
+\label{thm:dynamical-LS}
+For every finite $L$ and $\zeta>0$,
+\begin{equation}
+ \boxed{
+ \cK_L(\I\zeta)
+ =S_L^\dagger\frac{\zeta^2}{\cL_L^2+\zeta^2}S_L.}
+ \label{eq:dynamical-LS}
+\end{equation}
+Its static Kohn curvature is
+\begin{equation}
+ \boxed{\cC_L=S_L^\dagger P_{\ker D_L^\dagger}S_L.}
+ \label{eq:static-LS}
+\end{equation}
+Equivalently, for $\psi\in P_L\cH_L$,
+\begin{equation}
+ \bra{\psi}\cK_L(\I\zeta)\ket{\psi}
+ =\min_{y\in\cT_L}
+ \left\{\norm{S_L\psi-\cL_Ly}^2+\zeta^2\norm{y}^2\right\}.
+ \label{eq:Tikhonov}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Since $D_LP_L=0$,
+\begin{equation}
+ J_LP_L=\frac12D_L^\dagger S_L,
+ \qquad
+ P_LT_LP_L=S_L^\dagger S_L.
+\end{equation}
+Singular-value functional calculus gives
+\begin{equation}
+ \frac12D_L\frac{\widehat H_L}{\widehat H_L^2+\zeta^2}D_L^\dagger
+ =\frac{\cL_L^2}{\cL_L^2+\zeta^2}.
+\end{equation}
+Substitution into \eqref{eq:Abelian-kernel} proves \eqref{eq:dynamical-LS}.  Taking $\zeta\downarrow0$
+projects onto $\ker\cL_L=\ker D_L^\dagger$ and gives \eqref{eq:static-LS}.  Minimizing the quadratic form
+in \eqref{eq:Tikhonov} gives the normal equation
+$(\cL_L^2+\zeta^2)y=\cL_LS_L\psi$ and reproduces \eqref{eq:dynamical-LS}.
+\end{proof}
+
+\begin{corollary}[Sharp source-singular-mode criterion]
+\label{cor:source-criterion}
+Assume
+\begin{equation}
+ \sup_L\frac1{V_L}\norm{S_L^\dagger S_L}<\infty.
+\end{equation}
+Then temporal Kohn--Drude equality holds if and only if
+\begin{equation}
+ \lim_{\delta\downarrow0}\limsup_{L\to\infty}
+ \frac1{V_L}\norm{S_L^\dagger\mathbf1_{(0,\delta]}(\cL_L)S_L}=0.
+ \label{eq:source-tightness}
+\end{equation}
+Thus a closing positive singular-value sector is harmless precisely when it carries vanishing extensive
+Peierls-source weight.
+\end{corollary}
+
+\begin{proof}
+On the positive singular spectrum, $D_L$ identifies the state-space current measure with one half of the
+target-space source measure.  Equivalently, subtract \eqref{eq:static-LS} from
+\eqref{eq:dynamical-LS}; the defect multiplier is $\zeta^2/(\lambda^2+\zeta^2)$ and the same cutoff
+argument as in \cref{thm:sharp-temporal} applies.
+\end{proof}
+
+\section{From a uniform kernel to a transverse Meissner weight}
+\label{sec:transverse-general}
+
+\begin{definition}[Static transverse continuity]
+Choose a sequence of ground states or density matrices defining the thermodynamic phase.  The static
+transverse response is continuous at zero momentum in direction $v$ if, for every admissible sequence
+specified after \eqref{eq:finite-q-static-convention},
+\begin{equation}
+ \lim_{m\to\infty}\lim_{\substack{L\to\infty\\q_m\in\Lambda_L^*}}
+ k_{L,T}(q_m,0;v)
+ =\lim_{L\to\infty}c_L(v).
+ \label{eq:transverse-continuity}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Kohn--Drude--Meissner completion]
+\label{thm:general-completion}
+Suppose, in a selected thermodynamic state,
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+\item the hypotheses of \cref{cor:Kohn-Drude} hold for the uniform current;
+\item static transverse continuity \eqref{eq:transverse-continuity} holds.
+\end{enumerate}
+Then
+\begin{equation}
+ \boxed{\kappa_{\rm K}=D_{\rm A}=D_{\rm M}.}
+ \label{eq:three-equal-general}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The first equality is \cref{cor:Kohn-Drude}; the second is
+\eqref{eq:transverse-continuity} and the definition \eqref{eq:DM}.
+\end{proof}
+
+The theorem is modular.  Temporal failure is low-energy inverse-energy current weight.  Spatial failure is
+a discontinuity between an exactly uniform connection and the limit of nonzero transverse fields.  The two
+obstructions are independent.
+
+\begin{proposition}[A sufficient summability condition]
+\label{prop:summability}
+Let $j_v(x)$ be a local current density in a translation-invariant selected pure ground state and write
+$J_{L,v}=\sum_xj_v(x)$.  Define the connected Euclidean correlation by
+\begin{equation}
+ G_{L,v}(x,t)
+ =\bra{\Omega_L}j_v(x)\e^{-t\widehat H_L}Q_Lj_v(0)\ket{\Omega_L},
+ \qquad t\ge0.
+ \label{eq:Euclidean-correlation}
+\end{equation}
+The insertion of $Q_L$ is the connected subtraction.  Assume local thermodynamic limits exist,
+translation invariance holds along the chosen sequence, and there is an $L$-independent nonnegative
+envelope $F$ such that
+\begin{equation}
+ \abs{G_{L,v}(x,t)}\le F(x,t),
+ \qquad
+ \sum_x\int_0^\infty F(x,t)\,\dd t<\infty.
+ \label{eq:summability}
+\end{equation}
+Assume also that the complete finite-$q$ diamagnetic term has a thermodynamic limit continuous at
+$q=0$.  Then the uniform current is $H^{-1}$-tight and the static transverse kernel is continuous at
+$q=0$.  The same conclusion holds for a finite ground multiplet if the bound is uniform for all matrix
+elements in the selected density matrix.
+\end{proposition}
+
+\begin{proof}
+Let $\mu_{L,v}$ be the scalar volume-normalized spectral measure of $J_{L,v}$ in the selected state.
+Translation invariance and the spectral theorem give
+\begin{equation}
+ g_{L,v}(t)
+ :=\frac1{V_L}\bra{\Omega_L}J_{L,v}\e^{-t\widehat H_L}Q_LJ_{L,v}\ket{\Omega_L}
+ =\sum_xG_{L,v}(x,t)
+ =\int_{(0,\infty)}\e^{-tE}\,\dd\mu_{L,v}(E).
+ \label{eq:time-spectral}
+\end{equation}
+The connected subtraction is precisely the projector $Q_L$, so no zero-energy atom occurs.  The
+summable envelope implies
+$\abs{g_{L,v}(t)}\le\sum_xF(x,t)$ with an $L$-independent integrable majorant.
+Moreover, for $0<E\le\delta$,
+\begin{equation}
+ \frac1E
+ \le \mathrm e\int_{1/\delta}^{\infty}\e^{-tE}\,\dd t.
+\end{equation}
+Therefore positivity and \eqref{eq:time-spectral} imply
+\begin{equation}
+ \int_{(0,\delta]}\frac{\dd\mu_{L,v}(E)}E
+ \le \mathrm e\int_{1/\delta}^{\infty}g_{L,v}(t)\,\dd t
+ \le \mathrm e\sum_x\int_{1/\delta}^{\infty}F(x,t)\,\dd t.
+ \label{eq:summability-tail}
+\end{equation}
+The right side tends to zero uniformly in $L$, proving the $H^{-1}$ tightness criterion.
+
+For the static nonzero-momentum paramagnetic susceptibility, the same spectral representation gives
+\begin{equation}
+ \chi_{L,v}(q)
+ =\sum_x\e^{-\I q\cdot x}\int_0^\infty G_{L,v}(x,t)\,\dd t.
+ \label{eq:Fourier-susceptibility}
+\end{equation}
+Local thermodynamic convergence and \eqref{eq:summability} permit the $L\to\infty$ limit term by term;
+absolute summability then permits $q\to0$ by dominated convergence.  Hence the thermodynamic
+paramagnetic term is continuous at zero momentum.  Adding the assumed continuous diamagnetic term
+proves \eqref{eq:transverse-continuity}.
+\end{proof}
+
+The exact model below uses a stronger mechanism: a finite-size source-kernel identity removes the need
+for asymptotic correlation estimates.
+
+\section{Gauge-covariant swap-QGN parent on a graph}
+\label{sec:graph-model}
+
+\subsection{Fermionic definition}
+
+Let $G=(V,E)$ be a finite connected graph with $N=\abs V$ vertices and a fixed orientation of each edge.
+At site $x$ place spinful fermions $c_{x\sigma}$, $\sigma=\uparrow,\downarrow$, with
+\begin{equation}
+ N_x=n_{x\uparrow}+n_{x\downarrow},
+ \qquad
+ p_x^\dagger=c_{x\uparrow}^\dagger c_{x\downarrow}^\dagger,
+ \qquad
+ q_x=(n_{x\uparrow}-n_{x\downarrow})^2.
+\end{equation}
+Let $W_e$ be the complete fermionic site swap on the endpoints of $e=(x\to y)$, so that it exchanges all
+local creation operators at $x$ and $y$ and leaves the other sites fixed.  Define the Peierls-covariant swap
+and projector row
+\begin{equation}
+ W_e[A]
+ =\e^{-\I A_eN_y}W_e\e^{\I A_eN_y},
+ \qquad
+ \Pi_e[A]=\frac{\Id-W_e[A]}2.
+ \label{eq:twisted-swap}
+\end{equation}
+Since $W_e[A]$ is a Hermitian involution, $\Pi_e[A]$ is a projector.  The parent is
+\begin{equation}
+ \boxed{
+ H_G[A]
+ =\frac U2\sum_{x\in V}q_x^2
+ +\frac j2\sum_{e\in E}\Pi_e[A]^2,
+ \qquad U,j>0.}
+ \label{eq:swap-parent}
+\end{equation}
+It is a local positive-square Hamiltonian.
+
+Let $B:\mathbb R^E\to\mathbb R^V$ be the oriented incidence matrix,
+\begin{equation}
+ B_{z e}=\begin{cases}
+ -1,&z=t(e),\\
+ +1,&z=h(e),\\
+ 0,&\text{otherwise}.
+ \end{cases}
+ \label{eq:incidence}
+\end{equation}
+For a site function $\phi$, $B^*\phi$ is the discrete gradient.
+
+\begin{proposition}[Complete gauge covariance]
+\label{prop:gauge-covariance}
+With
+\begin{equation}
+ U_\phi=\exp\!\left(-\I\sum_x\phi_xN_x\right),
+\end{equation}
+one has
+\begin{equation}
+ U_\phi H_G[A]U_\phi^\dagger=H_G[A+B^*\phi].
+ \label{eq:graph-gauge}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For $e=(x\to y)$, conjugation by $U_\phi$ multiplies a fermion transferred from $x$ to $y$ by
+$\e^{-\I(\phi_y-\phi_x)}$ and the reverse transfer by the conjugate phase.  This is exactly the replacement
+$A_e\mapsto A_e+(B^*\phi)_e$ in \eqref{eq:twisted-swap}.  The onsite rows are gauge invariant.
+\end{proof}
+
+\subsection{Exact fixed-number ground state}
+
+For $0\le n\le N$, define the normalized paired Dicke/AGP state
+\begin{equation}
+ \ket{\Omega_{N,n}}
+ =\binom Nn^{-1/2}
+ \sum_{\substack{S\subset V\\\abs S=n}}
+ \prod_{x\in S}p_x^\dagger\ket0.
+ \label{eq:Dicke}
+\end{equation}
+
+\begin{theorem}[Complete fixed-$2n$ zero space]
+\label{thm:kernel}
+At $A=0$, in the sector of total particle number $2n$,
+\begin{equation}
+ \ker H_G[0]\big|_{2n}=\Span\{\ket{\Omega_{N,n}}\}.
+ \label{eq:kernel}
+\end{equation}
+Odd-particle sectors have no zero vectors.
+\end{theorem}
+
+\begin{proof}
+The rows $q_x$ force each site to be empty or doubly occupied.  In that seniority-zero subspace, each
+$W_e$ is the ordinary transposition of the hard-core pair occupations at the endpoints.  The rows
+$\Pi_e$ require invariance under every edge transposition.  Because $G$ is connected, the edge
+transpositions generate the full symmetric group on $V$, whose fixed subspace at pair number $n$ is the
+one-dimensional uniform subset state \eqref{eq:Dicke}.  A state with odd total particle number contains
+a singly occupied site and is penalized by an onsite row.
+\end{proof}
+
+\subsection{Seniority-zero compression and one-body functions}
+
+Write a hard-core pair configuration as $\ket S$, $S\subset V$, $\abs S=n$.  In the paired sector,
+\begin{equation}
+ H_{G,n}
+ =\frac j4\sum_{e\in E}(\Id-W_e).
+ \label{eq:exclusion-generator}
+\end{equation}
+With $m_x=S_x^z+\tfrac12$ and $p_x^\dagger=S_x^+$, this is exactly the isotropic spin-$\tfrac12$
+ferromagnet
+\begin{equation}
+ H_{G,n}=\frac j2\sum_{e=(x,y)}\left(\frac14-\bm S_x\!\cdot\!\bm S_y\right),
+ \label{eq:ferromagnet-form}
+\end{equation}
+restricted to fixed magnetization.  The Peierls field twists the $XY$ exchange with charge two.  This
+form makes both the quadratic magnon gap and the graph-Hodge separation of longitudinal and transverse
+sources transparent.  The onsite coefficient $U>0$ is used only to select seniority zero; it drops out of
+all response formulas inside the paired ground sector.
+For a real site function $f$ with $\sum_x f_x=0$, define
+\begin{equation}
+ \ket f
+ =\binom Nn^{-1/2}
+ \sum_{\abs S=n}\left(\sum_{x\in S}f_x\right)\ket S.
+ \label{eq:site-function-state}
+\end{equation}
+Let
+\begin{equation}
+ \alpha_{N,n}=\frac{n(N-n)}{N(N-1)},
+ \qquad
+ \gamma_{N,n}=2\alpha_{N,n}.
+ \label{eq:alpha-gamma}
+\end{equation}
+
+\begin{lemma}[Exact site-function representation]
+\label{lem:site-functions}
+For zero-mean $f,g$,
+\begin{align}
+ \braket{f|g}&=\alpha_{N,n}\ip{f}{g},
+ \label{eq:site-inner}\\
+ H_{G,n}\ket f&=\frac j4\ket{BB^*f}.
+ \label{eq:site-Laplacian}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+For \eqref{eq:site-inner}, the probability that a uniformly chosen $n$-subset contains $x$ is $n/N$,
+and the probability that it contains distinct $x,y$ is $n(n-1)/[N(N-1)]$.  Expanding the two subset
+sums and using $\sum_x f_x=\sum_xg_x=0$ leaves the coefficient $\alpha_{N,n}$.
+
+For \eqref{eq:site-Laplacian}, an edge transposition changes
+$\sum_{z\in S}f_z$ by the endpoint difference whenever exactly one endpoint is occupied.  Summing over
+edges gives the graph Laplacian $BB^*$ acting on $f$.
+\end{proof}
+
+\section{Exact graph-Hodge response}
+\label{sec:Hodge-response}
+
+Let $a\in\mathbb R^E$ be a real bond profile and set $A=ta$.  Define
+\begin{equation}
+ J_G[a]=\partial_tH_G[ta]|_{t=0},
+ \qquad
+ T_G[a]=\partial_t^2H_G[ta]|_{t=0}.
+\end{equation}
+The graph Hodge projector onto the cycle space is
+\begin{equation}
+ \Pcyc
+ =P_{\ker B}
+ =\Id-B^*(BB^*)^+B.
+ \label{eq:Hodge-projector}
+\end{equation}
+
+\begin{lemma}[Exact current and stress sources]
+\label{lem:source-stress}
+On the fixed-$n$ ground state,
+\begin{align}
+ J_G[a]\ket{\Omega_{N,n}}
+ &=\frac{\I j}{2}\ket{Ba},
+ \label{eq:current-source}\\
+ \bra{\Omega_{N,n}}T_G[a]\ket{\Omega_{N,n}}
+ &=j\gamma_{N,n}\norm a^2.
+ \label{eq:stress-expectation}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+On an edge $e=(x\to y)$, the twisted swap multiplies a pair moved from $x$ to $y$ by
+$\e^{-2\I t a_e}$ and the reverse move by $\e^{2\I t a_e}$.  Differentiating the uniform subset state
+therefore produces the signed endpoint occupation difference.  Summing over edges gives the divergence
+$Ba$ and the coefficient in \eqref{eq:current-source}.  A second derivative contributes only when the
+edge has exactly one occupied endpoint.  That probability is
+$2n(N-n)/[N(N-1)]=\gamma_{N,n}$, proving \eqref{eq:stress-expectation}.
+\end{proof}
+
+\begin{theorem}[Exact graph-Hodge static and dynamical kernels]
+\label{thm:graph-Hodge}
+For every finite connected graph, every pair number $0\le n\le N$, every real bond profile $a$, and every
+$\zeta>0$,
+\begin{align}
+ \boxed{
+ \cC_{G,n}[a]
+ =j\gamma_{N,n}\ip{a}{\Pcyc a},}
+ \label{eq:static-Hodge}\\
+ \boxed{
+ \cK_{G,n}(\I\zeta;a)
+ =j\gamma_{N,n}
+ \ip{a}{\frac{\zeta^2}{(jB^*B/4)^2+\zeta^2}a}.}
+ \label{eq:dynamical-Hodge}
+\end{align}
+Consequently:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+\item if $a=B^*\phi$ is a gauge gradient, then $\cC_{G,n}[a]=0$;
+\item if $Ba=0$, then
+\begin{equation}
+ \cK_{G,n}(\I\zeta;a)=\cC_{G,n}[a]
+ =j\gamma_{N,n}\norm a^2
+ \label{eq:transverse-exact}
+\end{equation}
+for every $\zeta>0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By \cref{lem:source-stress}, the current source lies in the site-function sector.  On that sector,
+\cref{lem:site-functions} identifies the Hamiltonian with $(j/4)BB^*$.  Hence the paramagnetic term in
+\eqref{eq:Abelian-kernel} is
+\begin{equation}
+ \frac{j^2}{2}\alpha_{N,n}
+ \ip{Ba}{
+ \frac{(j/4)BB^*}{[(j/4)BB^*]^2+\zeta^2}Ba}.
+\end{equation}
+Using the common nonzero spectrum of $BB^*$ and $B^*B$, and subtracting this term from
+\eqref{eq:stress-expectation}, gives \eqref{eq:dynamical-Hodge}.  Taking $\zeta\downarrow0$ projects
+onto $\ker(B^*B)=\ker B$ and proves \eqref{eq:static-Hodge}.  The two consequences follow from the
+orthogonal Hodge decomposition
+$\mathbb R^E=\Ran B^*\oplus\ker B$.
+\end{proof}
+
+\begin{remark}[Exact finite-frequency graph filter]
+Equation \eqref{eq:dynamical-Hodge} is the model's central infrared mechanism.  On an edge-Laplacian
+eigenmode with eigenvalue $\lambda>0$, the dynamical multiplier is
+\begin{equation}
+ \frac{\zeta^2}{(j\lambda/4)^2+\zeta^2}.
+\end{equation}
+At fixed $\zeta$, sufficiently soft longitudinal modes remain unresolved; the static limit removes them.
+Cycle-space modes have $\lambda=0$ and survive with multiplier one at every frequency.  The general
+$H^{-1}$ criterion is therefore realized here as an exact graph filter, without a uniform many-body gap.
+For a divergence-free field, \eqref{eq:current-source} gives
+$J_G[a]\ket{\Omega_{N,n}}=0$ already at finite size.  The transverse response is consequently purely
+diamagnetic, independent of $q$, and independent of $\zeta$.  This is a deliberately fine-tuned feature
+of the frustration-free parent, stronger than the partial diamagnetic--paramagnetic cancellation in a
+generic BCS state.
+\end{remark}
+
+\section{Zero-frequency Meissner theorem on periodic lattices}
+\label{sec:periodic-Meissner}
+
+Let $G_L$ be the nearest-neighbor graph of a periodic $d$-dimensional Bravais lattice with
+$N=L^d$ sites.  A Fourier bond field $a_\mu(q)$ is lattice transverse when
+\begin{equation}
+ \sum_{\mu=1}^d(1-\e^{-\I q_\mu})a_\mu(q)=0.
+ \label{eq:lattice-transverse}
+\end{equation}
+For every allowed nonzero $q$ in $d\ge2$, there is a nonzero transverse polarization.  Normalize the
+corresponding real profile by $\norm a^2=N$.
+
+\begin{theorem}[Exact zero-frequency Meissner weight]
+\label{thm:exact-Meissner}
+Let $d\ge2$, let $n_L/N\to\rho\in(0,1)$, and consider the parent \eqref{eq:swap-parent} on $G_L$.
+Then every finite-volume uniform harmonic profile, every allowed lattice-transverse Fourier profile, and
+every $\zeta>0$ have the same response density,
+\begin{equation}
+ \frac1N\cK_{G_L,n_L}(\I\zeta;a)
+ =\frac1N\cC_{G_L,n_L}[a]
+ =j\gamma_{N,n_L}.
+ \label{eq:finite-Meissner-density}
+\end{equation}
+All admissible orders of $L\to\infty$, $\zeta\downarrow0$, and transverse $q\to0$ therefore agree:
+\begin{equation}
+ \boxed{
+ \kappa_{\rm K}=D_{\rm A}=D_{\rm M}=2j\rho(1-\rho)>0.}
+ \label{eq:exact-Meissner-value}
+\end{equation}
+If the pair phase is $Q=2A$, the corresponding pair-phase stiffness is
+\begin{equation}
+ \boxed{D_s=\frac j2\rho(1-\rho).}
+ \label{eq:pair-phase-value}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+A constant directional bond profile on a torus is divergence free, as is every field satisfying
+\eqref{eq:lattice-transverse}.  Equation \eqref{eq:transverse-exact} and the normalization
+$\norm a^2=N$ give \eqref{eq:finite-Meissner-density}.  Since
+\begin{equation}
+ \gamma_{N,n_L}=\frac{2n_L(N-n_L)}{N(N-1)}\longrightarrow2\rho(1-\rho),
+\end{equation}
+all limit orders give \eqref{eq:exact-Meissner-value}.  Differentiating with respect to $Q=2A$ instead of
+$A$ multiplies the curvature by $1/4$ and gives \eqref{eq:pair-phase-value}.
+\end{proof}
+
+\subsection{Pair ODLRO and the closing fixed-number gap}
+
+\begin{proposition}[Exact pair-density matrix]
+\label{prop:ODLRO}
+In the state \eqref{eq:Dicke},
+\begin{equation}
+ \bra{\Omega_{N,n}}p_x^\dagger p_y\ket{\Omega_{N,n}}
+ =\begin{cases}
+ n/N,&x=y,\\[0.25em]
+ \alpha_{N,n},&x\ne y.
+ \end{cases}
+ \label{eq:pair-correlator}
+\end{equation}
+The largest eigenvalue of this matrix is
+\begin{equation}
+ \lambda_{\max}=\frac{n(N-n+1)}N,
+ \label{eq:ODLRO-eigenvalue}
+\end{equation}
+which is extensive at fixed interior density.  The finite-volume electronic-link Meissner kernel satisfies
+\begin{equation}
+ j\gamma_{N,n}=2j\bra{\Omega_{N,n}}p_x^\dagger p_y\ket{\Omega_{N,n}}
+ \qquad(x\ne y).
+ \label{eq:response-ODLRO}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The diagonal entry is the probability that a uniformly chosen $n$-subset contains $x$.  For $x\ne y$,
+$p_x^\dagger p_y$ maps a subset containing $y$ but not $x$ to another subset with the same uniform
+amplitude.  The number of such subsets is $\binom{N-2}{n-1}$, giving $\alpha_{N,n}$.  A matrix with
+constant diagonal and constant off-diagonal entries has uniform eigenvalue
+$n/N+(N-1)\alpha_{N,n}$, which is \eqref{eq:ODLRO-eigenvalue}.  Equation
+\eqref{eq:response-ODLRO} follows from \eqref{eq:alpha-gamma}.
+\end{proof}
+
+\begin{proposition}[No hidden uniform gap]
+\label{prop:gap-closing}
+In the fixed-$n$ paired sector on a periodic nearest-neighbor lattice,
+\begin{equation}
+ \operatorname{gap}(H_{G_L,n})
+ =\frac j4\lambda_1(BB^*)
+ =j\sin^2\!\left(\frac\pi L\right)
+ =O(L^{-2}),
+ \label{eq:gap-closing}
+\end{equation}
+for $1\le n\le N-1$.  Here $\lambda_1$ is the smallest nonzero graph-Laplacian eigenvalue.
+\end{proposition}
+
+\begin{proof}
+The upper bound and eigenvalue are realized by the site-function vectors in
+\cref{lem:site-functions}.  Equality of the symmetric-exclusion spectral gap with the one-particle
+random-walk gap is the Aldous spectral-gap theorem \cite{Caputo2010}.  For the periodic lattice,
+$\lambda_1(BB^*)=4\sin^2(\pi/L)$.
+\end{proof}
+
+The Meissner theorem is therefore not a uniform-gap corollary.  The gapless modes are longitudinal site
+functions.  A transverse bond field has $Ba=0$, so its physical current source vanishes before any
+pseudoinverse is applied.
+
+\section{Protected multiblock stiffness floor}
+\label{sec:multiblock}
+
+Consider $r$ paired blocks on the same graph.  Let the full positive-square target map be stacked as
+\begin{equation}
+ D[A]=D_{\rm sw}[A]\oplus D_{\rm r}[A],
+ \label{eq:stacked-map}
+\end{equation}
+where $D_{\rm sw}$ contains a complete swap row for every graph edge in each block, with coupling $j_b$,
+and every row of $D_{\rm r}$ annihilates the product-Dicke zero manifold at $A=0$.  Let
+$S_{\rm sw}$ and $S_{\rm r}$ be the corresponding Peierls source maps.
+
+\begin{theorem}[Source-kernel backbone protection]
+\label{thm:backbone}
+For every divergence-free profile $Ba=0$ and every $\zeta>0$,
+\begin{align}
+ \cK(\I\zeta;a)&\succeq Q_{\rm sw}[a],
+ \label{eq:backbone-dynamic}\\
+ \cC[a]&\succeq Q_{\rm sw}[a],
+ \label{eq:backbone-static}
+\end{align}
+where, in the product-composition basis $\ket{\bm n}$,
+\begin{equation}
+ Q_{\rm sw}[a]
+ =\norm a^2\sum_{\bm n}
+ \left(\sum_{b=1}^rj_b\gamma_{N,n_b}\right)
+ \ket{\bm n}\bra{\bm n}.
+ \label{eq:backbone-floor}
+\end{equation}
+Thus additional positive-square multiplicative, remote-control, or interaction rows cannot cancel the
+transverse stiffness carried by the swap backbone.
+\end{theorem}
+
+\begin{proof}
+For $Ba=0$, the single-block theorem gives
+$D_{\rm sw}^\dagger S_{\rm sw}=0$.  Because the target labels are a direct sum,
+$s_0:=(S_{\rm sw},0)\in\ker D^\dagger=\ker\cL$ for the complete map.  Hence
+$f_\zeta(\cL)s_0=s_0$ for
+$f_\zeta(\cL)=\zeta^2(\cL^2+\zeta^2)^{-1}$.  Although $\cL=DD^\dagger/2$ need not preserve the
+swap/residual block decomposition, self-adjointness now gives, for
+$s_{\rm r}:=(0,S_{\rm r})$,
+\begin{equation}
+ \ip{s_0}{f_\zeta(\cL)s_{\rm r}}
+ =\ip{f_\zeta(\cL)s_0}{s_{\rm r}}
+ =\ip{s_0}{s_{\rm r}}=0.
+\end{equation}
+Thus it is the kernel eigenvector property, followed by direct-sum orthogonality, that removes the cross
+terms.  Applying \cref{thm:dynamical-LS} gives the direct positive swap Gram matrix plus a positive
+residual term.  The static statement follows identically with $P_{\ker D^\dagger}$ in place of
+$f_\zeta(\cL)$.  Different blocks preserve separate block charges and occupy orthogonal row labels,
+yielding \eqref{eq:backbone-floor}.
+\end{proof}
+
+\begin{corollary}[Selected interior compositions are Meissner active]
+\label{cor:selected-composition}
+On a periodic $d\ge2$ lattice, choose a product composition with $n_{b,L}/N\to\rho_b$.  Then
+\begin{equation}
+ D_{\rm M}\ge2\sum_{b=1}^rj_b\rho_b(1-\rho_b),
+ \label{eq:multiblock-floor}
+\end{equation}
+and the same lower bound holds for the Abelian zero-frequency kernel.  It is strictly positive whenever at
+least one block is neither empty nor saturated.
+\end{corollary}
+
+\begin{remark}[Ground-manifold selection]
+In an unresolved composition manifold, the lowest eigenvalue of the full curvature operator need not
+equal its diagonal expectation in a chosen product composition.  A scalar physical response therefore
+requires a branch selector, a prepared coherent state, or a density matrix.  The operator inequalities
+\eqref{eq:backbone-dynamic}--\eqref{eq:backbone-static} remain valid without choosing one.
+\end{remark}
+
+\section{Independent failure mechanisms}
+\label{sec:counterexamples}
+
+\subsection{Temporal failure from a soft positive target mode}
+
+\begin{proposition}[Positive-square order-of-limits defect]
+\label{prop:soft-target-counterexample}
+Let $V_L\to\infty$, $\Delta_L\downarrow0$, and let the state space be spanned by
+$\ket g,\ket e$ and the target space by $\ket r,\ket z$.  Define
+\begin{equation}
+ D_L(a)
+ =\sqrt{2\Delta_L}\ket r\bra e
+ +a\left(\sqrt{2\alpha V_L}\ket r+\sqrt{c_0V_L}\ket z\right)\bra g,
+ \qquad
+ \alpha>0,
+ \quad c_0\ge0,
+ \label{eq:soft-target-D}
+\end{equation}
+and $H_L(a)=D_L(a)^\dagger D_L(a)/2$.  At $a=0$, $\ket g$ is the unique zero state and $\ket e$ has
+energy $\Delta_L$.  Nevertheless,
+\begin{align}
+ \frac1{V_L}\cC_L&=c_0,
+ \label{eq:soft-static}\\
+ \frac1{V_L}\cK_L(\I\zeta)
+ &=c_0+2\alpha\frac{\zeta^2}{\Delta_L^2+\zeta^2}.
+ \label{eq:soft-dynamic}
+\end{align}
+Hence
+\begin{equation}
+ \lim_{L\to\infty}\frac{\cC_L}{V_L}=c_0,
+ \qquad
+ \lim_{\zeta\downarrow0}\lim_{L\to\infty}
+ \frac{\cK_L(\I\zeta)}{V_L}=c_0+2\alpha.
+ \label{eq:soft-noncommute}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+At zero twist,
+$\cL_L=\Delta_L\ket r\bra r$ and the source is the second term in
+\eqref{eq:soft-target-D} acting on $\ket g$.  The static projector onto $\ker\cL_L=\Span\{\ket z\}$
+gives \eqref{eq:soft-static}; \cref{thm:dynamical-LS} gives \eqref{eq:soft-dynamic}.  Taking the limits
+proves \eqref{eq:soft-noncommute}.  The soft mode carries source weight $2\alpha V_L$ at target energy
+$\Delta_L$, so \eqref{eq:source-tightness} fails exactly.
+\end{proof}
+
+\subsection{Spatial failure: Drude without Meissner}
+
+\begin{proposition}[Clean normal metal]
+\label{prop:free-gas}
+Consider continuum spinless fermions on a periodic box,
+\begin{equation}
+ H_L(A)=\sum_{a=1}^N\frac{(p_a-A)^2}{2m},
+ \label{eq:free-gas}
+\end{equation}
+with a closed-shell ground state and density $n=N/V_L$.  The finite-volume Kohn curvature and uniform
+Drude kernel are $n/m$.  The static transverse kernel instead vanishes in the thermodynamic limit:
+\begin{equation}
+ D_{\rm M}=0,
+ \qquad
+ \kappa_{\rm K}=D_{\rm A}=\frac nm.
+ \label{eq:free-gas-result}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Along a fixed zero-temperature closed-shell adiabatic branch, differentiating \eqref{eq:free-gas} twice
+gives $n/m$.  To evaluate the transverse thermodynamic limit without distributional shorthand, first use
+the smooth Fermi occupation $n_\beta(\epsilon)=[1+\e^{\beta(\epsilon-\mu)}]^{-1}$ at finite
+$\beta$.  For $q$ along $x$ and polarization along $y$,
+\begin{equation}
+ \Pi_{yy}^{(\beta)}(q,0)
+ =\int\frac{\dd^dk}{(2\pi)^d}
+ \left(\frac{k_y}{m}\right)^2
+ \frac{n_\beta(\epsilon_{k+q/2})-n_\beta(\epsilon_{k-q/2})}
+ {\epsilon_{k+q/2}-\epsilon_{k-q/2}}.
+\end{equation}
+At fixed $\beta$, dominated convergence as $q\to0$ gives the derivative
+$n_\beta'(\epsilon_k)$.  The identity
+\begin{equation}
+ \partial_{k_y}\!\left(\frac{k_y}{m}n_\beta(\epsilon_k)\right)
+ =\frac1m n_\beta(\epsilon_k)+\frac{k_y^2}{m^2}n_\beta'(\epsilon_k)
+\end{equation}
+and integration by parts yield
+$\lim_{q\to0}\Pi_{yy}^{(\beta)}(q,0)=-n_\beta/m$, where $n_\beta$ is the particle density at that
+regularization.  Taking $\beta\to\infty$ at fixed density gives $-n/m$, equivalently the usual
+zero-temperature Fermi-surface distribution.  It cancels the diamagnetic term.  The finite-$\beta$
+numerical check in the reproducibility suite tests this smooth regularization; the proposition is its
+zero-temperature limit.  The spatial continuity hypothesis of \cref{thm:general-completion} therefore
+fails.
+\end{proof}
+
+These examples show why both theorem layers are necessary.  The first violates temporal tightness in a
+frustration-free positive-square family.  The second satisfies the uniform electric response but violates
+the transverse limit.
+
+\section{Theorem boundary and relation to microscopic transfer}
+\label{sec:boundary}
+
+The exact parent has now crossed the conceptual boundary between static Peierls curvature and a genuine
+zero-frequency transverse matter response.  The proof uses five pieces that can be audited separately:
+
+\begin{center}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.31\linewidth}>{\raggedright\arraybackslash}p{0.32\linewidth}@{}}
+\toprule
+Question & Sufficient certificate & Failure signature\\
+\midrule
+Finite-volume branch
+& isolated ground cluster and $PJP=0$
+& linear splitting, cusp, or unresolved selector\\
+Complete gauge coupling
+& bondwise covariance and both current/stress derivatives
+& partial twist or missing diamagnetic term\\
+Temporal uniformity
+& current $H^{-1}$ tightness, equivalently source tightness
+& finite inverse-energy weight in soft modes\\
+Transverse completion
+& static $q\to0$ continuity or exact source-kernel identity
+& Drude response with transverse cancellation\\
+Exact swap route
+& $Ba=0$ and $S[a]\subset\ker D^\dagger$
+& source outside the target kernel\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The finite-coupling microscopic question is different.  A local Schrieffer--Wolff low block can reproduce
+the parent at leading order while carrying a quasi-local higher-order remainder.  Because the parent gap
+closes as $L^{-2}$, a small local operator norm does not by itself imply a small response error: the
+remainder can move the selected state or couple a transverse source to a soft longitudinal mode.  The
+required transfer theorem must control both state and current sources in a relative $H^{-1}$ topology,
+uniformly in the transverse infrared window.  That analysis is intentionally separated from the exact
+Meissner theorem proved here.
+
+\section{Conclusion}
+
+Static Peierls curvature becomes a dynamical statement only after an infrared uniformity theorem.  The
+sharp temporal condition is not that the complete many-body gap stay open, but that the physical current
+carry no residual inverse-energy weight into asymptotically soft excitations.  In a positive-square parent,
+this is exactly a statement about the projection of the Peierls source onto soft positive target singular
+modes.
+
+A Meissner statement additionally requires the transverse spatial limit.  The graph swap parent solves
+that problem at finite size.  Its current source is the graph divergence of the bond field; least-squares
+relaxation is Hodge projection; and every divergence-free field lies exactly in the target kernel.  The
+transverse kernel is therefore independent of frequency and wave vector before any thermodynamic limit
+is taken.
+
+The resulting periodic-lattice model has
+\begin{equation}
+ \kappa_{\rm K}=D_{\rm A}=D_{\rm M}=2j\rho(1-\rho)>0
+\end{equation}
+at every interior filling, exact pair ODLRO, and a fixed-number gap closing as $L^{-2}$.  It is thus an
+explicit gapless frustration-free parent with a rigorous zero-frequency Meissner/superfluid weight.  The
+swap backbone also protects a positive transverse floor in multiblock extensions.  The next independent
+problem is not conceptual identification but response-stable transfer to a specified finite-coupling
+microscopic realization.
+
+\appendix
+
+\section{Finite-volume perturbation formula}
+\label{app:perturbation}
+
+For completeness, write
+\begin{equation}
+ H_L(a)=H_L(0)+aJ_L+\frac{a^2}{2}T_L+O(a^3).
+\end{equation}
+With respect to $P_L\oplus Q_L$ and under $P_LJ_LP_L=0$, the Feshbach map at energies $O(a^2)$ is
+\begin{equation}
+ \frac{a^2}{2}P_LT_LP_L
+ -a^2P_LJ_LQ_L(Q_L\widehat H_LQ_L)^{-1}Q_LJ_LP_L
+ +o(a^2).
+\end{equation}
+Factoring $a^2/2$ gives \eqref{eq:Kohn-operator}.  Thus the analytic second-order branches emerging
+from a degenerate ground cluster are the eigenvalues of $\cC_L$.  The lowest unresolved ground-energy
+curvature is $\lambda_{\min}(\cC_L)$, while a prepared state or density matrix evaluates the corresponding
+expectation.  These are different physical selection rules when the cluster is degenerate.
+
+\section{Graph combinatorics}
+\label{app:graph-combinatorics}
+
+The subset average used in \cref{lem:site-functions} follows from
+\begin{align}
+ \mathbb P(x\in S)&=\frac nN,\\
+ \mathbb P(x,y\in S)&=\frac{n(n-1)}{N(N-1)},\qquad x\ne y.
+\end{align}
+For zero-mean $f,g$,
+\begin{align}
+ \mathbb E\left[\sum_{x\in S}f_x\sum_{y\in S}g_y\right]
+ &=\frac nN\sum_xf_xg_x
+ +\frac{n(n-1)}{N(N-1)}\sum_{x\ne y}f_xg_y\\
+ &=\frac{n(N-n)}{N(N-1)}\sum_xf_xg_x.
+\end{align}
+The same counting gives the probability that exactly one endpoint of an edge is occupied:
+\begin{equation}
+ 2\frac nN\frac{N-n}{N-1}=\gamma_{N,n}.
+\end{equation}
+
+\section{Normalization conventions}
+\label{app:normalization}
+
+The electronic-link convention uses the Peierls phase of a single electron and the response density
+$V^{-1}\partial_A^2E$.  A pair transported across a bond acquires phase $Q=2A$.  Therefore
+\begin{equation}
+ \frac1V\frac{\partial^2E}{\partial Q^2}
+ =\frac1{4V}\frac{\partial^2E}{\partial A^2}.
+\end{equation}
+This accounts for the factor of four between \eqref{eq:exact-Meissner-value} and
+\eqref{eq:pair-phase-value}.  Electric charge factors, optical $\pi$ factors, and lattice-spacing tensors can
+be restored uniformly after choosing a material convention.
+
+\section{Reproducibility}
+\label{app:reproducibility}
+
+Three deterministic scripts accompany the paper.
+
+The script \texttt{verify\_dynamical\_response.py} checks:
+\begin{enumerate}[leftmargin=1.6em]
+\item random finite-dimensional positive-square families against the state-space Kubo formula and the
+target-space identity \eqref{eq:dynamical-LS};
+\item the quantitative bounds \eqref{eq:lower-tail-bound}--\eqref{eq:upper-tail-bound} for random
+positive matrix-valued spectral weights;
+\item the soft-target counterexample \eqref{eq:soft-static}--\eqref{eq:soft-noncommute};
+\item numerical convergence of the free-gas transverse cancellation.
+\end{enumerate}
+
+The script \texttt{verify\_graph\_hodge\_meissner.py} checks:
+\begin{enumerate}[leftmargin=1.6em]
+\item the unique Dicke/AGP zero state and its pair-density matrix;
+\item the site-function identities \eqref{eq:site-inner}--\eqref{eq:site-Laplacian};
+\item bondwise gauge covariance;
+\item the current and stress identities \eqref{eq:current-source}--\eqref{eq:stress-expectation};
+\item the static Hodge formula and finite-frequency graph filter;
+\item exact cancellation for gradients and exact survival for lattice-transverse profiles;
+\item the $L^{-2}$ gap formula, including a multipair half-filled rectangular torus, and an operator-level multiblock floor with nontrivial residual rows.
+\end{enumerate}
+
+The script \texttt{independent\_fock\_check.py} checks the fermionic layer before seniority-zero
+compression.  It constructs Jordan--Wigner Fock matrices on a path, triangle, and square and verifies:
+\begin{enumerate}[leftmargin=1.6em]
+\item the complete site swaps and their Peierls lifts are Hermitian involutions;
+\item the even-sector kernels have the claimed fermionic Dicke signs and odd sectors have no zero modes;
+\item full-Fock gauge covariance and the charge-two seniority-zero compression;
+\item current and stress derivatives against finite differences; and
+\item the full-Fock static Hodge formula and finite-frequency transverse identity.
+\end{enumerate}
+The retained outputs and SHA-256 hashes are included in the consolidated archive.
+
+\begingroup\raggedright
+\begin{thebibliography}{99}
+
+\bibitem{Kohn1964}
+W.~Kohn,
+``Theory of the Insulating State,''
+\emph{Phys. Rev.} \textbf{133}, A171--A181 (1964),
+doi:10.1103/PhysRev.133.A171.
+
+\bibitem{Scalapino1992}
+D.~J. Scalapino, S.~R. White, and S.~C. Zhang,
+``Superfluid density and the Drude weight of the Hubbard model,''
+\emph{Phys. Rev. Lett.} \textbf{68}, 2830--2833 (1992),
+doi:10.1103/PhysRevLett.68.2830.
+
+\bibitem{Scalapino1993}
+D.~J. Scalapino, S.~R. White, and S.~C. Zhang,
+``Insulator, metal, or superconductor: The criteria,''
+\emph{Phys. Rev. B} \textbf{47}, 7995--8007 (1993),
+doi:10.1103/PhysRevB.47.7995.
+
+\bibitem{Resta2018}
+R.~Resta,
+``Drude weight and superconducting weight,''
+\emph{J. Phys.: Condens. Matter} \textbf{30}, 414001 (2018),
+doi:10.1088/1361-648X/aade19.
+
+\bibitem{Watanabe2020}
+H.~Watanabe and M.~Oshikawa,
+``Generalized f-sum rules and Kohn formulas on nonlinear conductivities,''
+\emph{Phys. Rev. B} \textbf{102}, 165137 (2020),
+doi:10.1103/PhysRevB.102.165137.
+
+\bibitem{Takasan2023}
+K.~Takasan, M.~Oshikawa, and H.~Watanabe,
+``Drude weights in one-dimensional systems with a single defect,''
+\emph{Phys. Rev. B} \textbf{107}, 075141 (2023),
+doi:10.1103/PhysRevB.107.075141.
+
+\bibitem{Tada2016}
+Y.~Tada and T.~Koma,
+``Two No-Go Theorems on Superconductivity,''
+\emph{J. Stat. Phys.} \textbf{165}, 455--470 (2016),
+doi:10.1007/s10955-016-1629-2.
+
+\bibitem{Peotta2015}
+S.~Peotta and P.~T{\"o}rm{\"a},
+``Superfluidity in topologically nontrivial flat bands,''
+\emph{Nat. Commun.} \textbf{6}, 8944 (2015),
+doi:10.1038/ncomms9944.
+
+\bibitem{Torma2022}
+P.~T{\"o}rm{\"a}, S.~Peotta, and B.~A. Bernevig,
+``Superconductivity, superfluidity and quantum geometry in twisted multilayer systems,''
+\emph{Nat. Rev. Phys.} \textbf{4}, 528--542 (2022),
+doi:10.1038/s42254-022-00466-y.
+
+\bibitem{Sewell1990}
+G.~L. Sewell,
+``Off-diagonal long range order and the Meissner effect,''
+\emph{J. Stat. Phys.} \textbf{61}, 415--422 (1990),
+doi:10.1007/BF01013973.
+
+\bibitem{Nieh1995}
+H.~T. Nieh, G.~Su, and B.-H. Zhao,
+``Off-diagonal long-range order: Meissner effect and flux quantization,''
+\emph{Phys. Rev. B} \textbf{51}, 3760--3764 (1995),
+doi:10.1103/PhysRevB.51.3760.
+
+\bibitem{Matsubara1956}
+T.~Matsubara and H.~Matsuda,
+``A Lattice Model of Liquid Helium, I,''
+\emph{Prog. Theor. Phys.} \textbf{16}, 569--582 (1956),
+doi:10.1143/PTP.16.569.
+
+\bibitem{Yang1962}
+C.~N. Yang,
+``Concept of Off-Diagonal Long-Range Order and the Quantum Phases of Liquid He and of Superconductors,''
+\emph{Rev. Mod. Phys.} \textbf{34}, 694--704 (1962),
+doi:10.1103/RevModPhys.34.694.
+
+\bibitem{Yang1989}
+C.~N. Yang,
+``$\eta$ Pairing and Off-Diagonal Long-Range Order in a Hubbard Model,''
+\emph{Phys. Rev. Lett.} \textbf{63}, 2144--2147 (1989),
+doi:10.1103/PhysRevLett.63.2144.
+
+\bibitem{Caputo2010}
+P.~Caputo, T.~M. Liggett, and T.~Richthammer,
+``Proof of Aldous' Spectral Gap Conjecture,''
+\emph{J. Amer. Math. Soc.} \textbf{23}, 831--851 (2010),
+doi:10.1090/S0894-0347-10-00659-4.
+
+\bibitem{Han2024}
+Z.~Han, J.~Herzog-Arbeitman, B.~A. Bernevig, and S.~A. Kivelson,
+``Quantum Geometric Nesting and Solvable Model Flat-Band Systems,''
+\emph{Phys. Rev. X} \textbf{14}, 041004 (2024),
+doi:10.1103/PhysRevX.14.041004.
+
+\bibitem{Gao2026}
+Q.~Gao, Z.~Han, and E.~Khalaf,
+``Bootstrapping Flat-band Superconductors: Rigorous Lower Bounds on Superfluid Stiffness,''
+\emph{Phys. Rev. Lett.} \textbf{136}, 076503 (2026),
+doi:10.1103/gw85-5r92.
+
+\bibitem{SledgianowskiSingle}
+N.~Sledgianowski,
+``Exact Flat-Band Stiffness from Pair Mobility in a QGN Model,''
+manuscript (2026).
+
+\bibitem{SledgianowskiMulti}
+N.~Sledgianowski,
+``Multi-Block Reduction and Irreducibility Laws for QGN Superconductors,''
+manuscript (2026).
+
+\bibitem{SledgianowskiNoGo}
+N.~Sledgianowski,
+``Peierls-Transport Obstruction and the Minimal Many-Body Escape,''
+manuscript (2026).
+
+\bibitem{SledgianowskiMicro}
+N.~Sledgianowski,
+``Microscopic Origins of Multiplicative Null Interactions in Quantum-Geometric-Nesting Superconductors,''
+manuscript (2026).
+
+\end{thebibliography}
+\endgroup
+
+\end{document}

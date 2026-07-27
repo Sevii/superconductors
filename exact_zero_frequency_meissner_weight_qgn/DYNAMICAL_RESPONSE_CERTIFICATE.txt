@@ -1,0 +1,20 @@
+ZERO-FREQUENCY DYNAMICAL RESPONSE VERIFIER
+python 3.13.5
+numpy 2.3.5
+scipy 1.17.0
+------------------------------------------------------------------------------------------------------------
+positive-square finite-frequency target identity                         PASS  error=1.750e-15  tol=5.0e-10
+positive-square static projected-source identity                         PASS  error=4.255e-15  tol=5.0e-10
+finite-frequency defect is positive semidefinite                         PASS  error=1.143e-16  tol=5.0e-10
+quantitative H^{-1} lower-tail bound                                     PASS  error=0.000e+00  tol=2.0e-10
+quantitative H^{-1} upper-tail bound                                     PASS  error=0.000e+00  tol=2.0e-10
+total current H^{-1} norm in certificate                                 VALUE 8.29599382384
+soft-target counterexample formulas                                      PASS  error=1.110e-16  tol=2.0e-10
+soft-target thermodynamic-first limit                                    VALUE 0.95
+soft-target adiabatic-first limit                                        VALUE 0.21
+soft-target limits differ by 2 alpha                                     PASS  error=0.000e+00  tol=2.0e-10
+clean-gas finite-beta transverse cancellation                            PASS  error=2.776e-17  tol=2.0e-10
+clean-gas Kohn/Drude density n/m                                         VALUE 0.183028750303
+clean-gas finite-beta paramagnetic term                                  VALUE -0.183028750303
+------------------------------------------------------------------------------------------------------------
+OVERALL: PASS

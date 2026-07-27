@@ -1,0 +1,6 @@
+PDF: exact_zero_frequency_meissner_weight_qgn.pdf
+Pages: 19
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False

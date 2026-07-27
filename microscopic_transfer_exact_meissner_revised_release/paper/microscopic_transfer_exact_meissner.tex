@@ -1,0 +1,1567 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1.10in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+
+\hypersetup{
+ pdftitle={Microscopic Transfer of Exact Meissner Weight},
+ pdfauthor={Nicholas Sledgianowski}
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Microscopic transfer of exact Meissner weight}
+\fancyhead[R]{\small Research manuscript -- July 2026}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\titleformat{\part}[block]{\Large\bfseries}{Part \thepart.}{0.55em}{}
+\titlespacing*{\part}{0pt}{1.1em}{0.55em}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\setlist[itemize]{leftmargin=1.45em,itemsep=0.17em,topsep=0.32em}
+\setlist[enumerate]{leftmargin=1.72em,itemsep=0.17em,topsep=0.32em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\crefname{theorem}{Theorem}{Theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{Lemma}{Lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{Definition}{Definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{Remark}{Remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{example}{Example}{Examples}
+\Crefname{example}{Example}{Examples}
+
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\I}{\mathrm i}
+\newcommand{\e}{\mathrm e}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\bq}{\bm q}
+\newcommand{\dagg}{\dagger}
+
+\title{\textbf{Microscopic Transfer of Exact Meissner Weight}\\[0.35em]
+\large Infrared-stable Schrieffer--Wolff theory, a complete degree-eight no-go,\\
+and an exact dark-branch finite-coupling completion}
+\author{Nicholas Sledgianowski}
+\date{Research manuscript -- July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The exact pair-permutation QGN parent has a positive zero-frequency transverse
+Meissner weight although its fixed-number gap closes as $L^{-2}$.  A screened
+multiorbital construction reproduces that parent at order $\lambda^6\Delta$
+but leaves a Peierls-covariant quasi-local remainder at order
+$\lambda^8\Delta$.  We resolve the resulting microscopic-transfer problem in
+three steps.  First, target-metric deformations admit finite-volume static and
+imaginary-frequency response bounds independent of the closing parent gap, and
+their current defect is controlled in the $H_{-1}$ topology at order
+$\lambda^{10}\Delta$.  A bounded anisotropic metric nevertheless produces a
+finite Drude--Meissner mismatch, showing that row-relative form alone is not
+enough; hydrodynamic closure together with point-group scalar zero-momentum
+structure restores uniform $H_{-1}$ tightness and yields $D_K=D_A=D_M$.
+Second, a complete weighted-degree-eight resolvent audit gives a closed source
+formula on the product-AGP manifold.  A two-pair witness proves that the
+unmodified matched single-flavor and closed-shell Kramers families cannot
+preserve the complete composition manifold at that order.  An explicit
+finite-range higher-body counterterm cancels the full unsafe source and restores
+the two-sided row ideal through degree eight, with response transfer conditional
+on the stated hydrodynamic audit.  Third, the primitive bridge has an exact
+coherent dark channel
+$\ket{\Omega_n^-}\propto(\eta_1^+-\eta_2^+)^n\ket0$.  Strict local
+Schur-complement overcompensation makes it the unique fixed-number ground state
+of a positive-semidefinite finite-coupling family.  In a point-group-complete
+$d\ge2$ Peierls lift, the swap backbone yields the rigorous transverse floor
+$D_*=2\lambda^6\Delta(j_1+j_2)\rho(1-\rho)>0$.  This is a finite-coupling
+zero-frequency microscopic Meissner lower bound for a selected coherent branch,
+not an all-composition transfer of the original matched family or an equality
+theorem for every gadget contribution.
+\end{abstract}
+
+\begin{quote}\small
+\textbf{Claim hierarchy.}
+\begin{enumerate}
+\item The target-metric bounds, $H_{-1}$ defect estimate, anisotropic
+counterexample, isotropic order-of-limits theorem, and local row-ideal criterion
+are exact transfer results and do not assume a uniform complete many-body gap.
+\item The complete weighted-degree-eight class enumeration and source formula
+prove a no-go for preservation of the full product-AGP composition manifold in
+the unmodified matched single-flavor and Kramers families.
+\item The explicit $\cC_8$ counterterm gives a two-sided row-ideal completion
+through weighted degree eight; the Part I response conclusion additionally
+requires the stated hydrodynamic-closure and isotropy audit.  Its synthesis from only the original restricted
+two-electron channels and an all-orders convergent completion remain open.
+\item The coherent dark branch is an exact finite-coupling zero-field
+eigenbranch.  It is not claimed to be the ground state of the original matched
+Hamiltonian.
+\item The strictly overcompensated positive-semidefinite family has the dark AGP
+as its unique fixed-number ground state and has a rigorous positive transverse
+Kohn, Abelian, and Meissner \emph{floor}.  Equality of the total three kernels
+requires the Part I regularity conditions for the extra gadget rows.
+\item All Meissner statements concern the zero-temperature matter current
+kernel.  No dynamical Maxwell-field screening, finite-temperature transition,
+or real-axis conductivity decomposition is claimed.
+\end{enumerate}
+\end{quote}
+
+\section{Introduction and main results}
+\label{sec:intro}
+
+For a selected finite-volume ground branch, let $\cC_{L,T}(q)$ be the static
+curvature under a transverse Peierls field and let
+$\cK_{L,T}(q,\I\zeta)$ be the corresponding imaginary-frequency matter
+kernel.  The three quantities relevant here are, schematically,
+\begin{align}
+ D_K&=\lim_{L\to\infty}V_L^{-1}\cC_L(q=0),
+ \label{eq:DK-def}\\
+ D_A&=\lim_{\zeta\downarrow0}\lim_{L\to\infty}
+ V_L^{-1}\cK_L(q=0,\I\zeta),
+ \label{eq:DA-def}\\
+ D_M&=\lim_{\substack{q\to0\\q\cdot t=0}}\lim_{L\to\infty}
+ V_L^{-1}\cC_{L,T}(q).
+ \label{eq:DM-def}
+\end{align}
+Kohn curvature, the Abelian zero-frequency uniform kernel, and the transverse
+Meissner kernel are distinct in general \cite{Kohn1964,Scalapino1993}.  The
+current-spectral $H_{-1}$ criterion identifying the first two limits is developed
+in \cite{SledgianowskiDynamic}.  The exact pair-permutation parent is
+exceptional \cite{SledgianowskiMeissner}: its transverse source lies in the
+target-space cokernel, so the finite-volume kernel is independent of both
+$q$ and $\zeta$ on every co-closed field.  At density $\rho$ its electronic-link
+weight is
+\begin{equation}
+ D_{\rm parent}=2j\rho(1-\rho),
+ \label{eq:parent-weight}
+\end{equation}
+with one quarter of this value in the pair-phase convention $Q=2A$.
+
+The microscopic construction is perturbative.  A local
+Schrieffer--Wolff block diagonalization \cite{Bravyi2011,SledgianowskiMicro}
+gives
+\begin{equation}
+ H_{\rm eff,L}^{[7]}(A)
+ =\lambda^6\Delta H_{\rm par,L}(A)+R_L^{(8)}(A),
+ \qquad
+ \norm{\partial_A^rR_L^{(8)}(A)}_\mu
+ \le C_{\mu,r}\Delta\abs\lambda^8,
+ \quad 0\le r\le2.
+ \label{eq:existing-sw}
+\end{equation}
+Here $\norm{\Phi}_\mu:=\sup_x\sum_{X\ni x}
+\e^{\mu\operatorname{diam}X}\norm{\Phi_X}$ denotes the exponentially weighted
+quasi-local interaction norm for the interaction $\Phi=\{\Phi_X\}$; harmless
+fixed support-size factors may be absorbed into its constants.  The parent gap
+closes quadratically, so the local norm estimate does not control the response
+by itself.  Writing $P$ for the exact parent zero projector and
+$Q=1-P$, a generic remainder creates two infrared-sensitive vectors,
+\begin{equation}
+ Q R^{(8)}P,
+ \qquad
+ Q\bigl(\partial_A R^{(8)}\bigr)P.
+ \label{eq:two-sources}
+\end{equation}
+The first moves the zero-field branch; the second changes the current source.
+The paper resolves these two issues in three stages.
+
+\paragraph{Part I: a sharp transfer framework.}
+A two-sided parent-row factorization removes the state source exactly.  The
+remaining current source can be controlled without a spectral gap by passing to
+target space.  The resulting theorem gives a uniform perturbative floor, but an
+explicit anisotropic metric proves that bounded $H_{-1}$ weight is not enough
+for exact temporal/transverse identification.  Point-group isotropy supplies
+the missing power of momentum and yields $D_K=D_A=D_M$.
+
+\paragraph{Part II: a complete degree-eight decision.}
+The full canonical degree-eight coefficient of the unmodified screened family
+is enumerated and compressed to the complete product-AGP manifold.  The
+resulting two-pair witness proves that all-composition transfer fails.  This is
+stronger than the order-eight overlap remainder left unclassified in the
+microscopic construction \cite{SledgianowskiMicro}, because every single-flavor
+class and the closed-shell Kramers correction are included.  The same formula
+produces the exact finite-range counterterm needed to restore the Part I
+state-source hypothesis through degree eight.  The current-sector closure and
+zero-momentum symbol remain a separate, finite audit.
+
+\paragraph{Part III: a nonperturbative selected-branch route.}
+The crossed bridge itself annihilates one coherent interblock AGP.  Strict local
+overcompensation turns that branch into the exact ground state of a positive
+finite-coupling microscopic Hamiltonian.  A direct-sum row argument then shows
+that no gadget relaxation can cancel the transverse swap-backbone source,
+which gives a positive microscopic Meissner floor before any small-gap
+perturbation theory is invoked.
+
+The final claim boundary is therefore sharp.  The unmodified matched family
+fails to preserve its complete composition manifold at weighted degree eight.
+A finite-order all-composition repair exists but is not yet synthesized from
+restricted two-electron channels or resummed to all orders.  A modified
+positive family already has an exact finite-coupling dark ground branch and a
+rigorous zero-frequency transverse floor.  The Part I theorem states the
+additional regularity needed to promote that floor to equality of the total
+Kohn, Abelian, and Meissner kernels.
+
+\begin{center}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.31\linewidth}@{}}
+\toprule
+Question & Result & Exact claim boundary\\
+\midrule
+Can an $O(\lambda^8)$ local remainder be transferred through the closing
+parent gap? & Yes for bounded target-metric deformations; the static and
+imaginary-frequency kernels obey gap-independent bounds. & The zero-field
+state source must vanish, and the current source must factor through parent
+rows.\\
+Is row-relative form alone enough for a Meissner identification? & No.  The
+anisotropic metric gives a finite Drude--Meissner mismatch with bounded but
+nontight $H_{-1}$ weight. & Exact identification needs soft-tail tightness, not
+only a uniform $H_{-1}$ bound.\\
+What closes the infrared limit? & Hydrodynamic closure plus a point-group
+scalar zero-momentum symbol gives $D_K=D_A=D_M$. & This is a sufficient theorem,
+not an automatic consequence of locality.\\
+Does the unmodified matched family pass the local audit? & No.  Its complete
+weighted-degree-eight coefficient leaks out of the product-AGP manifold at two
+pairs. & The no-go concerns analytic all-composition transfer near
+$\lambda=0$.\\
+What are the constructive routes? & $\cC_8$ repairs the row ideal through
+degree eight; strict overcompensation selects an exact dark AGP and gives a
+finite-coupling floor. & The first route is finite order and higher body; the
+second is a selected-branch lower-bound theorem.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\part{Infrared-stable transfer framework}
+
+\section{Target-metric response stability}
+\label{sec:metric}
+
+Let $D(t):\cH\to\cT$ be a twice differentiable row map, where $t$ is the
+amplitude of a chosen link field.  Put
+\begin{equation}
+ H_0(t)=\frac12D(t)^\dagger D(t),
+ \qquad
+ P=P_{\Ker D(0)},
+ \qquad
+ S=\dot D(0)P.
+ \label{eq:parent-row}
+\end{equation}
+For the exact transverse pair-permutation source,
+\begin{equation}
+ D^\dagger S=0.
+ \label{eq:source-kernel}
+\end{equation}
+Let $G(t)$ be a positive operator on the target space and define
+\begin{equation}
+ H_G(t)=\frac{\eps}{2}D(t)^\dagger G(t)D(t).
+ \label{eq:metric-parent}
+\end{equation}
+Since $DP=0$, derivatives of $G(t)$ do not enter the first-order source on the
+zero manifold.  If $\widetilde D=G^{1/2}D$, then
+$\widetilde S=G^{1/2}S$.
+
+\begin{theorem}[Weighted least-squares response bounds]
+\label{thm:metric-bounds}
+Assume
+\begin{equation}
+ 0<g_-\Id\preceq G(0)\preceq g_+\Id.
+ \label{eq:metric-bounds}
+\end{equation}
+For every vector in the zero manifold, the static curvature is the weighted
+least-squares residual
+\begin{equation}
+ \langle\psi,\cC_G\psi\rangle
+ =\eps\inf_{y\in\cH}
+ \langle S\psi-Dy,\,G(S\psi-Dy)\rangle.
+ \label{eq:weighted-ls}
+\end{equation}
+If \eqref{eq:source-kernel} holds, then for every $\zeta>0$,
+\begin{equation}
+ \boxed{
+ \eps g_-S^\dagger S
+ \preceq \cC_G
+ \preceq \cK_G(\I\zeta)
+ \preceq \eps g_+S^\dagger S.}
+ \label{eq:metric-sandwich}
+\end{equation}
+These inequalities are independent of the smallest positive singular value of
+$D$.
+\end{theorem}
+
+\begin{proof}
+The ordinary positive-square response formula applied to
+$\widetilde D=G^{1/2}D$ gives
+\begin{equation}
+ \cC_G
+ =\eps\widetilde S^\dagger P_{\Ker\widetilde D^\dagger}\widetilde S,
+ \qquad
+ \cK_G(\I\zeta)
+ =\eps\widetilde S^\dagger
+ \frac{\zeta^2}{\widetilde\cL^2+\zeta^2}
+ \widetilde S,
+ \quad
+ \widetilde\cL=\frac{\eps}{2}\widetilde D\widetilde D^\dagger.
+ \label{eq:metric-dynamic}
+\end{equation}
+The first equality is equivalent to \eqref{eq:weighted-ls}.  Bounding the
+weighted norm above and below by $g_\pm$ and using
+$S\perp\Ran D$ gives the first and last bounds.  The middle inequality is the
+positive spectral defect between the finite-frequency multiplier and its
+zero-frequency projector.
+\end{proof}
+
+For the microscopic scaling, set $\eps=\lambda^6\Delta$ and
+$\eta=\lambda^2$, and write
+\begin{equation}
+ G_\eta=\Id+2\eta X,
+ \qquad X=X^\dagger,
+ \qquad 2\eta\norm X<1.
+ \label{eq:G-eta}
+\end{equation}
+Then $g_\pm=1\pm2\eta\norm X$ are valid bounds.  The entire transverse kernel
+is therefore changed by only $O(\eps\eta)=O(\lambda^8\Delta)$, uniformly in
+volume and frequency.  This proves positivity at the precision needed by the
+microscopic expansion, but a sharper estimate identifies the exact infrared
+risk.
+
+\begin{theorem}[Gap-independent current $H_{-1}$ estimate]
+\label{thm:hminusone}
+Under \eqref{eq:source-kernel} and \eqref{eq:G-eta},
+\begin{equation}
+ J_G P
+ =\eps\eta D^\dagger XS.
+ \label{eq:metric-current}
+\end{equation}
+Moreover, for every $\zeta>0$,
+\begin{equation}
+ \boxed{
+ 0\preceq \cK_G(\I\zeta)-\cC_G
+ \preceq
+ \frac{4\eps\eta^2}{g_-}
+ S^\dagger X^\dagger XS.}
+ \label{eq:defect-bound}
+\end{equation}
+If $D^\dagger XS=0$, then
+\begin{equation}
+ \cK_G(\I\zeta)=\cC_G=\eps S^\dagger G_\eta S
+ \quad\text{for every }\zeta>0.
+ \label{eq:exact-preservation}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiating \eqref{eq:metric-parent} and acting on $P$ gives
+$J_GP=(\eps/2)D^\dagger G_\eta S$.  The term with the identity vanishes by
+\eqref{eq:source-kernel}, proving \eqref{eq:metric-current}.  The general
+spectral representation bounds the positive dynamical defect by twice the
+static paramagnetic form:
+\begin{equation}
+ 0\preceq\cK_G(\I\zeta)-\cC_G
+ \preceq2PJ_GQH_G^+QJ_GP.
+ \label{eq:twice-param}
+\end{equation}
+Because $H_G\succeq\eps g_-H_0$ on $Q$,
+\begin{equation}
+ H_G^+\preceq(\eps g_-)^{-1}H_0^+.
+\end{equation}
+Finally,
+\begin{equation}
+ DH_0^+D^\dagger=2P_{\Ran D}.
+ \label{eq:partial-isometry}
+\end{equation}
+Substitution into \eqref{eq:twice-param} gives
+\eqref{eq:defect-bound}.  If $D^\dagger XS=0$, then $J_GP=0$ and the source
+lies in $\Ker\widetilde D^\dagger$, proving \eqref{eq:exact-preservation}.
+\end{proof}
+
+\begin{corollary}[Uniform perturbative transverse floor]
+\label{cor:floor}
+Let $D_{G,L}(\zeta,q_T)$ denote the volume-normalized kernel obtained from
+$\cK_G(q_T,\I\zeta)$ on a normalized allowed lattice-transverse source of
+momentum $q_T$, and let $D_{0,L}$ be the corresponding exact-parent density.
+Suppose $\sup_LD_{0,L}<\infty$.  A bounded target-metric deformation satisfies
+\begin{equation}
+ \eps(1-2\eta\norm X)D_{0,L}
+ \le D_{G,L}(\zeta,q_T)
+ \le\eps(1+2\eta\norm X)D_{0,L}
+ \label{eq:floor-bound}
+\end{equation}
+for every finite $L$, every transverse field in the exact source-kernel class,
+and every $\zeta>0$.  Hence
+\begin{equation}
+ D_{G}=\lambda^6\Delta D_0+O(\lambda^8\Delta),
+ \label{eq:transfer-order8}
+\end{equation}
+and the response remains positive for sufficiently small fixed $\lambda$ on
+every branch with $D_0>0$.
+\end{corollary}
+
+The corollary gives a uniform positive transverse floor for a truncated
+response-safe low block.  It does not, by itself, identify the exactly uniform
+Kohn/Drude limit with the transverse $q\to0$ limit at fixed nonzero
+$\lambda$.  The next example shows why an extra spatial condition is
+unavoidable.
+
+\section{A row-relative counterexample to exact order-of-limits transfer}
+\label{sec:anisotropic-counterexample}
+
+Consider the gradient row on a two-dimensional torus.  At momentum
+$\bq=(q,0)$ its symbol is
+\begin{equation}
+ d(\bq)=\begin{pmatrix}\e^{\I q}-1\\0\end{pmatrix},
+ \qquad
+ t(\bq)=\begin{pmatrix}0\\1\end{pmatrix},
+ \qquad d(\bq)^\dagger t(\bq)=0.
+ \label{eq:edge-symbol}
+\end{equation}
+Take the bounded anisotropic target metric
+\begin{equation}
+ G_\eta=\begin{pmatrix}1&2\eta\\2\eta&1\end{pmatrix},
+ \qquad 0<\eta<\frac12.
+ \label{eq:anisotropic-G}
+\end{equation}
+This is an exact row-relative perturbation, preserves the zero state, and
+satisfies all volume-uniform norm bounds.  Nevertheless,
+\begin{equation}
+ T=t^\dagger G_\eta t=1,
+ \qquad
+ E(\bq)=\frac12d^\dagger G_\eta d=\frac12\abs{\e^{\I q}-1}^2,
+ \qquad
+ J(\bq)=\frac12d^\dagger G_\eta t=\eta(\e^{-\I q}-1).
+ \label{eq:aniso-data}
+\end{equation}
+Therefore
+\begin{equation}
+ \cC_\eta(\bq)=1-4\eta^2,
+ \qquad
+ \cK_\eta(\bq,\I\zeta)
+ =1-4\eta^2\frac{E(\bq)^2}{E(\bq)^2+\zeta^2}.
+ \label{eq:aniso-kernel}
+\end{equation}
+At exactly $q=0$ the current source vanishes and the uniform Drude kernel is
+one.  Taking $q\to0$ at fixed $\zeta>0$ also gives one, whereas the static
+transverse limit is $1-4\eta^2$.  The current $H_{-1}$ weight is
+\begin{equation}
+ \frac{\abs{J(\bq)}^2}{E(\bq)}=2\eta^2,
+ \label{eq:aniso-hminusone}
+\end{equation}
+independent of $q$.  Thus it is bounded but not tight.  In microscopic units
+the mismatch is $O(\eps\eta^2)=O(\lambda^{10}\Delta)$: two orders smaller
+than the static $O(\lambda^8\Delta)$ uncertainty, but nonzero at fixed
+coupling.
+
+By contrast, $G_\eta=(1+2\eta)\Id$ gives $J(\bq)=0$ for every transverse
+$t(\bq)$ and preserves all three limits exactly.  The distinction is whether
+the zero-momentum metric preserves the spatial vector decomposition.
+
+\section{Point-group isotropy gives uniform transverse \texorpdfstring{$H_{-1}$}{H-minus-one} tightness}
+\label{sec:isotropic-theorem}
+
+We now formulate the sufficient condition relevant to a symmetric
+$d$-dimensional microscopic completion.  Let $d(\bq)\in\mathbb C^d$ be the
+lattice-gradient symbol and let $t(\bq)\in\mathbb C^d\otimes\mathbb C^r$ be a
+normalized current-source vector satisfying
+\begin{equation}
+ (d(\bq)^\dagger\otimes\Id_r)t(\bq)=0.
+ \label{eq:transverse-symbol}
+\end{equation}
+The internal space allows several blocks or several vector-row copies.
+
+\begin{definition}[Hydrodynamically closed geometric row metric]
+\label{def:hydro-closed}
+Fix a selected ground branch and a sufficiently small nonzero lattice momentum
+$\bq$.  In the translation-$\bq$ fiber define the current-cyclic subspace
+\begin{equation}
+ \cH_{\mathrm{cyc}}(\bq)
+ =\overline{\Span}\left\{
+ p(H_\eta(\bq))QJ_T(\bq)P\xi:
+ p\in\mathbb C[z],\ \xi\in P\cH
+ \right\}.
+ \label{eq:current-cyclic}
+\end{equation}
+Call an orthogonal decomposition
+$\cH_{\mathrm{cyc}}(\bq)=\cH_{\mathrm{soft}}(\bq)\oplus
+\cH_{\mathrm{reg}}(\bq)$ admissible if both summands are invariant under
+$H_\eta(\bq)$.  Let $D_{\mathrm{reg},L}(\bq,\I\zeta;t)$ denote the complete
+kernel-density contribution left after subtracting the soft-sector response
+below, including any residual stress term.  We require this regular contribution
+to be uniformly $H_{-1}$-tight, to possess a thermodynamic limit jointly
+continuous at $(\bq,\zeta)=(0,0)$, and to obey
+\begin{equation}
+ \abs{D_{\mathrm{reg}}(\bq,\I\zeta;t)}
+ \le C\eps\eta\norm{t}^2
+ \label{eq:regular-bound}
+\end{equation}
+near the origin.  A target-metric deformation is \emph{hydrodynamically
+closed} if there is such an admissible decomposition, a momentum-intertwining
+unitary
+\begin{equation}
+ U_{\bq}:\cH_{\mathrm{soft}}(\bq)\longrightarrow\mathbb C^r
+ \label{eq:closure-intertwiner}
+\end{equation}
+and a positive matrix symbol $G_\eta(\bq)$ such that, writing
+$\Pi_{\mathrm{soft}}(\bq)$ for the soft projection, the compressed Hamiltonian,
+current source, and associated stress are exactly
+\begin{align}
+ U_{\bq}H_\eta(\bq)\Pi_{\mathrm{soft}}(\bq)U_{\bq}^\dagger
+ &=E_\eta(\bq)
+ =\frac{\eps}{2}(d^\dagger\otimes\Id)
+ G_\eta(\bq)(d\otimes\Id),
+ \label{eq:hydro-energy}\\
+ U_{\bq}\Pi_{\mathrm{soft}}(\bq)QJ_T(\bq)P
+ &=J_\eta(\bq;t)
+ =\frac{\eps}{2}(d^\dagger\otimes\Id)G_\eta(\bq)t(\bq),
+ \label{eq:hydro-current}\\
+ T_\eta(\bq;t)
+ &=\eps t(\bq)^\dagger G_\eta(\bq)t(\bq).
+ \label{eq:hydro-stress}
+\end{align}
+Thus the full selected-branch kernel density is the sum of the exact soft
+metric response determined by \eqref{eq:hydro-energy}--\eqref{eq:hydro-stress}
+and $D_{\mathrm{reg},L}$.  This formulation makes ``represented by a symbol''
+an explicit momentum-fiber intertwining statement rather than a heuristic
+identification.
+\end{definition}
+
+\begin{example}[Exact scalar-convolution closure]
+\label{ex:scalar-convolution}
+Let the parent rows be the lattice gradient tensored with an internal row space,
+and let the target metric be a translation-invariant absolutely summable
+convolution,
+\begin{equation}
+ (G\psi)_{i,\alpha}(x)
+ =\sum_{y,j,\beta}g_{i\alpha,j\beta}(x-y)\psi_{j,\beta}(y).
+ \label{eq:convolution-metric}
+\end{equation}
+The Bloch transform is the intertwiner in
+\eqref{eq:closure-intertwiner} and diagonalizes the row metric with symbol
+$G(\bq)=\sum_x\e^{-\I\bq\cdot x}g(x)$.  On the density-generated soft fiber
+$d(\bq)\otimes\mathbb C^r$, the three compressed operators are exactly
+\eqref{eq:hydro-energy}--\eqref{eq:hydro-stress}.  Thus a scalar convolution of
+the pair-permutation rows is not merely an analogy: it satisfies the closure
+definition operator-theoretically.  Here
+$\cH_{\mathrm{reg}}(\bq)=\{0\}$ and $D_{\mathrm{reg}}=0$.
+\end{example}
+
+\begin{remark}[Finite audit required for an operator-valued SW remainder]
+\label{rem:closure-audit}
+For a completed microscopic $d\ge2$ lift, the closure hypothesis is discharged
+by a finite sequence of checks: construct the translation-$\bq$ cyclic subspace
+of $QJ_T(\bq)P$; verify that all modes with energy $O(\abs\bq^2)$ are invariant
+under the low block; compute the compressed $H$, $J$, and $T$ matrices and
+identify a common symbol $G_\eta(\bq)$; prove uniform $H_{-1}$ tightness on the
+remaining current-generated sector; and check that $G_\eta(0)$ commutes with the
+full point group.  These checks have not been completed for the full
+operator-valued degree-eight current sector of the explicit $\cC_8$ lift.
+Consequently, the truncated equality claimed later remains conditional on this
+audit rather than following from row-relative form alone.
+\end{remark}
+
+\begin{theorem}[Isotropic transverse infrared theorem]
+\label{thm:isotropic}
+Assume:
+\begin{enumerate}
+\item $G_\eta(\bq)=\Id+2\eta X(\bq)$ is uniformly positive and Lipschitz near
+$\bq=0$;
+\item the deformation is hydrodynamically closed in the sense of
+Definition~\ref{def:hydro-closed};
+\item its zero-momentum vector symbol is point-group scalar,
+\begin{equation}
+ G_\eta(0)=\Id_d\otimes g_\eta,
+ \qquad g_\eta\succ0;
+ \label{eq:pointgroup-scalar}
+\end{equation}
+\item the parent density mode obeys
+$E_0(\bq)\asymp\eps\abs{d(\bq)}^2$ near the origin.
+\end{enumerate}
+Then for every normalized transverse source,
+\begin{equation}
+ \norm{(d^\dagger\otimes\Id)G_\eta(\bq)t(\bq)}
+ \le C\eta\abs{\bq}^2,
+ \label{eq:q2-mixing}
+\end{equation}
+so its hydrodynamic current $H_{-1}$ weight satisfies
+\begin{equation}
+ \langle J_\eta,H_\eta^+J_\eta\rangle
+ \le C\eps\eta^2\abs{\bq}^2.
+ \label{eq:hminusone-q2}
+\end{equation}
+Equivalently, the soft spectral tail obeys
+\begin{equation}
+ \sup_L\frac1{V_L}
+ \langle J_{L,T},H_L^+\mathbf1_{(0,\delta]}(H_L)J_{L,T}\rangle
+ \le C\eta^2\delta+o_\delta(1).
+ \label{eq:tail-delta}
+\end{equation}
+It is therefore $H_{-1}$-tight.  The uniform Kohn kernel, the
+thermodynamic-first Abelian zero-frequency kernel, and the static transverse
+Meissner kernel exist together and satisfy
+\begin{equation}
+ \boxed{
+ D_K(t)=D_A(t)=D_M(t)
+ =\eps\,t(0)^\dagger(\Id_d\otimes g_\eta)t(0)
+ +D_{\mathrm{reg}}(0,0;t).}
+ \label{eq:isotropic-identification}
+\end{equation}
+In particular,
+\begin{equation}
+ D_M=\lambda^6\Delta D_{\rm parent}+O(\lambda^8\Delta).
+ \label{eq:isotropic-transfer}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Quasi-locality gives
+$\norm{G_\eta(\bq)-G_\eta(0)}\le C\eta\abs{\bq}$.  By
+\eqref{eq:transverse-symbol} and \eqref{eq:pointgroup-scalar},
+\begin{equation}
+ (d^\dagger\otimes\Id)G_\eta(0)t
+ =(d^\dagger\otimes g_\eta)t=0.
+\end{equation}
+Since $\norm{d(\bq)}=O(\abs\bq)$, the remaining difference gives
+\eqref{eq:q2-mixing}.  Dividing the squared current amplitude by the
+quadratic energy proves \eqref{eq:hminusone-q2}.  Restricting to energies at
+most $\delta$ gives $\eps\abs q^2\lesssim\delta$, hence
+\eqref{eq:tail-delta}; uniform tightness of the regular sector adds only
+$o_\delta(1)$ to the soft tail.
+
+The static weighted residual in the closed sector is
+\begin{equation}
+ \cC_\eta(\bq;t)
+ =\eps\left[
+ t^\dagger G_\eta t
+ -t^\dagger G_\eta(d\otimes\Id)
+ \bigl((d^\dagger\otimes\Id)G_\eta(d\otimes\Id)\bigr)^+
+ (d^\dagger\otimes\Id)G_\eta t
+ \right].
+ \label{eq:symbol-residual}
+\end{equation}
+The subtraction is $O(\eps\eta^2\abs q^2)$ and the first term converges to
+the right-hand side of \eqref{eq:isotropic-identification}.  At $q=0$ the
+gradient vanishes, so the same expression is the Kohn kernel.  The
+$H_{-1}$-tightness criterion identifies it with the Abelian zero-frequency
+kernel.  This proves all three limits.
+\end{proof}
+
+\begin{remark}[Why point-group symmetry is the natural microscopic input]
+For the hypercubic point group, the spatial vector representation is
+irreducible.  Any zero-momentum row metric commuting with all signed coordinate
+permutations is therefore $\Id_d$ on the spatial index, though it may be an
+arbitrary positive matrix on block multiplicities.  Equation
+\eqref{eq:pointgroup-scalar} is thus forced by a symmetric placement of
+identical control gadgets on every oriented bond.  It is not forced in a
+one-dimensional construction, where there is no independent transverse
+channel.
+\end{remark}
+
+\begin{corollary}[Microscopic branch floor under an isotropic safe remainder]
+\label{cor:micro-floor}
+For the $d\ge2$ symmetric extension of the two-block parent, suppose the
+order-eight low-block remainder is a hydrodynamically closed geometric row
+metric satisfying \eqref{eq:pointgroup-scalar}.  For a selected product-AGP
+composition with block densities $\rho_b$, the electronic-link response obeys
+\begin{equation}
+ D_K=D_A=D_M
+ \ge2\lambda^6\Delta
+ \left(1-C\lambda^2\right)
+ \sum_bj_b\rho_b(1-\rho_b).
+ \label{eq:microscopic-floor}
+\end{equation}
+The right-hand side is positive whenever at least one selected block is
+nonsaturated and $\lambda$ is sufficiently small.  The pair-momentum
+superfluid weight is one quarter of \eqref{eq:microscopic-floor}.
+\end{corollary}
+
+\section{A finite-cluster criterion for state-source safety}
+\label{sec:row-ideal}
+
+The abstract metric hypothesis can be tested cluster by cluster.  Let $D_X$ be
+the stack of all parent rows supported in a finite connected cluster $X$, and
+let
+\begin{equation}
+ p_X=P_{\Ker D_X},
+ \qquad q_X=\Id-p_X.
+ \label{eq:local-pq}
+\end{equation}
+
+\begin{proposition}[Two-sided parent-row ideal]
+\label{prop:row-ideal}
+For a Hermitian cluster operator $r_X$, the following are equivalent:
+\begin{enumerate}
+\item $p_Xr_X=r_Xp_X=0$;
+\item $r_X=q_Xr_Xq_X$;
+\item there is a Hermitian target operator $Y_X$ such that
+\begin{equation}
+ r_X=D_X^\dagger Y_XD_X.
+ \label{eq:local-factorization}
+\end{equation}
+\end{enumerate}
+One explicit choice is
+\begin{equation}
+ Y_X=(D_X^+)^\dagger r_XD_X^+,
+ \qquad
+ \norm{Y_X}\le\norm{D_X^+}^2\norm{r_X}.
+ \label{eq:local-X}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The equivalence of the first two statements is immediate.  The third implies
+the first because $D_Xp_X=0$.  Conversely,
+$D_X^+D_X=q_X$, so \eqref{eq:local-X} gives
+\begin{equation}
+ D_X^\dagger Y_XD_X
+ =(D_X^+D_X)^\dagger r_X(D_X^+D_X)
+ =q_Xr_Xq_X=r_X.
+\end{equation}
+The norm bound follows by submultiplicativity.
+\end{proof}
+
+For the pair-permutation parent on a connected bounded-degree cluster, the
+smallest positive eigenvalue in each fixed-pair sector equals the one-particle
+graph gap by Aldous' spectral-gap theorem \cite{Caputo2010}.  A standard graph
+bound then gives
+\begin{equation}
+ \norm{D_X^+}^2\le C\abs X^2
+ \label{eq:local-pseudoinverse}
+\end{equation}
+(up to fixed onsite and coupling constants).  Polynomial support growth is
+absorbed by an exponential interaction weight: for every $0<\mu'<\mu$,
+\begin{equation}
+ \sum_X\e^{\mu'\operatorname{diam}X}\norm{Y_X}
+ \le C_{\mu-\mu'}
+ \sum_X\e^{\mu\operatorname{diam}X}\norm{r_X}.
+ \label{eq:locality-loss}
+\end{equation}
+Thus a quasi-local cluster interaction satisfying the two-sided condition
+assembles into a bounded quasi-local target operator.  This is the precise
+sense in which a local row-ideal audit controls the zero-field state source
+uniformly in volume.
+
+\begin{definition}[Unsafe cluster projection]
+Fix the canonical connected-cluster decomposition delivered by the local
+Schrieffer--Wolff recursion.  Define
+\begin{equation}
+ \mathfrak S_X(r_X)=q_Xr_Xq_X,
+ \qquad
+ \mathfrak U_X(r_X)=r_X-\mathfrak S_X(r_X).
+ \label{eq:safe-unsafe}
+\end{equation}
+The first term is state-source safe.  The second contains the local ground
+compression and the cross terms that can be amplified by the closing parent
+pseudoinverse.
+\end{definition}
+
+Passing the state-source audit does not by itself prove the isotropic theorem.
+One must additionally examine the action of $Y_X$ on the current-created
+vector representation.  A scalar convolution on row labels passes
+immediately; an operator-valued row metric requires a representation audit of
+the low-energy source sector.
+
+
+\paragraph{Audit consequence.}
+Part I reduces microscopic transfer to two finite questions.  First, each
+connected Schrieffer--Wolff coefficient must have vanishing local ground
+compression and cross source, equivalently it must lie in the two-sided parent
+row ideal.  Second, its induced target metric on the current-created soft
+sector must have point-group scalar zero-momentum symbol.  Part II now applies
+this test to the \emph{complete} weighted-degree-eight coefficient.  The
+result supersedes the earlier single-overlap warning
+\cite{SledgianowskiSWTransfer}: the full unmodified coefficient is unsafe at
+two-pair filling, while its exact counterterm is explicit.
+
+\part{Complete weighted-degree-eight audit}
+
+\section{Microscopic hierarchy and the degree-eight transfer question}\label{sec:hierarchy}
+
+Let $e=(x,y)$ be an oriented nearest-neighbor edge.  Each endpoint carries two active blocks $a=1,2$ and spin $\sigma$.  The crossed bridge is
+\begin{equation}
+ B_e=\sum_\sigma\left(
+ c_{1,y,\sigma}^\dagger c_{2,x,\sigma}
+ +c_{1,x,\sigma}^\dagger c_{2,y,\sigma}+\mathrm{H.c.}\right).
+ \label{eq:bridge}
+\end{equation}
+The microscopic control attached to $e$ has low state $g$ and high states $m,s,a$.  In units of the control scale $\Delta$, the weighted hierarchy is
+\begin{equation}
+ H(\lambda)=H_0+\lambda V_1+\lambda^2V_2
+ +\lambda^4W_4+\lambda^6W_6,
+ \label{eq:hierarchy}
+\end{equation}
+where $V_1$ contains the same- and opposite-chirality routers, $V_2$ contains $bB_e(g\leftrightarrow m)$, and the screened order-four term is
+\begin{equation}
+ W_4=\frac{b^2}{\bar\Delta_m}\sum_eB_e^2.
+ \label{eq:W4}
+\end{equation}
+The degree-six term contains the base swap parent, the second matched $B^2$ coefficient, and the positive multiplicative interaction.  The product-AGP zero manifold at total pair number $n$ is
+\begin{equation}
+ \cZ_n=\Span\{\ket{n_1,n_2}:n_1+n_2=n\}.
+ \label{eq:Z}
+\end{equation}
+
+The earlier microscopic theorem \cite{SledgianowskiMicro} gives
+\begin{equation}
+ H_{\mathrm{eff}}^{[7]}
+ =\lambda^6\Delta\left(H_{\mathrm{base}}+\bar\alpha\sum_eK_e^\dagger K_e\right)
+ +O_{\mathrm{loc}}(\lambda^8\Delta),
+ \label{eq:degree6}
+\end{equation}
+with complete Peierls derivative control.  The exact parent has a closing spatial gap, so an $O_{\mathrm{loc}}(\lambda^8)$ estimate alone does not transfer the response.  The first task is to determine whether the canonical degree-eight coefficient preserves the zero manifold or creates a current-relevant state source.
+
+\section{Complete degree-eight resolvent enumeration}\label{sec:enumeration}
+
+Let $P$ fix every control in $g$ and $Q=1-P$.  The only low--high coupling is
+\begin{equation}
+ QH(\lambda)P=\lambda^2C_2,
+ \qquad
+ C_2=b\sum_e\ket{m_e}\bra{G}\otimes B_e.
+ \label{eq:C2}
+\end{equation}
+Inside the high block write
+\begin{equation}
+ QH(\lambda)Q=H_{0,Q}+\lambda A+\lambda^2B_Q+\lambda^4C_Q+O(\lambda^6),
+ \label{eq:HQ}
+\end{equation}
+where $A=QV_1Q$, $B_Q=QV_2Q$, and $C_Q=QW_4Q$.  Put $R_0=H_{0,Q}^{-1}$.  Since the outer bridges carry weight four in total, only the weighted-degree-four coefficient of the high resolvent can contribute to $R^{(8)}$.
+
+\begin{proposition}[Complete single-flavor class list]
+\label{prop:class-list}
+The degree-four high-resolvent coefficient is
+\begin{align}
+ R_4={}&R_0AR_0AR_0AR_0AR_0
+ +R_0B_QR_0B_QR_0-R_0C_QR_0
+ \nonumber\\
+ &-\sum_{\pi\in\mathrm{Perm}(A,A,B_Q)}
+ R_0\pi_1R_0\pi_2R_0\pi_3R_0.
+ \label{eq:R4}
+\end{align}
+The mixed $AAB_Q$ contribution vanishes between $C_2$ and $C_2^\dagger$.  Hence
+\begin{equation}
+ R^{(8)}=-C_2^\dagger R_4C_2
+ =R_{A^4}^{(8)}+R_{B_Q^2}^{(8)}+R_{C_Q}^{(8)}.
+ \label{eq:R8classes}
+\end{equation}
+No degree-six base or second-shell insertion can contribute at weighted degree eight.
+\end{proposition}
+
+\begin{proof}
+The Neumann expansion of $(H_{0,Q}+X)^{-1}$ gives every ordered word whose weights sum to four, with sign $(-1)^{\text{word length}}$.  These are $1+1+1+1$, $2+2$, $4$, and $1+1+2$.  A state entering through $C_2$ has one $m$-control excitation.  Each $B_Q$ toggles the number of $m$-type control excitations by one, whereas $A$ only routes $m\leftrightarrow s,a$.  A word with one $B_Q$ cannot return a one-excitation state to the one-excitation sector required by $C_2^\dagger$, so every $AAB_Q$ word vanishes.  A weight-six insertion would give total weight at least ten after the two outer bridges.
+\end{proof}
+
+The zero-energy Feshbach coefficient is sufficient for the present audit.  On the parent zero manifold the first possible energy shift is order $\lambda^8$, while the energy derivative of the Feshbach map begins at order $\lambda^4$; energy dependence therefore changes the branch equation only at order $\lambda^{12}$.
+
+\section{Closed degree-eight source formula}\label{sec:source}
+
+Define
+\begin{equation}
+ \cB_2=\sum_eB_e^2.
+ \label{eq:B2sum}
+\end{equation}
+The all-filling router identities imply, on the seniority-zero bridge source,
+\begin{equation}
+ C_{s,e}^2B_eP_0=4Q_{s,e}B_eP_0,
+ \qquad
+ C_{a,e}^2B_eP_0=4Q_{a,e}B_eP_0.
+ \label{eq:router}
+\end{equation}
+Because $Q_{a,e}B_eP_{\cZ}=K_eP_{\cZ}=0$, only the same-chirality channel contributes to the unsafe zero-manifold source.
+
+\begin{lemma}[Router source]
+\label{lem:router-source}
+On the complete product-AGP manifold,
+\begin{equation}
+ R_{A^4}^{(8)}P_{\cZ}
+ =-\frac{16b^2s^4}{\bar\Delta_m^3\bar\Delta_s^2}
+ \cB_2P_{\cZ}.
+ \label{eq:A4source}
+\end{equation}
+On the complete seniority-zero space the same coefficient decomposes as
+\begin{equation}
+ R_{A^4}^{(8)}
+ =-c_s\sum_eB_e^2+(c_s-c_a)\sum_eK_e^\dagger K_e,
+ \label{eq:A4decomp}
+\end{equation}
+where
+\begin{equation}
+ c_s=\frac{16b^2s^4}{\bar\Delta_m^3\bar\Delta_s^2},
+ \qquad
+ c_a=\frac{16b^2a^4}{\bar\Delta_m^3\bar\Delta_a^2}.
+ \label{eq:csca}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+A four-router path must alternate through $m$.  Mixed $s$--$a$ paths contain $Q_sQ_a$ on the routed source and vanish.  Pure $s$ and pure $a$ paths give the denominators in \eqref{eq:csca}.  Finally $B Q_sB=B^2-K^2$ and $BQ_aB=K^2$ on seniority zero.
+\end{proof}
+
+The bridge-overlap term and the high-sector feedback of the matched $W_4$ term combine more simply than either term separately.
+
+\begin{proposition}[Linked commutator-square bridge metric]
+\label{prop:M}
+For the single-flavor control,
+\begin{equation}
+ \left(R_{B_Q^2}^{(8)}+R_{C_Q}^{(8)}\right)
+ =\frac{b^4}{\bar\Delta_m^3}\cM,
+ \label{eq:BCM}
+\end{equation}
+where
+\begin{equation}
+ \boxed{
+ \cM=\sum_eB_e^4+\frac12\sum_{e<f}
+ [B_e,B_f]^\dagger[B_e,B_f].}
+ \label{eq:M}
+\end{equation}
+Only overlapping bonds contribute to the second sum.
+\end{proposition}
+
+\begin{proof}
+The $C_Q$ insertion gives
+\begin{equation}
+ \frac{b^4}{\bar\Delta_m^3}\sum_{e,f}B_eB_f^2B_e.
+ \label{eq:Cfeedback}
+\end{equation}
+The two-control bridge path gives, for each unordered pair,
+\begin{equation}
+ -\frac{b^4}{2\bar\Delta_m^3}\{B_e,B_f\}^2.
+ \label{eq:overlap-pair}
+\end{equation}
+For Hermitian $E,F$,
+\begin{equation}
+ EF^2E+FE^2F-\frac12\{E,F\}^2
+ =\frac12[E,F]^\dagger[E,F].
+ \label{eq:comm-identity}
+\end{equation}
+The diagonal terms in \eqref{eq:Cfeedback} are $B_e^4$.  If the active supports are disjoint, the commutator vanishes, so the result is a linked local interaction rather than a disconnected product.
+\end{proof}
+
+Combining the two results gives the complete source coefficient.
+
+\begin{theorem}[Exact degree-eight source formula]
+\label{thm:source-formula}
+For the unmodified single-flavor screened microscopic family,
+\begin{equation}
+ \boxed{
+ R^{(8)}P_{\cZ}
+ =\frac{b^2}{\bar\Delta_m^3}
+ \left[b^2\cM-\frac{16s^4}{\bar\Delta_s^2}\cB_2\right]P_{\cZ}.}
+ \label{eq:source-formula}
+\end{equation}
+The closed-shell Kramers completion replaces $\cM$ by
+\begin{equation}
+ \boxed{
+ \cM_\Theta=\frac12\sum_eB_e^4+\frac12\sum_{e<f}
+ [B_e,B_f]^\dagger[B_e,B_f].}
+ \label{eq:Mtheta}
+\end{equation}
+The inter-bond coefficient is unchanged; double excitation of the two partners halves only the local $B_e^4$ coefficient.
+\end{theorem}
+
+\begin{proof}
+The single-flavor result is Lemma~\ref{lem:router-source} and Proposition~\ref{prop:M}.  In the closed shell, each of two independent Kramers channels has bridge amplitude $b/\sqrt2$.  Summing the two same-channel local paths gives $2(b/\sqrt2)^4=b^4/2$.  For two distinct bonds there are four partner pairs, each with weight $b^4/4$; their total leaves the single-flavor commutator-square coefficient unchanged.
+\end{proof}
+
+\section{Two-pair all-filling obstruction}\label{sec:obstruction}
+
+A one-pair calculation alone is misleading.  On a three-cell ring, the one-pair compression of \eqref{eq:source-formula} is proportional to the all-ones matrix and can be canceled accidentally by
+\begin{equation}
+ b_*=\frac{2s^2}{\bar\Delta_s}.
+ \label{eq:bstar}
+\end{equation}
+The cancellation does not extend to two pairs.
+
+Let
+\begin{equation}
+ \ket{0,2}=\frac1{\sqrt3}\sum_{0\le x<y\le2}
+ d_{2,x}^\dagger d_{2,y}^\dagger\ket0,
+ \qquad
+ \ket\Phi=d_{1,0}^\dagger d_{1,1}^\dagger\ket0.
+ \label{eq:witness-states}
+\end{equation}
+
+\begin{theorem}[Two-pair degree-eight obstruction]
+\label{thm:obstruction}
+On the three-cell two-pair sector,
+\begin{equation}
+ \bra\Phi\cB_2\ket{0,2}=0,
+ \qquad
+ \bra\Phi\cM\ket{0,2}=8\sqrt3,
+ \qquad
+ \bra\Phi\cM_\Theta\ket{0,2}=4\sqrt3.
+ \label{eq:witness}
+\end{equation}
+Consequently, for $b\ne0$, neither the single-flavor nor the closed-shell Kramers unmodified family preserves the complete product-AGP zero manifold at weighted degree eight.  No scalar retuning of $b$, $s$, $a$, or an order-eight adjustment of the matched $B^2$ coefficient can cancel the full all-filling source while the required degree-four cancellation is retained.
+\end{theorem}
+
+\begin{proof}
+Every term in $\cB_2$ contains two one-electron bridge hops and can transfer at most one onsite pair between blocks.  It therefore has zero matrix element from $\ket{0,2}$ to $\ket\Phi$, which has both pairs transferred.  The commutator $[B_e,B_f]$ of two number-conserving fermion bilinears is itself a bilinear.  Hence $[B_e,B_f]^\dagger[B_e,B_f]$ contains at most two one-electron transfers after normal ordering and likewise cannot connect the two witness states.  Thus
+\begin{equation}
+ \bra\Phi\frac12\sum_{e<f}[B_e,B_f]^\dagger[B_e,B_f]
+ \ket{0,2}=0.
+ \label{eq:comm-witness-zero}
+\end{equation}
+Only the local $B_e^4$ terms contain the four transfers required to move both onsite pairs.  Direct fermionic action on the three translated bonds gives
+$8\sqrt3$.  Equation \eqref{eq:comm-witness-zero} then makes the Kramers value
+exactly one half, because \eqref{eq:Mtheta} halves only the local $B_e^4$
+coefficient.  The router term in \eqref{eq:source-formula} is proportional to
+$\cB_2$ and cannot affect this matrix element.  The separate vanishing in
+\eqref{eq:comm-witness-zero} is also checked by the retained structure
+certificate.
+\end{proof}
+
+\begin{remark}[Analytic scope of the no-go]
+Below the remote control gap, the finite-volume Feshbach map is analytic in
+$\lambda$.  Preservation of the complete product-AGP manifold for every
+sufficiently small coupling would therefore force each weighted coefficient to
+preserve it.  The nonzero matrix element in \eqref{eq:witness} rules out such an
+analytic all-composition transfer.  It does not exclude a nongeneric isolated
+finite value of $\lambda$ at which higher-order leakage might accidentally
+cancel the degree-eight term; no such isolated cancellation is asserted or
+observed here.
+\end{remark}
+
+The obstruction is stronger than a poor parameter choice.  Writing
+\begin{equation}
+ R^{(8)}P_{\cZ}=b^2(U+b^2V)P_{\cZ},
+ \label{eq:UV}
+\end{equation}
+$U$ and $V$ are exactly antiparallel in the one-pair sector, but not at higher filling.  The accompanying exact finite-Fock-space certificate finds the following minimum over every scalar $b$ for the representative parameters $\bar\Delta_m=10$, $\bar\Delta_s=\bar\Delta_a=8$, $s=0.9$, $a=0.45$.
+
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+Pairs & $\cos_F(U,V)$ & best $b$ & minimum source norm of $U+b^2V$\\
+\midrule
+1 & $-1$ & $0.2025$ & $<3\times10^{-12}$\\
+2 & $-0.9058554866$ & $0.1181008620$ & $8.6587\times10^{-4}$\\
+3 & $-0.9486832981$ & $0.1181008615$ & $8.6587\times10^{-4}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The numerical values certify the finite matrices; \cref{thm:obstruction} is the analytic reason the higher-filling residual cannot vanish.
+
+\section{Explicit degree-eight counterterm and truncated transfer}\label{sec:C8}
+
+The negative result identifies a simple finite-order repair.  Define the active counterinteraction
+\begin{equation}
+ \cC_8=
+ \frac{16b^2s^4}{\bar\Delta_m^3\bar\Delta_s^2}\sum_eB_e^2
+ -\frac{b^4}{\bar\Delta_m^3}\cM
+ \label{eq:C8}
+\end{equation}
+for the single-flavor model, and replace $\cM$ by $\cM_\Theta$ for the closed shell.
+
+\begin{corollary}[Explicit response-safe degree-eight completion]
+\label{cor:C8}
+Adding $\lambda^8\Delta\cC_8$ cancels the complete degree-eight source on every product-AGP filling.  On seniority zero, the surviving degree-eight term is
+\begin{equation}
+ (c_s-c_a)\sum_eK_e^\dagger K_e,
+ \label{eq:safe-K-shift}
+\end{equation}
+which is row-relative and positive whenever
+$s^2/\bar\Delta_s>a^2/\bar\Delta_a$.
+\end{corollary}
+
+\begin{proof}
+Use \eqref{eq:A4decomp}, \eqref{eq:BCM}, and \eqref{eq:C8}.  The $B^2$ and $\cM$ pieces cancel identically, leaving \eqref{eq:safe-K-shift}.
+\end{proof}
+
+This is the complete, model-specific replacement for the earlier abstract
+``remove the unsafe projection and average the safe metric'' construction.
+The counterterm cancels the \emph{entire} degree-eight source formula, not only
+the isolated two-control overlap.  It is finite range because
+$[B_e,B_f]=0$ on disjoint supports, and its surviving
+$K_e^\dagger K_e$ contribution is manifestly in the two-sided parent-row
+ideal of Proposition~\ref{prop:row-ideal}.
+
+\begin{proposition}[Locality and Peierls covariance of the explicit counterterm]
+\label{prop:C8-locality}
+The counterinteraction \eqref{eq:C8} is finite range.  Replacing each bridge by
+its fully covariant link-field version $B_e(A)$ gives a Peierls-covariant
+interaction $\cC_8(A)$ whose first two field derivatives have volume-uniform
+local interaction norms.  Inserted in the microscopic Hamiltonian with
+coefficient $\lambda^8\Delta$, it changes the canonical low-block coefficient
+at weighted degree eight by exactly $\cC_8$; conjugation corrections from a
+fixed degree-seven Schrieffer--Wolff unitary begin at higher weighted degree.
+\end{proposition}
+
+\begin{proof}
+The commutator term is supported only on overlapping bonds because
+$[B_e,B_f]=0$ for disjoint active supports.  The remaining terms are single-bond
+polynomials.  Covariant link substitution preserves these support bounds, and
+two field derivatives only insert bounded displacement factors.  Finally, an
+order-eight active term is acted on by the lower-order block-diagonalizing
+unitary as the identity plus positive powers of $\lambda$, so its leading
+low-block contribution is its own order-eight coefficient.
+\end{proof}
+
+\begin{corollary}[Conditional response transfer through weighted degree eight]
+\label{cor:degree8-transfer}
+The completed coefficient satisfies the exact two-sided row-ideal criterion on
+the complete product-AGP manifold.  Suppose, in addition, that its
+point-group-complete $d\ge2$ Peierls lift is hydrodynamically closed on the
+current-created soft sector in the sense of Definition~\ref{def:hydro-closed}.  Point-group
+symmetry then makes its zero-momentum spatial vector symbol scalar, and
+\begin{equation}
+ \boxed{
+ D_K^{[8]}=D_A^{[8]}=D_M^{[8]}
+ =\lambda^6\Delta D_{\rm parent}+O(\lambda^8\Delta).}
+ \label{eq:degree8-completed-transfer}
+\end{equation}
+Under $s^2/\bar\Delta_s>a^2/\bar\Delta_a$, the explicit degree-eight
+multiplicative-row shift is positive.
+\end{corollary}
+
+\begin{proof}
+The cancellation and surviving row-relative term are Corollary~\ref{cor:C8}.  The
+additional closure hypothesis identifies that row metric with the soft
+current representation used in \cref{thm:isotropic}; point-group completeness
+then enforces its scalar zero-momentum spatial factor.  The isotropic theorem
+proves \eqref{eq:degree8-completed-transfer}.
+\end{proof}
+
+The completion is not two-electron-only: after normal ordering, $B_e^4$
+contains higher-body active interactions.  Synthesizing \eqref{eq:C8} from the
+restricted exchange/correlated-hopping tensor of the original microscopic
+model, or recursively completing every higher weighted order with a convergent
+local map, remains open.
+
+
+\part{Exact dark branch and finite-coupling Meissner floor}
+
+\section{The exact coherent dark branch}\label{sec:dark}
+
+The failure of the complete product manifold does not imply that every microscopic paired branch is lost.  Define
+\begin{equation}
+ \eta_-^+=\eta_1^+-\eta_2^+,
+ \qquad
+ \ket{\Omega_n^-}=\mathcal N_{L,n}(\eta_-^+)^n\ket0.
+ \label{eq:dark-state}
+\end{equation}
+In the normalized product-composition basis,
+\begin{equation}
+ \ket{\Omega_n^-}
+ =\frac1{\sqrt{\binom{2L}{n}}}
+ \sum_{n_1+n_2=n}(-1)^{n_2}
+ \sqrt{\binom{L}{n_1}\binom{L}{n_2}}
+ \ket{n_1,n_2}.
+ \label{eq:dark-coeff}
+\end{equation}
+
+\begin{proposition}[Exact bridge darkness]
+\label{prop:dark}
+For every edge $e$ and every filling,
+\begin{equation}
+ [B_e,\eta_-^+]=0,
+ \qquad
+ B_e\ket{\Omega_n^-}=0.
+ \label{eq:darkness}
+\end{equation}
+Within $\cZ_n$, the common kernel of all $B_e$ is one dimensional and is spanned by $\ket{\Omega_n^-}$ on a connected lattice.
+\end{proposition}
+
+\begin{proof}
+Suppress spin and write the one-body bridge matrix as
+$h_e=\tau_x\otimes A_e$, where $A_e=A_e^T$ is the endpoint adjacency and $\tau_x$ acts on the two blocks.  The singlet pairing matrix of $\eta_-^+$ is $F=\tau_z\otimes\Id\otimes\I\sigma_y$.  For a one-body operator $c^\dagger h c$,
+\begin{equation}
+ [c^\dagger hc,\eta_F^+]
+ =\frac12c^\dagger(hF+Fh^T)c^{\dagger T}.
+\end{equation}
+Since $\{\tau_x,\tau_z\}=0$, the commutator vanishes.  Also $B_e\ket0=0$, proving the second identity.
+
+For uniqueness, put $r=n_1$ and $n_2=n-r$.  Direct hard-core reduction and AGP combinatorics give, on the periodic $L$-edge lattice,
+\begin{align}
+ \bra{r,n-r}\sum_eB_e^2\ket{r,n-r}
+ &=4n-\frac{8r(n-r)}{L},
+ \label{eq:B2-jacobi-diag}\\
+ \bra{r+1,n-r-1}\sum_eB_e^2\ket{r,n-r}
+ &=\frac4L\sqrt{(r+1)(L-r)(n-r)(L-n+r+1)}.
+ \label{eq:B2-jacobi-off}
+\end{align}
+The product-AGP composition states are invariant under independent permutations
+of the $L$ sites within each block.  Consequently, the compression of $B_e^2$
+is identical for every edge $e$.  For an arbitrary graph with $|E|>0$, the
+compression of $\sum_{e\in E}B_e^2$ is therefore $|E|/L$ times
+\eqref{eq:B2-jacobi-diag}--\eqref{eq:B2-jacobi-off}.  Its off-diagonal entries
+are strictly positive at every interior point of the allowed composition
+interval, so the compression is an irreducible Hermitian tridiagonal matrix.
+Such a Jacobi matrix has simple eigenvalues.  Equation \eqref{eq:darkness}
+supplies a zero vector, hence the common bridge kernel in $\cZ_n$ is one
+dimensional.  In particular, no translation-invariance assumption is needed
+for the connected-lattice statement.
+\end{proof}
+
+\begin{corollary}[All-orders zero-field eigenbranch]
+\label{cor:allorders-dark}
+In the screened microscopic family, with all controls in their $g$ states,
+\begin{equation}
+ \ket{\Omega_n^-}\otimes\ket G
+ \label{eq:micro-dark}
+\end{equation}
+is an exact zero-energy eigenstate at $A=0$ for every finite coupling $\lambda$ for which the Hamiltonian is defined.
+\end{corollary}
+
+\begin{proof}
+The base parent annihilates every vector in $\cZ_n$.  Every bridge vertex contains $B_e$ and annihilates \eqref{eq:micro-dark}; every direct shell term contains $B_e^2$ and also annihilates it.  Router vertices act only after a control has left $g$, which never occurs on the dark state.  The screened monopole terms cancel by construction.
+\end{proof}
+
+The corollary does not by itself prove that the exact eigenbranch is the ground state of the original matched model.  The finite-order matching does not make the complete microscopic Hamiltonian positive semidefinite.  The next construction supplies that missing property without using a closing-gap perturbation theorem.
+
+\section{Positive-semidefinite finite-coupling completion}\label{sec:psd}
+
+Consider one control edge.  After separating the low control state $g$ from the complete high control space, write its local Hamiltonian as
+\begin{equation}
+ h_e(0)=
+ \begin{pmatrix}
+ \beta B_e^2&t_BB_eP_m^\dagger\\
+ t_BP_mB_e&D_e
+ \end{pmatrix},
+ \qquad
+ D_e\succeq d_*\Id>0,
+ \label{eq:local-block}
+\end{equation}
+where $P_m$ inserts the bridge source into the $m$ component of the high block.  The router is contained in $D_e$.
+
+\begin{theorem}[Strict overcompensation]
+\label{thm:overcomp}
+If
+\begin{equation}
+ \beta>\frac{t_B^2}{d_*},
+ \label{eq:beta-strict}
+\end{equation}
+then $h_e(0)\succeq0$.  Moreover, every zero vector of $h_e(0)$ has its control in $g$ and satisfies $B_e\psi=0$.
+\end{theorem}
+
+\begin{proof}
+The Schur complement of $D_e$ is
+\begin{equation}
+ S_e=\beta B_e^2-t_B^2B_eP_m^\dagger D_e^{-1}P_mB_e.
+ \end{equation}
+Since $D_e^{-1}\preceq d_*^{-1}\Id$,
+\begin{equation}
+ S_e\succeq\left(\beta-\frac{t_B^2}{d_*}\right)B_e^2\succeq0.
+ \label{eq:Schur-bound}
+\end{equation}
+The standard block Schur criterion gives $h_e\succeq0$.  Equality in the strict bound forces $B_e\psi=0$, and the high component $-D_e^{-1}t_BP_mB_e\psi$ then vanishes.
+\end{proof}
+
+Define the exact finite-coupling family
+\begin{equation}
+ H_{\mathrm{PSD}}(0)
+ =\lambda^6\Delta H_{\mathrm{base}}+\sum_e h_e(0),
+ \label{eq:HPSD}
+\end{equation}
+with the screened density channel and the strict coefficient \eqref{eq:beta-strict}.
+
+\begin{corollary}[Exact fixed-number ground state]
+\label{cor:PSD-ground}
+On a connected lattice, $H_{\mathrm{PSD}}(0)$ is frustration free and has the unique fixed-$2n$ zero state \eqref{eq:micro-dark} at every interior filling.
+\end{corollary}
+
+\begin{proof}
+Every term is positive and annihilates the dark state.  Conversely, a global zero vector lies in the base-parent zero manifold and, by \cref{thm:overcomp}, obeys $B_e\psi=0$ on every edge with every control in $g$.  Proposition \ref{prop:dark} gives uniqueness.
+\end{proof}
+
+Under the complete Peierls lift, each single-edge block $h_e(A_e)$ is
+unitarily equivalent to its zero-field version by a gauge conjugation of the
+active endpoint modes and the control source.  The conjugating unitary need not
+be supported on the edge alone, and no claim is made that a nonzero loop flux is
+globally pure gauge; only the termwise unitary equivalence of $h_e(A_e)$ is used.
+Hence $h_e(A_e)\succeq0$ for every edge phase, and the full family remains a sum
+of local positive terms.  This is a nonperturbative microscopic parent rather
+than a Schrieffer--Wolff approximation.
+
+\section{Finite-coupling microscopic Meissner floor}\label{sec:micro-floor}
+
+Let the spatial lattice have $d\ge2$, include every point-group-related edge orientation, and couple a physical transverse edge field.  Factor the positive Hamiltonian into a direct-sum row map
+\begin{equation}
+ \cD_{\mathrm{full}}=
+ \begin{pmatrix}
+ \lambda^3\sqrt\Delta\,\cD_{\mathrm{sw}}\\
+ \cD_{\mathrm{gad}}
+ \end{pmatrix},
+ \qquad
+ \cS_{\mathrm{full}}=
+ \begin{pmatrix}
+ \lambda^3\sqrt\Delta\,\cS_{\mathrm{sw}}\\
+ \cS_{\mathrm{gad}}
+ \end{pmatrix}.
+ \label{eq:row-stack}
+\end{equation}
+For every divergence-free field, the graph-Hodge identity of
+\cite{SledgianowskiMeissner} gives
+\begin{equation}
+ \cD_{\mathrm{sw}}^\dagger\cS_{\mathrm{sw}}=0.
+ \label{eq:sw-kernel}
+\end{equation}
+
+\begin{theorem}[Finite-coupling transverse response floor]
+\label{thm:floor}
+For the exact PSD microscopic family and the selected dark branch, every finite-volume static curvature and imaginary-frequency transverse kernel satisfies
+\begin{equation}
+ \cK_{L,T}(q,\I\zeta)
+ \ge\cC_{L,T}(q)
+ \ge\lambda^6\Delta\,\norm{\cS_{\mathrm{sw},T}(q)}^2,
+ \qquad \zeta\ge0.
+ \label{eq:floor-operator}
+\end{equation}
+If both block swap couplings are $j_1,j_2$, then per spatial volume
+\begin{equation}
+ \boxed{
+ D_{\mathrm{sw},L}^{(-)}
+ =(j_1+j_2)\frac{n(2L-n)}{L(2L-1)}.}
+ \label{eq:finite-floor}
+\end{equation}
+Consequently, with $n/(2L)\to\rho\in(0,1)$,
+\begin{equation}
+ \boxed{
+ \begin{gathered}
+  \liminf D_K\ge D_*,\qquad
+  \liminf D_A\ge D_*,\qquad
+  \liminf D_M\ge D_*,\\
+  D_*=2\lambda^6\Delta(j_1+j_2)\rho(1-\rho)>0
+ \end{gathered}}
+ \label{eq:thermo-floor}
+\end{equation}
+The pair-phase superfluid-weight floor is one quarter of \eqref{eq:thermo-floor}.
+\end{theorem}
+
+\begin{proof}
+The static positive-square curvature is the least-squares residual
+\begin{equation}
+ \cC=\min_X\norm{\cS_{\mathrm{full}}-\cD_{\mathrm{full}}X}^2.
+\end{equation}
+By \eqref{eq:sw-kernel},
+\begin{equation}
+ \norm{\cS_{\mathrm{sw}}-\cD_{\mathrm{sw}}X}^2
+ =\norm{\cS_{\mathrm{sw}}}^2+\norm{\cD_{\mathrm{sw}}X}^2,
+\end{equation}
+so no state correction, including one using the gadget sector, can cancel the transverse swap source.  The finite-frequency kernel exceeds the static residual by the positive spectral defect, proving \eqref{eq:floor-operator}.
+
+The composition probabilities in \eqref{eq:dark-coeff} form a hypergeometric distribution.  Averaging the exact blockwise swap response
+$2j_an_a(L-n_a)/[L(L-1)]$ gives
+\begin{equation}
+ \mathbb E[n_a(L-n_a)]
+ =\frac{n(L-1)(2L-n)}{2(2L-1)},
+\end{equation}
+which yields \eqref{eq:finite-floor}.  Taking any admissible thermodynamic, zero-frequency, and transverse zero-momentum limits gives \eqref{eq:thermo-floor}.
+\end{proof}
+
+\begin{remark}[What the floor does and does not identify]
+The theorem is already a genuine microscopic zero-frequency Meissner statement: the static transverse response is uniformly positive at every allowed $q$, and the thermodynamic-first imaginary-frequency kernel has the same positive floor.  It does not assert that the additional gadget contribution has identical Kohn, Abelian, and transverse limits.  Proving equality for the \emph{total} response still requires the $H_{-1}$ tightness and point-group closure conditions developed in Part I.
+\end{remark}
+
+
+\section{Conclusion and remaining microscopic problem}
+\label{sec:conclusion}
+
+The merged analysis separates three statements that had previously been
+conflated.
+
+First, the infrared transfer problem has a clean functional-analytic answer.
+A local remainder must control both the zero-field state source and the current
+source.  The two-sided row ideal eliminates the former.  Target-metric
+factorization controls the latter uniformly through a closing parent gap, but
+only point-group isotropy converts bounded soft-mode weight into the
+$H_{-1}$ tightness required for exact Kohn--Abelian--Meissner identification.
+The anisotropic counterexample shows that this distinction is sharp.
+
+Second, the unmodified matched microscopic family fails the stronger
+all-composition objective.  The complete degree-eight source contains a linked
+fourth-power bridge metric that cannot be canceled by any scalar $B^2$ retuning
+at two-pair filling.  The no-go survives the closed-shell Kramers completion.
+The explicit counterterm \eqref{eq:C8} repairs the entire coefficient through
+weighted degree eight and leaves a positive parent-row correction, thereby
+providing a precise finite-order state-source completion rather than an
+abstract existence claim.  Equality of the three truncated response limits then
+follows under the separate hydrodynamic-closure and point-group symbol audit of
+Part I.
+
+Third, a different finite-coupling objective is already achieved.  The coherent
+dark AGP is annihilated by every primitive bridge.  Strict local
+Schur-complement overcompensation makes it the exact ground branch of a
+positive-semidefinite microscopic family, and the swap backbone supplies the
+nonzero transverse floor \eqref{eq:thermo-floor}.  This is a genuine
+zero-temperature, zero-frequency microscopic Meissner statement for a selected
+branch, although it is a lower-bound theorem rather than a complete equality
+formula for the gadget response.
+
+The remaining all-composition problem is now an analytic synthesis problem,
+not a thermodynamic numerical scan: realize $\cC_8$ using restricted
+microscopic two-electron ancillary channels and determine whether the resulting
+sequence of row-ideal counterterms admits a convergent local Feshbach or
+Schrieffer--Wolff normal form.  Independently, applying the Part I isotropy
+theorem to every extra row of the positive dark-branch family would upgrade its
+strict floor to a full equality theorem for the total response.
+
+\appendix
+
+\section{State-space derivation of the target-metric formulas}
+
+Let $\widetilde H=(\eps/2)\widetilde D^\dagger\widetilde D$ with
+$\widetilde D=G^{1/2}D$.  Acting on the zero manifold,
+\begin{equation}
+ JP=\frac\eps2\widetilde D^\dagger\widetilde S,
+ \qquad
+ TP=\eps\widetilde S^\dagger\widetilde S,
+ \qquad
+ \widetilde S=G^{1/2}S.
+\end{equation}
+The imaginary-frequency Kubo kernel is
+\begin{equation}
+ \cK(\I\zeta)
+ =\eps\widetilde S^\dagger\widetilde S
+ -2PJQ\widetilde H(\widetilde H^2+\zeta^2)^{-1}QJP.
+ \label{eq:state-kubo-app}
+\end{equation}
+Using the singular-value decomposition of $\widetilde D$ reduces
+\eqref{eq:state-kubo-app} to \eqref{eq:metric-dynamic}.  At $\zeta=0$, the
+positive singular modes cancel and only $\Ker\widetilde D^\dagger$ remains.
+The defect bound follows from
+\begin{equation}
+ 0\le\frac{\zeta^2}{E(E^2+\zeta^2)}\le\frac1E.
+\end{equation}
+
+\section{Exact one-mode anisotropic calculation}
+
+For \eqref{eq:edge-symbol}--\eqref{eq:anisotropic-G}, put
+$u=\e^{\I q}-1$.  Then
+\begin{equation}
+ d^\dagger Gd=\abs u^2,
+ \qquad
+ d^\dagger Gt=2\eta u^*,
+ \qquad
+ t^\dagger Gt=1.
+\end{equation}
+The static weighted residual is
+\begin{equation}
+ 1-\frac{\abs{2\eta u}^2}{\abs u^2}=1-4\eta^2.
+\end{equation}
+The state energy and current are $E=\abs u^2/2$ and $J=\eta u^*$, which give
+\eqref{eq:aniso-kernel} and \eqref{eq:aniso-hminusone}.  No asymptotic
+approximation is used.
+
+
+\section{Reproducibility and certificates}
+\label{app:repro}
+
+The consolidated archive contains eight deterministic verification programs.
+\begin{enumerate}
+\item \texttt{verify\_hminusone\_transfer.py} checks the target-space and
+state-space response formulas, the metric sandwich, the gap-independent defect
+bound, the local row-ideal factorization, and the anisotropic example.
+\item \texttt{verify\_two\_control\_overlap.py} independently extracts the
+neighboring-control fourth-order Feshbach coefficient and its one-pair
+compression.
+\item \texttt{audit\_order8\_all\_fillings.py} evaluates every retained
+weighted-degree-eight source class on every product-AGP filling of the
+three-cell ring.
+\item \texttt{verify\_order8\_structure.py} checks the router source, linked
+commutator-square identity, mixed-class vanishing, the separate zero
+commutator-square witness matrix element, the remaining two-pair amplitudes, and
+the exact counterterm.
+\item \texttt{analyze\_order8\_tuning.py} certifies the accidental one-pair
+scalar cancellation and the nonzero higher-filling residual.
+\item \texttt{verify\_kramers\_feshbach.py} independently extracts the
+single-flavor and closed-shell coefficients from finite-control Feshbach maps
+with noncommuting active matrices.
+\item \texttt{analyze\_kramers\_order8.py} checks the Kramers modification of
+the local and inter-bond bridge metric.
+\item \texttt{verify\_dark\_agp\_branch.py} checks exact bridge darkness, the
+one-dimensional composition kernel, the Jacobi entries, and the finite-volume
+swap-floor formula.
+\end{enumerate}
+All retained outputs end in \texttt{PASS}, \texttt{OVERALL: PASS}, or
+\texttt{AUDIT IDENTITIES: PASS}.  These calculations certify the finite
+matrices and algebraic identities used in the paper; they do not replace the
+analytic arguments.
+
+\begin{thebibliography}{99}
+
+\bibitem{Kohn1964}
+W.~Kohn,
+``Theory of the insulating state,''
+\emph{Phys. Rev.} \textbf{133}, A171--A181 (1964),
+\href{https://doi.org/10.1103/PhysRev.133.A171}{doi:10.1103/PhysRev.133.A171}.
+
+\bibitem{Scalapino1993}
+D.~J. Scalapino, S.~R. White, and S.~Zhang,
+``Insulator, metal, or superconductor: The criteria,''
+\emph{Phys. Rev. B} \textbf{47}, 7995--8007 (1993),
+\href{https://doi.org/10.1103/PhysRevB.47.7995}{doi:10.1103/PhysRevB.47.7995}.
+
+\bibitem{Bravyi2011}
+S.~Bravyi, D.~P. DiVincenzo, and D.~Loss,
+``Schrieffer--Wolff transformation for quantum many-body systems,''
+\emph{Ann. Phys.} \textbf{326}, 2793--2826 (2011),
+\href{https://doi.org/10.1016/j.aop.2011.06.004}{doi:10.1016/j.aop.2011.06.004}.
+
+\bibitem{Caputo2010}
+P.~Caputo, T.~M. Liggett, and T.~Richthammer,
+``Proof of Aldous' spectral gap conjecture,''
+\emph{J. Amer. Math. Soc.} \textbf{23}, 831--851 (2010),
+\href{https://doi.org/10.1090/S0894-0347-10-00659-4}{doi:10.1090/S0894-0347-10-00659-4}.
+
+\bibitem{SledgianowskiDynamic}
+N.~Sledgianowski,
+``From Peierls curvature to dynamical superfluid weight: An infrared
+order-of-limits theorem for frustration-free QGN parents,''
+research manuscript (2026).
+
+\bibitem{SledgianowskiMeissner}
+N.~Sledgianowski,
+``Exact zero-frequency Meissner weight in a local frustration-free pair
+superconductor,'' research manuscript (2026).
+
+\bibitem{SledgianowskiMicro}
+N.~Sledgianowski,
+``Microscopic origins of multiplicative null interactions in
+quantum-geometric-nesting superconductors,'' research manuscript (2026).
+
+\bibitem{SledgianowskiSWTransfer}
+N.~Sledgianowski,
+``Infrared-stable microscopic Meissner transfer,'' research note (2026).
+
+\end{thebibliography}
+
+
+\end{document}

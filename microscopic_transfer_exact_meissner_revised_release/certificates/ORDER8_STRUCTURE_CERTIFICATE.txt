@@ -1,0 +1,27 @@
+COMPLETE DEGREE-EIGHT STRUCTURE CERTIFICATE
+==============================================================================
+numpy 2.3.5 scipy 1.17.0
+L=3, dm=10.0, ds=8.0, da=8.0, b=0.35, s=0.9, a=0.45
+
+n=0: err(A4 source)=0.000e+00, err(bridge metric)=0.000e+00, mixed=0.000e+00, completed source=0.000e+00
+n=1: err(A4 source)=4.695e-20, err(bridge metric)=9.389e-20, mixed=0.000e+00, completed source=9.389e-20
+n=2: err(A4 source)=9.633e-20, err(bridge metric)=4.569e-19, mixed=0.000e+00, completed source=4.569e-19
+n=3: err(A4 source)=9.316e-20, err(bridge metric)=5.636e-19, mixed=0.000e+00, completed source=5.636e-19
+n=4: err(A4 source)=9.633e-20, err(bridge metric)=4.569e-19, mixed=0.000e+00, completed source=4.569e-19
+n=5: err(A4 source)=4.695e-20, err(bridge metric)=9.389e-20, mixed=0.000e+00, completed source=9.389e-20
+n=6: err(A4 source)=0.000e+00, err(bridge metric)=0.000e+00, mixed=0.000e+00, completed source=0.000e+00
+
+Two-pair all-filling obstruction witness
+  <Phi|sum B_e^2|0,2>       = +0.000000000000e+00
+  <Phi|sum B_e^4|0,2>       = +1.385640646055e+01  (expected 8 sqrt(3))
+  <Phi|commutator sum|0,2>  = +0.000000000000e+00  (expected 0)
+  <Phi|M|0,2>               = +1.385640646055e+01  (expected 8 sqrt(3))
+  <Phi|M_Theta|0,2>         = +6.928203230276e+00  (expected 4 sqrt(3))
+  witness error             = 3.553e-15
+
+max router_source    error = 9.633051749187e-20
+max bridge_metric    error = 5.635914946423e-19
+max mixed            error = 0.000000000000e+00
+max completion       error = 5.635914946423e-19
+Conclusion: neither the single-flavor nor closed-shell Kramers unmodified family can preserve the complete product-AGP zero manifold at weighted degree eight for b != 0.
+OVERALL: PASS

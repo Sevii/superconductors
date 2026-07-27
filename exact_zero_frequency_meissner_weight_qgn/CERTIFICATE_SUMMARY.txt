@@ -1,0 +1,16 @@
+REVIEWER-REVISED EXACT ZERO-FREQUENCY MEISSNER PAPER
+Certificate summary - July 27, 2026
+
+verify_dynamical_response.py:
+OVERALL: PASS
+
+verify_graph_hodge_meissner.py:
+OVERALL: PASS
+
+independent_fock_check.py:
+OVERALL: PASS
+
+Additional strengthened checks:
+- 4x3 periodic torus, six pairs, sector dimension 924: multipair gap matches the one-particle random-walk gap.
+- Nontrivial swap/residual target-Laplacian mixing: dynamic and static operator backbone floors remain positive semidefinite.
+- Full-Fock spinful-fermion site swaps, gauge covariance, even/odd kernels, charge-two compression, five-point current/stress derivatives, and Kubo/Hodge response all pass.

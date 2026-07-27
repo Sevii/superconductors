@@ -1,0 +1,17 @@
+Visual inspection record
+========================
+
+Final PDF rendered at 180 dpi with the project PDF renderer.
+Pages inspected: all 20 pages via a contact sheet; detailed full-page inspection of pages 1, 6, 7, 13, 17, and 20.
+
+Checks performed
+- no clipped text, overlapping blocks, black squares, or broken glyphs;
+- title page and compressed abstract render cleanly;
+- Definition 4.1, Example 4.2, Remark 4.3, and Theorem 4.4 labels and equations render correctly;
+- the corrected q -> 0 text and regular-sector response term render correctly;
+- Theorem 9.1 includes the separate zero commutator-square witness equation;
+- the Peierls-positivity clarification and finite-coupling Meissner floor render cleanly;
+- all bibliography entries, including the prior transfer note, fit without overflow;
+- page headers, footers, equation numbers, and internal references are consistent.
+
+Result: PASS.

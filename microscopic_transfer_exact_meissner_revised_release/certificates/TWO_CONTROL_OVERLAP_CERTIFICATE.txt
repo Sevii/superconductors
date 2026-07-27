@@ -1,0 +1,23 @@
+TWO-CONTROL CONNECTED OVERLAP CERTIFICATE
+numpy 2.3.5
+scipy 1.17.0
+Delta=2.3
+Formula: F=-t^2(A^2+B^2)/Delta - t^4{A,B}^2/(2Delta^3)+O(t^6)
+
+t= 0.200 ||c4(t)-c4||=4.650437e-04 err/t^2=1.162609e-02 ratio=nan
+t= 0.140 ||c4(t)-c4||=2.271542e-04 err/t^2=1.158950e-02 ratio=0.4885
+t= 0.100 ||c4(t)-c4||=1.157236e-04 err/t^2=1.157236e-02 ratio=0.5094
+t= 0.070 ||c4(t)-c4||=5.666007e-05 err/t^2=1.156328e-02 ratio=0.4896
+t= 0.050 ||c4(t)-c4||=2.889753e-05 err/t^2=1.155901e-02 ratio=0.5100
+t= 0.035 ||c4(t)-c4||=1.415701e-05 err/t^2=1.155674e-02 ratio=0.4899
+||c2||=0.7876991643
+||c4||=0.0788091682
+
+One-pair product-AGP compression of the bridge-overlap operator
+P_Z {B_0,B_1}^2 P_Z =
+  [5.3333333333, 5.3333333333]
+  [5.3333333333, 5.3333333333]
+||{B_0,B_1}^2 P_Z||=11.3137084990
+Conclusion: the isolated bridge-overlap coefficient is not in the local two-sided parent-row ideal.
+
+OVERALL: PASS

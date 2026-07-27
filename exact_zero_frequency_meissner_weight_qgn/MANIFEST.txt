@@ -1,0 +1,57 @@
+EXACT ZERO-FREQUENCY MEISSNER WEIGHT IN A GAPLESS FRUSTRATION-FREE QGN PARENT
+Reviewer-revised standalone paper package — July 27, 2026
+
+PRIMARY PAPER
+  exact_zero_frequency_meissner_weight_qgn.pdf
+      Compiled 19-page reviewer-revised research paper.
+  exact_zero_frequency_meissner_weight_qgn.tex
+      Complete LaTeX source.
+
+REVIEW INTEGRATION
+  REVIEW_exact_zero_frequency_meissner_weight_qgn.md
+      Reviewer report supplied for this revision.
+  RESPONSE_TO_REVIEW.md
+      Point-by-point disposition of the reviewer comments.
+  REVISION_NOTES.md
+      Concise change log.
+
+REPRODUCIBILITY
+  verify_dynamical_response.py
+      Checks the Kubo–Kohn identity, positive-square response, H^{-1} bounds,
+      temporal counterexample, and smooth clean-gas cancellation.
+  DYNAMICAL_RESPONSE_CERTIFICATE.txt
+      Retained passing output.
+  verify_graph_hodge_meissner.py
+      Checks the paired graph model, exact graph-Hodge response, transverse
+      identity, multipair gap, and operator-valued multiblock floor.
+  GRAPH_HODGE_MEISSNER_CERTIFICATE.txt
+      Retained passing output.
+  independent_fock_check.py
+      Independent full-Fock spinful-fermion construction, gauge, kernel,
+      compression, derivative, and response checks.
+  FULL_FOCK_CERTIFICATE.txt
+      Retained passing output.
+  CERTIFICATE_SUMMARY.txt
+      Portable summary of all passing suites and strengthened checks.
+
+SCOPE AND BUILD RECORD
+  README.md
+      Package overview and reproduction instructions.
+  CLAIM_STATUS.md
+      Precise theorem claims, definitions, qualifications, and nonclaims.
+  BUILD_AND_PREFLIGHT.md
+      Compilation, certificate, PDF-preflight, and visual-inspection record.
+  ENVIRONMENT.txt
+      Tool and numerical-library versions.
+  PDF_PREFLIGHT.txt
+      Machine-readable PDF preflight output.
+  PDF_FONTS.txt
+      Embedded-font report.
+  build_pass2.log
+      Final LaTeX build log.
+
+INTEGRITY
+  SHA256SUMS.txt
+      SHA-256 hashes for every other release file.
+  MANIFEST.txt
+      This inventory.

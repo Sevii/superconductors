@@ -1,0 +1,26 @@
+KRAMERS CLOSED-SHELL BRIDGE FESHBACH CERTIFICATE
+========================================================================
+numpy 2.3.5 scipy 1.17.0
+
+single flavor
+  t=0.180  ||F/t^4-M||=6.95163449e-05  err/t^2=2.14556620e-03
+  t=0.130  ||F/t^4-M||=3.63145709e-05  err/t^2=2.14879118e-03
+  t=0.090  ||F/t^4-M||=1.74200822e-05  err/t^2=2.15062743e-03
+  t=0.065  ||F/t^4-M||=9.08982227e-06  err/t^2=2.15143722e-03
+  t=0.045  ||F/t^4-M||=4.35759203e-06  err/t^2=2.15189730e-03
+  t=0.032  ||F/t^4-M||=2.20375730e-06  err/t^2=2.15210674e-03
+  t=0.025  ||F/t^4-M||=1.34511875e-06  err/t^2=2.15218999e-03
+  target norm=2.6458878520e-02
+
+closed-shell Kramers
+  t=0.180  ||F/t^4-M||=9.03832573e-06  err/t^2=2.78960671e-04
+  t=0.130  ||F/t^4-M||=4.72528405e-06  err/t^2=2.79602606e-04
+  t=0.090  ||F/t^4-M||=2.26773701e-06  err/t^2=2.79967532e-04
+  t=0.065  ||F/t^4-M||=1.18354222e-06  err/t^2=2.80128337e-04
+  t=0.045  ||F/t^4-M||=5.67444854e-07  err/t^2=2.80219681e-04
+  t=0.032  ||F/t^4-M||=2.86987602e-07  err/t^2=2.80261330e-04
+  t=0.025  ||F/t^4-M||=1.75173903e-07  err/t^2=2.80278244e-04
+  target norm=1.3592960433e-02
+
+The closed-shell duplicate channel halves only the local A^4+B^4 coefficient; the inter-bond commutator-square coefficient is unchanged.
+OVERALL: PASS

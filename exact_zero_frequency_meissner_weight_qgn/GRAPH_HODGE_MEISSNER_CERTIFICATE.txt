@@ -1,0 +1,47 @@
+EXACT GRAPH-HODGE MEISSNER VERIFIER
+python 3.13.5
+numpy 2.3.5
+scipy 1.17.0
+torus=3^2, M=9, n=4, dim=126, j=1.7
+------------------------------------------------------------------------------------------------------------
+H(0) Hermiticity                                                         PASS  error=0.000e+00  tol=5.0e-11
+uniform Dicke/AGP state is an exact zero state                           PASS  error=1.384e-15  tol=5.0e-11
+unique zero eigenvalue                                                   PASS  error=2.737e-15  tol=1.1e-08
+first positive eigenvalue                                                VALUE 1.275
+pair-density matrix equals exact combinatorial formula                   PASS  error=6.661e-16  tol=5.0e-11
+largest pair-density eigenvalue                                          PASS  error=4.441e-16  tol=5.0e-11
+ODLRO off-diagonal amplitude alpha(M,n)                                  VALUE 0.277777777778
+site-function inner product alpha <f,g>                                  PASS  error=0.000e+00  tol=5.0e-11
+H|f> = (j/4)|Delta f>                                                    PASS  error=2.354e-15  tol=5.0e-11
+bondwise gauge covariance U H[A] U^dagger = H[A+B^*phi]                  PASS  error=9.930e-16  tol=5.0e-11
+current Hermiticity                                                      PASS  error=0.000e+00  tol=5.0e-11
+stress Hermiticity                                                       PASS  error=0.000e+00  tol=5.0e-11
+J[a]|Omega> = i j/2 |B a>                                                PASS  error=3.695e-16  tol=5.0e-11
+<T[a]> = j gamma ||a||^2                                                 PASS  error=8.882e-16  tol=5.0e-11
+static Kubo curvature equals exact Hodge projection                      PASS  error=1.332e-15  tol=2.0e-10
+imaginary-frequency Kubo kernel equals graph filter                      PASS  error=1.332e-15  tol=2.0e-10
+pure-gradient static response vanishes                                   PASS  error=4.974e-14  tol=2.0e-10
+chosen finite-q profile is exactly divergence free                       PASS  error=0.000e+00  tol=5.0e-11
+transverse current annihilates the ground state                          PASS  error=9.179e-17  tol=5.0e-11
+transverse static kernel equals diamagnetic value                        PASS  error=8.882e-16  tol=5.0e-11
+transverse finite-frequency kernel is frequency independent              PASS  error=8.882e-16  tol=5.0e-11
+transverse curvature for certificate profile                             VALUE 4.25
+n-pair gap equals one-pair random-walk gap on 3x3 torus                  PASS  error=5.329e-15  tol=2.0e-10
+gap formula j sin^2(pi/L)                                                VALUE 1.275
+one-pair gap at L=3                                                      PASS  error=6.661e-16  tol=2.0e-10
+one-pair gap at L=4                                                      PASS  error=0.000e+00  tol=2.0e-10
+one-pair gap at L=5                                                      PASS  error=6.661e-16  tol=2.0e-10
+one-pair gap at L=6                                                      PASS  error=1.665e-16  tol=2.0e-10
+one-pair gap at L=7                                                      PASS  error=8.327e-16  tol=2.0e-10
+multipair half-filled gap on 4x3 torus                                   PASS  error=3.331e-15  tol=2.0e-09
+4x3 half-filled sector dimension                                         VALUE 924
+two-block selected-composition floor at total n=2                        PASS  error=0.000e+00  tol=5.0e-11
+two-block selected-composition floor at total n=7                        PASS  error=5.551e-17  tol=5.0e-11
+two-block selected-composition floor at total n=12                       PASS  error=0.000e+00  tol=5.0e-11
+two-block selected-composition floor at total n=16                       PASS  error=0.000e+00  tol=5.0e-11
+two-block selected-composition floor at total n=22                       PASS  error=0.000e+00  tol=5.0e-11
+nonzero swap/residual target-Laplacian mixing norm                       VALUE 5.73016112979
+swap source lies in complete target kernel                               PASS  error=0.000e+00  tol=5.0e-11
+dynamic and static operator backbone floors                              PASS  error=0.000e+00  tol=2.0e-10
+------------------------------------------------------------------------------------------------------------
+OVERALL: PASS

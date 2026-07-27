@@ -1,0 +1,30 @@
+EXACT COHERENT DARK-AGP BRANCH CERTIFICATE
+============================================================================
+numpy 2.3.5 scipy 1.17.0
+
+L=2
+ n= 0 comps=1 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=0.00e+00 floor_err=0.00e+00
+ n= 1 comps=2 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=8.88e-16 floor_err=1.11e-16
+ n= 2 comps=3 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=0.00e+00 floor_err=4.44e-16
+ n= 3 comps=2 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=8.88e-16 floor_err=1.11e-16
+ n= 4 comps=1 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=0.00e+00 floor_err=0.00e+00
+
+L=3
+ n= 0 comps=1 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=0.00e+00 floor_err=0.00e+00
+ n= 1 comps=2 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=1.78e-15 floor_err=1.11e-16
+ n= 2 comps=3 max||B_x Omega||=2.22e-16 nullity=1 jacobi_err=1.99e-15 floor_err=1.11e-16
+ n= 3 comps=4 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=1.78e-15 floor_err=2.22e-16
+ n= 4 comps=3 max||B_x Omega||=2.22e-16 nullity=1 jacobi_err=2.05e-15 floor_err=1.11e-16
+ n= 5 comps=2 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=1.78e-15 floor_err=1.11e-16
+ n= 6 comps=1 max||B_x Omega||=0.00e+00 nullity=1 jacobi_err=0.00e+00 floor_err=0.00e+00
+
+Analytic identities certified:
+  [B_x, eta_1^+ - eta_2^+] = 0 and B_x|0>=0 imply B_x|Omega_n^->=0.
+  The compressed sum_x B_x^2 has the exact irreducible Jacobi entries in the note.
+  |Omega_n^-> has hypergeometric composition weights.
+  D_sw,L = (j1+j2) n(2L-n)/[L(2L-1)].
+  max bridge-dark residual = 2.220446049250e-16
+  max kernel residual      = 3.845925372767e-16
+  max Jacobi formula error = 2.045275626845e-15
+  max floor formula error  = 4.440892098501e-16
+OVERALL: PASS

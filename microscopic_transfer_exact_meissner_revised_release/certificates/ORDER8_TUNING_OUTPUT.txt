@@ -1,0 +1,42 @@
+SCALAR-TUNING OBSTRUCTION FOR THE COMPLETE DEGREE-EIGHT SOURCE
+==============================================================================
+L=3, dm=10.0, ds=8.0, da=8.0, s=0.9, a=0.45
+R8 P_Z = b^2 U + b^4 V = b^2(U+xV), x=b^2
+
+n=1, compositions=[(0, 1), (1, 0)]
+  cos_F(U,V)                    = -1.000000000000
+  best b (Frobenius)            = 2.025000000000e-01
+  min ||U+b^2V||_F              = 3.755786496843e-19
+  residual / ||U||_F            = 2.862205835119e-16
+  best b (operator source norm) = 2.024999998080e-01
+  min source op norm            = 2.487693448040e-12
+  compression op norm there     = 2.487693448040e-12
+  cross-source op norm there    = 3.497848749946e-28
+  mixed AAB norm                = 0.000000000000e+00
+
+n=2, compositions=[(0, 2), (1, 1), (2, 0)]
+  cos_F(U,V)                    = -0.905855486642
+  best b (Frobenius)            = 1.142254051506e-01
+  min ||U+b^2V||_F              = 1.211404908473e-03
+  residual / ||U||_F            = 4.235868710437e-01
+  best b (operator source norm) = 1.181008619652e-01
+  min source op norm            = 8.658699648982e-04
+  compression op norm there     = 8.658699648982e-04
+  cross-source op norm there    = 8.016302439899e-04
+  mixed AAB norm                = 0.000000000000e+00
+
+n=3, compositions=[(0, 3), (1, 2), (2, 1), (3, 0)]
+  cos_F(U,V)                    = -0.948683298051
+  best b (Frobenius)            = 1.109138178948e-01
+  min ||U+b^2V||_F              = 1.344604879509e-03
+  residual / ||U||_F            = 3.162277660168e-01
+  best b (operator source norm) = 1.181008614904e-01
+  min source op norm            = 8.658699684876e-04
+  compression op norm there     = 8.658699684876e-04
+  cross-source op norm there    = 8.016302290399e-04
+  mixed AAB norm                = 0.000000000000e+00
+
+Analytic one-pair cancellation: b*=sqrt(4s^4/ds^2)=2.025000000000e-01
+one-pair formula verified: YES
+higher-filling scalar-tuning obstruction: YES
+OVERALL: PASS

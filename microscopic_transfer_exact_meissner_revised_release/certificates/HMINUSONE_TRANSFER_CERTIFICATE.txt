@@ -1,0 +1,25 @@
+MICROSCOPIC MEISSNER H^-1 TRANSFER CERTIFICATE
+numpy 2.3.5
+scipy 1.17.0
+
+[1] Random target-metric inequalities with a closing singular value
+delta= 1.0e-01 static-margin=+4.074e-02 K-C=+1.372e-04 upper-margin=+3.228e-02 defect-margin=+1.950e-03 target/state err=1.514e-14
+delta= 1.0e-02 static-margin=+6.916e-02 K-C=+3.211e-05 upper-margin=+5.804e-02 defect-margin=+3.374e-03 target/state err=1.313e-14
+delta= 1.0e-03 static-margin=+6.008e-02 K-C=+7.542e-05 upper-margin=+6.750e-02 defect-margin=+3.021e-03 target/state err=1.964e-14
+delta= 1.0e-04 static-margin=+2.602e-02 K-C=+2.933e-05 upper-margin=+2.492e-02 defect-margin=+1.529e-03 target/state err=1.419e-14
+delta= 1.0e-06 static-margin=+8.689e-02 K-C=+1.142e-04 upper-margin=+3.668e-02 defect-margin=+5.074e-03 target/state err=1.317e-14
+
+[2] Local two-sided row-ideal factorization
+||D^* X D-r|| = 7.073e-15
+||X||/(||D^+||^2 ||r||) = 0.175758
+
+[3] 2D transverse infrared audit
+Expected anisotropic mismatch = 4 eta^2 = 0.04; isotropic mismatch = 0
+L=  8 E=2.929e-01 C_aniso=0.9600000000 K(zeta=1/L)=0.9661630129 D-C=0.0400000000 H^-1=0.0200000000 C_iso=1.2000000000 |J_iso|=0.000e+00
+L= 16 E=7.612e-02 C_aniso=0.9600000000 K(zeta=1/L)=0.9761072917 D-C=0.0400000000 H^-1=0.0200000000 C_iso=1.2000000000 |J_iso|=0.000e+00
+L= 32 E=1.921e-02 C_aniso=0.9600000000 K(zeta=1/L)=0.9890261780 D-C=0.0400000000 H^-1=0.0200000000 C_iso=1.2000000000 |J_iso|=0.000e+00
+L= 64 E=4.815e-03 C_aniso=0.9600000000 K(zeta=1/L)=0.9965305689 D-C=0.0400000000 H^-1=0.0200000000 C_iso=1.2000000000 |J_iso|=0.000e+00
+L=128 E=1.205e-03 C_aniso=0.9600000000 K(zeta=1/L)=0.9990712007 D-C=0.0400000000 H^-1=0.0200000000 C_iso=1.2000000000 |J_iso|=0.000e+00
+L=256 E=3.012e-04 C_aniso=0.9600000000 K(zeta=1/L)=0.9997636140 D-C=0.0400000000 H^-1=0.0200000000 C_iso=1.2000000000 |J_iso|=0.000e+00
+
+OVERALL: PASS

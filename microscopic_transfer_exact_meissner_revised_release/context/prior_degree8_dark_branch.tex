@@ -1,0 +1,586 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{enumitem}
+\setlist{nosep}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Id}{\mathbb I}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\I}{\mathrm i}
+
+\title{\textbf{Degree-Eight Obstruction and an Exact Dark-Branch Route\\to Microscopic Meissner Weight}\\[0.4em]
+\large Complete Schrieffer--Wolff source audit, an all-filling no-go result,\\and a nonperturbative coherent-AGP completion}
+\author{Nicholas Sledgianowski}
+\date{Research note -- July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The exact swap-QGN parent has a positive transverse zero-frequency Meissner weight, while the screened multiorbital construction reproduces that parent only through weighted degree six and leaves a quasi-local degree-eight remainder.  We complete the first missing finite-cluster audit.  For the single-flavor screened microscopic family, every degree-eight source term belongs to one of three nonzero classes: four router insertions, two internal bridge insertions, or one insertion of the matched order-four $B^2$ channel.  The nominal mixed $V_1V_1V_2$ class vanishes by control-toggle parity, and degree-six base terms cannot enter at this order.
+
+On the complete product-AGP zero manifold the coefficient has the exact form
+\[
+ R^{(8)}P_{\cZ}
+ =\frac{b^2}{\bar\Delta_m^3}
+ \left[b^2\cM-\frac{16s^4}{\bar\Delta_s^2}\cB_2\right]P_{\cZ},
+\]
+where $\cB_2=\sum_eB_e^2$ and
+\[
+ \cM=\sum_eB_e^4+\frac12\sum_{e<f}[B_e,B_f]^\dagger[B_e,B_f].
+\]
+The commutator form is linked: disjoint bonds contribute zero.  A two-pair, three-cell matrix element obeys
+\[
+ \langle\Phi|\cB_2|0,2\rangle=0,
+ \qquad
+ \langle\Phi|\cM|0,2\rangle=8\sqrt3,
+\]
+so no scalar retuning of the bridge or of the matched $B^2$ channel, while retaining the required degree-four cancellation, can preserve the complete all-filling product-AGP manifold for $b\ne0$.  The time-reversal-invariant closed-shell Kramers completion changes $8\sqrt3$ to $4\sqrt3$ and therefore does not remove the obstruction.
+
+The negative result exposes a second, exact structure.  The coherent AGP
+\[
+ \ket{\Omega^-_n}\propto(\eta_1^+-\eta_2^+)^n\ket0
+\]
+is annihilated by every microscopic crossed bridge because $[B_e,\eta_1^+-\eta_2^+]=0$.  It is consequently an exact finite-coupling dark eigenbranch of the screened microscopic Hamiltonian at zero field.  We give an overcompensated positive-semidefinite local completion for which this branch is the unique fixed-number ground state.  In a $d\ge2$ Peierls-covariant extension, the exact swap backbone then supplies the uniform lower bound
+\[
+ \cK_{L,T}(q,\I\zeta)\ge
+ \lambda^6\Delta\,(j_1+j_2)\frac{n(2L-n)}{L(2L-1)}
+\]
+for every transverse momentum and every $\zeta\ge0$.  Thus every thermodynamic zero-frequency transverse limit has a strictly positive Meissner floor.  This is a direct nonperturbative microscopic route; it is not an all-composition transfer of the original matched Schrieffer--Wolff family.
+\end{abstract}
+
+\paragraph{Claim hierarchy.}
+\begin{enumerate}
+\item The degree-eight resolvent enumeration and the source formula are exact finite-dimensional identities for the single-flavor screened hierarchy.
+\item The two-pair witness proves that the unmodified single-flavor and closed-shell Kramers families do not preserve the complete product-AGP zero manifold at weighted degree eight.
+\item An explicit degree-eight active counterinteraction cancels the unsafe source and leaves a row-relative $K^2$ correction, but no all-orders convergence theorem is claimed for that recursive completion.
+\item The coherent dark branch is exact to all orders at zero field.  Its status as the ground state of the original matched family is not asserted.
+\item The overcompensated positive-semidefinite family has an exact dark ground branch and a rigorous transverse Meissner lower bound inherited from the swap backbone.  Equality of the \emph{total} Kohn, Drude, and Meissner kernels still requires regularity of the additional gadget rows.
+\end{enumerate}
+
+\section{Microscopic hierarchy and the transfer question}
+
+Let $e=(x,y)$ be an oriented nearest-neighbor edge.  Each endpoint carries two active blocks $a=1,2$ and spin $\sigma$.  The crossed bridge is
+\begin{equation}
+ B_e=\sum_\sigma\left(
+ c_{1,y,\sigma}^\dagger c_{2,x,\sigma}
+ +c_{1,x,\sigma}^\dagger c_{2,y,\sigma}+\mathrm{H.c.}\right).
+ \label{eq:bridge}
+\end{equation}
+The microscopic control attached to $e$ has low state $g$ and high states $m,s,a$.  In units of the control scale $\Delta$, the weighted hierarchy is
+\begin{equation}
+ H(\lambda)=H_0+\lambda V_1+\lambda^2V_2
+ +\lambda^4W_4+\lambda^6W_6,
+ \label{eq:hierarchy}
+\end{equation}
+where $V_1$ contains the same- and opposite-chirality routers, $V_2$ contains $bB_e(g\leftrightarrow m)$, and the screened order-four term is
+\begin{equation}
+ W_4=\frac{b^2}{\bar\Delta_m}\sum_eB_e^2.
+ \label{eq:W4}
+\end{equation}
+The degree-six term contains the base swap parent, the second matched $B^2$ coefficient, and the positive multiplicative interaction.  The product-AGP zero manifold at total pair number $n$ is
+\begin{equation}
+ \cZ_n=\Span\{\ket{n_1,n_2}:n_1+n_2=n\}.
+ \label{eq:Z}
+\end{equation}
+
+The earlier microscopic theorem gives
+\begin{equation}
+ H_{\mathrm{eff}}^{[7]}
+ =\lambda^6\Delta\left(H_{\mathrm{base}}+\bar\alpha\sum_eK_e^\dagger K_e\right)
+ +O_{\mathrm{loc}}(\lambda^8\Delta),
+ \label{eq:degree6}
+\end{equation}
+with complete Peierls derivative control.  The exact parent has a closing spatial gap, so an $O_{\mathrm{loc}}(\lambda^8)$ estimate alone does not transfer the response.  The first task is to determine whether the canonical degree-eight coefficient preserves the zero manifold or creates a current-relevant state source.
+
+\section{Complete degree-eight resolvent enumeration}
+
+Let $P$ fix every control in $g$ and $Q=1-P$.  The only low--high coupling is
+\begin{equation}
+ QH(\lambda)P=\lambda^2C_2,
+ \qquad
+ C_2=b\sum_e\ket{m_e}\bra{G}\otimes B_e.
+ \label{eq:C2}
+\end{equation}
+Inside the high block write
+\begin{equation}
+ QH(\lambda)Q=H_{0,Q}+\lambda A+\lambda^2B_Q+\lambda^4C_Q+O(\lambda^6),
+ \label{eq:HQ}
+\end{equation}
+where $A=QV_1Q$, $B_Q=QV_2Q$, and $C_Q=QW_4Q$.  Put $R_0=H_{0,Q}^{-1}$.  Since the outer bridges carry weight four in total, only the weighted-degree-four coefficient of the high resolvent can contribute to $R^{(8)}$.
+
+\begin{proposition}[Complete single-flavor class list]
+\label{prop:class-list}
+The degree-four high-resolvent coefficient is
+\begin{align}
+ R_4={}&R_0AR_0AR_0AR_0AR_0
+ +R_0B_QR_0B_QR_0-R_0C_QR_0
+ \nonumber\\
+ &-\sum_{\pi\in\mathrm{Perm}(A,A,B_Q)}
+ R_0\pi_1R_0\pi_2R_0\pi_3R_0.
+ \label{eq:R4}
+\end{align}
+The mixed $AAB_Q$ contribution vanishes between $C_2$ and $C_2^\dagger$.  Hence
+\begin{equation}
+ R^{(8)}=-C_2^\dagger R_4C_2
+ =R_{A^4}^{(8)}+R_{B_Q^2}^{(8)}+R_{C_Q}^{(8)}.
+ \label{eq:R8classes}
+\end{equation}
+No degree-six base or second-shell insertion can contribute at weighted degree eight.
+\end{proposition}
+
+\begin{proof}
+The Neumann expansion of $(H_{0,Q}+X)^{-1}$ gives every ordered word whose weights sum to four, with sign $(-1)^{\text{word length}}$.  These are $1+1+1+1$, $2+2$, $4$, and $1+1+2$.  A state entering through $C_2$ has one $m$-control excitation.  Each $B_Q$ toggles the number of $m$-type control excitations by one, whereas $A$ only routes $m\leftrightarrow s,a$.  A word with one $B_Q$ cannot return a one-excitation state to the one-excitation sector required by $C_2^\dagger$, so every $AAB_Q$ word vanishes.  A weight-six insertion would give total weight at least ten after the two outer bridges.
+\end{proof}
+
+The zero-energy Feshbach coefficient is sufficient for the present audit.  On the parent zero manifold the first possible energy shift is order $\lambda^8$, while the energy derivative of the Feshbach map begins at order $\lambda^4$; energy dependence therefore changes the branch equation only at order $\lambda^{12}$.
+
+\section{Closed source formula}
+
+Define
+\begin{equation}
+ \cB_2=\sum_eB_e^2.
+ \label{eq:B2sum}
+\end{equation}
+The all-filling router identities imply, on the seniority-zero bridge source,
+\begin{equation}
+ C_{s,e}^2B_eP_0=4Q_{s,e}B_eP_0,
+ \qquad
+ C_{a,e}^2B_eP_0=4Q_{a,e}B_eP_0.
+ \label{eq:router}
+\end{equation}
+Because $Q_{a,e}B_eP_{\cZ}=K_eP_{\cZ}=0$, only the same-chirality channel contributes to the unsafe zero-manifold source.
+
+\begin{lemma}[Router source]
+\label{lem:router-source}
+On the complete product-AGP manifold,
+\begin{equation}
+ R_{A^4}^{(8)}P_{\cZ}
+ =-\frac{16b^2s^4}{\bar\Delta_m^3\bar\Delta_s^2}
+ \cB_2P_{\cZ}.
+ \label{eq:A4source}
+\end{equation}
+On the complete seniority-zero space the same coefficient decomposes as
+\begin{equation}
+ R_{A^4}^{(8)}
+ =-c_s\sum_eB_e^2+(c_s-c_a)\sum_eK_e^\dagger K_e,
+ \label{eq:A4decomp}
+\end{equation}
+where
+\begin{equation}
+ c_s=\frac{16b^2s^4}{\bar\Delta_m^3\bar\Delta_s^2},
+ \qquad
+ c_a=\frac{16b^2a^4}{\bar\Delta_m^3\bar\Delta_a^2}.
+ \label{eq:csca}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+A four-router path must alternate through $m$.  Mixed $s$--$a$ paths contain $Q_sQ_a$ on the routed source and vanish.  Pure $s$ and pure $a$ paths give the denominators in \eqref{eq:csca}.  Finally $B Q_sB=B^2-K^2$ and $BQ_aB=K^2$ on seniority zero.
+\end{proof}
+
+The bridge-overlap term and the high-sector feedback of the matched $W_4$ term combine more simply than either term separately.
+
+\begin{proposition}[Linked commutator-square bridge metric]
+\label{prop:M}
+For the single-flavor control,
+\begin{equation}
+ \left(R_{B_Q^2}^{(8)}+R_{C_Q}^{(8)}\right)
+ =\frac{b^4}{\bar\Delta_m^3}\cM,
+ \label{eq:BCM}
+\end{equation}
+where
+\begin{equation}
+ \boxed{
+ \cM=\sum_eB_e^4+\frac12\sum_{e<f}
+ [B_e,B_f]^\dagger[B_e,B_f].}
+ \label{eq:M}
+\end{equation}
+Only overlapping bonds contribute to the second sum.
+\end{proposition}
+
+\begin{proof}
+The $C_Q$ insertion gives
+\begin{equation}
+ \frac{b^4}{\bar\Delta_m^3}\sum_{e,f}B_eB_f^2B_e.
+ \label{eq:Cfeedback}
+\end{equation}
+The two-control bridge path gives, for each unordered pair,
+\begin{equation}
+ -\frac{b^4}{2\bar\Delta_m^3}\{B_e,B_f\}^2.
+ \label{eq:overlap-pair}
+\end{equation}
+For Hermitian $E,F$,
+\begin{equation}
+ EF^2E+FE^2F-\frac12\{E,F\}^2
+ =\frac12[E,F]^\dagger[E,F].
+ \label{eq:comm-identity}
+\end{equation}
+The diagonal terms in \eqref{eq:Cfeedback} are $B_e^4$.  If the active supports are disjoint, the commutator vanishes, so the result is a linked local interaction rather than a disconnected product.
+\end{proof}
+
+Combining the two results gives the complete source coefficient.
+
+\begin{theorem}[Exact degree-eight source formula]
+\label{thm:source-formula}
+For the unmodified single-flavor screened microscopic family,
+\begin{equation}
+ \boxed{
+ R^{(8)}P_{\cZ}
+ =\frac{b^2}{\bar\Delta_m^3}
+ \left[b^2\cM-\frac{16s^4}{\bar\Delta_s^2}\cB_2\right]P_{\cZ}.}
+ \label{eq:source-formula}
+\end{equation}
+The closed-shell Kramers completion replaces $\cM$ by
+\begin{equation}
+ \boxed{
+ \cM_\Theta=\frac12\sum_eB_e^4+\frac12\sum_{e<f}
+ [B_e,B_f]^\dagger[B_e,B_f].}
+ \label{eq:Mtheta}
+\end{equation}
+The inter-bond coefficient is unchanged; double excitation of the two partners halves only the local $B_e^4$ coefficient.
+\end{theorem}
+
+\begin{proof}
+The single-flavor result is \cref{lem:router-source,prop:M}.  In the closed shell, each of two independent Kramers channels has bridge amplitude $b/\sqrt2$.  Summing the two same-channel local paths gives $2(b/\sqrt2)^4=b^4/2$.  For two distinct bonds there are four partner pairs, each with weight $b^4/4$; their total leaves the single-flavor commutator-square coefficient unchanged.
+\end{proof}
+
+\section{All-filling obstruction}
+
+A one-pair calculation alone is misleading.  On a three-cell ring, the one-pair compression of \eqref{eq:source-formula} is proportional to the all-ones matrix and can be canceled accidentally by
+\begin{equation}
+ b_*=\frac{2s^2}{\bar\Delta_s}.
+ \label{eq:bstar}
+\end{equation}
+The cancellation does not extend to two pairs.
+
+Let
+\begin{equation}
+ \ket{0,2}=\frac1{\sqrt3}\sum_{0\le x<y\le2}
+ d_{2,x}^\dagger d_{2,y}^\dagger\ket0,
+ \qquad
+ \ket\Phi=d_{1,0}^\dagger d_{1,1}^\dagger\ket0.
+ \label{eq:witness-states}
+\end{equation}
+
+\begin{theorem}[Two-pair degree-eight obstruction]
+\label{thm:obstruction}
+On the three-cell two-pair sector,
+\begin{equation}
+ \bra\Phi\cB_2\ket{0,2}=0,
+ \qquad
+ \bra\Phi\cM\ket{0,2}=8\sqrt3,
+ \qquad
+ \bra\Phi\cM_\Theta\ket{0,2}=4\sqrt3.
+ \label{eq:witness}
+\end{equation}
+Consequently, for $b\ne0$, neither the single-flavor nor the closed-shell Kramers unmodified family preserves the complete product-AGP zero manifold at weighted degree eight.  No scalar retuning of $b$, $s$, $a$, or an order-eight adjustment of the matched $B^2$ coefficient can cancel the full all-filling source while the required degree-four cancellation is retained.
+\end{theorem}
+
+\begin{proof}
+Every term in $\cB_2$ contains two one-electron bridge hops and can transfer at most one onsite pair between blocks.  It therefore has zero matrix element from $\ket{0,2}$ to $\ket\Phi$, which has both pairs transferred.  The local $B_e^4$ terms contain the required four hops.  Direct fermionic action on the three translated bonds gives $8\sqrt3$; the Kramers coefficient is half by \eqref{eq:Mtheta}.  The router term in \eqref{eq:source-formula} is proportional to $\cB_2$ and cannot affect this matrix element.
+\end{proof}
+
+The obstruction is stronger than a poor parameter choice.  Writing
+\begin{equation}
+ R^{(8)}P_{\cZ}=b^2(U+b^2V)P_{\cZ},
+ \label{eq:UV}
+\end{equation}
+$U$ and $V$ are exactly antiparallel in the one-pair sector, but not at higher filling.  The accompanying exact finite-Fock-space certificate finds the following minimum over every scalar $b$ for the representative parameters $\bar\Delta_m=10$, $\bar\Delta_s=\bar\Delta_a=8$, $s=0.9$, $a=0.45$.
+
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+Pairs & $\cos_F(U,V)$ & best $b$ & minimum source norm of $U+b^2V$\\
+\midrule
+1 & $-1$ & $0.2025$ & $<3\times10^{-12}$\\
+2 & $-0.9058554866$ & $0.1181008620$ & $8.6587\times10^{-4}$\\
+3 & $-0.9486832981$ & $0.1181008615$ & $8.6587\times10^{-4}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The numerical values certify the finite matrices; \cref{thm:obstruction} is the analytic reason the higher-filling residual cannot vanish.
+
+\section{Explicit degree-eight source completion}
+
+The negative result identifies a simple finite-order repair.  Define the active counterinteraction
+\begin{equation}
+ \cC_8=
+ \frac{16b^2s^4}{\bar\Delta_m^3\bar\Delta_s^2}\sum_eB_e^2
+ -\frac{b^4}{\bar\Delta_m^3}\cM
+ \label{eq:C8}
+\end{equation}
+for the single-flavor model, and replace $\cM$ by $\cM_\Theta$ for the closed shell.
+
+\begin{corollary}[Explicit response-safe degree-eight completion]
+\label{cor:C8}
+Adding $\lambda^8\Delta\cC_8$ cancels the complete degree-eight source on every product-AGP filling.  On seniority zero, the surviving degree-eight term is
+\begin{equation}
+ (c_s-c_a)\sum_eK_e^\dagger K_e,
+ \label{eq:safe-K-shift}
+\end{equation}
+which is row-relative and positive whenever
+$s^2/\bar\Delta_s>a^2/\bar\Delta_a$.
+\end{corollary}
+
+\begin{proof}
+Use \eqref{eq:A4decomp}, \eqref{eq:BCM}, and \eqref{eq:C8}.  The $B^2$ and $\cM$ pieces cancel identically, leaving \eqref{eq:safe-K-shift}.
+\end{proof}
+
+This is an explicit realization of the abstract unsafe-projection counterterm from the response-transfer theorem.  It is finite range because $[B_e,B_f]=0$ on disjoint supports.  It is not, however, a two-electron-only completion: after normal ordering, $B_e^4$ contains higher-body active interactions.  Synthesizing \eqref{eq:C8} from a restricted microscopic interaction tensor, or recursively completing every higher weighted order, remains a separate problem.
+
+\section{The exact coherent dark branch}
+
+The failure of the complete product manifold does not imply that every microscopic paired branch is lost.  Define
+\begin{equation}
+ \eta_-^+=\eta_1^+-\eta_2^+,
+ \qquad
+ \ket{\Omega_n^-}=\mathcal N_{L,n}(\eta_-^+)^n\ket0.
+ \label{eq:dark-state}
+\end{equation}
+In the normalized product-composition basis,
+\begin{equation}
+ \ket{\Omega_n^-}
+ =\frac1{\sqrt{\binom{2L}{n}}}
+ \sum_{n_1+n_2=n}(-1)^{n_2}
+ \sqrt{\binom{L}{n_1}\binom{L}{n_2}}
+ \ket{n_1,n_2}.
+ \label{eq:dark-coeff}
+\end{equation}
+
+\begin{proposition}[Exact bridge darkness]
+\label{prop:dark}
+For every edge $e$ and every filling,
+\begin{equation}
+ [B_e,\eta_-^+]=0,
+ \qquad
+ B_e\ket{\Omega_n^-}=0.
+ \label{eq:darkness}
+\end{equation}
+Within $\cZ_n$, the common kernel of all $B_e$ is one dimensional and is spanned by $\ket{\Omega_n^-}$ on a connected lattice.
+\end{proposition}
+
+\begin{proof}
+Suppress spin and write the one-body bridge matrix as
+$h_e=\tau_x\otimes A_e$, where $A_e=A_e^T$ is the endpoint adjacency and $\tau_x$ acts on the two blocks.  The singlet pairing matrix of $\eta_-^+$ is $F=\tau_z\otimes\Id\otimes\I\sigma_y$.  For a one-body operator $c^\dagger h c$,
+\begin{equation}
+ [c^\dagger hc,\eta_F^+]
+ =\frac12c^\dagger(hF+Fh^T)c^{\dagger T}.
+\end{equation}
+Since $\{\tau_x,\tau_z\}=0$, the commutator vanishes.  Also $B_e\ket0=0$, proving the second identity.
+
+For uniqueness, put $r=n_1$ and $n_2=n-r$.  Direct hard-core reduction and AGP combinatorics give, on the periodic $L$-edge lattice,
+\begin{align}
+ \bra{r,n-r}\sum_eB_e^2\ket{r,n-r}
+ &=4n-\frac{8r(n-r)}{L},
+ \label{eq:B2-jacobi-diag}\\
+ \bra{r+1,n-r-1}\sum_eB_e^2\ket{r,n-r}
+ &=\frac4L\sqrt{(r+1)(L-r)(n-r)(L-n+r+1)}.
+ \label{eq:B2-jacobi-off}
+\end{align}
+The second quantity is strictly positive at every interior point of the allowed composition interval.  The compression is therefore an irreducible Hermitian tridiagonal matrix.  Such a Jacobi matrix has simple eigenvalues.  Equation \eqref{eq:darkness} supplies a zero vector, so the kernel is one dimensional.  On any connected translation-invariant extension, the same entries are multiplied by the positive edge-density factor and the conclusion is unchanged.
+\end{proof}
+
+\begin{corollary}[All-orders zero-field eigenbranch]
+\label{cor:allorders-dark}
+In the screened microscopic family, with all controls in their $g$ states,
+\begin{equation}
+ \ket{\Omega_n^-}\otimes\ket G
+ \label{eq:micro-dark}
+\end{equation}
+is an exact zero-energy eigenstate at $A=0$ for every finite coupling $\lambda$ for which the Hamiltonian is defined.
+\end{corollary}
+
+\begin{proof}
+The base parent annihilates every vector in $\cZ_n$.  Every bridge vertex contains $B_e$ and annihilates \eqref{eq:micro-dark}; every direct shell term contains $B_e^2$ and also annihilates it.  Router vertices act only after a control has left $g$, which never occurs on the dark state.  The screened monopole terms cancel by construction.
+\end{proof}
+
+The corollary does not by itself prove that the exact eigenbranch is the ground state of the original matched model.  The finite-order matching does not make the complete microscopic Hamiltonian positive semidefinite.  The next construction supplies that missing property without using a closing-gap perturbation theorem.
+
+\section{Positive-semidefinite finite-coupling completion}
+
+Consider one control edge.  After separating the low control state $g$ from the complete high control space, write its local Hamiltonian as
+\begin{equation}
+ h_e(0)=
+ \begin{pmatrix}
+ \beta B_e^2&t_BB_eP_m^\dagger\\
+ t_BP_mB_e&D_e
+ \end{pmatrix},
+ \qquad
+ D_e\succeq d_*\Id>0,
+ \label{eq:local-block}
+\end{equation}
+where $P_m$ inserts the bridge source into the $m$ component of the high block.  The router is contained in $D_e$.
+
+\begin{theorem}[Strict overcompensation]
+\label{thm:overcomp}
+If
+\begin{equation}
+ \beta>\frac{t_B^2}{d_*},
+ \label{eq:beta-strict}
+\end{equation}
+then $h_e(0)\succeq0$.  Moreover, every zero vector of $h_e(0)$ has its control in $g$ and satisfies $B_e\psi=0$.
+\end{theorem}
+
+\begin{proof}
+The Schur complement of $D_e$ is
+\begin{equation}
+ S_e=\beta B_e^2-t_B^2B_eP_m^\dagger D_e^{-1}P_mB_e.
+ \end{equation}
+Since $D_e^{-1}\preceq d_*^{-1}\Id$,
+\begin{equation}
+ S_e\succeq\left(\beta-\frac{t_B^2}{d_*}\right)B_e^2\succeq0.
+ \label{eq:Schur-bound}
+\end{equation}
+The standard block Schur criterion gives $h_e\succeq0$.  Equality in the strict bound forces $B_e\psi=0$, and the high component $-D_e^{-1}t_BP_mB_e\psi$ then vanishes.
+\end{proof}
+
+Define the exact finite-coupling family
+\begin{equation}
+ H_{\mathrm{PSD}}(0)
+ =\lambda^6\Delta H_{\mathrm{base}}+\sum_e h_e(0),
+ \label{eq:HPSD}
+\end{equation}
+with the screened density channel and the strict coefficient \eqref{eq:beta-strict}.
+
+\begin{corollary}[Exact fixed-number ground state]
+\label{cor:PSD-ground}
+On a connected lattice, $H_{\mathrm{PSD}}(0)$ is frustration free and has the unique fixed-$2n$ zero state \eqref{eq:micro-dark} at every interior filling.
+\end{corollary}
+
+\begin{proof}
+Every term is positive and annihilates the dark state.  Conversely, a global zero vector lies in the base-parent zero manifold and, by \cref{thm:overcomp}, obeys $B_e\psi=0$ on every edge with every control in $g$.  Proposition \ref{prop:dark} gives uniqueness.
+\end{proof}
+
+Under the complete Peierls lift, each contractible local edge term is related to its zero-field version by a local gauge conjugation.  Hence $h_e(A_e)\succeq0$ for every edge phase, and the full family remains a sum of local positive terms.  This is a nonperturbative microscopic parent rather than a Schrieffer--Wolff approximation.
+
+\section{Exact microscopic Meissner floor}
+
+Let the spatial lattice have $d\ge2$, include every point-group-related edge orientation, and couple a physical transverse edge field.  Factor the positive Hamiltonian into a direct-sum row map
+\begin{equation}
+ \cD_{\mathrm{full}}=
+ \begin{pmatrix}
+ \lambda^3\sqrt\Delta\,\cD_{\mathrm{sw}}\\
+ \cD_{\mathrm{gad}}
+ \end{pmatrix},
+ \qquad
+ \cS_{\mathrm{full}}=
+ \begin{pmatrix}
+ \lambda^3\sqrt\Delta\,\cS_{\mathrm{sw}}\\
+ \cS_{\mathrm{gad}}
+ \end{pmatrix}.
+ \label{eq:row-stack}
+\end{equation}
+For every divergence-free field, the graph-Hodge identity gives
+\begin{equation}
+ \cD_{\mathrm{sw}}^\dagger\cS_{\mathrm{sw}}=0.
+ \label{eq:sw-kernel}
+\end{equation}
+
+\begin{theorem}[Finite-coupling transverse response floor]
+\label{thm:floor}
+For the exact PSD microscopic family and the selected dark branch, every finite-volume static curvature and imaginary-frequency transverse kernel satisfies
+\begin{equation}
+ \cK_{L,T}(q,\I\zeta)
+ \ge\cC_{L,T}(q)
+ \ge\lambda^6\Delta\,\norm{\cS_{\mathrm{sw},T}(q)}^2,
+ \qquad \zeta\ge0.
+ \label{eq:floor-operator}
+\end{equation}
+If both block swap couplings are $j_1,j_2$, then per spatial volume
+\begin{equation}
+ \boxed{
+ D_{\mathrm{sw},L}^{(-)}
+ =(j_1+j_2)\frac{n(2L-n)}{L(2L-1)}.}
+ \label{eq:finite-floor}
+\end{equation}
+Consequently, with $n/(2L)\to\rho\in(0,1)$,
+\begin{equation}
+ \boxed{
+ \begin{aligned}
+  \liminf D_K&\ge D_*,&
+  \liminf D_A&\ge D_*,&
+  \liminf D_M&\ge D_*,
+ \end{aligned}
+ \qquad
+ D_*=2\lambda^6\Delta(j_1+j_2)\rho(1-\rho)>0.}
+ \label{eq:thermo-floor}
+\end{equation}
+The pair-phase superfluid-weight floor is one quarter of \eqref{eq:thermo-floor}.
+\end{theorem}
+
+\begin{proof}
+The static positive-square curvature is the least-squares residual
+\begin{equation}
+ \cC=\min_X\norm{\cS_{\mathrm{full}}-\cD_{\mathrm{full}}X}^2.
+\end{equation}
+By \eqref{eq:sw-kernel},
+\begin{equation}
+ \norm{\cS_{\mathrm{sw}}-\cD_{\mathrm{sw}}X}^2
+ =\norm{\cS_{\mathrm{sw}}}^2+\norm{\cD_{\mathrm{sw}}X}^2,
+\end{equation}
+so no state correction, including one using the gadget sector, can cancel the transverse swap source.  The finite-frequency kernel exceeds the static residual by the positive spectral defect, proving \eqref{eq:floor-operator}.
+
+The composition probabilities in \eqref{eq:dark-coeff} form a hypergeometric distribution.  Averaging the exact blockwise swap response
+$2j_an_a(L-n_a)/[L(L-1)]$ gives
+\begin{equation}
+ \mathbb E[n_a(L-n_a)]
+ =\frac{n(L-1)(2L-n)}{2(2L-1)},
+\end{equation}
+which yields \eqref{eq:finite-floor}.  Taking any admissible thermodynamic, zero-frequency, and transverse zero-momentum limits gives \eqref{eq:thermo-floor}.
+\end{proof}
+
+\begin{remark}[What the floor does and does not identify]
+The theorem is already a genuine microscopic zero-frequency Meissner statement: the static transverse response is uniformly positive at every allowed $q$, and the thermodynamic-first imaginary-frequency kernel has the same positive floor.  It does not assert that the additional gadget contribution has identical Kohn, Abelian, and transverse limits.  Proving equality for the \emph{total} response still requires the $H_{-1}$ tightness and point-group closure conditions developed in the companion transfer theorem.
+\end{remark}
+
+\section{Decision for the research program}
+
+The finite-cluster calculation resolves the original degree-eight question sharply.
+
+\begin{enumerate}
+\item \textbf{All-composition transfer of the unmodified matched family fails.}  The failure is not merely the previously isolated bridge overlap; it survives the complete single-flavor sum and the closed-shell Kramers correction, and it is witnessed at two-pair filling.
+\item \textbf{A finite-order response-safe repair is explicit.}  Equation \eqref{eq:C8} cancels the unsafe degree-eight source and leaves a positive multiplicative-row correction.  This route preserves the original multiblock zero manifold but still needs physical synthesis and all-orders closure.
+\item \textbf{A direct exact microscopic branch exists.}  The coherent state \eqref{eq:dark-state} is annihilated by the primitive bridge itself.  Strict local overcompensation turns that branch into an exact finite-coupling ground state and yields the Meissner floor \eqref{eq:thermo-floor} without a closing-gap Schrieffer--Wolff transfer.
+\end{enumerate}
+
+The next paper should therefore separate two goals that were previously conflated.  The first is a no-go/completion theorem for retaining the complete product-AGP composition manifold.  The second is the exact dark-branch microscopic Meissner theorem.  The latter is already nonperturbative and physically covariant, but it selects one coherent interblock pairing channel rather than retaining a degenerate family of inequivalent compositions.
+
+\section*{Reproducibility}
+
+The accompanying archive contains four deterministic programs.
+\begin{enumerate}
+\item \texttt{audit\_order8\_all\_fillings.py} evaluates every degree-eight source class on every product-AGP filling of the three-cell ring.
+\item \texttt{verify\_order8\_structure.py} checks \eqref{eq:A4source}, \eqref{eq:M}, the vanishing mixed class, the two-pair witness, and the explicit completion.
+\item \texttt{verify\_kramers\_feshbach.py} independently extracts the single-flavor and closed-shell bridge coefficients from exact finite-control Feshbach maps with random noncommuting active matrices.
+\item \texttt{verify\_dark\_agp\_branch.py} checks bridge darkness, one-dimensionality of the dark kernel inside composition space, and the finite-volume swap-floor formula.
+\end{enumerate}
+All retained certificate outputs end with \texttt{OVERALL: PASS} or \texttt{AUDIT IDENTITIES: PASS}.  The computations support the finite-dimensional algebra; they do not replace the analytic arguments above.
+
+\end{document}

@@ -1,0 +1,9 @@
+Generated: 2026-07-27
+Linux-6.12.13-x86_64-with-glibc2.41
+
+3.13.5 (main, May  5 2026, 21:05:52) [GCC 14.2.0]
+NumPy 2.3.5
+SciPy 1.17.0
+pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+kpathsea version 6.4.0/dev
+Latexmk, John Collins, 11 Dec. 2024. Version 4.86

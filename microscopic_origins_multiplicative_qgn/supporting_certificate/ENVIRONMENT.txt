@@ -1,0 +1,8 @@
+Exact unscreened AGP leakage certificate, version 2.1
+Generated: 2026-07-28
+Python: Python 3.13.5
+Platform: Linux def600a1d88f 6.12.13 #1 SMP Wed Jul 22 00:33:13 UTC 2026 x86_64 GNU/Linux
+Dependencies: Python standard library only
+Arithmetic used for PASS/FAIL: integers and fractions.Fraction
+Default scan: periodic cycle and open path, L=2,...,9, all compositions
+Static TeX checker: ChkTeX v1.7.9 - Copyright 1995-96 Jens T. Berger Thielemann.

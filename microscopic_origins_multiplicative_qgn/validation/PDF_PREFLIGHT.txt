@@ -1,0 +1,6 @@
+PDF: /mnt/data/microscopic_origins_multiplicative_qgn_revised/paper/microscopic_origins_multiplicative_qgn.pdf
+Pages: 31
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False

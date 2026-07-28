@@ -1,0 +1,475 @@
+--- a/microscopic_origins_multiplicative_qgn_draft(4).tex
++++ b/microscopic_origins_multiplicative_qgn.tex
+@@ -1,7 +1,7 @@
+ \documentclass[11pt]{article}
+ \usepackage[letterpaper,margin=0.82in]{geometry}
+ \usepackage[T1]{fontenc}
+-\usepackage{lmodern}
++\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+ \usepackage{microtype}
+ \usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+ \usepackage{booktabs,array,longtable}
+@@ -25,7 +25,7 @@
+ \pagestyle{fancy}
+ \fancyhf{}
+ \fancyhead[L]{\small Microscopic origins of multiplicative QGN interactions}
+-\fancyhead[R]{\small Second review-integrated draft -- July 2026}
++\fancyhead[R]{\small Leakage-integrated revision -- July 28, 2026}
+ \fancyfoot[C]{\thepage}
+ \setlength{\headheight}{14pt}
+ \titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+@@ -66,7 +66,7 @@
+ \title{\textbf{Microscopic Origins of Multiplicative Null Interactions\\in Quantum-Geometric-Nesting Superconductors}\\[0.35em]
+ \large Pauli-selected bond parity, all-filling current routing, and controlled lattice downfolding}
+ \author{Nicholas Sledgianowski}
+-\date{Second review-integrated research draft, July 26, 2026}
++\date{Leakage-integrated research revision, July 28, 2026}
+ 
+ \begin{document}
+ \maketitle
+@@ -80,7 +80,7 @@
+ \]
+ which converts ordinary current-path interference into the emergent parity projector.  Under the full high-block gap $D\succeq d_*\mathbb I>0$, a four-orbital control sector then produces the exact local Schur complement $-t_B^2B_x^2/d_s+t_B^2(d_s^{-1}-d_a^{-1})K_x^\dagger K_x$ on every seniority-zero filling; a closed-shell Kramers doubling reproduces the same coefficients through weighted order six.
+ 
+-A periodic array gives two distinct lattice theories.  The matched screened family produces the composition-degenerate target at order $\lambda^6$, with connected overlap, residual block coupling, Kramers double excitation, and the first two Peierls derivatives of the remainder bounded by $O(\lambda^8)$ in local norm.  At fixed $\lambda$, its order-four mismatch tolerance is $O(\lambda^2\bar\alpha)$.  The generic unscreened family instead retains the linked order-$\lambda^4$ diagonal charge selector before the order-$\lambda^6$ composition mixing.  Five finite-Fock-space verifiers audit the exact local identities and the predicted lattice scaling.
++A periodic array gives two distinct lattice theories.  The matched screened family produces the composition-degenerate target at order $\lambda^6$, with connected overlap, residual block coupling, Kramers double excitation, and the first two Peierls derivatives of the remainder bounded by $O(\lambda^8)$ in local norm.  At fixed $\lambda$, its order-four mismatch tolerance is $O(\lambda^2\bar\alpha)$.  The generic unscreened family instead retains the complete linked order-$\lambda^4$ charge-selection operator.  Its product-AGP compression contains the explicit diagonal selector, while its centered action gives simultaneous order-four leakage outside that manifold.  Six verifier programs audit the exact local identities, the weighted lattice scaling, and the periodic/open charge-leakage formulas.
+ \end{abstract}
+ 
+ \begin{quote}\small
+@@ -89,7 +89,7 @@
+ \item The rank-three reduction, sign obstruction, all-filling current router, product-AGP charge projection, and source-restricted Schur formula are exact finite-dimensional identities.
+ \item The local active--control theorem is exact provided the complete high block satisfies $D\succeq d_*\Id>0$; positivity only on the routed source is not used as a substitute for invertibility of the full Feshbach block.
+ \item In the screened periodic family, an explicitly defined finite-order local Schrieffer--Wolff unitary gives $\lambda^6\Delta[H_{\rm base}+\bar\alpha\sum_xK_x^\dagger K_x]$ with a quasi-local $O(\lambda^8)$ low-block remainder and $O(\lambda^8)$ residual block coupling.
+-\item In the unscreened molecular-shell family, an order-$\lambda^4$ diagonal charge selector accompanies the order-$\lambda^6$ multiplicative mixing term.
++\item In the unscreened molecular-shell family, the complete order-$\lambda^4$ charge-selection operator accompanies the order-$\lambda^6$ multiplicative term; its product-AGP compression is diagonal, but its off-manifold singular values are generally nonzero.
+ \item Exact asymptotic screening is a matched parameter submanifold.  At a fixed design value of $\lambda$, a controlled approximate parent permits an order-four mismatch tube of width $O(\lambda^2\bar\alpha)$ and order-six mismatches of width $O(\bar\alpha)$ in local norm.
+ \item No exact finite-coupling sum of overlapping gadgets, onsite-density-Hubbard-only realization, material parameter extraction, or dynamical zero-frequency Meissner theorem is claimed.  The base two-block QGN parent is an input.
+ \end{enumerate}
+@@ -120,7 +120,7 @@
+ \item An explicit repulsive crossed-shell constant-interaction tensor contains $+\beta B_x^2$ with $\beta>0$, together with a linked monopole charge polynomial.
+ \item Ordinary orbital-current paths route the full crossed source into even and odd parity sectors for every local charge and every product-AGP filling.
+ \item A nested four-orbital control sector produces the exact all-filling local Schur complement $-t_B^2B_x^2/d_s+\alpha K_x^\dagger K_x$ under a full high-block gap; a closed-shell Kramers doubling reproduces the same weighted coefficients through degree six.
+-\item A screened periodic array produces $\sum_xK_x^\dagger K_x$ at order $\lambda^6$ with the first connected overlap corrections delayed to order $\lambda^8$.  The order-four cancellation must be accurate to $O(\lambda^2\bar\alpha)$ at fixed $\lambda$; without that matching, the generic unscreened array has an explicit order-$\lambda^4$ diagonal selector followed by order-$\lambda^6$ composition mixing.
++\item A screened periodic array produces $\sum_xK_x^\dagger K_x$ at order $\lambda^6$ with the first connected overlap corrections delayed to order $\lambda^8$.  The order-four cancellation must be accurate to $O(\lambda^2\bar\alpha)$ at fixed $\lambda$; without that matching, the generic unscreened array retains the complete order-$\lambda^4$ charge-selection operator, whose product-AGP compression contains an explicit diagonal selector and whose centered action generally leaks outside the composition manifold.
+ \end{enumerate}
+ 
+ \section{Two-block parent and the multiplicative escape}
+@@ -732,7 +732,17 @@
+ 
+ \begin{proposition}[Charge potential on product AGPs]
+ \label{prop:charge-potential}
+-For $L\ge2$ and the product AGP $\ket{n_1,n_2}$, $H_{\rm ch}$ is diagonal in composition space and
++For fixed total pair number $n$, let
++\begin{equation}
++ \mathcal Z_n=\operatorname{span}\{\ket{n_1,n_2}:n_1+n_2=n\}.
++\end{equation}
++The compression of $H_{\rm ch}$ to $\mathcal Z_n$ is diagonal:
++\begin{equation}
++ P_{\mathcal Z_n}H_{\rm ch}P_{\mathcal Z_n}
++ =\sum_{n_1+n_2=n}V_{\rm ch}^{(L)}(n_1,n_2)
++ \ket{n_1,n_2}\!\bra{n_1,n_2},
++\end{equation}
++where
+ \begin{equation}
+ \boxed{
+ \begin{aligned}
+@@ -753,7 +763,129 @@
+ Within each block, the AGP is the uniform fixed-size subset state.  Hence the one-site pair occupation is $n_a/L$ and the probability that both endpoints of a fixed bond are occupied is $n_a(n_a-1)/[L(L-1)]$.  The two blocks are independent, so cross-block endpoint occupations factor.  Expanding $N_x^2$ and summing the translated bonds yields \eqref{eq:charge-potential}; rearranging at fixed $n$ gives \eqref{eq:charge-selector}.
+ \end{proof}
+ 
+-The nonconstant term is a positive diagonal selector favoring block-polarized compositions.  It vanishes accidentally at $L=2$.  Consequently, a two-cell weighted lattice certificate is blind to the principal unscreened composition selector even though the all-$L$ charge certificate detects it for $L>2$.
++\begin{proposition}[Exact periodic charge-leakage action and singular values]
++\label{prop:charge-leakage-periodic}
++Let
++\[
++ \mathcal Z_n=\operatorname{span}\{\ket{n_1,n_2}:n_1+n_2=n\},
++ \qquad
++ R_{{\rm ch},L}^{(n)}=(1-P_{\mathcal Z_n})H_{\rm ch}P_{\mathcal Z_n},
++\]
++and put $D_L=\sum_x N_x^2$.  For a composition $c=(n_1,n_2)$, write
++\[
++ \mu_{L;c}=\bra cH_{\rm ch}\ket c.
++\]
++Then the exact composition-resolved action is
++\begin{equation}
++ \boxed{
++ R_{{\rm ch},L}^{(n)}\ket c
++ =\bigl(H_{\rm ch}-\mu_{L;c}\bigr)\ket c
++ =A_c\bigl(D_L-\langle D_L\rangle_c\bigr)\ket c.}
++ \label{eq:periodic-charge-leakage-action}
++\end{equation}
++For $L\ge3$, define
++\begin{equation}
++\boxed{
++\begin{aligned}
++\sigma_L^2(n_1,n_2)=64\Bigg[&
++\frac{n_1(n_1-1)(L-n_1)(L-n_1-1)
+++n_2(n_2-1)(L-n_2)(L-n_2-1)}{(L-2)(L-1)^2}\\
++&+\frac{2n_1n_2(L-n_1)(L-n_2)(3L-8)}{L^2(L-1)^2}
++\Bigg].
++\end{aligned}}
++\label{eq:periodic-charge-leakage-variance}
++\end{equation}
++Whenever $\sigma_L(c)>0$, let
++\begin{equation}
++ \ket{\ell_{L;c}}
++ =\frac{(D_L-\langle D_L\rangle_c)\ket c}{\sigma_L(c)}.
++ \label{eq:periodic-charge-left-singular-vector}
++\end{equation}
++The nonzero vectors $\ket{\ell_{L;c}}$ are orthonormal, and
++\begin{equation}
++ \boxed{
++ R_{{\rm ch},L}^{(n)}
++ =A_c\!\sum_{\substack{c=(n_1,n_2)\\n_1+n_2=n,\ \sigma_L(c)>0}}
++ \sigma_L(c)\ket{\ell_{L;c}}\bra c.}
++ \label{eq:periodic-charge-leakage-svd}
++\end{equation}
++Consequently,
++\begin{equation}
++ \boxed{
++ (R_{{\rm ch},L}^{(n)})^\dagger R_{{\rm ch},L}^{(n)}
++ =A_c^2\sum_{n_1+n_2=n}\sigma_L^2(n_1,n_2)
++ \ket{n_1,n_2}\!\bra{n_1,n_2},}
++ \label{eq:periodic-charge-leakage-gram}
++\end{equation}
++\begin{equation}
++ \boxed{
++ \norm{R_{{\rm ch},L}^{(n)}}
++ =A_c\max_{n_1+n_2=n}\sigma_L(n_1,n_2),
++ \qquad
++ \operatorname{rank}R_{{\rm ch},L}^{(n)}
++ =\#\{c:\sigma_L(c)>0\}.}
++ \label{eq:periodic-charge-leakage-norm}
++\end{equation}
++For $L=2$, $R_{{\rm ch},2}^{(n)}=0$ in every filling sector.  For $L\ge3$,
++$\sigma_L^2(n_1,n_2)=0$ exactly when one block is empty or full and the other
++has occupation $0$, $1$, $L-1$, or $L$.
++\end{proposition}
++
++\begin{proof}
++At fixed total pair number, $\sum_x N_x=4n$ is scalar on the periodic cycle, so
++only $A_c D_L$ contributes to the off-manifold block.  Since $D_L$ preserves both
++block charges, its centered images from distinct compositions have orthogonal
++support.  In a fixed composition sector the product AGP is the uniform
++normalized fixed-size subset state, and therefore
++\[
++ \norm{R_{{\rm ch},L}^{(n)}\ket c}^2
++ =A_c^2\operatorname{Var}_c(D_L).
++\]
++Writing
++\[
++ E_a=\sum_x X_{a,x}X_{a,x+1},\qquad
++ t_{a,x}=X_{a,x}+X_{a,x+1},\qquad
++ C=\sum_x t_{1,x}t_{2,x},
++\]
++gives $D_L=8n+8(E_1+E_2+C)$.  Exact cycle counting yields
++\[
++ \operatorname{Var}(E_a)=
++ \frac{n_a(n_a-1)(L-n_a)(L-n_a-1)}{(L-2)(L-1)^2},
++\]
++\[
++ \operatorname{Var}(C)=
++ \frac{2n_1n_2(L-n_1)(L-n_2)(3L-8)}{L^2(L-1)^2}.
++\]
++Moreover $\mathbb E[C\mid X_1]=4n_1n_2/L$ and likewise after conditioning on
++$X_2$, so the mixed covariances vanish.  This proves
++\eqref{eq:periodic-charge-leakage-variance}.  Centering proves
++\eqref{eq:periodic-charge-leakage-action}; normalization and the orthogonal
++block-charge supports prove the SVD, Gram operator, norm, and rank.  The stated
++zero set follows term by term from \eqref{eq:periodic-charge-leakage-variance}.
++\end{proof}
++
++The nonconstant term in the compressed operator is a positive diagonal selector favoring block-polarized compositions.  It vanishes accidentally at $L=2$.  Proposition~\ref{prop:charge-leakage-periodic} shows that this exact compression does not generally define an invariant product-AGP subspace: the same charge operator has nonvanishing singular values $A_c\sigma_L(c)$, of the same shell order as the selector shift, before the microscopic factor $\lambda^4\Delta$ is restored.  Consequently, a two-cell weighted lattice certificate is blind both to the principal unscreened selector and to its first nontrivial leakage.
++For the standard open-path truncation used in finite-system DMRG, endpoint charge makes the linear term non-scalar; the exact compressed selector, leakage SVD, and open zero set are given in \cref{cor:charge-leakage-open}.
++
++
++\begin{remark}[Order-four isolation gate]
++\label{rem:order-four-isolation-gate}
++Let $\gamma_L^{(n)}>0$ denote the gap, in dimensionless target units, separating
++$\mathcal Z_n$ from its complement for an order-six parent used to isolate the
++composition manifold.  The exact periodic leakage-to-gap ratio is
++\begin{equation}
++ \Xi_L^{(n)}(\lambda)
++ =\frac{\lambda^4\norm{R_{{\rm ch},L}^{(n)}}}
++ {\lambda^6\gamma_L^{(n)}}
++ =\frac{A_c\max_{n_1+n_2=n}\sigma_L(n_1,n_2)}
++ {\lambda^2\gamma_L^{(n)}}.
++ \label{eq:unscreened-leakage-ratio}
++\end{equation}
++Thus a nonzero order-four leakage channel is not made small relative to an
++order-six isolation gap by taking $\lambda\to0$; an autonomous composition
++Hamiltonian requires order-four or stronger protection, or an exact cancellation
++of the centered charge action.
++\end{remark}
+ 
+ \subsection{Feedback of the direct \texorpdfstring{$B^2$}{B-squared} channel}
+ 
+@@ -846,7 +978,7 @@
+  +H_{\rm shell,L}(\lambda)+\lambda^6\Delta H_{\rm base,L}.
+  \label{eq:Hglobal-unscreened}
+ \end{align}
+-All displayed terms are even, number conserving, finite range, and translation invariant.  Equation \eqref{eq:Hglobal-screened} is the composition-degenerate parent construction; \eqref{eq:Hglobal-unscreened} is the physical selector-plus-mixing construction.
++All displayed terms are even, number conserving, finite range, and translation invariant.  Equation \eqref{eq:Hglobal-screened} is the composition-degenerate parent construction; \eqref{eq:Hglobal-unscreened} is the physical unscreened charge-selection construction.
+ 
+ \begin{figure}[H]
+ \centering
+@@ -953,7 +1085,7 @@
+ \end{equation}
+ whose energy density is $O(\delta A_4)$ at extensive filling.  Hence preserving order-six composition degeneracy likewise requires $\delta A_4=O(\varepsilon\lambda^2\bar\alpha)$; the order-six charge mismatch may be $O(\varepsilon\bar\alpha)$.  The $U_qN_x$ part is composition independent at fixed total filling and does not enter this particular degeneracy tolerance.
+ 
+-For a family whose microscopic coefficients are held independent of $\lambda$, exact asymptotic composition degeneracy therefore requires the order-four residuals to vanish.  At any fixed design value of $\lambda$, however, \eqref{eq:tuning-tolerance} defines a nonzero tolerance tube around the matched point.  The unscreened corollary is the generic alternative: it requires no cancellation and retains the physical order-four selector explicitly.
++For a family whose microscopic coefficients are held independent of $\lambda$, exact asymptotic composition degeneracy therefore requires the order-four residuals to vanish.  At any fixed design value of $\lambda$, however, \eqref{eq:tuning-tolerance} defines a nonzero tolerance tube around the matched point.  The unscreened corollary is the generic alternative: it requires no cancellation and retains the complete physical order-four charge operator explicitly; its compression contains the selector, while its centered action controls leakage.
+ 
+ \subsection{Finite-order local Schrieffer--Wolff definition}
+ 
+@@ -1016,7 +1148,7 @@
+ The shell choices \eqref{eq:betas} cancel the ordinary $B_x^2$ terms, and \eqref{eq:Hscreen} cancels the linked monopole polynomials through degree six.  The surviving degree-six active interaction is therefore the displayed base parent plus the positive coefficient \eqref{eq:alpha-bar}.  Standard local truncation and cluster counting give the volume-independent interaction-norm bounds and the extensive operator-norm estimate.
+ \end{proof}
+ 
+-\begin{corollary}[Unscreened selector-plus-mixing family]
++\begin{corollary}[Unscreened charge-selection family]
+ \label{cor:global-unscreened}
+ Under the hypotheses of \cref{thm:global-screened} except for \eqref{eq:Hscreen}, the same finite-order unitary satisfies
+ \begin{equation}
+@@ -1034,11 +1166,11 @@
+  \lambda^4\Delta\left[C_{4,L}(n)+16A_4\frac{L-2}{L(L-1)}n_1n_2\right].
+  \label{eq:unscreened-selector}
+ \end{equation}
+-Thus the diagonal selector generally precedes the coherent order-$\lambda^6$ composition mixing.
++Thus the compression to the product-AGP composition space contains an order-$\lambda^4$ diagonal selector.  Proposition~\ref{prop:charge-leakage-periodic} shows that the same charge operator generally has order-$\lambda^4$ off-manifold singular values.  Without an additional order-four isolation mechanism, \eqref{eq:unscreened-selector} is therefore a projected selector law rather than the spectrum of an autonomous low-energy composition multiplet.
+ \end{corollary}
+ 
+ \begin{remark}[What is and is not exact]
+-The exact global Feshbach map is not a sum of isolated-bond Schur complements, because neighboring controls share active sites.  The theorem instead states that overlap cannot renormalize the order-six multiplicative coefficient: all connected overlap terms begin at order eight.  The effective order-six energy density has relative error $O(\lambda^2)$ in the screened family.  In the unscreened family the leading composition physics is instead the order-four selector.
++The exact global Feshbach map is not a sum of isolated-bond Schur complements, because neighboring controls share active sites.  The theorem instead states that overlap cannot renormalize the order-six multiplicative coefficient: all connected overlap terms begin at order eight.  The effective order-six energy density has relative error $O(\lambda^2)$ in the screened family.  In the unscreened family the leading active operator is the complete order-four charge-selection term; its compression contains the selector \eqref{eq:unscreened-selector}, while Proposition~\ref{prop:charge-leakage-periodic} quantifies the accompanying off-manifold coupling.
+ \end{remark}
+ 
+ \subsection{Complete Peierls covariance and derivative control}
+@@ -1108,7 +1240,7 @@
+ }
+ \label{eq:one-pair-curvature}
+ \end{equation}
+-The $O(\lambda^8)$ statement includes the first two twist derivatives by Corollary~\ref{cor:peierls}.  The off-diagonal entry is therefore nonzero whenever $\bar\alpha>0$.  In the unscreened family the static order-four selector is twist independent and does not alter \eqref{eq:one-pair-curvature}, but it splits the composition levels before the order-six mixing is applied.
++The $O(\lambda^8)$ statement includes the first two twist derivatives by Corollary~\ref{cor:peierls}.  The off-diagonal entry is therefore nonzero whenever $\bar\alpha>0$.  In the one-pair periodic sector, Proposition~\ref{prop:charge-leakage-periodic} gives zero order-four leakage and \eqref{eq:unscreened-selector} vanishes, so the unscreened charge term does not alter \eqref{eq:one-pair-curvature}.  At higher fillings the complete order-four charge-selection operator must be resolved before the order-six composition curvature is interpreted.
+ 
+ \section{Numerical certificates and reproducibility}
+ \label{sec:numerics}
+@@ -1137,6 +1269,8 @@
+ Kramers microscopic time-reversal residuals & $0$\\
+ Kramers closed-shell effective error divided by $\lambda^8$ & $\to2.42\times10^{-3}$\\
+ Product-AGP charge projection, all tests through $L=6$ & $5.68\times10^{-14}$\\
++Exact periodic/open leakage formulas and zero sets, $L=2,\ldots,9$ & $15/15$ PASS\\
++$L=4$, $(n_1,n_2)=(2,0)$ leakage norm divided by $A_4$ & $8\sqrt2/3$\\
+ One-pair, three-cell translation commutator & $2.22\times10^{-16}$\\
+ One-pair, two-cell effective error divided by $\lambda^8$ & $\to7.63\times10^{-3}$\\
+ \bottomrule
+@@ -1145,9 +1279,11 @@
+ 
+ The local multiplet certificate also verifies the passive positivity window, unchanged kernel dimension, and one-pair composition curvature.  The electron-only certificate diagonalizes the full four-site plaquette and confirms convergence to \eqref{eq:Jparity}.  The all-filling certificate evaluates the exact source-range algebra on the full four-orbital Fock space, checks the charge formula by direct AGP enumeration, and confirms the $t_B^4$ feedback law.
+ 
+-The global certificate is deliberately narrower.  It uses active particle number two: the overlapping Feshbach test is performed on $L=3$, and the canonical low-energy extraction on $L=2$.  It therefore audits translation invariance, evenness in the bridge, the first overlap power, and the $\lambda^8$ one-pair scaling.  The all-filling and volume-uniform conclusions are analytic consequences of \cref{thm:global-screened}, not numerically certified by that script.  Moreover, because the selector coefficient in \eqref{eq:charge-selector} vanishes at $L=2$, the weighted two-cell extraction cannot diagnose the leading unscreened monopole effect.
++A separate exact-arithmetic leakage verifier checks \cref{prop:charge-leakage-periodic,cor:charge-leakage-open} for both boundaries and every composition through $L=9$, totaling 760 boundary/composition sectors and 699,040 hard-core configuration evaluations.  Its centered-action checks establish zero mean and the exact variance in every composition.  The operator-level SVD then follows analytically from diagonality in the occupation basis together with orthogonality of distinct block-charge sectors; no floating-point Fock-space SVD is used.
+ 
+-The accompanying archive records the Python, NumPy, and SciPy versions in \texttt{ENVIRONMENT.txt}, lists SHA-256 hashes in \texttt{SHA256SUMS}, and contains five verifier programs and their raw certificate outputs.  Because last-digit eigensolver residuals depend on the BLAS/LAPACK build, \texttt{PLATFORM\_STABLE\_CERTIFICATE\_SUMMARY.txt} reports thresholded PASS/FAIL statements and rounded invariant values for portable diffs.
++The global certificate is deliberately narrower.  It uses active particle number two: the overlapping Feshbach test is performed on $L=3$, and the canonical low-energy extraction on $L=2$.  It therefore audits translation invariance, evenness in the bridge, the first overlap power, and the $\lambda^8$ one-pair scaling.  The all-filling and volume-uniform conclusions are analytic consequences of \cref{thm:global-screened}, not numerically certified by that script.  Moreover, because the selector coefficient in \eqref{eq:charge-selector} and the periodic leakage both vanish at $L=2$, the weighted two-cell extraction cannot diagnose either component of the leading unscreened monopole effect.
++
++The complete repository certificate suite records the Python, NumPy, and SciPy versions in \texttt{ENVIRONMENT.txt}, lists SHA-256 hashes in \texttt{SHA256SUMS}, and contains six verifier programs and their raw certificate outputs.  Because last-digit eigensolver residuals depend on the BLAS/LAPACK build, \texttt{PLATFORM\_STABLE\_CERTIFICATE\_SUMMARY.txt} reports thresholded PASS/FAIL statements and rounded invariant values for portable diffs.
+ \section{Discussion}
+ \label{sec:discussion}
+ 
+@@ -1171,7 +1307,8 @@
+ \begin{equation}
+  H_{\rm base}+\bar\alpha\sum_xK_x^2
+ \end{equation}
+-with fractional design error $O(\varepsilon)+O(\lambda^2)$.  Exact asymptotic degeneracy is a tuned submanifold, whereas a finite experimental or numerical design has the nonzero tolerance tube quantified in \cref{sec:tuning}.  Without screening, the actual repulsive molecular shell generically produces the order-four diagonal selector \eqref{eq:unscreened-selector}, followed by the order-six coherent mixing.  The unscreened model is therefore not a failed version of the parent but a robust selector-plus-mixing problem with no cancellation requirement.
++with fractional design error $O(\varepsilon)+O(\lambda^2)$.  Exact asymptotic degeneracy is a tuned submanifold, whereas a finite experimental or numerical design has the nonzero tolerance tube quantified in \cref{sec:tuning}.  Without screening, the actual repulsive molecular shell generically produces a complete order-four charge-selection operator whose product-AGP compression is \eqref{eq:unscreened-selector}, followed by the order-six multiplicative channel.  The generic unscreened family is therefore a robust charge-selection problem.  As \cref{rem:order-four-isolation-gate} makes explicit, it becomes an autonomous selector-plus-mixing composition model only after an additional mechanism isolates the product-AGP manifold at order four or stronger.
++In the two-sided row-ideal terminology developed for microscopic response transfer, $R_{{\rm ch},L}^{(n)}=(1-P_{\mathcal Z_n})H_{\rm ch}P_{\mathcal Z_n}$ is precisely the leading unscreened state source: an exact compression $P_{\mathcal Z_n}H_{\rm ch}P_{\mathcal Z_n}$ does not imply invariance of $\mathcal Z_n$ \cite{SledgianowskiMeissnerTransfer}.
+ 
+ \subsection{Limitations and remaining work}
+ 
+@@ -1191,7 +1328,7 @@
+ \end{equation}
+ provide the exact bridge between microscopic paths and the emergent parity projector.  Under the full high-block gap $D\succeq d_*\Id>0$, the nested control sector produces the complete local $K^\dagger K$ channel at every product-AGP filling.
+ 
+-On a periodic lattice, a weighted hierarchy places that channel at order $\lambda^6$ and delays connected overlap, Kramers double-excitation, and residual block-coupling errors to order $\lambda^8$.  The screened family yields a composition-degenerate, translation-invariant, Peierls-covariant effective parent only on the matched submanifold, with the finite-$\lambda$ tolerance quantified in \eqref{eq:tuning-tolerance}.  The generic unscreened family retains the physically linked order-$\lambda^4$ diagonal selector and therefore realizes robust selector-plus-mixing physics.  The result completes a controlled multiorbital UV construction of the additional multiplicative escape channel, conditional on the base two-block QGN parent.  Material extraction and dynamical transport remain separate stages.
++On a periodic lattice, a weighted hierarchy places that channel at order $\lambda^6$ and delays connected overlap, Kramers double-excitation, and residual block-coupling errors to order $\lambda^8$.  The screened family yields a composition-degenerate, translation-invariant, Peierls-covariant effective parent only on the matched submanifold, with the finite-$\lambda$ tolerance quantified in \eqref{eq:tuning-tolerance}.  The generic unscreened family retains the physically linked order-$\lambda^4$ charge-selection operator.  Its exact product-AGP compression contains the advertised diagonal selector, while its explicit singular values show that an isolated selector-plus-mixing composition model requires additional order-four protection.  The result completes a controlled multiorbital UV construction of the additional multiplicative escape channel, conditional on the base two-block QGN parent.  Material extraction and dynamical transport remain separate stages.
+ 
+ 
+ \appendix
+@@ -1377,7 +1514,164 @@
+ \begin{equation}
+  N_x=2(X_{1,x}+X_{1,x+1}+X_{2,x}+X_{2,x+1}).
+ \end{equation}
+-Expanding $N_x^2$, using translation invariance and factorization between blocks, and summing $x$ gives \eqref{eq:charge-potential}.  The absence of off-diagonal composition matrix elements follows because $N_x$ commutes with both block charges.
++Expanding $N_x^2$, using translation invariance and factorization between blocks, and summing $x$ gives \eqref{eq:charge-potential}.  The absence of off-diagonal composition matrix elements in the compression follows because $N_x$ commutes with both block charges; the centered variance calculation in Proposition~\ref{prop:charge-leakage-periodic} determines the simultaneous off-manifold block.
++
++\subsection{Open-path boundary formula for the numerical certificates}
++
++\begin{corollary}[Open-path charge compression and leakage]
++\label{cor:charge-leakage-open}
++Consider the standard open truncation with $L$ active sites and bonds
++$x=1,\ldots,L-1$.  Define
++\[
++ H_{{\rm ch},L}^{\rm op}
++ =\sum_{x=1}^{L-1}\left(A_c N_x^2-\frac{U_c}{2}N_x\right),
++ \qquad V_c=4A_c-U_c>0.
++\]
++Let
++\[
++ B_a=X_{a,1}+X_{a,L},\qquad
++ E_a=\sum_{x=1}^{L-1}X_{a,x}X_{a,x+1},
++\]
++\[
++ t_{a,x}=X_{a,x}+X_{a,x+1},\qquad
++ C=\sum_{x=1}^{L-1}t_{1,x}t_{2,x},
++ \qquad B=B_1+B_2,\quad Z=E_1+E_2+C.
++\]
++Then, configuration by configuration,
++\begin{equation}
++ \boxed{
++ H_{{\rm ch},L}^{\rm op}
++ =(8A_c-2U_c)n+8A_cZ-V_cB.}
++ \label{eq:open-charge-decomposition}
++\end{equation}
++Its product-AGP compression is
++\begin{equation}
++ \boxed{
++ \bra{n_1,n_2}H_{{\rm ch},L}^{\rm op}\ket{n_1,n_2}
++ =C_L^{\rm op}(n)+16A_c\frac{L-2}{L^2}n_1n_2,}
++ \label{eq:open-charge-selector}
++\end{equation}
++where
++\begin{equation}
++ C_L^{\rm op}(n)
++ =\frac{8A_cn(L+n-2)-2U_cn(L-1)}{L}.
++ \label{eq:open-charge-baseline}
++\end{equation}
++For $p_k(m)=(m)_k/(L)_k$, define
++\begin{align}
++ b_L(m)&=\frac{2m(L-m)(L-2)}{L^2(L-1)},
++ &h_L(m)&=-\frac{2m(m-1)(L-m)}{L^2(L-1)},
++ \label{eq:open-b-h}\\
++ e_L(m)&=\frac{m(m-1)(L-m)(L-m+1)}{L^2(L-1)},
++ \label{eq:open-e}
++\end{align}
++\[
++ u_0(m)=2p_1(m)+2p_2(m),\qquad
++ u_1(m)=p_1(m)+3p_2(m),\qquad
++ u_2(m)=4p_2(m),
++\]
++\begin{align}
++ w_L(n_1,n_2)={}&(L-1)u_0(n_1)u_0(n_2)
++ +2(L-2)u_1(n_1)u_1(n_2)\notag\\
++ &+(L-2)(L-3)u_2(n_1)u_2(n_2)
++ -\left[\frac{4(L-1)n_1n_2}{L^2}\right]^2,
++ \label{eq:open-w}
++\end{align}
++\begin{align}
++ \Gamma_0={}&e_L(n_1)+e_L(n_2)+w_L(n_1,n_2)
++ -\frac{4n_2}{L}h_L(n_1)-\frac{4n_1}{L}h_L(n_2),\notag\\
++ \Gamma_1={}&h_L(n_1)+h_L(n_2)
++ -\frac{2n_2}{L}b_L(n_1)-\frac{2n_1}{L}b_L(n_2),\notag\\
++ \Gamma_2={}&b_L(n_1)+b_L(n_2).
++ \label{eq:open-gammas}
++\end{align}
++For
++\[
++ R_{{\rm ch},L}^{(n),\rm op}
++ =(1-P_{\mathcal Z_n})H_{{\rm ch},L}^{\rm op}P_{\mathcal Z_n},
++\]
++the singular value attached to composition $(n_1,n_2)$ is
++\begin{equation}
++ \boxed{
++ (\tau_{L;n_1,n_2}^{\rm op})^2
++ =64A_c^2\Gamma_0-16A_cV_c\Gamma_1+V_c^2\Gamma_2.}
++ \label{eq:open-charge-leakage-variance}
++\end{equation}
++If $\tau_{L;c}^{\rm op}>0$, define
++\[
++ \ket{\ell_{L;c}^{\rm op}}
++ =\frac{(H_{{\rm ch},L}^{\rm op}-\mu_{L;c}^{\rm op})\ket c}
++ {\tau_{L;c}^{\rm op}}.
++\]
++Then
++\begin{equation}
++ \boxed{
++ R_{{\rm ch},L}^{(n),\rm op}
++ =\sum_{\substack{c=(n_1,n_2)\\n_1+n_2=n,\ \tau_{L;c}^{\rm op}>0}}
++ \tau_{L;c}^{\rm op}\ket{\ell_{L;c}^{\rm op}}\bra c,
++ \qquad
++ \norm{R_{{\rm ch},L}^{(n),\rm op}}
++ =\max_{n_1+n_2=n}\tau_{L;n_1,n_2}^{\rm op}.}
++ \label{eq:open-charge-leakage-svd}
++\end{equation}
++For $L\ge3$, the open leakage vanishes exactly at
++$(n_1,n_2)\in\{0,L\}\times\{0,L\}$.  For $L=2$, it vanishes in every sector.
++\end{corollary}
++
++\begin{proof}
++The path identities
++\[
++ \sum_{x=1}^{L-1}N_x=4n-2B,
++ \qquad
++ \sum_{x=1}^{L-1}N_x^2=8n-4B+8Z
++\]
++prove \eqref{eq:open-charge-decomposition}.  Uniform fixed-size subset averages
++give \eqref{eq:open-charge-selector}.
++
++The quantities $b_L,h_L,e_L$ are respectively
++$\operatorname{Var}(B_a)$, $\operatorname{Cov}(E_a,B_a)$, and
++$\operatorname{Var}(E_a)$.  Counting equal, adjacent, and disjoint ordered edge
++pairs proves $w_L=\operatorname{Var}(C)$.  Moreover
++\[
++ \mathbb E[C\mid X_1]=\frac{2n_2}{L}(2n_1-B_1),
++\]
++so
++\[
++ \operatorname{Cov}(C,E_1)=-\frac{2n_2}{L}h_L(n_1),
++ \qquad
++ \operatorname{Cov}(C,B_1)=-\frac{2n_2}{L}b_L(n_1),
++\]
++with the exchanged formulas for block $2$.  Hence
++$\Gamma_0=\operatorname{Var}(Z)$,
++$\Gamma_1=\operatorname{Cov}(Z,B)$, and
++$\Gamma_2=\operatorname{Var}(B)$, proving
++\eqref{eq:open-charge-leakage-variance} and the SVD.
++
++Finally, $\Gamma_0\ge0$, $\Gamma_2\ge0$, and $\Gamma_1\le0$ because
++$h_L(m)\le0$ and $b_L(m)\ge0$.  With $A_c,V_c>0$, every term in
++\eqref{eq:open-charge-leakage-variance} is nonnegative.  Vanishing therefore
++forces $\Gamma_2=0$, which for $L\ge3$ is equivalent to each block being empty
++or full.  The converse is immediate.
++\end{proof}
++
++\begin{remark}[Boundary scope and shell normalization]
++The global microscopic theorem is periodic, so
++Proposition~\ref{prop:charge-leakage-periodic} is the theorem-level statement.
++The open corollary is required when a numerical calculation removes the wrap
++bond.  On the cycle,
++\[
++ \frac{\tau_{L;c}^{2,{\rm per}}}{A_c^2}=\sigma_L^2(c)
++\]
++is independent of $U_c$.  On the path,
++\[
++ \frac{(\tau_{L;c}^{\rm op})^2}{A_c^2}
++ =64\Gamma_0-16\frac{V_c}{A_c}\Gamma_1
++ +\left(\frac{V_c}{A_c}\right)^2\Gamma_2.
++\]
++Thus open normalization is exact under a common rescaling of the shell
++parameters, but $V_c/A_c$ must be held fixed.  In the order-four microscopic
++family, set $(A_c,U_c,V_c)=(A_4,U_4,V_4)$.
++\end{remark}
+ 
+ \section{Weighted linked-cluster bookkeeping}
+ \label{app:weighted}
+@@ -1530,6 +1824,10 @@
+ N. Sledgianowski,
+ ``Peierls-Transport Obstruction and the Minimal Many-Body Escape,'' review-integrated manuscript (2026); the theorem used here is restated and proved in Appendix~\ref{app:no-go}.
+ 
++\bibitem{SledgianowskiMeissnerTransfer}
++N. Sledgianowski,
++``Microscopic Transfer of Exact Meissner Weight,'' manuscript (2026).
++
+ \end{thebibliography}
+ 
+ \end{document}

@@ -1,0 +1,28 @@
+EXACT UNSCREENED PRODUCT-AGP LEAKAGE: PLATFORM-STABLE SUMMARY
+============================================================
+
+OVERALL: PASS
+Exact checks: 15/15
+Volumes: L=2,...,9
+Boundaries: periodic cycle and standard open path
+Sectors checked: 760
+Hard-core configurations checked: 699,040
+Arithmetic: exact integers and fractions.Fraction
+
+Periodic theorem:
+PASS - projected compression and selector
+PASS - centered action, closed variance, SVD, Gram operator, norm, and rank
+PASS - complete zero set
+PASS - L=4, (2,0) benchmark ||R|2,0>||/A4 = 8 sqrt(2)/3
+PASS - A4 normalization
+
+Open theorem:
+PASS - endpoint decomposition
+PASS - compressed selector
+PASS - covariance formula and singular values
+PASS - sign structure Gamma0>=0, Gamma1<=0, Gamma2>=0
+PASS - complete physical-shell zero set
+PASS - normalization at fixed V4/A4
+
+Focused Phase-3 data:
+PASS - periodic and open Gram diagonals for L=4,6,8, n=2,3

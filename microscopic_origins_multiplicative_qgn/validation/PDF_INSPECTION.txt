@@ -1,0 +1,47 @@
+PDF: /mnt/data/microscopic_origins_multiplicative_qgn_revised/paper/microscopic_origins_multiplicative_qgn.pdf
+Pages: 31
+Encrypted: False
+Page sizes (pt, rounded):
+  - 612 x 792 (31 page(s))
+Metadata:
+  /Author: Nicholas Sledgianowski
+  /CreationDate: D:20260728190121Z
+  /Creator: LaTeX with hyperref
+  /Keywords: 
+  /ModDate: D:20260728190121Z
+  /PTEX.Fullbanner: This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) kpathsea version 6.4.0/dev
+  /Producer: pdfTeX-1.40.26
+  /Subject: 
+  /Title: Microscopic Origins of Multiplicative Null Interactions in Quantum-Geometric-Nesting Superconductors
+  /Trapped: /False
+Outline items: 49
+Form fields: 0
+Attachments: 0
+Annotations: 117
+
+Fonts (pdffonts, first 25 lines):
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+RVEAYX+LMRoman12-Bold                Type 1            Custom           yes yes yes    208  0
+IZRNWG+LMRoman12-Regular             Type 1            Custom           yes yes yes    209  0
+HLCCMD+LMRoman10-Bold                Type 1            Custom           yes yes yes    210  0
+TDXYUV+LMRoman10-Regular             Type 1            Custom           yes yes yes    211  0
+SYSQPL+LMMathItalic10-Regular        Type 1            Custom           yes yes yes    212  0
+TTAUFI+LMMathItalic7-Regular         Type 1            Custom           yes yes yes    213  0
+TDXYUV+LMRoman10-Regular             Type 1            Custom           yes yes yes    214  0
+BZZJXQ+LMRoman7-Regular              Type 1            Custom           yes yes yes    215  0
+GOBCNQ+LMMathSymbols10-Regular       Type 1            Custom           yes yes yes    216  0
+XCFZCZ+LMMathSymbols7-Regular        Type 1            Custom           yes yes yes    217  0
+PMSNFO+MSBM10                        Type 1            Builtin          yes yes yes    218  0
+DOVSLR+LMMathExtension10-Regular     Type 1            Custom           yes yes yes    222  0
+OKASPD+LMMathItalic8-Regular         Type 1            Custom           yes yes yes    247  0
+KDGCMD+LMMathSymbols8-Regular        Type 1            Custom           yes yes yes    249  0
+TKZHXA+LMRoman8-Regular              Type 1            Custom           yes yes yes    251  0
+YVQMEE+LMMathItalic6-Regular         Type 1            Custom           yes yes yes    276  0
+BJBRJE+LMRoman10-Italic              Type 1            Custom           yes yes yes    281  0
+TJAKGB+LMMono10-Regular              Type 1            Custom           yes yes yes    291  0
+FTLBBH+LMRoman6-Regular              Type 1            Custom           yes yes yes    313  0
+HLCCMD+LMRoman10-Bold                Type 1            Custom           yes yes yes    493  0
+YOLQMU+LMMathSymbols6-Regular        Type 1            Custom           yes yes yes    536  0
+BRQPRI+EUFM10                        Type 1            Builtin          yes yes yes    588  0
+HPKZKM+LMRoman8-Bold                 Type 1            Custom           yes yes yes    609  0

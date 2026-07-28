@@ -1,0 +1,115 @@
+EXACT UNSCREENED PRODUCT-AGP LEAKAGE CERTIFICATE, VERSION 2.1
+============================================================
+
+Scope
+-----
+Periodic: L translated bonds of the cycle, matching the parent theorem.
+Open: the standard truncation to the L-1 bonds of the path.
+
+For each composition c=(n1,n2), mu_c=<c|C4|c> and
+
+  R|c> = (C4-mu_c)|c>.
+
+If tau_c^2=Var_c(C4)>0, define |ell_c>=(C4-mu_c)|c>/tau_c.
+Different compositions have orthogonal block-charge support, hence
+
+  R = sum_c tau_c |ell_c><c|,
+  R^dagger R = sum_c tau_c^2 |c><c|,
+  ||R||^2 = max_c tau_c^2,
+  rank(R) = #{c: tau_c^2>0}.
+
+The exact centered-moment checks below verify the first and second moments;
+occupation-basis diagonality and block-charge orthogonality then imply
+the operator-level SVD without a floating-point Fock-space decomposition.
+
+Exact parameters: A4=49/500, U4=147/500, 
+V4=4A4-U4=49/500, V4/A4=1.
+Volumes enumerated: 2, 3, 4, 5, 6, 7, 8, 9.
+Boundary/composition sectors checked: 760.
+Hard-core pair configurations checked: 699040.
+
+Periodic theorem
+----------------
+For L>=3, tau_c^2/A4^2 equals
+
+  64 [
+    {n1(n1-1)(L-n1)(L-n1-1)+n2(n2-1)(L-n2)(L-n2-1)}
+      / {(L-2)(L-1)^2}
+    + 2 n1 n2 (L-n1)(L-n2)(3L-8) / {L^2(L-1)^2}
+  ].
+
+Open theorem
+------------
+Let B be total endpoint occupancy and Z=E1+E2+C. Then
+
+  C4_open = (8A4-2U4)n + 8A4 Z - V4 B.
+
+Writing Gamma0=Var(Z), Gamma1=Cov(Z,B), Gamma2=Var(B),
+
+  tau_c^2 = 64 A4^2 Gamma0 - 16 A4 V4 Gamma1 + V4^2 Gamma2.
+
+The exact component formulas are recorded in DERIVATION.md and paper_insert.tex.
+For A4>0,V4>0, Gamma0>=0, Gamma1<=0, Gamma2>=0.  Therefore for
+L>=3 the open leakage vanishes exactly at the four corners
+(n1,n2) in {0,L}x{0,L}; for L=2 it vanishes in every sector.
+
+Projected selectors
+-------------------
+Periodic shift per A4: 16(L-2)n1n2/[L(L-1)].
+Open shift per A4:     16(L-2)n1n2/L^2.
+The open coefficient is (L-1)/L times the periodic coefficient.
+
+Exact checks
+------------
+[PASS] periodic projected mean and selector
+[PASS] periodic closed leakage formula
+[PASS] periodic explicit centered action/SVD norm
+[PASS] periodic zero set
+[PASS] open endpoint decomposition
+[PASS] open projected mean and selector
+[PASS] open closed leakage formula
+[PASS] open explicit centered action/SVD norm
+[PASS] open Gamma0>=0, Gamma1<=0, Gamma2>=0
+[PASS] open physical-shell zero set
+[PASS] periodic L=4 (2,0) benchmark
+[PASS] periodic A4 normalization
+[PASS] open fixed-ratio A4 normalization
+[PASS] periodic Phase-3 Gram diagonals
+[PASS] open Phase-3 Gram diagonals at V4/A4=1
+
+Periodic benchmark
+------------------
+L=4, (n1,n2)=(2,0): tau^2/A4^2=128/9, hence
+
+  ||R|2,0>|| = (8 sqrt(2)/3) A4.
+
+Phase-3 Gram diagonals
+----------------------
+Entries are diag(R^dagger R)/A4^2 in order (0,n),...,(n,0).
+
+PERIODIC
+L=4, n=2: diag=[128/9, 32, 128/9], rank=3/3, ||R||/A4=sqrt(32) (5.65685424949).
+L=4, n=3: diag=[0, 512/9, 512/9, 0], rank=2/4, ||R||/A4=sqrt(512/9) (7.54247233266).
+L=6, n=2: diag=[384/25, 320/9, 384/25], rank=3/3, ||R||/A4=sqrt(320/9) (5.96284794).
+L=6, n=3: diag=[576/25, 16256/225, 16256/225, 576/25], rank=4/4, ||R||/A4=sqrt(16256/225) (8.49993464027).
+L=8, n=2: diag=[640/49, 32, 640/49], rank=3/3, ||R||/A4=sqrt(32) (5.65685424949).
+L=8, n=3: diag=[1280/49, 3328/49, 3328/49, 1280/49], rank=4/4, ||R||/A4=sqrt(3328/49) (8.2412600582).
+
+OPEN
+L=4, n=2: diag=[19, 65/2, 19], rank=3/3, ||R||/A4=sqrt(65/2) (5.7008771255).
+L=4, n=3: diag=[81/4, 1015/12, 1015/12, 81/4], rank=4/4, ||R||/A4=sqrt(1015/12) (9.19691977421).
+L=6, n=2: diag=[16, 2660/81, 16], rank=3/3, ||R||/A4=sqrt(2660/81) (5.73057642588).
+L=6, n=3: diag=[146/5, 30826/405, 30826/405, 146/5], rank=4/4, ||R||/A4=sqrt(30826/405) (8.72430972897).
+L=8, n=2: diag=[369/28, 237/8, 369/28], rank=3/3, ||R||/A4=sqrt(237/8) (5.44288526427).
+L=8, n=3: diag=[3165/112, 7521/112, 7521/112, 3165/112], rank=4/4, ||R||/A4=sqrt(7521/112) (8.19461931479).
+
+Boundary-scope conclusion
+-------------------------
+The parent theorem is periodic, so the periodic proposition is the theorem-level
+certificate.  The numerical plan also uses open chains; under the standard path
+truncation, open spectra require the separate formula above.  The linear charge
+term is no longer scalar because endpoint occupancy fluctuates.  Consequently the
+periodic normalization by A4 alone becomes, for open chains, normalization at fixed
+V4/A4.  At the active ratio V4/A4=1, all Phase-3 open sectors listed above leak.
+
+OVERALL: PASS

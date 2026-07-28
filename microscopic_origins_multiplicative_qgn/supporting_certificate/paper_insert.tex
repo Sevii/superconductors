@@ -1,0 +1,275 @@
+% Manuscript-ready insertion for the charge-combinatorics section.
+%
+% Placement:
+%   1. Put Proposition~\ref{prop:charge-leakage-periodic} immediately after the
+%      existing projected charge-potential proposition.
+%   2. Put Corollary~\ref{cor:charge-leakage-open} in the numerical appendix or
+%      after the periodic proposition if open-boundary numerics are discussed in
+%      the main text.
+%
+% The notation A_c,U_c,V_c matches the existing local charge section.  In the
+% order-four unscreened family specialize A_c=A_4, U_c=U_4, V_c=V_4.
+
+\begin{proposition}[Exact periodic charge-leakage action and singular values]
+\label{prop:charge-leakage-periodic}
+Let
+\[
+ \mathcal Z_n=\operatorname{span}\{\ket{n_1,n_2}:n_1+n_2=n\},
+ \qquad
+ R_{{\rm ch},L}^{(n)}=(1-P_{\mathcal Z_n})H_{\rm ch}P_{\mathcal Z_n},
+\]
+and put $D_L=\sum_x N_x^2$.  For a composition $c=(n_1,n_2)$, write
+\[
+ \mu_{L;c}=\bra cH_{\rm ch}\ket c.
+\]
+Then the exact composition-resolved action is
+\begin{equation}
+ \boxed{
+ R_{{\rm ch},L}^{(n)}\ket c
+ =\bigl(H_{\rm ch}-\mu_{L;c}\bigr)\ket c
+ =A_c\bigl(D_L-\langle D_L\rangle_c\bigr)\ket c.}
+ \label{eq:periodic-charge-leakage-action}
+\end{equation}
+For $L\ge3$, define
+\begin{equation}
+\boxed{
+\begin{aligned}
+\sigma_L^2(n_1,n_2)=64\Bigg[&
+\frac{n_1(n_1-1)(L-n_1)(L-n_1-1)
++n_2(n_2-1)(L-n_2)(L-n_2-1)}{(L-2)(L-1)^2}\\
+&+\frac{2n_1n_2(L-n_1)(L-n_2)(3L-8)}{L^2(L-1)^2}
+\Bigg].
+\end{aligned}}
+\label{eq:periodic-charge-leakage-variance}
+\end{equation}
+Whenever $\sigma_L(c)>0$, let
+\begin{equation}
+ \ket{\ell_{L;c}}
+ =\frac{(D_L-\langle D_L\rangle_c)\ket c}{\sigma_L(c)}.
+ \label{eq:periodic-charge-left-singular-vector}
+\end{equation}
+The nonzero vectors $\ket{\ell_{L;c}}$ are orthonormal, and
+\begin{equation}
+ \boxed{
+ R_{{\rm ch},L}^{(n)}
+ =A_c\!\sum_{\substack{c=(n_1,n_2)\\n_1+n_2=n,\ \sigma_L(c)>0}}
+ \sigma_L(c)\ket{\ell_{L;c}}\bra c.}
+ \label{eq:periodic-charge-leakage-svd}
+\end{equation}
+Consequently,
+\begin{equation}
+ \boxed{
+ (R_{{\rm ch},L}^{(n)})^\dagger R_{{\rm ch},L}^{(n)}
+ =A_c^2\sum_{n_1+n_2=n}\sigma_L^2(n_1,n_2)
+ \ket{n_1,n_2}\!\bra{n_1,n_2},}
+ \label{eq:periodic-charge-leakage-gram}
+\end{equation}
+\begin{equation}
+ \boxed{
+ \norm{R_{{\rm ch},L}^{(n)}}
+ =A_c\max_{n_1+n_2=n}\sigma_L(n_1,n_2),
+ \qquad
+ \operatorname{rank}R_{{\rm ch},L}^{(n)}
+ =\#\{c:\sigma_L(c)>0\}.}
+ \label{eq:periodic-charge-leakage-norm}
+\end{equation}
+For $L=2$, $R_{{\rm ch},2}^{(n)}=0$ in every filling sector.  For $L\ge3$,
+$\sigma_L^2(n_1,n_2)=0$ exactly when one block is empty or full and the other
+has occupation $0$, $1$, $L-1$, or $L$.
+\end{proposition}
+
+\begin{proof}
+At fixed total pair number, $\sum_x N_x=4n$ is scalar on the periodic cycle, so
+only $A_c D_L$ contributes to the off-manifold block.  Since $D_L$ preserves both
+block charges, its centered images from distinct compositions have orthogonal
+support.  In a fixed composition sector the product AGP is the uniform
+normalized fixed-size subset state, and therefore
+\[
+ \norm{R_{{\rm ch},L}^{(n)}\ket c}^2
+ =A_c^2\operatorname{Var}_c(D_L).
+\]
+Writing
+\[
+ E_a=\sum_x X_{a,x}X_{a,x+1},\qquad
+ t_{a,x}=X_{a,x}+X_{a,x+1},\qquad
+ C=\sum_x t_{1,x}t_{2,x},
+\]
+gives $D_L=8n+8(E_1+E_2+C)$.  Exact cycle counting yields
+\[
+ \operatorname{Var}(E_a)=
+ \frac{n_a(n_a-1)(L-n_a)(L-n_a-1)}{(L-2)(L-1)^2},
+\]
+\[
+ \operatorname{Var}(C)=
+ \frac{2n_1n_2(L-n_1)(L-n_2)(3L-8)}{L^2(L-1)^2}.
+\]
+Moreover $\mathbb E[C\mid X_1]=4n_1n_2/L$ and likewise after conditioning on
+$X_2$, so the mixed covariances vanish.  This proves
+\eqref{eq:periodic-charge-leakage-variance}.  Centering proves
+\eqref{eq:periodic-charge-leakage-action}; normalization and the orthogonal
+block-charge supports prove the SVD, Gram operator, norm, and rank.  The stated
+zero set follows term by term from \eqref{eq:periodic-charge-leakage-variance}.
+\end{proof}
+
+\begin{corollary}[Open-path charge compression and leakage]
+\label{cor:charge-leakage-open}
+Consider the standard open truncation with $L$ active sites and bonds
+$x=1,\ldots,L-1$.  Define
+\[
+ H_{{\rm ch},L}^{\rm op}
+ =\sum_{x=1}^{L-1}\left(A_c N_x^2-\frac{U_c}{2}N_x\right),
+ \qquad V_c=4A_c-U_c>0.
+\]
+Let
+\[
+ B_a=X_{a,1}+X_{a,L},\qquad
+ E_a=\sum_{x=1}^{L-1}X_{a,x}X_{a,x+1},
+\]
+\[
+ t_{a,x}=X_{a,x}+X_{a,x+1},\qquad
+ C=\sum_{x=1}^{L-1}t_{1,x}t_{2,x},
+ \qquad B=B_1+B_2,\quad Z=E_1+E_2+C.
+\]
+Then, configuration by configuration,
+\begin{equation}
+ \boxed{
+ H_{{\rm ch},L}^{\rm op}
+ =(8A_c-2U_c)n+8A_cZ-V_cB.}
+ \label{eq:open-charge-decomposition}
+\end{equation}
+Its product-AGP compression is
+\begin{equation}
+ \boxed{
+ \bra{n_1,n_2}H_{{\rm ch},L}^{\rm op}\ket{n_1,n_2}
+ =C_L^{\rm op}(n)+16A_c\frac{L-2}{L^2}n_1n_2,}
+ \label{eq:open-charge-selector}
+\end{equation}
+where
+\begin{equation}
+ C_L^{\rm op}(n)
+ =\frac{8A_cn(L+n-2)-2U_cn(L-1)}{L}.
+ \label{eq:open-charge-baseline}
+\end{equation}
+For $p_k(m)=(m)_k/(L)_k$, define
+\begin{align}
+ b_L(m)&=\frac{2m(L-m)(L-2)}{L^2(L-1)},
+ &h_L(m)&=-\frac{2m(m-1)(L-m)}{L^2(L-1)},
+ \label{eq:open-b-h}\\
+ e_L(m)&=\frac{m(m-1)(L-m)(L-m+1)}{L^2(L-1)},
+ \label{eq:open-e}
+\end{align}
+\[
+ u_0(m)=2p_1(m)+2p_2(m),\qquad
+ u_1(m)=p_1(m)+3p_2(m),\qquad
+ u_2(m)=4p_2(m),
+\]
+\begin{align}
+ w_L(n_1,n_2)={}&(L-1)u_0(n_1)u_0(n_2)
+ +2(L-2)u_1(n_1)u_1(n_2)\notag\\
+ &+(L-2)(L-3)u_2(n_1)u_2(n_2)
+ -\left[\frac{4(L-1)n_1n_2}{L^2}\right]^2,
+ \label{eq:open-w}
+\end{align}
+\begin{align}
+ \Gamma_0={}&e_L(n_1)+e_L(n_2)+w_L(n_1,n_2)
+ -\frac{4n_2}{L}h_L(n_1)-\frac{4n_1}{L}h_L(n_2),\notag\\
+ \Gamma_1={}&h_L(n_1)+h_L(n_2)
+ -\frac{2n_2}{L}b_L(n_1)-\frac{2n_1}{L}b_L(n_2),\notag\\
+ \Gamma_2={}&b_L(n_1)+b_L(n_2).
+ \label{eq:open-gammas}
+\end{align}
+For
+\[
+ R_{{\rm ch},L}^{(n),\rm op}
+ =(1-P_{\mathcal Z_n})H_{{\rm ch},L}^{\rm op}P_{\mathcal Z_n},
+\]
+the singular value attached to composition $(n_1,n_2)$ is
+\begin{equation}
+ \boxed{
+ (\tau_{L;n_1,n_2}^{\rm op})^2
+ =64A_c^2\Gamma_0-16A_cV_c\Gamma_1+V_c^2\Gamma_2.}
+ \label{eq:open-charge-leakage-variance}
+\end{equation}
+If $\tau_{L;c}^{\rm op}>0$, define
+\[
+ \ket{\ell_{L;c}^{\rm op}}
+ =\frac{(H_{{\rm ch},L}^{\rm op}-\mu_{L;c}^{\rm op})\ket c}
+ {\tau_{L;c}^{\rm op}}.
+\]
+Then
+\begin{equation}
+ \boxed{
+ R_{{\rm ch},L}^{(n),\rm op}
+ =\sum_{\substack{c=(n_1,n_2)\\n_1+n_2=n,\ \tau_{L;c}^{\rm op}>0}}
+ \tau_{L;c}^{\rm op}\ket{\ell_{L;c}^{\rm op}}\bra c,
+ \qquad
+ \norm{R_{{\rm ch},L}^{(n),\rm op}}
+ =\max_{n_1+n_2=n}\tau_{L;n_1,n_2}^{\rm op}.}
+ \label{eq:open-charge-leakage-svd}
+\end{equation}
+For $L\ge3$, the open leakage vanishes exactly at
+$(n_1,n_2)\in\{0,L\}\times\{0,L\}$.  For $L=2$, it vanishes in every sector.
+\end{corollary}
+
+\begin{proof}
+The path identities
+\[
+ \sum_{x=1}^{L-1}N_x=4n-2B,
+ \qquad
+ \sum_{x=1}^{L-1}N_x^2=8n-4B+8Z
+\]
+prove \eqref{eq:open-charge-decomposition}.  Uniform fixed-size subset averages
+give \eqref{eq:open-charge-selector}.
+
+The quantities $b_L,h_L,e_L$ are respectively
+$\operatorname{Var}(B_a)$, $\operatorname{Cov}(E_a,B_a)$, and
+$\operatorname{Var}(E_a)$.  Counting equal, adjacent, and disjoint ordered edge
+pairs proves $w_L=\operatorname{Var}(C)$.  Moreover
+\[
+ \mathbb E[C\mid X_1]=\frac{2n_2}{L}(2n_1-B_1),
+\]
+so
+\[
+ \operatorname{Cov}(C,E_1)=-\frac{2n_2}{L}h_L(n_1),
+ \qquad
+ \operatorname{Cov}(C,B_1)=-\frac{2n_2}{L}b_L(n_1),
+\]
+with the exchanged formulas for block $2$.  Hence
+$\Gamma_0=\operatorname{Var}(Z)$,
+$\Gamma_1=\operatorname{Cov}(Z,B)$, and
+$\Gamma_2=\operatorname{Var}(B)$, proving
+\eqref{eq:open-charge-leakage-variance} and the SVD.
+
+Finally, $\Gamma_0\ge0$, $\Gamma_2\ge0$, and $\Gamma_1\le0$ because
+$h_L(m)\le0$ and $b_L(m)\ge0$.  With $A_c,V_c>0$, every term in
+\eqref{eq:open-charge-leakage-variance} is nonnegative.  Vanishing therefore
+forces $\Gamma_2=0$, which for $L\ge3$ is equivalent to each block being empty
+or full.  The converse is immediate.
+\end{proof}
+
+\begin{remark}[Boundary scope and shell normalization]
+The global microscopic theorem is periodic, so
+Proposition~\ref{prop:charge-leakage-periodic} is the theorem-level statement.
+The open corollary is required when a numerical calculation removes the wrap
+bond.  On the cycle,
+\[
+ \frac{\tau_{L;c}^{2,{\rm per}}}{A_c^2}=\sigma_L^2(c)
+\]
+is independent of $U_c$.  On the path,
+\[
+ \frac{(\tau_{L;c}^{\rm op})^2}{A_c^2}
+ =64\Gamma_0-16\frac{V_c}{A_c}\Gamma_1
+ +\left(\frac{V_c}{A_c}\right)^2\Gamma_2.
+\]
+Thus open normalization is exact under a common rescaling of the shell
+parameters, but $V_c/A_c$ must be held fixed.  In the order-four microscopic
+family, set $(A_c,U_c,V_c)=(A_4,U_4,V_4)$.
+\end{remark}
+
+\begin{remark}[Compression is not invariance]
+The periodic and open selector formulas are exact compressed matrix elements.
+They do not generally define autonomous composition-space Hamiltonians: the
+same charge operator has the nonzero off-manifold singular values above.  Since
+the base-parent isolation scale is order $\lambda^6$, every nonzero order-four
+singular value must enter the interpretation gate for unscreened spectra.
+\end{remark}

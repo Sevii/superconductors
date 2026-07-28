@@ -1,0 +1,30 @@
+EXACT UNSCREENED LEAKAGE SUPPORT: BUILD AND TEST RESULTS
+========================================================
+Date: 2026-07-28
+
+Verifier
+--------
+Command: bash run_certificate.sh
+Result: OVERALL PASS
+Exact checks: 15/15
+Volumes: L=2,...,9
+Boundaries: periodic cycle and standard open path
+Boundary/composition sectors: 760
+Hard-core configuration evaluations: 699,040
+Arithmetic for theorem-level decisions: integers and fractions.Fraction
+
+The verified content includes:
+- periodic projected selector and exact centered action;
+- periodic SVD, Gram operator, norm, rank, and complete zero set;
+- L=4, (n1,n2)=(2,0) benchmark 8 sqrt(2) A4 / 3;
+- open endpoint decomposition, selector, covariance formula, SVD, and zero set;
+- periodic normalization by A4 and open normalization at fixed V4/A4;
+- focused Phase-3 Gram diagonals for L=4,6,8 and n=2,3.
+
+Interpretation of the SVD check
+-------------------------------
+The enumerator verifies the exact centered first and second moments in every
+composition. The operator-level SVD follows analytically because the charge
+operator is diagonal in the hard-core occupation basis and distinct
+compositions have orthogonal block-charge support. No floating-point
+Fock-space singular-value decomposition is used.

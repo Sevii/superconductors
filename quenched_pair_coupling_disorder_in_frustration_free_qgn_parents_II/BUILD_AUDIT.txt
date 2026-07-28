@@ -1,0 +1,25 @@
+Reviewer-integrated two-paper build audit
+==========================================
+
+PDF builds
+----------
+Paper I: qgn_pair_disorder_I_exact_annealed.pdf, 21 letter-size pages
+Paper II: qgn_pair_disorder_II_quenched_fluctuations.pdf, 21 letter-size pages
+Both sources were compiled with three pdflatex passes using -halt-on-error.
+No unresolved references, undefined citations, overfull boxes, or underfull boxes remained.
+
+PDF preflight and rendering
+---------------------------
+Both PDFs are openable, unencrypted, text-based, and free of XFA content.
+Both were rendered at 180 dpi. First, middle, analytic-appendix, and last pages were visually inspected; no clipping, overlap, black boxes, or broken mathematical glyphs were found.
+
+Code audit
+----------
+All shipped Python files pass python -m py_compile.
+Every retained human-readable verification output ends with OVERALL: PASS.
+Paper I exact weighted-Hodge verifier and finite-torus source-tail verifier were rerun after the split.
+Paper II Abel identity, maximal-shell/coarea, and disorder-noise boundary-layer verifiers were rerun after the split.
+
+Reviewer-specific reproducibility fix
+-------------------------------------
+The Paper I random-torus scan now uses independent deterministic SeedSequence instances for exact checks and every lattice size. The default sample count is 24. The JSON certificate records the Python, NumPy, and SciPy versions.

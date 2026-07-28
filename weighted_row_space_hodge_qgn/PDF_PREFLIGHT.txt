@@ -1,0 +1,11 @@
+PDF: weighted_row_space_hodge_qgn.pdf
+Pages: 17
+Page size: US Letter (612 x 792 pt)
+Openable (PyMuPDF): True
+Encrypted: False
+Likely scanned/image-only: False
+XFA present: False
+Preflight warnings: None
+Fonts embedded: Yes (all fonts reported embedded and subset by pdffonts)
+LaTeX diagnostics: No undefined references or citations; no overfull boxes; one harmless underfull hbox in the summary table.
+Rendered-page inspection: Passed at 170 dpi; no clipping, overlap, missing glyphs, or malformed equations observed.

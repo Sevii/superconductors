@@ -1,0 +1,1691 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm,mathrsfs}
+\usepackage{centernot}
+\usepackage{booktabs,array,tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\I}{\mathrm i}
+\newcommand{\e}{\mathrm e}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\eps}{\varepsilon}
+
+\title{\textbf{Quenched Pair-Coupling Disorder in Frustration-Free QGN Parents II}\\[0.35em]
+\large Quenched dynamical-source fluctuations, sharp cutoffs, and disorder-noise geometry}
+\author{Nicholas Sledgianowski}
+\date{Reviewer-integrated split draft --- July 27, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This companion paper studies quenched fluctuations of the low-energy dynamical source tail for the periodic random-conductance operator arising from the weighted QGN parent of Paper~I.  For product i.i.d. conductances on $\Lambda_L$, the physical sharp observable is
+\[
+ T_L(\delta)=L^{-d}\ip{g_L}{L_{J,L}^+\bm1_{(0,\delta]}(L_{J,L})g_L}.
+\]
+The spectral projector is discontinuous in each bond variable.  We therefore introduce the positive Abel envelope
+$\mathfrak A_L(\delta)=L^{-d}\langle g_L,L_{J,L}^+e^{-L_{J,L}/\delta}g_L\rangle$ and derive an exact bond-sensitivity identity.  Under a one-bond Poincar\'e inequality, a period-uniform gradient-propagator estimate gives
+\[
+ \Var\mathfrak A_L(\delta)\le Cj_+^2\abs A^4L^{-d}(\delta/j_+)^{d/2}.
+\]
+This yields a one-sided quenched bound for $T_L$.  The same second moment gives the target variance scale at every bounded effective-mode cutoff only through $\Var T_L\le\E T_L^2$; it is not a mesoscopic concentration theorem.  In the frozen-spectrum Born sector, the sharp tail is an exact quadratic form and obeys Hanson--Wright concentration.
+
+We audit three routes to a nonlinear fixed-cutoff theorem.  A finite discrete relative Wegner estimate controls eigenvalue counts but a modulated cycle shows that counts do not control current weight.  Exponential threshold randomization is exactly the Abel envelope, while positive heat-mixture thresholds cannot be relatively narrow.  Logarithmic shell averaging gives the optimal shell scale and a deterministic interval argument removes exceptional cutoffs only at the uncentered floor.  Rank-one interlacing proves that one bond crosses a prescribed cutoff at most once; Krein coordinates and a coarea identity determine the exact current-weighted crossing surface.  An acoustic surrogate shows why a vanishing uniform maximal-shell modulus is too strong.  The remaining mesoscopic theorem is isolated as a fixed-cutoff disorder-noise quadratic-variation bound with an integrable $t^{-1/2}$ boundary layer.
+\end{abstract}
+
+\paragraph{Claim hierarchy.}
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.2em]
+ \item The exact QGN-to-random-conductance reduction and annealed source-tail estimate are stated as inputs from Paper~I.
+ \item The Abel sensitivity identity, gradient-propagator reduction, smooth-tail variance, and one-sided sharp-tail theorem are proved here.
+ \item The bounded-mode sharp variance uses only $\Var T\le\E T^2$ and is not claimed as mesoscopic centering.
+ \item The Born concentration, relative Wegner estimate, randomization identities, log-shell theorem, one-crossing geometry, Krein formulas, participation coarea, and noise-semigroup identities are proved here.
+ \item The remaining open input is the fixed-cutoff disorder-noise estimate stated in Problem~\ref{prob:fixed-cutoff-noise}; no forward equation reference is used in this front matter.
+\end{enumerate}
+
+\section{Setting and inputs from Paper I}
+\label{sec:setting}
+
+Let $d\ge2$, $\Lambda_L=(\Z/L\Z)^d$, $N=L^d$, and orient each nearest-neighbor bond in the positive coordinate direction.  The conductances on the $dL^d$ torus bonds are independent with common law $\beta\subset[j_-,j_+]$ and are extended periodically.  This is the product-torus ensemble, not a coupled periodization of one infinite realization.  One-dimensional rings appear below only as exactly solvable obstructions.
+
+For $A\in\R^d$, define $a_{x,\mu}=A_\mu$,
+\begin{align}
+ g_L(x)&=\sum_{\mu=1}^d\bigl(j_{x-e_\mu,\mu}-j_{x,\mu}\bigr)A_\mu,\\
+ (L_{J,L}f)(x)&=\sum_{\mu=1}^d\left[j_{x,\mu}(f(x)-f(x+e_\mu))+j_{x-e_\mu,\mu}(f(x)-f(x-e_\mu))\right].
+\end{align}
+Thus $g_L=BJ_LRA$ and $L_{J,L}=BJ_LB^*$.  Let $\tau_x$ translate the periodic environment and define the horizontal differences
+\begin{equation}
+ D_\mu F(J)=F(\tau_{e_\mu}J)-F(J),
+ \qquad
+ D_\mu^*F(J)=F(\tau_{-e_\mu}J)-F(J).
+ \end{equation}
+The environment generator and local drift are
+\begin{equation}
+ \mathscr L_L=D^*j(0)D,
+ \qquad
+ d_A=D^*(j(0)A).
+ \label{eq:environment-operator-definition}
+\end{equation}
+The stationary extension of $d_A$ is $g_L$.  Paper~I proves the exact site/target identity and the total-energy relation
+\begin{equation}
+ \ip{g_L}{L_{J,L}^+g_L}=\sum_ej_ea_e^2-\cE_{J_L}[a].
+ \label{eq:total-Hminus1}
+\end{equation}
+It also proves the deterministic gap
+\begin{equation}
+ \lambda_{\rm gap,L}=4j_-\sin^2(\pi/L)
+ \label{eq:finite-size-gap}
+\end{equation}
+and the period-uniform annealed estimates
+\begin{align}
+ \E N^{-1}\ip{g_L}{\e^{-tL_{J,L}}g_L}
+ &\le Cj_+^2\abs A^2(1+j_+t)^{-1-d/2},
+ \label{eq:uniform-annealed-heat}\\
+ \E T_L(\delta)&\le Cj_+\abs A^2\min\{1,(\delta/j_+)^{d/2}\}.
+ \label{eq:uniform-finite-torus-tail}
+\end{align}
+We restate these inputs to make the fluctuation arguments self-contained at the operator level; the many-body derivation is in Paper~I \cite{Sledgianowski2026RobustnessI}.
+
+\begin{theorem}[Imported exact and annealed input from Paper I]
+\label{thm:quantitative-finite-torus}
+Equations \eqref{eq:total-Hminus1}--\eqref{eq:uniform-finite-torus-tail} hold uniformly in $L$.  The exact environment--site intertwining identifies the stationary extension of $\e^{-t\mathscr L_L}d_A$ with $\e^{-tL_{J,L}}g_L$.
+\end{theorem}
+\section{Abel smoothing, variance, and the sharp edge}
+\label{sec:quenched-fluctuations}
+
+The annealed theorem controls the mean of the physical sharp tail
+\begin{equation}
+ T_L(\delta)
+ :=\frac1{L^d}\ip{g_L}{L_{J,L}^+
+ \bm{1}_{(0,\delta]}(L_{J,L})g_L}.
+ \label{eq:sharp-tail-definition}
+\end{equation}
+A centered fluctuation proof cannot begin by differentiating this expression:
+the map $J\mapsto\bm 1_{(0,\delta]}(L_{J,L})$ jumps when an eigenvalue crosses
+the cutoff.  We first replace the projector by a positive smooth envelope, prove
+the optimal effective-mode variance scale for that envelope, and then return to
+the sharp observable by a samplewise comparison.
+
+Define the Abel tail
+\begin{align}
+ \mathfrak A_L(\delta)
+ &:=\frac{1}{L^d}\ip{g_L}{L_{J,L}^+
+ \e^{-L_{J,L}/\delta}g_L}
+ \label{eq:Abel-tail-definition}\\
+ &= \frac{1}{L^d}\int_{1/\delta}^{\infty}
+ \ip{g_L}{\e^{-tL_{J,L}}g_L}\dd t.
+ \label{eq:Abel-tail-heat}
+\end{align}
+Since $\e^{-\lambda/\delta}\ge\e^{-1}$ for
+$0<\lambda\le\delta$, one has the realization-wise envelope
+\begin{equation}
+ \boxed{T_L(\delta)\le \e\,\mathfrak A_L(\delta).}
+ \label{eq:Abel-dominates-sharp}
+\end{equation}
+Integrating \eqref{eq:uniform-annealed-heat} also gives
+\begin{equation}
+ \E\mathfrak A_L(\delta)
+ \le Cj_+\abs A^2
+ \left(\frac{\delta}{j_+}\right)^{d/2},
+ \qquad 0<\delta\le j_+.
+ \label{eq:Abel-mean}
+\end{equation}
+
+The envelope has an exact cell-problem interpretation.  Put
+\begin{equation}
+ \cE_J(\phi)=\frac{1}{L^d}
+ \sum_ej_e\bigl(a_e+(B^*\phi)_e\bigr)^2,
+ \qquad
+ \phi_*=-L_{J,L}^+g_L,
+\end{equation}
+and define the parabolic corrector
+\begin{equation}
+ \phi_t=-(\Id-\e^{-tL_{J,L}})L_{J,L}^+g_L.
+\end{equation}
+
+\begin{lemma}[Parabolic energy-excess identity]
+\label{lem:parabolic-energy-excess}
+For every realization and $t\ge0$,
+\begin{equation}
+ \boxed{
+ \cE_J(\phi_t)-\cE_J(\phi_*)
+ =\frac{1}{L^d}\ip{g_L}{L_{J,L}^+
+ \e^{-2tL_{J,L}}g_L}.}
+ \label{eq:parabolic-energy-excess}
+\end{equation}
+Hence $\mathfrak A_L(\delta)$ is exactly the residual cell-energy error after
+parabolic relaxation for time $(2\delta)^{-1}$.
+\end{lemma}
+
+\begin{proof}
+Completing the square around the minimizer gives
+\[
+ \cE_J(\phi)-\cE_J(\phi_*)
+ =\frac{1}{L^d}\ip{\phi-\phi_*}{L_{J,L}(\phi-\phi_*)}.
+\]
+Here $\phi_t-\phi_*=\e^{-tL_{J,L}}L_{J,L}^+g_L$.  The spectral theorem yields
+\eqref{eq:parabolic-energy-excess}.
+\end{proof}
+
+A rational positive envelope will also be useful.  Define
+\begin{equation}
+ \mathfrak R_{L,1}(\delta)
+ =\frac{1}{L^d}\ip{g_L}
+ {\frac{\delta^2}{L_{J,L}(L_{J,L}+\delta)^2}g_L}.
+ \label{eq:Richardson-one-tail}
+\end{equation}
+Because $\delta^2/(\lambda+\delta)^2\ge1/4$ on
+$0<\lambda\le\delta$,
+\begin{equation}
+ \boxed{T_L(\delta)\le4\mathfrak R_{L,1}(\delta).}
+ \label{eq:Richardson-dominates-sharp}
+\end{equation}
+This is the first positive modified-corrector/Richardson spectral bias of
+Gloria and Mourrat \cite{GloriaMourrat2012}.
+
+\subsection{Exact vertical derivative and the gradient propagator}
+
+Let $b_e=B\mathbf e_e$ be the incidence column of edge $e$ and set
+\begin{equation}
+ w_e(t)=b_e^*\e^{-tL_{J,L}}g_L,
+ \qquad \tau=\delta^{-1}.
+ \label{eq:edge-gradient-heat-source}
+\end{equation}
+
+\begin{lemma}[Exact Abel-tail sensitivity]
+\label{lem:Abel-sensitivity}
+At every coefficient configuration in the interior of the ellipticity box,
+\begin{equation}
+ \boxed{
+ L^d\partial_{j_e}\mathfrak A_L(\delta)
+ =2a_e\int_\tau^\infty w_e(s)\dd s
+ -\int_\tau^\infty\int_0^s
+ w_e(s-r)w_e(r)\dd r\dd s.}
+ \label{eq:Abel-sensitivity}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Use \eqref{eq:Abel-tail-heat},
+$\partial_{j_e}g_L=a_eb_e$, and
+$\partial_{j_e}L_{J,L}=b_eb_e^*$.  Duhamel's formula gives
+\[
+ \partial_{j_e}\e^{-sL_{J,L}}
+ =-\int_0^s\e^{-(s-r)L_{J,L}}b_eb_e^*
+ \e^{-rL_{J,L}}\dd r.
+\]
+Self-adjointness turns the two matrix elements in the second term into
+$w_e(s-r)w_e(r)$.
+\end{proof}
+
+The new probabilistic input is a gradient upgrade of the divergence-semigroup
+bound already used.  Related environment-process decay estimates are discussed in
+\cite{deBuyerMourrat2015}; the precise period-uniform statements and the
+weighted-Hölder argument needed here are collected in
+Appendix~\ref{app:gradient-propagator}.
+
+\begin{lemma}[Periodic gradient-propagator estimate]
+\label{lem:periodic-gradient-propagator}
+Under the periodic i.i.d. uniformly elliptic hypotheses, for $p=1,2$,
+\begin{equation}
+ \left(
+ \E\frac{1}{dL^d}\sum_e\abs{w_e(t)}^{2p}
+ \right)^{1/(2p)}
+ \le C_pj_+\abs A(1+j_+t)^{-1-d/4}.
+ \label{eq:periodic-gradient-propagator}
+\end{equation}
+The same conclusion holds for a periodic mixing ensemble whenever the
+high-moment divergence-semigroup and weighted parabolic Green-gradient
+estimates used below are uniform in the period.
+\end{lemma}
+
+\begin{proof}
+Appendix~\ref{app:gradient-propagator} defines the torus Green function and weight, restates the two imported GNO estimates with their exact hypotheses and source numbers, and gives the weighted-H\"older calculation in full.  The constants are uniform in $L$.
+\end{proof}
+
+\subsection{CLT-order variance of the smooth tail}
+
+For the centered theorem we impose one additional, explicit regularity
+assumption on the one-edge law $\beta$.  Suppose
+\begin{equation}
+ \Var_\beta f
+ \le C_\beta\int\abs{f'(s)}^2\dd\beta(s),
+ \qquad C_\beta\le C_0j_+^2.
+ \label{eq:one-edge-Poincare}
+\end{equation}
+The product law then tensorizes.  Uniform and smooth positive densities on a
+fixed ellipticity interval satisfy such an inequality.  Discrete laws require
+an oscillation/Efron--Stein version and are not included in the derivative
+statement below.
+
+\begin{theorem}[Quenched Abel-tail variance]
+\label{thm:quenched-Abel-variance}
+Assume the hypotheses of \cref{lem:periodic-gradient-propagator} and the
+one-edge Poincar\'e inequality \eqref{eq:one-edge-Poincare}.  For
+$0<\delta\le j_+$,
+\begin{equation}
+ \boxed{
+ \Var\mathfrak A_L(\delta)
+ \le Cj_+^2\abs A^4L^{-d}
+ \left(\frac{\delta}{j_+}\right)^{d/2}.}
+ \label{eq:quenched-Abel-variance}
+\end{equation}
+The constant depends only on $d$, $j_-/j_+$, and $C_0$.
+\end{theorem}
+
+\begin{proof}
+Normalize $j_+=1$ and put
+$h(t)=(1+t)^{-1-d/4}$.  Minkowski's inequality and
+\eqref{eq:periodic-gradient-propagator} with $p=1$ give
+\begin{equation}
+ \left(
+ \E\frac{1}{dL^d}\sum_e
+ \left|\int_\tau^\infty w_e(s)\dd s\right|^2
+ \right)^{1/2}
+ \le C\abs A\int_\tau^\infty h(s)\dd s
+ \le C\abs A\tau^{-d/4}.
+ \label{eq:linear-sensitivity-tail}
+\end{equation}
+For the quadratic term, use $p=2$ and H\"older in probability:
+\[
+ \norm{w_e(r)w_e(u)}_2
+ \le\norm{w_e(r)}_4\norm{w_e(u)}_4.
+\]
+Moreover,
+\begin{equation}
+ \int_{r,u\ge0:\ r+u\ge\tau}h(r)h(u)\dd r\dd u
+ \le2\norm h_1\int_{\tau/2}^\infty h(s)\dd s
+ \le C\tau^{-d/4}.
+ \label{eq:convolution-tail}
+\end{equation}
+Applying Minkowski once more therefore bounds the averaged $L^2(\Omega_L)$
+norm of the double integral in \eqref{eq:Abel-sensitivity} by
+$C\abs A^2\tau^{-d/4}$.  Since $\abs{a_e}\le\abs A$,
+\begin{equation}
+ \frac{1}{dL^d}\sum_e
+ \E\abs{\partial_{j_e}\mathfrak A_L(\delta)}^2
+ \le CL^{-2d}\abs A^4\tau^{-d/2}.
+ \label{eq:Abel-derivative-square}
+\end{equation}
+Tensorized Poincar\'e and summation over the $dL^d$ bonds give
+$\Var\mathfrak A_L\le C\abs A^4L^{-d}\delta^{d/2}$.
+Finally, $L_{J,L}=j_+L_{\widetilde J,L}$ and
+$g_L=j_+g_{\widetilde J,L}$ imply
+\[
+ \mathfrak A_L^J(\delta)
+ =j_+\mathfrak A_L^{\widetilde J}(\delta/j_+),
+\]
+which restores \eqref{eq:quenched-Abel-variance}.
+\end{proof}
+
+\begin{remark}[Higher moments]
+Combining the same sensitivity estimate with a tensorized high-moment
+Poincar\'e inequality gives, for every fixed $p<\infty$,
+\begin{equation}
+ \norm{\mathfrak A_L-\E\mathfrak A_L}_{L^{2p}}
+ \le C_pj_+\abs A^2L^{-d/2}
+ \left(\frac{\delta}{j_+}\right)^{d/4}.
+ \label{eq:Abel-higher-moment}
+\end{equation}
+We do not claim an exponential tail without separately auditing the growth of
+$C_p$.
+\end{remark}
+
+\begin{corollary}[Quenched one-sided sharp-tail bound]
+\label{cor:quenched-sharp-tail}
+Under the hypotheses of \cref{thm:quenched-Abel-variance}, for every
+$0<\vartheta<1$, with probability at least $1-\vartheta$,
+\begin{equation}
+ \boxed{
+ T_L(\delta)
+ \le Cj_+\abs A^2\left[
+ \left(\frac{\delta}{j_+}\right)^{d/2}
+ +\vartheta^{-1/2}L^{-d/2}
+ \left(\frac{\delta}{j_+}\right)^{d/4}
+ \right].}
+ \label{eq:quenched-sharp-tail}
+\end{equation}
+In addition,
+\begin{equation}
+ \E T_L(\delta)^2
+ \le Cj_+^2\abs A^4\left[
+ \left(\frac{\delta}{j_+}\right)^d
+ +L^{-d}\left(\frac{\delta}{j_+}\right)^{d/2}
+ \right].
+ \label{eq:sharp-tail-second-moment}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Chebyshev applied to \cref{thm:quenched-Abel-variance}, together with
+\eqref{eq:Abel-mean} and the samplewise envelope
+\eqref{eq:Abel-dominates-sharp}, proves
+\eqref{eq:quenched-sharp-tail}.  The same envelope and
+$\E\mathfrak A_L^2=(\E\mathfrak A_L)^2+
+\Var\mathfrak A_L$ give \eqref{eq:sharp-tail-second-moment}.
+\end{proof}
+
+Define the effective number of diffusive soft modes
+\begin{equation}
+ m_{\mathrm{eff}}(L,\delta)
+ =L^d\left(\frac{\delta}{j_+}\right)^{d/2}.
+ \label{eq:effective-mode-count}
+\end{equation}
+The ratio of the fluctuation term in \eqref{eq:quenched-sharp-tail} to the
+natural annealed scale $(\delta/j_+)^{d/2}$ is
+$m_{\mathrm{eff}}^{-1/2}$.  Thus the fluctuation correction is lower order
+for $\delta/j_+\gg L^{-2}$; whenever the mean has a nondegenerate
+$\delta^{d/2}$ coefficient, this is relative self-averaging.  At
+$\delta\asymp j_+L^{-2}$ only order-one effective modes are sampled and
+order-one relative fluctuations are natural.  Below
+\eqref{eq:finite-size-gap}, the sharp tail is exactly zero.
+
+
+\begin{corollary}[Every-cutoff centered bound in the bounded-mode window]
+\label{cor:bounded-effective-mode-sharp-variance}
+Under the hypotheses of \cref{thm:quenched-Abel-variance}, define
+\begin{equation}
+ V_L(\delta)=j_+^2\abs A^4L^{-d}
+ \left(\frac{\delta}{j_+}\right)^{d/2}.
+ \label{eq:sharp-target-variance-scale-early}
+\end{equation}
+Then, at every deterministic cutoff,
+\begin{equation}
+ \boxed{
+ \Var T_L(\delta)
+ \le C\bigl(1+m_{\mathrm{eff}}(L,\delta)\bigr)V_L(\delta).}
+ \label{eq:bounded-mode-centered-bound}
+\end{equation}
+Consequently, for each fixed $M<\infty$,
+\begin{equation}
+ m_{\mathrm{eff}}(L,\delta)\le M
+ \quad\Longrightarrow\quad
+ \Var T_L(\delta)\le C_MV_L(\delta).
+ \label{eq:bounded-mode-centered-target}
+\end{equation}
+No cancellation around the mean is used here: the estimate is the elementary inequality $\Var T_L\le\E T_L^2$.  It has the centered target scale only when $m_{\mathrm{eff}}$ is bounded and becomes noninformative for the mesoscopic many-mode regime.  In particular, the desired centered nonlinear sharp-cutoff scale already holds
+at every cutoff in any fixed acoustic window
+$\delta\le C_0j_+L^{-2}$; below the deterministic gap the observable vanishes
+exactly.
+\end{corollary}
+
+\begin{proof}
+Since variance is bounded by the second moment, rewrite
+\eqref{eq:sharp-tail-second-moment} using
+$m_{\mathrm{eff}}=L^d(\delta/j_+)^{d/2}$:
+\[
+ j_+^2\abs A^4(\delta/j_+)^d
+ =m_{\mathrm{eff}}(L,\delta)V_L(\delta).
+\]
+This proves \eqref{eq:bounded-mode-centered-bound} and its consequences.
+\end{proof}
+
+This observation removes the bottom of the diffusive window from the open
+problem.  Genuine pointwise centering is needed only in the mesoscopic
+many-mode regime $m_{\mathrm{eff}}\to\infty$.
+
+\section{Exact centered theorem in the Born sector}
+
+The sharp projector can be treated without smoothing in the frozen-spectrum
+Born sector.  Put
+\begin{equation}
+ J_\eps=\Id+\eps\diag(\xi_e),
+ \qquad \E\xi_e=0,
+ \label{eq:Born-conductance}
+\end{equation}
+and let $L_0=BB^*$ be the clean torus Laplacian.  Since $Ba=0$, the exact
+first-order drift is $g_\eps=\eps B\diag(\xi)a$.  Define
+\begin{equation}
+ T_L^{\mathrm B}(\delta)
+ =\frac{\eps^2}{L^d}\xi^TM_\delta\xi,
+ \qquad
+ M_\delta=D_aB^*L_0^+\bm1_{(0,\delta]}(L_0)BD_a,
+ \label{eq:Born-tail-quadratic-form}
+\end{equation}
+where $D_a=\diag(a_e)$.  If $\delta$ is not a positive eigenvalue of
+$L_0$, then $T_L^{\mathrm B}(\delta)$ is the $\eps^2$ coefficient of the full
+sharp tail as $\eps\to0$.  At a clean eigenvalue threshold the discontinuous
+sharp functional need not possess a two-sided Taylor coefficient;
+\eqref{eq:Born-tail-quadratic-form} is then the canonical frozen-spectrum Born
+observable, and the theorem below concerns that observable exactly.
+
+\begin{theorem}[Born sharp-tail concentration]
+\label{thm:Born-sharp-concentration}
+Let the $\xi_e$ be independent, centered, and sub-Gaussian with
+$\norm{\xi_e}_{\psi_2}\le K$.  For $0<\delta\le1$,
+\begin{align}
+ \norm{M_\delta}&\le\abs A^2,
+ &
+ \norm{M_\delta}_{\mathrm F}^2
+ &\le C_d\abs A^4L^d\delta^{d/2},
+ \label{eq:Born-matrix-bounds}
+\end{align}
+and
+\begin{equation}
+ \boxed{
+ \Prob\left[
+ \abs{T_L^{\mathrm B}(\delta)-\E T_L^{\mathrm B}(\delta)}\ge r
+ \right]
+ \le2\exp\left[-c\min\left\{
+ \frac{L^dr^2}{\eps^4K^4\abs A^4\delta^{d/2}},
+ \frac{L^dr}{\eps^2K^2\abs A^2}
+ \right\}\right].}
+ \label{eq:Born-Hanson-Wright}
+\end{equation}
+In particular,
+\begin{equation}
+ \Var T_L^{\mathrm B}(\delta)
+ \le C\eps^4K^4\abs A^4L^{-d}\delta^{d/2}.
+ \label{eq:Born-variance}
+\end{equation}
+If $\sigma^2=\E\xi_e^2$, then the exact mean is
+\begin{equation}
+ \boxed{
+ \E T_L^{\mathrm B}(\delta)
+ =\frac{\eps^2\sigma^2}{L^d}
+ \sum_{\substack{q\ne0\\\lambda(q)\le\delta}}
+ \frac{\sum_{\mu=1}^dA_\mu^2\,4\sin^2(q_\mu/2)}{\sum_{\nu=1}^d4\sin^2(q_\nu/2)}.}
+ \label{eq:Born-exact-mean}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The operator inequality
+$BD_a^2B^*\preceq\abs A^2BB^*$ gives the norm bound in
+\eqref{eq:Born-matrix-bounds}.  The rank of $M_\delta$ is at most the number
+of clean torus eigenvalues in $(0,\delta]$, which is bounded by
+$C_dL^d\delta^{d/2}$ for $0<\delta\le1$.  Hence
+$\norm{M_\delta}_{\mathrm F}^2\le
+\operatorname{rank}(M_\delta)\norm{M_\delta}^2$.
+The Hanson--Wright inequality \cite{RudelsonVershynin2013} applied to
+\eqref{eq:Born-tail-quadratic-form} proves
+\eqref{eq:Born-Hanson-Wright} and \eqref{eq:Born-variance}.
+Finally, Fourier diagonalization of $L_0$ and
+$\E\xi_e\xi_{e'}=\sigma^2\delta_{ee'}$ gives
+\eqref{eq:Born-exact-mean}.
+\end{proof}
+
+\begin{remark}[Exact Born variance formula]
+If $\kappa_4=\E\xi_e^4-3\sigma^4$, then
+\begin{equation}
+ \Var T_L^{\mathrm B}
+ =\frac{\eps^4}{L^{2d}}
+ \left[2\sigma^4\tr(M_\delta^2)
+ +\kappa_4\sum_e(M_\delta)_{ee}^2\right].
+ \label{eq:Born-exact-variance}
+\end{equation}
+This is the formula checked by the numerical audit.
+\end{remark}
+
+\section{Three closure routes: exact progress and sharp obstructions}
+\label{sec:three-sharp-routes}
+
+The smooth variance theorem leaves a precise question: can one transfer the
+centered estimate to the discontinuous cumulative function
+\eqref{eq:sharp-tail-definition}?  We now audit the three proposed routes.
+Two of them yield exact new representations, and the first yields a
+finite-volume Wegner theorem, but the analysis also shows why none of the
+standard count-level inputs alone closes the fixed-cutoff theorem.
+
+For a Borel set $I\subset(0,\infty)$, write
+\begin{equation}
+ \mu_{L,J}(I)
+ =\frac1{L^d}\ip{g_L}{L_{J,L}^+\bm{1}_I(L_{J,L})g_L}.
+ \label{eq:drift-Hminus1-measure}
+\end{equation}
+Thus $T_L(\delta)=\mu_{L,J}((0,\delta])$ and
+$S_L(\delta,\eta)=\mu_{L,J}((\delta,(1+\eta)\delta])$.
+
+\paragraph{Route I: a relative Wegner estimate.}
+Assume in this paragraph that the edge variables are independent with common
+density $\rho$ supported in $[j_-,j_+]$, and put
+$\rho_\infty=\norm{\rho}_{\infty}$.  Let
+\begin{equation}
+ \mathcal N_L(I)=\operatorname{Tr}_{\bm{1}^\perp}\bm{1}_I(L_{J,L})
+ \label{eq:positive-eigenvalue-count}
+\end{equation}
+be the positive-eigenvalue count.
+
+\begin{theorem}[Finite discrete relative Wegner estimate]
+\label{thm:relative-Wegner}
+For every interval $I=(E,E+\ell]\subset(0,\infty)$,
+\begin{equation}
+ \boxed{
+ \E\mathcal N_L(I)
+ \le dL^d\rho_\infty j_+\frac{\ell}{E}.}
+ \label{eq:relative-Wegner}
+\end{equation}
+Together with ellipticity and the clean-torus Weyl count,
+\begin{equation}
+ \E\mathcal N_L(I)
+ \le C_dL^d\min\left\{
+ \left(\frac{E+\ell}{j_-}\right)^{d/2},
+ \rho_\infty j_+\frac{\ell}{E}
+ \right\}.
+ \label{eq:relative-Wegner-Weyl}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Put $L_0=BB^*=\sum_eb_eb_e^*$ and choose the nondecreasing ramp
+\[
+ F(\lambda)=
+ \begin{cases}
+ 0,&\lambda\le E,\\
+ \lambda-E,&E<\lambda<E+\ell,\\
+ \ell,&\lambda\ge E+\ell.
+ \end{cases}
+\]
+Mollify the piecewise-linear ramp $F$ in arbitrarily small neighborhoods of its two corners, apply the preceding identity to the smooth monotone approximants, and pass to the limit by monotone convergence on both sides.  Since
+$L_{J,L}\preceq j_+L_0$,
+\[
+ \mathcal N_L(I)
+ \le E^{-1}\operatorname{Tr}[L_{J,L}\bm{1}_I(L_{J,L})]
+ \le \frac{j_+}{E}\operatorname{Tr}[L_0\bm{1}_I(L_{J,L})].
+\]
+Functional differentiation gives
+\[
+ \sum_e\partial_{j_e}\operatorname{Tr} F(L_{J,L})
+ =\operatorname{Tr}[F'(L_{J,L})L_0]
+ =\operatorname{Tr}[\bm{1}_I(L_{J,L})L_0].
+\]
+Condition on every coefficient except $j_e=s$.  Since
+$\partial_sL_{J^{(e,s)},L}=b_eb_e^*\succeq0$, every eigenvalue and hence
+$s\mapsto\operatorname{Tr}F(L_{J^{(e,s)},L})$ is nondecreasing.  Together
+with boundedness of the density this implies
+\[
+ \int\rho(s)\partial_s\operatorname{Tr} F(L_{J^{(e,s)},L})\dd s
+ \le\rho_\infty
+ \bigl[\operatorname{Tr} F(L_{j_+})-\operatorname{Tr} F(L_{j_-})\bigr].
+\]
+The endpoint matrices differ by the positive rank-one operator
+$(j_+-j_-)b_eb_e^*$.  Rank-one interlacing and the fact that the range of $F$
+has length $\ell$ give
+\[
+ 0\le\operatorname{Tr} F(L_{j_+})-\operatorname{Tr} F(L_{j_-})\le\ell.
+\]
+Summing over the $dL^d$ positive-coordinate bonds proves
+\eqref{eq:relative-Wegner}.  Finally,
+$L_{J,L}\succeq j_-L_0$ and the lattice Weyl count give
+\eqref{eq:relative-Wegner-Weyl}.
+\end{proof}
+
+The count theorem is the finite discrete analogue of divergence-form Wegner
+estimates, for which eigenvalue lifting or gradient unique continuation is
+needed in the continuum \cite{Dicke2021,DickeVeselic2023}.  Here the exact
+bond covering $L_0=\sum_eb_eb_e^*$ and rank-one interlacing make the proof
+self-contained.
+
+It is nevertheless not a drift-weighted Wegner theorem.  The modal estimate is
+only
+\begin{equation}
+ \frac1{L^d}\frac{\abs{\ip{g_L}{\psi_k}}^2}{\lambda_k}
+ \le j_+\abs A^2,
+ \label{eq:single-mode-coherent-bound}
+\end{equation}
+not $O(L^{-d})$.  A coherent soft mode can therefore carry an order-one
+fraction of the whole $H^{-1}$ source mass.
+
+\begin{proposition}[Normalized eigenvalue count does not control drift weight]
+\label{prop:count-does-not-control-drift}
+On the $N$-cycle, let
+\begin{equation}
+ j_{e,N}=1+\eps\cos(2\pi e/N),\qquad 0<\eps<1,
+ \label{eq:modulated-cycle-second-use}
+\end{equation}
+and take $a_e=1$.  There are constants
+$c_\eps,C_\eps>0$ such that, for all sufficiently large $N$,
+\begin{equation}
+ \boxed{
+ \mu_N((0,C_\eps N^{-2}])\ge c_\eps,
+ \qquad
+ \frac1N\mathcal N_N((0,C_\eps N^{-2}])\longrightarrow0.}
+ \label{eq:count-weight-obstruction}
+\end{equation}
+In particular, no realization-wise inequality
+$\mu_{L,J}(I)\le C L^{-d}\mathcal N_L(I)$ can hold uniformly over bounded
+elliptic conductances.
+\end{proposition}
+
+\begin{proof}
+The total mass is the arithmetic-minus-harmonic conductance,
+\[
+ \mu_N((0,\infty))
+ =1-\left(\frac1N\sum_ej_{e,N}^{-1}\right)^{-1}
+ \longrightarrow1-\sqrt{1-\eps^2}>0.
+\]
+The first moment is explicit:
+\[
+ \int\lambda\dd\mu_N(\lambda)
+ =\frac1N\norm{g_N}^2
+ =2\eps^2\sin^2(\pi/N)
+ \le2\pi^2\eps^2N^{-2}.
+\]
+Markov's inequality for the measure $\mu_N$ therefore places a fixed positive
+fraction of its mass below $C_\eps N^{-2}$ once $C_\eps$ is large enough.
+On the other hand,
+$L_{J_N}\succeq(1-\eps)L_0$, and the clean cycle has only
+$O_{\eps,C}(1)$ eigenvalues below $CN^{-2}$.  Dividing by $N$ proves
+\eqref{eq:count-weight-obstruction}.
+\end{proof}
+
+This proposition prevents a shortcut through the ordinary IDS.  Recent
+uniform concentration results for normalized eigenvalue counting functions
+remain count-level statements \cite{KamperEtAl2026}; the needed theorem must
+control current overlap with the low-energy subspace.
+
+\paragraph{Route II: randomized cutoffs.}
+Let $\Theta_\delta$ be independent of the conductances and exponentially
+distributed with mean $\delta$.
+
+\begin{theorem}[Abel tail as an exactly randomized sharp cutoff]
+\label{thm:exponential-random-cutoff}
+For every realization,
+\begin{align}
+ \boxed{\E_\Theta T_L(\Theta_\delta)=\mathfrak A_L(\delta),}
+ \label{eq:Abel-randomized-mean}\\
+ \boxed{
+ \E_\Theta T_L(\Theta_\delta)^2
+ =\iint\e^{-\max\{\lambda,\mu\}/\delta}
+ \dd\mu_{L,J}(\lambda)\dd\mu_{L,J}(\mu)
+ \le\mathfrak A_L(2\delta)^2.}
+ \label{eq:Abel-randomized-second-moment}
+\end{align}
+Consequently, for $0<\delta\le j_+/2$,
+\begin{equation}
+ \E_{J,\Theta}T_L(\Theta_\delta)^2
+ \le Cj_+^2\abs A^4\left[
+ \left(\frac\delta{j_+}\right)^d
+ +L^{-d}\left(\frac\delta{j_+}\right)^{d/2}
+ \right].
+ \label{eq:randomized-sharp-second-moment}
+\end{equation}
+The disorder variance of the conditional mean is exactly the Abel variance:
+\begin{equation}
+ \Var_J\bigl(\E_\Theta[T_L(\Theta_\delta)\mid J]\bigr)
+ =\Var_J\mathfrak A_L(\delta),
+ \label{eq:randomized-conditional-variance}
+\end{equation}
+and hence obeys \eqref{eq:quenched-Abel-variance}.
+\end{theorem}
+
+\begin{proof}
+The survival probability is
+$\Prob(\Theta_\delta\ge\lambda)=\e^{-\lambda/\delta}$, so Tonelli gives
+\eqref{eq:Abel-randomized-mean}.  Applying the same identity twice gives the
+double integral in \eqref{eq:Abel-randomized-second-moment}.  Since
+$\max\{\lambda,\mu\}\ge(\lambda+\mu)/2$, its integrand is bounded by
+$\e^{-\lambda/(2\delta)}\e^{-\mu/(2\delta)}$.  The final claims follow from
+\eqref{eq:Abel-mean} and \eqref{eq:quenched-Abel-variance} at scale $2\delta$.
+\end{proof}
+
+Thus the Abel theorem is already an optimal centered disorder theorem for a
+precisely defined randomized-frequency protocol.  It does not, however,
+recover a deterministic threshold.  The total-variance identity
+\begin{equation}
+ \Var_{J,\Theta}T_L(\Theta_\delta)
+ =\Var_J\mathfrak A_L(\delta)
+ +\E_J\Var_\Theta(T_L(\Theta_\delta)\mid J)
+ \label{eq:randomized-total-variance}
+\end{equation}
+contains threshold noise.  For the one-atom measure
+$\mu=m\delta_{\{\delta\}}$, that term is
+$m^2\e^{-1}(1-\e^{-1})$; if $m\asymp\delta^{d/2}$, it is of order
+$\delta^d$, not $L^{-d}\delta^{d/2}$.  Broad randomization therefore cannot
+by itself prove the fixed-cutoff CLT scale.  In fact this obstruction applies
+to every positive heat-kernel mixture.
+
+\begin{proposition}[No narrow cutoff from a positive heat mixture]
+\label{prop:positive-heat-mixture-no-go}
+Let a randomized-threshold survival function have the completely monotone form
+\begin{equation}
+ s(\lambda)=\int_0^\infty\e^{-t\lambda}\,\pi(\dd t),
+ \qquad \pi((0,\infty))=1.
+ \label{eq:positive-heat-mixture-survival}
+\end{equation}
+If the associated threshold $\Theta$ has finite second moment, then
+\begin{equation}
+ \boxed{\Var\Theta\ge(\E\Theta)^2.}
+ \label{eq:positive-heat-mixture-CV}
+\end{equation}
+Thus no family of positive heat mixtures can concentrate its threshold in a
+relative window $o(1)$ around its mean.
+\end{proposition}
+
+\begin{proof}
+Conditionally on $t$, let $\Theta$ be exponential with rate $t$.
+Then \eqref{eq:positive-heat-mixture-survival} is its survival function and
+\[
+ \E\Theta=\int t^{-1}\pi(\dd t),\qquad
+ \E\Theta^2=2\int t^{-2}\pi(\dd t).
+\]
+Cauchy--Schwarz gives
+$\int t^{-2}\dd\pi\ge(\int t^{-1}\dd\pi)^2$, proving
+\eqref{eq:positive-heat-mixture-CV}.
+\end{proof}
+
+The proposition explains why positivity and narrowness conflict in a pure
+heat-mixture strategy.  Erlang or gamma thresholds with large shape do
+concentrate, but their survival functions contain polynomial times exponential
+multipliers rather than positive mixtures of exponentials.  Exploiting them
+would require uniform high-order semigroup-derivative estimates.
+
+For a narrow randomization, let $U_{\delta,\eta}$ be uniform on
+$[\delta,(1+\eta)\delta]$ and put
+\begin{equation}
+ \overline T_{L,\eta}(\delta)
+ =\E_U[T_L(U_{\delta,\eta})\mid J].
+ \label{eq:uniform-randomized-tail}
+\end{equation}
+Its spectral multiplier equals one below $\delta$, decreases linearly across
+the shell, and vanishes above $(1+\eta)\delta$.  Hence, samplewise,
+\begin{align}
+ \boxed{0\le\overline T_{L,\eta}(\delta)-T_L(\delta)
+ \le S_L(\delta,\eta),}
+ \label{eq:uniform-randomized-sandwich}\\
+ \boxed{
+ \Var_U(T_L(U_{\delta,\eta})\mid J)
+ \le\frac14S_L(\delta,\eta)^2.}
+ \label{eq:uniform-randomized-variance}
+\end{align}
+Narrow randomization gives the desired smooth/sharp sandwich exactly, but it
+also shows that the shell modulus cannot be avoided.
+
+\paragraph{Route III: the integrated spectral variable.}
+Define
+\begin{equation}
+ K_L(r)=\int_0^rT_L(s)\dd s
+ =\int(r-\lambda)_+\dd\mu_{L,J}(\lambda).
+ \label{eq:integrated-drift-spectral-measure}
+\end{equation}
+The multiplier is continuous at $\lambda=r$, and
+\begin{equation}
+ \boxed{
+ \frac{K_L(r+h)-K_L(r)}h
+ =\frac1h\int_r^{r+h}T_L(s)\dd s.}
+ \label{eq:integrated-difference-quotient}
+\end{equation}
+For $h=\eta r$, the right-hand side is
+$\overline T_{L,\eta}(r)$, so
+\begin{equation}
+ 0\le\frac{K_L(r+h)-K_L(r)}h-T_L(r)
+ \le S_L(r,h/r).
+ \label{eq:integrated-shell-sandwich}
+\end{equation}
+Thus the integrated-variable and randomized-cutoff routes are the same
+regularization in two languages.  Although pointwise shell control remains
+open, its logarithmic-energy average closes exactly.
+
+\begin{theorem}[Exact logarithmic shell identity and averaged shell bound]
+\label{thm:logarithmic-shell-average}
+For every finite positive measure $\mu$ on $(0,\infty)$, set
+$S_\mu(r,\eta)=\mu((r,(1+\eta)r])$.  Then
+\begin{equation}
+ \boxed{
+ \int_0^\infty S_\mu(r,\eta)^2\frac{\dd r}{r}
+ =\iint
+ \left[\log(1+\eta)-\abs{\log(\lambda/\lambda')}\right]_+
+ \mu(\dd\lambda)\mu(\dd\lambda').}
+ \label{eq:exact-log-shell-identity}
+\end{equation}
+Consequently, for the drift measure \eqref{eq:drift-Hminus1-measure},
+$0<\eta\le1$, and $0<R\le j_+/(1+\eta)$,
+\begin{equation}
+ \boxed{
+ \int_0^R\E S_L(r,\eta)^2\frac{\dd r}{r}
+ \le C\eta j_+^2\abs A^4\left[
+ \left(\frac R{j_+}\right)^d
+ +L^{-d}\left(\frac R{j_+}\right)^{d/2}
+ \right].}
+ \label{eq:log-averaged-shell-bound}
+\end{equation}
+The same estimate holds for the integrated difference quotient:
+\begin{equation}
+ \int_0^R\E\left|\frac{K_L(r+\eta r)-K_L(r)}{\eta r}
+ -T_L(r)\right|^2\frac{\dd r}{r}
+ \le \textup{right-hand side of \eqref{eq:log-averaged-shell-bound}}.
+ \label{eq:log-averaged-L2-differentiability}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For fixed $\lambda$, the condition
+$r<\lambda\le(1+\eta)r$ means that
+$\log r$ lies in an interval of length $\log(1+\eta)$.  The intersection of
+the two intervals associated with $\lambda$ and $\lambda'$ has length
+$[\log(1+\eta)-|\log(\lambda/\lambda')|]_+$.  Tonelli proves
+\eqref{eq:exact-log-shell-identity}.  Restricting $r\le R$ and discarding the
+intersection geometry gives the deterministic bound
+\begin{equation}
+ \int_0^R S_L(r,\eta)^2\frac{\dd r}{r}
+ \le\log(1+\eta)T_L((1+\eta)R)^2.
+ \label{eq:localized-log-shell-deterministic}
+\end{equation}
+Take expectations, use \eqref{eq:sharp-tail-second-moment}, and absorb
+$1+\eta\le2$ and $\log(1+\eta)\le\eta$.  Finally,
+\eqref{eq:integrated-shell-sandwich} proves
+\eqref{eq:log-averaged-L2-differentiability}.
+\end{proof}
+
+
+\begin{lemma}[Pointwise maximalization at the unavoidable floor]
+\label{lem:log-shell-maximalization}
+For every finite positive measure $\mu$, every $r>0$, and every $\eta>0$, put
+$h=\log(1+\eta)$ and $\eta^{(2)}=(1+\eta)^2-1$.  Then
+\begin{equation}
+ \boxed{
+ S_\mu(r,\eta)^2
+ \le\frac1h\int_{r/(1+\eta)}^r
+ S_\mu(s,\eta^{(2)})^2\frac{\dd s}{s}.}
+ \label{eq:pointwise-log-shell-maximalization}
+\end{equation}
+Hence, for $0<\eta\le\sqrt2-1$ and
+$r\le j_+/(1+\eta)^2$,
+\begin{equation}
+ \boxed{
+ \E S_L(r,\eta)^2
+ \le Cj_+^2\abs A^4\left[
+ (r/j_+)^d+L^{-d}(r/j_+)^{d/2}\right].}
+ \label{eq:pointwise-shell-floor}
+\end{equation}
+There is no exceptional cutoff in \eqref{eq:pointwise-shell-floor}, but the
+bound has no vanishing power of $\eta$.
+\end{lemma}
+
+\begin{proof}
+Push $\mu$ forward by $\lambda\mapsto x=\log\lambda$.  If
+$y\in[x-h,x]$, then the interval $(x,x+h]$ is contained in
+$(y,y+2h]$.  Thus its mass squared is bounded by the average of the wider-shell
+mass squared over $y\in[x-h,x]$, which is
+\eqref{eq:pointwise-log-shell-maximalization}.  Take expectations and apply
+\eqref{eq:log-averaged-shell-bound} with relative width
+$\eta^{(2)}\le1$ and upper endpoint $r$.  Since
+$\eta^{(2)}/\log(1+\eta)$ is uniformly bounded on
+$(0,\sqrt2-1]$, this gives \eqref{eq:pointwise-shell-floor}.
+\end{proof}
+
+The lemma is a direct conclusion obtainable from positivity and the
+current second-moment input.  In the bounded-mode window its right-hand
+side is the target variance scale by
+\cref{cor:bounded-effective-mode-sharp-variance}; in the mesoscopic window the
+first term is larger by $m_{\mathrm{eff}}$.  The acoustic crossing model below
+shows why a volume-uniform improvement by a factor $\eta^\alpha$ cannot be
+expected at arbitrarily thin prescribed shells.
+
+In particular, if $R_*$ is independent and log-uniform on $[R/2,R]$, then
+\begin{equation}
+ \E_{J,R_*}S_L(R_*,\eta)^2
+ \le C\eta j_+^2\abs A^4\left[
+ (R/j_+)^d+L^{-d}(R/j_+)^{d/2}
+ \right].
+ \label{eq:log-uniform-random-center-shell}
+\end{equation}
+Thus the desired shell modulus is already true for a typical cutoff in every
+dyadic energy window.  What is missing is a bound uniform at a prescribed
+cutoff.
+
+
+\begin{corollary}[Exceptional set of spectral cutoffs]
+\label{cor:exceptional-cutoff-set}
+Fix $0<\beta<1$, $0<\eta\le1$, and put
+\begin{equation}
+ Q_L(R)=j_+^2\abs A^4\left[
+ (R/j_+)^d+L^{-d}(R/j_+)^{d/2}
+ \right].
+ \label{eq:dyadic-shell-scale}
+\end{equation}
+There is a constant $C$ such that the bad set
+\begin{equation}
+ \mathcal B_{L,R}(\eta,\beta)
+ =\left\{r\in[R/2,R]:
+ \E S_L(r,\eta)^2>C\eta^\beta Q_L(R)\right\}
+ \label{eq:bad-cutoff-set}
+\end{equation}
+obeys
+\begin{equation}
+ \boxed{
+ \int_{\mathcal B_{L,R}(\eta,\beta)}\frac{\dd r}{r}
+ \le C\eta^{1-\beta}.}
+ \label{eq:bad-cutoff-log-measure}
+\end{equation}
+Consequently, let $(L_k)$ be any deterministic volume sequence and let
+$\eta_k\downarrow0$ satisfy
+$\sum_k\eta_k^{1-\beta}<\infty$.  Then for logarithmically almost every
+$r\in[R/2,R]$,
+\begin{equation}
+ \E S_{L_k}(r,\eta_k)^2
+ \le C\eta_k^\beta Q_{L_k}(R)
+ \label{eq:almost-every-cutoff-shell}
+\end{equation}
+for all sufficiently large $k$.  The same conclusion holds for the
+$L^2$ error between $T_{L_k}(r)$ and the collapsing integrated difference
+quotient with $h_k=\eta_kr$.
+\end{corollary}
+
+\begin{proof}
+Restrict \eqref{eq:log-averaged-shell-bound} to $[R/2,R]$ and apply Markov's
+inequality with respect to logarithmic measure.  This gives
+\eqref{eq:bad-cutoff-log-measure}.  The second statement follows from the
+Borel--Cantelli lemma on the finite measure space
+$([R/2,R],\dd r/r)$; no independence in $k$ is needed.  The final claim uses
+\eqref{eq:integrated-shell-sandwich}.
+\end{proof}
+
+Thus the pointwise shell problem is already solved outside a quantitatively
+small deterministic set of cutoff energies, and along arbitrary volume
+sequences it is solved for almost every energy.  The remaining theorem asks
+for a bound at a prescribed cutoff with no exceptional set.
+
+Order the $dL^d$ conductances, let $(\mathcal F_m)$ be their reveal filtration,
+and put
+\begin{equation}
+ Y_{r,h}=\frac{K_L(r+h)-K_L(r)}h,
+ \qquad
+ D_m(r,h)=\E[Y_{r,h}\mid\mathcal F_m]
+ -\E[Y_{r,h}\mid\mathcal F_{m-1}].
+ \label{eq:integrated-Doob-increments}
+\end{equation}
+The exact Doob identity is
+\begin{equation}
+ \Var Y_{r,h}=\sum_{m=1}^{dL^d}\E\abs{D_m(r,h)}^2.
+ \label{eq:integrated-Doob-identity}
+\end{equation}
+
+
+\section{Pointwise rank-one geometry, participation coarea, and the correct martingale target}
+\label{sec:pointwise-rank-one-coarea}
+
+The logarithmic shell theorem leaves open whether its exceptional set can be
+removed by a pointwise maximal estimate.  We now resolve the finite-dimensional
+geometry of that question.  The first conclusion is favorable: varying one
+bond cannot produce multiple crossings of a fixed cutoff.  The second is a
+warning: the resulting one-bond Efron--Stein surface term is generally stronger
+than the centered theorem and can lose a square-root volume factor at an
+individual acoustic eigenvalue.  This identifies direct Doob smoothing in
+\emph{disorder space}, rather than a volume-uniform spectral shell modulus, as
+the correct remaining route.
+
+Write $N=L^d$, $b_e=B\mathbf e_e$, and, after deleting the $e$th bond,
+\begin{equation}
+ L_e^{(0)}=\sum_{f\ne e}j_fb_fb_f^*,
+ \qquad
+ g_e^{(0)}=\sum_{f\ne e}j_fa_fb_f.
+ \label{eq:leave-one-edge-operator-source}
+\end{equation}
+For $t\in[j_-,j_+]$ put
+\begin{equation}
+ L_e(t)=L_e^{(0)}+tb_eb_e^*,
+ \qquad
+ g_e(t)=g_e^{(0)}+ta_eb_e.
+ \label{eq:one-edge-rank-one-path}
+\end{equation}
+All operators below are restricted to $\mathbf1^\perp$.
+
+\begin{lemma}[Single-crossing lemma]
+\label{lem:single-crossing}
+For $t_1<t_2$ and every $r>0$,
+\begin{equation}
+ 0\le
+ \tr\bm1_{(0,r]}(L_e(t_1))-
+ \tr\bm1_{(0,r]}(L_e(t_2))
+ \le1.
+ \label{eq:single-crossing-count}
+\end{equation}
+Thus a complete one-bond path crosses a prescribed positive energy at most
+once, counting multiplicity.
+\end{lemma}
+
+\begin{proof}
+The perturbation
+$L_e(t_2)-L_e(t_1)=(t_2-t_1)b_eb_e^*$ is positive and rank one.  Monotonicity
+and rank-one Cauchy interlacing imply that the counting function below $r$ can
+only decrease and can decrease by at most one.
+\end{proof}
+
+The unique crossing has explicit leave-one-edge coordinates.  For
+$r\notin\sigma(L_e^{(0)}|_{\mathbf1^\perp})$, define
+\begin{align}
+ m_e(r)&=\ip{b_e}{(L_e^{(0)}-r)^{-1}b_e},
+ &
+ \dot m_e(r)&=\ip{b_e}{(L_e^{(0)}-r)^{-2}b_e},
+ \label{eq:Krein-m-functions}\\
+ h_e(r)&=\ip{b_e}{(L_e^{(0)}-r)^{-1}g_e^{(0)}}.
+ \label{eq:Krein-h-function}
+\end{align}
+
+\begin{proposition}[Krein coordinates for the unique crossing]
+\label{prop:Krein-crossing-coordinates}
+A crossing occurs in the ellipticity interval precisely when
+\begin{equation}
+ t_e(r)=-\frac1{m_e(r)}\in(j_-,j_+).
+ \label{eq:Krein-crossing-location}
+\end{equation}
+Because the admissible conductance is positive, such a crossing necessarily has $m_e(r)<0$; equivalently, $r$ lies above at least one eigenvalue of the deleted-bond operator on $\mathbf1^\perp$.
+At that crossing, a normalized eigenvector, the eigenvalue speed, and the jump
+of the sharp tail are
+\begin{align}
+ \psi_e(r)
+ &=\frac{(L_e^{(0)}-r)^{-1}b_e}{\sqrt{\dot m_e(r)}},
+ \label{eq:Krein-crossing-vector}\\
+ \left.\partial_t\lambda_e(t)\right|_{t=t_e(r)}
+ &=\frac{m_e(r)^2}{\dot m_e(r)},
+ \label{eq:Krein-crossing-speed}\\
+ q_e(r)
+ &=\frac1{Nr}\abs{\ip{g_e(t_e(r))}{\psi_e(r)}}^2
+ =\frac{\abs{h_e(r)-a_e}^2}{Nr\dot m_e(r)}.
+ \label{eq:Krein-crossing-jump}
+\end{align}
+As $t$ increases through $t_e(r)$, the function
+$T_L(r;J_{\setminus e},t)$ has a single downward jump of size $q_e(r)$.
+Moreover, for every $z\notin\sigma(L_e(t))$,
+\begin{align}
+ &\ip{g_e(t)}{(L_e(t)-z)^{-1}g_e(t)}
+ \nonumber\\
+ &\quad=
+ \ip{g_e^{(0)}}{(L_e^{(0)}-z)^{-1}g_e^{(0)}}
+ +\frac{t\bigl(a_e^2m_e(z)t+2a_eh_e(z)-h_e(z)^2\bigr)}
+ {1+tm_e(z)}.
+ \label{eq:affine-source-Krein-resolvent}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+The matrix determinant lemma gives
+$\det(L_e(t)-r)=\det(L_e^{(0)}-r)(1+tm_e(r))$, which proves
+\eqref{eq:Krein-crossing-location}.  Applying $L_e(t)-r$ to
+$(L_e^{(0)}-r)^{-1}b_e$ gives $(1+tm_e(r))b_e$, and normalization yields
+\eqref{eq:Krein-crossing-vector}.  Hellmann--Feynman gives
+$\partial_t\lambda=|\langle b_e,\psi_e\rangle|^2=m_e^2/\dot m_e$.
+At $t=-1/m_e$,
+\[
+ \ip{g_e(t)}{\psi_e}
+ =\frac{h_e+ta_em_e}{\sqrt{\dot m_e}}
+ =\frac{h_e-a_e}{\sqrt{\dot m_e}},
+\]
+which proves \eqref{eq:Krein-crossing-jump}.  Finally, the
+Sherman--Morrison formula, together with the affine dependence of $g_e(t)$,
+gives \eqref{eq:affine-source-Krein-resolvent} by direct expansion.
+\end{proof}
+
+Let $(\lambda_k,\psi_k)$ denote the positive eigenpairs of $L_{J,L}$ and set
+\begin{equation}
+ q_k(J)=\frac1{N\lambda_k}\abs{\ip{g_L}{\psi_k}}^2,
+ \qquad
+ \Pi_L(I)=\E\sum_kq_k(J)^2\bm1_I(\lambda_k).
+ \label{eq:participation-measure}
+\end{equation}
+The measure $\Pi_L$ is the diagonal, or inverse-participation, part of the
+second moment of the drift spectral measure.  It is exactly the coefficient
+of the linear small-shell term; off-diagonal pairs contribute only at higher
+order when the disorder-averaged spectral law is regular.
+
+\begin{theorem}[Participation coarea formula]
+\label{thm:participation-coarea}
+Assume that the edge law has density $\rho$ on $[j_-,j_+]$ and that the
+positive spectrum is simple almost surely.  Then $\Pi_L$ is absolutely
+continuous on $(0,\infty)$.  For almost every $r>0$, its density
+$\pi_L(r)=\dd\Pi_L/\dd r$ satisfies
+\begin{equation}
+ \boxed{
+ r\pi_L(r)=
+ \sum_e\E_{\setminus e}\left[
+ t_e(r)\rho(t_e(r))q_e(r)^2
+ \bm1_{\{t_e(r)\in(j_-,j_+)\}}
+ \right].}
+ \label{eq:participation-coarea-density}
+\end{equation}
+Equivalently, the explicit leave-one-edge Green-function target is
+\begin{equation}
+ r\pi_L(r)=\frac1{N^2r^2}
+ \sum_e\E_{\setminus e}\left[
+ t_e(r)\rho(t_e(r))
+ \frac{\abs{h_e(r)-a_e}^4}{\dot m_e(r)^2}
+ \bm1_{\{t_e(r)\in(j_-,j_+)\}}
+ \right].
+ \label{eq:participation-Green-target}
+\end{equation}
+In particular,
+\begin{equation}
+ \E\sum_{r<\lambda_k\le(1+\eta)r}q_k^2
+ =\int_r^{(1+\eta)r}\pi_L(s)\dd s.
+ \label{eq:diagonal-shell-participation}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Every positive eigenvalue is homogeneous of degree one in the conductances, so
+Euler's identity and Hellmann--Feynman give
+\begin{equation}
+ \sum_e\frac{j_e\partial_{j_e}\lambda_k}{\lambda_k}=1.
+ \label{eq:eigenvalue-Euler-identity}
+\end{equation}
+For a compactly supported test function $f$,
+\[
+ \int f(r)\Pi_L(\dd r)
+ =\sum_e\E\sum_k
+ \frac{j_e\partial_{j_e}\lambda_k}{\lambda_k}
+ q_k^2f(\lambda_k).
+\]
+Condition on all bonds except $j_e=t$.  The eigenvalue branches are monotone,
+and \cref{lem:single-crossing} says that at a fixed $r$ there is at most one
+crossing over the full $t$ interval.  Changing variables from $t$ to the
+crossing eigenvalue cancels $\partial_t\lambda_k$ and gives
+\[
+ \int f(r)\frac1r\E_{\setminus e}
+ \left[t_e(r)\rho(t_e(r))q_e(r)^2
+ \bm1_{\{t_e(r)\in(j_-,j_+)\}}\right]\dd r.
+\]
+Summing over $e$ proves \eqref{eq:participation-coarea-density};
+\eqref{eq:participation-Green-target} follows from
+\eqref{eq:Krein-crossing-jump}.
+\end{proof}
+
+The coarea formula also gives the exact one-bond surface term in the product
+variance inequality.  Let $F_\beta(t)=\beta([j_-,t])$, and, conditionally on
+$J_{\setminus e}$, put
+\begin{equation}
+ H_e(t)=T_L(r;J_{\setminus e},t),
+ \qquad
+ \widetilde H_e(t)=H_e(t)+q_e(r)\bm1_{\{t\ge t_e(r)\}},
+ \label{eq:regularized-one-edge-sharp-path}
+\end{equation}
+with $q_e=0$ when there is no crossing.  The function $\widetilde H_e$ is
+continuous and piecewise analytic.
+
+\begin{theorem}[Exact Efron--Stein surface decomposition]
+\label{thm:Efron-Stein-surface-decomposition}
+Suppose the one-edge law satisfies the derivative Poincar\'e inequality
+\eqref{eq:one-edge-Poincare}.  Define
+\begin{align}
+ \mathcal R_L(r)
+ &=\sum_e\E_{\setminus e}\int
+ \abs{\partial_t\widetilde H_e(t)}^2\,\beta(\dd t),
+ \label{eq:regular-one-edge-sensitivity}\\
+ \mathcal J_L(r)
+ &=\sum_e\E_{\setminus e}\left[
+ q_e(r)^2F_\beta(t_e(r))(1-F_\beta(t_e(r)))
+ \bm1_{\{t_e(r)\in(j_-,j_+)\}}
+ \right].
+ \label{eq:jump-one-edge-sensitivity}
+\end{align}
+Then
+\begin{equation}
+ \boxed{
+ \Var T_L(r)\le2C_\beta\mathcal R_L(r)+2\mathcal J_L(r).}
+ \label{eq:Efron-Stein-surface-bound}
+\end{equation}
+If
+\begin{equation}
+ \kappa_\beta=
+ \operatorname*{ess\,sup}_{j_-<t<j_+}
+ \frac{F_\beta(t)(1-F_\beta(t))}{t\rho(t)}<\infty,
+ \label{eq:one-edge-isoperimetric-ratio}
+\end{equation}
+then
+\begin{equation}
+ \boxed{\mathcal J_L(r)\le\kappa_\beta\,r\pi_L(r).}
+ \label{eq:jump-participation-density-bound}
+\end{equation}
+For the uniform law on $[j_-,j_+]$,
+$\kappa_\beta\le(j_+-j_-)/(4j_-)$.
+\end{theorem}
+
+\begin{proof}
+Tensorization gives
+$\Var T_L(r)\le\sum_e\E_{\setminus e}\Var_\beta H_e$.
+Since
+$H_e=\widetilde H_e-q_e\bm1_{\{t\ge t_e\}}$,
+\[
+ \Var_\beta H_e
+ \le2\Var_\beta\widetilde H_e
+ +2q_e^2F_\beta(t_e)(1-F_\beta(t_e)).
+\]
+Apply the one-dimensional Poincar\'e inequality to $\widetilde H_e$ and sum.
+Equation \eqref{eq:jump-participation-density-bound} follows term by term from
+\eqref{eq:participation-coarea-density} and
+\eqref{eq:one-edge-isoperimetric-ratio}.
+\end{proof}
+
+This theorem removes the previously stated ``multiple crossing'' obstruction:
+there is only one crossing channel.  It also shows that the naive pointwise
+target
+\begin{equation}
+ r\pi_L(r)\stackrel{?}{\lesssim}
+ j_+^2\abs A^4N^{-1}(r/j_+)^{d/2}
+ \label{eq:too-strong-pointwise-participation-target}
+\end{equation}
+is an Efron--Stein sufficient condition, not a necessary consequence of the
+centered variance theorem.  In fact, at a cutoff passing through an individual
+acoustic eigenvalue, \eqref{eq:too-strong-pointwise-participation-target} is
+not the scale predicted by eigenvalue central-limit fluctuations.
+
+\begin{proposition}[Acoustic-CLT obstruction to a uniform maximal shell modulus]
+\label{prop:acoustic-CLT-maximal-obstruction}
+Let $N\to\infty$, let $r_N>0$, and consider a single positive modal
+contribution
+\begin{equation}
+ \lambda_N=r_N\exp(Z_N/\sqrt N),
+ \qquad q_N=Q_N/N.
+ \label{eq:acoustic-one-mode-scaling}
+\end{equation}
+Assume $(Z_N,Q_N)\Rightarrow(Z,Q)$, the family $Q_N^2$ is uniformly
+integrable, and for some $a>0$,
+\begin{equation}
+ \E\left[Q^2\bm1_{\{0<Z\le a\}}\right]>0.
+ \label{eq:nondegenerate-acoustic-crossing}
+\end{equation}
+Put $\eta_N=\exp(a/\sqrt N)-1$.  Then the one-mode shell obeys
+\begin{equation}
+ N^2\E\left[q_N^2
+ \bm1_{\{r_N<\lambda_N\le(1+\eta_N)r_N\}}\right]
+ \longrightarrow
+ \E\left[Q^2\bm1_{\{0<Z\le a\}}\right]>0.
+ \label{eq:acoustic-shell-nonvanishing}
+\end{equation}
+Consequently, for every $\alpha>0$, no volume-uniform estimate of the form
+\begin{equation}
+ \E S_N(r_N,\eta)^2\le C\eta^\alpha N^{-2}
+ \label{eq:false-uniform-Holder-shell}
+\end{equation}
+can hold at all $\eta$, even though the centered one-mode tail has variance
+of order $N^{-2}$.  In the explicit Gaussian case
+$Z\sim\mathcal N(0,1)$ and $Q\equiv q_*$,
+\begin{equation}
+ r_N\pi_N(r_N)=\frac{q_*^2}{\sqrt{2\pi}}N^{-3/2},
+ \qquad
+ \Var\left[\frac{q_*}{N}\bm1_{\{Z\le0\}}\right]
+ =\frac{q_*^2}{4}N^{-2}.
+ \label{eq:Gaussian-acoustic-density-versus-variance}
+\end{equation}
+Thus the pointwise one-bond surface density can be larger than the centered
+variance scale by $\sqrt N$.
+\end{proposition}
+
+\begin{proof}
+The shell event is exactly $\{0<Z_N\le a\}$.  Uniform integrability and weak
+convergence give \eqref{eq:acoustic-shell-nonvanishing}.  Since
+$\eta_N^\alpha\sim a^\alpha N^{-\alpha/2}$,
+\eqref{eq:false-uniform-Holder-shell} would force the positive limit in
+\eqref{eq:acoustic-shell-nonvanishing} to vanish.  The Gaussian formulas
+follow from the density of $Z/\sqrt N$ at the origin and from the variance of
+a fair Bernoulli variable.
+\end{proof}
+
+The proposition is an exact surrogate statement, not an assertion that a
+specific torus eigenpair already satisfies the required joint limit.  It is,
+however, the scaling expected from quantitative eigenvalue fluctuation theory
+for isolated homogenized elliptic modes \cite{Duerinckx2022Eigenvalue}; large-scale acoustic dispersive estimates give complementary context \cite{DuerinckxGloria2025}.  The
+finite-torus audit in the supplementary package finds
+$\operatorname{sd}(\log\lambda)\simeq N^{-1/2}$,
+$r\pi_L(r)\simeq N^{-3/2}$, and
+$\Var T_L(r)\simeq N^{-2}$ across the first acoustic multiplet in two
+dimensions.  These diagnostics do not enter the proof.
+
+The correct closure statement must therefore allow a volume-dependent
+spectral smoothing scale, or avoid spectral smoothing altogether.
+
+\begin{theorem}[Diagonal integrated-martingale criterion]
+\label{thm:diagonal-integrated-martingale-criterion}
+Let $r_L$ lie in the diffusive window and define
+\begin{equation}
+ V_L(r_L)=j_+^2\abs A^4N^{-1}(r_L/j_+)^{d/2}.
+ \label{eq:target-centered-variance-scale}
+\end{equation}
+Suppose there is a sequence $h_L\downarrow0$ such that
+\begin{align}
+ \E S_L(r_L,h_L/r_L)^2&=o(V_L(r_L)),
+ \label{eq:diagonal-shell-error}\\
+ \sum_m\E\abs{D_m(r_L,h_L)}^2&\le C V_L(r_L).
+ \label{eq:diagonal-integrated-QV}
+\end{align}
+Then
+\begin{equation}
+ \Var T_L(r_L)\le(C+o(1))V_L(r_L).
+ \label{eq:diagonal-centered-conclusion}
+\end{equation}
+No volume-uniform limit $h\downarrow0$ is required.
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:integrated-shell-sandwich},
+$\|Y_{r_L,h_L}-T_L(r_L)\|_2=o(V_L^{1/2})$.
+The exact Doob identity \eqref{eq:integrated-Doob-identity} and the triangle
+inequality for centered $L^2$ norms then give
+\eqref{eq:diagonal-centered-conclusion}.
+\end{proof}
+
+There is an even cleaner fixed-cutoff formulation.  Define the sharp Doob
+increments
+\begin{equation}
+ D_m^\sharp(r)=\E[T_L(r)\mid\mathcal F_m]
+ -\E[T_L(r)\mid\mathcal F_{m-1}].
+ \label{eq:sharp-Doob-increments}
+\end{equation}
+Then
+\begin{equation}
+ \boxed{
+ \Var T_L(r)=\sum_m\E\abs{D_m^\sharp(r)}^2.}
+ \label{eq:sharp-Doob-identity}
+\end{equation}
+The full centered theorem is therefore equivalent to a direct pointwise bound
+on this quadratic variation.  Unlike Efron--Stein, the Doob increments average
+each crossing over all unrevealed conductances and can capture the acoustic
+central-limit smoothing responsible for the missing $N^{-1/2}$ factor.
+
+A useful exact representation of that smoothing is provided by the reversible
+noise semigroup on disorder space.  Let
+\begin{equation}
+ \mathscr G=\sum_e(\E_e-\Id),
+ \qquad
+ P_t=\e^{t\mathscr G},
+ \label{eq:product-resampling-semigroup}
+\end{equation}
+where $\E_e$ averages only the $e$th conductance.  The product law is
+reversible and
+\begin{equation}
+ \boxed{
+ \Var F=2\int_0^\infty
+ \sum_e\E\Var_e(P_tF)\dd t.}
+ \label{eq:disorder-noise-variance-representation}
+\end{equation}
+Thus it is sufficient to prove, at the fixed physical cutoff,
+\begin{equation}
+ \sum_e\E\Var_e(P_tT_L(r))
+ \le C V_L(r)\vartheta(t),
+ \qquad
+ \int_0^\infty\vartheta(t)\dd t<\infty.
+ \label{eq:noise-energy-target}
+\end{equation}
+This route never differentiates the spectral projector in $r$ and has no
+exceptional cutoff set.
+
+The expected short-time singularity in \eqref{eq:noise-energy-target} is
+integrable and is already visible in the exact Gaussian half-space model.  If
+$X\in\R^M$ is standard Gaussian,
+$Z=M^{-1/2}\sum_iX_i$, and $F=q\bm1_{\{Z\le0\}}$, then the
+Ornstein--Uhlenbeck semigroup satisfies
+\begin{equation}
+ P_tF=q\,\Phi\left(
+ -\frac{\e^{-t}Z}{\sqrt{1-\e^{-2t}}}\right).
+ \label{eq:Gaussian-halfspace-semigroup}
+\end{equation}
+Writing $a_t=\e^{-t}/\sqrt{1-\e^{-2t}}$ gives
+\begin{equation}
+ \E\abs{\nabla P_tF}^2
+ =\frac{q^2a_t^2}{2\pi\sqrt{1+2a_t^2}}
+ \sim\frac{q^2}{4\pi\sqrt t}
+ \quad(t\downarrow0),
+ \label{eq:Gaussian-halfspace-noise-energy}
+\end{equation}
+while it decays exponentially for large $t$, and exactly
+\begin{equation}
+ 2\int_0^\infty\E\abs{\nabla P_tF}^2\dd t
+ =\frac{q^2}{4}=\Var F.
+ \label{eq:Gaussian-halfspace-variance-closure}
+\end{equation}
+The $t^{-1/2}$ boundary layer is the disorder-space replacement for the false
+volume-uniform shell modulus.  The new sharp target is to prove the analogue
+of \eqref{eq:Gaussian-halfspace-noise-energy} for the low-energy
+current-weighted random-conductance functional, using the coarea coordinates
+\eqref{eq:participation-Green-target} together with conditional homogenization
+of the unrevealed environment.
+
+
+\begin{problem}[Pointwise disorder-noise energy]
+\label{prob:pointwise-disorder-noise-energy}
+Prove the fixed-cutoff estimate
+\begin{equation}
+ \int_0^\infty\sum_e\E\Var_e(P_tT_L(r))\dd t
+ \le Cj_+^2\abs A^4N^{-1}(r/j_+)^{d/2}
+ \label{eq:integrated-noise-energy-goal}
+\end{equation}
+uniformly for $cL^{-2}\le r/j_+\le\delta_0$.  A stronger, scale-resolved
+version would establish \eqref{eq:noise-energy-target} with
+$\vartheta(t)\lesssim t^{-1/2}$ for $t\le1$ and exponential decay for
+$t\ge1$.  The coarea theorem identifies the exact crossing surface, while the
+acoustic obstruction shows why the unrevealed-environment smoothing in $P_t$
+or in the direct Doob martingale is essential.  Proving
+\eqref{eq:integrated-noise-energy-goal} closes the centered nonlinear theorem
+without any exceptional set of physical cutoff energies.
+\end{problem}
+
+
+
+
+
+\section{Numerical audit}
+\label{sec:numerics}
+
+The Paper~II archive retains seven independent programs.  They verify the Abel heat and parabolic-energy identities, the exact Duhamel bond derivative, the Born Fourier formulas and Hanson--Wright normalization, the relative Wegner and randomized-cutoff identities, the logarithmic shell formula, the single-crossing/Krein/coarea relations, and the Gaussian and Bernoulli disorder-noise boundary layers.  The exact Abel Duhamel/spectral derivative discrepancy is $2.17\times10^{-19}$, the finite-difference sensitivity error is $1.05\times10^{-12}$, the one-crossing eigenvalue error is $6.66\times10^{-16}$, and the exact Gaussian noise-energy integral closes to $7.92\times10^{-14}$.  Monte Carlo coarea and low-mode scaling tables are explicitly labeled diagnostics rather than proof inputs.
+
+\section{Theorem boundary}
+\label{sec:boundary}
+
+The positive Abel envelope has the predicted effective-mode variance under the stated one-bond Poincar\'e and period-uniform GNO hypotheses.  The physical sharp tail inherits a one-sided high-probability bound.  At bounded effective-mode count, the target variance scale follows from the uncentered second moment; genuine centering remains necessary in the mesoscopic window.  The Born sharp observable has a complete centered concentration theorem.
+
+The three-route audit closes several tempting shortcuts.  Counts alone do not control drift weight; positive heat mixtures cannot create a narrow threshold; logarithmic shell averaging does not imply a vanishing pointwise shell modulus; and a single bond creates at most one cutoff crossing.  The rank-one and coarea formulas isolate the exact surface term that direct Efron--Stein overcounts near an acoustic mode.
+
+\begin{problem}[Fixed-cutoff disorder-noise theorem]
+\label{prob:fixed-cutoff-noise}
+Prove, uniformly for $cL^{-2}\le r/j_+\le\delta_0$ in the mesoscopic regime $m_{\rm eff}(L,r)\to\infty$,
+\[
+ 2\int_0^\infty\sum_e\E\Var_e(P_tT_L(r))\dd t
+ \le Cj_+^2\abs A^4L^{-d}(r/j_+)^{d/2}.
+\]
+A scale-resolved estimate with an integrable $t^{-1/2}$ short-time profile would close the centered nonlinear theorem at every prescribed cutoff without an exceptional energy set and without a false uniform maximal-shell hypothesis.
+\end{problem}
+
+\section{Conclusion}
+
+The smooth and weak-disorder sectors now have complete fluctuation theorems at the effective diffusive-mode scale.  For the nonlinear sharp cutoff, the obstruction is not an unidentified eigenvalue crossing: rank-one geometry makes the crossing unique and explicit.  Nor is it a small exceptional set of physical frequencies: pointwise maximalization reaches the unavoidable uncentered floor at every cutoff.  The missing mechanism is averaging in disorder space.  The exact product-noise representation identifies the final theorem as an integrable fixed-cutoff quadratic-variation estimate, with the acoustic half-space model predicting the correct $t^{-1/2}$ boundary layer.
+
+
+\appendix
+
+\section{Periodic gradient propagator: definitions, imported estimates, and proof}
+\label{app:gradient-propagator}
+
+Normalize $j_+=1$ and put $\lambda_*=j_-/j_+$.  For a fixed periodic environment $J$, define the torus heat kernel by
+\begin{equation}
+ G_L(t,J,x,y)=\bigl(\e^{-tL_{J,L}}\delta_y\bigr)(x),
+ \qquad x,y\in\Lambda_L.
+ \label{eq:torus-Green-definition}
+\end{equation}
+It solves $\partial_tG_L+L_{J,L}G_L=0$ with initial datum $\delta_y$ and conserves total mass.  Gradients annihilate its constant long-time component, so no mean-zero subtraction is required in the estimates below.  Let
+\begin{equation}
+ \omega_{L,t}(y)=\left(1+\frac{\dist(y,L\Z^d)^2}{1+t}\right)^{1/2},
+ \label{eq:GNO-weight-definition}
+\end{equation}
+where $\dist(y,L\Z^d)$ is the Euclidean distance of a representative of $y$ to the nearest period point.
+
+We use two inputs from the long version of Gloria--Neukamm--Otto \cite{GloriaNeukammOtto2013Long}; the corresponding quantitative homogenization framework is published in \cite{GloriaNeukammOtto2015}.  The period-uniform statements below are taken from the numbered results of the long version.
+
+For completeness, we spell out the periodic vertical hypothesis.  Let $Q_L=\{0,\ldots,L-1\}^d$, regard the $d$ outgoing coefficients at a site as one coefficient block, and set
+\begin{equation}
+ \partial_{L,y}F
+ =F-\E\bigl[F\mid\{j(x):x\in Q_L,\ x\ne y\}\bigr].
+ \label{eq:periodic-vertical-derivative}
+\end{equation}
+The condition $\mathrm{SG}_L(\rho)$ is
+\begin{equation}
+ \Var F\le\rho^{-1}\sum_{y\in Q_L}\E\abs{\partial_{L,y}F}^2
+ \label{eq:periodic-SG-definition}
+\end{equation}
+for every square-integrable mean-zero $F$.  The product law of independent site blocks satisfies this inequality with a constant independent of $L$ by tensorization.  For a vector-valued random field $\xi$, write
+\begin{equation}
+ \norm{\xi}_{\ell_y^1L^{2p}}
+ :=\sum_{y\in Q_L}\norm{\partial_{L,y}\xi}_{L^{2p}(\Omega_L)}.
+ \label{eq:vertical-source-norm}
+\end{equation}
+
+\begin{theorem}[Imported divergence-semigroup estimate]
+\label{thm:GNO-divergence-import}
+Assume the stationary $L$-periodic ensemble satisfies $\mathrm{SG}_L(\rho)$ with $\rho$ independent of $L$.  Theorem~2 under alternative~(69b) supplies $p_0=p_0(d,\lambda_*)<\infty$ such that, for $p\ge p_0$ and $u(t)=\e^{-t\mathscr L_L}D^*\xi$,
+\begin{equation}
+ \norm{u(t)}_{L^{2p}(\Omega_L)}
+ \le C_p(1+t)^{-d/4-1/2}\norm{\xi}_{\ell_y^1L^{2p}},
+ \label{eq:GNO-Theorem2-specialized}
+\end{equation}
+where $C_p=C(p,d,\lambda_*,\rho)$ has no dependence on $L$.  Lower finite moments follow by Jensen.  For the local drift $d_A=D^*(j(0)A)$, Remark~11 and equation~(70) give
+\begin{equation}
+ \norm{\e^{-t\mathscr L_L}d_A}_{L^p(\Omega_L)}
+ \le C_p\abs A(1+t)^{-d/4-1/2}.
+ \label{eq:GNO-drift-moment}
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[Imported periodic Green-gradient estimate]
+\label{thm:GNO-Green-import}
+Theorem~3(b), with the weight in its equation~(74), supplies an exponent $q>1$ depending only on $d,\lambda_*$ such that for every $\alpha<\infty$,
+\begin{equation}
+ \left(\sum_{y\in\Lambda_L}
+ [\omega_{L,t}(y)^\alpha\abs{\nabla_yG_L(t,J,y,0)}]^{2q}\right)^{1/(2q)}
+ \le C_{\alpha,q}(1+t)^{-d/2-1/2+d/(4q)}\e^{-c t/L^2}.
+ \label{eq:GNO-Theorem3b-specialized}
+\end{equation}
+The estimate is deterministic in $J$, uniform over all $L$-periodic coefficients in $[\lambda_*,1]$, and uniform in $L$.
+\end{theorem}
+
+The product torus law satisfies $\mathrm{SG}_L(\rho)$ by tensorization of its one-block spectral gap.  We now derive the lemma used in the main text.  Let $F_y(J)=F(\tau_yJ)$ and set $r=2q$, $r'=r/(r-1)$.  Choose $\alpha$ so that $\alpha r'>d$.  The environment--site intertwining and heat-kernel symmetry give, for each coordinate derivative,
+\begin{equation}
+ \abs{D\e^{-s\mathscr L_L}F}
+ \le
+ \left(\sum_y[\omega_{L,s}(y)^\alpha\abs{\nabla_yG_L(s,J,y,0)}]^r\right)^{1/r}
+ \left(\sum_y\omega_{L,s}(y)^{-\alpha r'}\abs{F_y}^{r'}\right)^{1/r'}.
+ \label{eq:weighted-Holder-full}
+\end{equation}
+By \cref{thm:GNO-Green-import}, the first factor is bounded by
+\begin{equation}
+ C(1+s)^{-d/2-1/2+d/(2r)}\e^{-cs/L^2}.
+ \label{eq:first-Green-factor}
+\end{equation}
+For $2p\ge r'$, Minkowski and stationarity yield
+\begin{align}
+ &\left\|\left(\sum_y\omega_{L,s}(y)^{-\alpha r'}\abs{F_y}^{r'}\right)^{1/r'}\right\|_{L^{2p}(\Omega_L)}\\
+ &\qquad\le
+ \left(\sum_y\omega_{L,s}(y)^{-\alpha r'}\right)^{1/r'}\norm F_{L^{2p}(\Omega_L)}\\
+ &\qquad\le C\min\{(1+s)^{d/(2r')},L^{d/r'}\}\norm F_{L^{2p}(\Omega_L)}.
+ \label{eq:second-weight-factor}
+\end{align}
+The final sum estimate follows from $\alpha r'>d$ by comparison with the corresponding radial integral on the diffusive ball, capped by the torus volume.  Since $1/r+1/r'=1$, the powers cancel exactly:
+\[
+ -\frac d2-\frac12+\frac d{2r}+\frac d{2r'}=-\frac12.
+\]
+For $s\le L^2$ use the diffusive-volume term in \eqref{eq:second-weight-factor}; for $s\ge L^2$ use $L^{d/r'}\le(1+s)^{d/(2r')}$, while the exponential only improves the bound.  Consequently
+\begin{equation}
+ \norm{D\e^{-s\mathscr L_L}F}_{L^{2p}(\Omega_L)}
+ \le C_p(1+s)^{-1/2}\norm F_{L^{2p}(\Omega_L)}.
+ \label{eq:gradient-semigroup-upgrade}
+\end{equation}
+Apply this with $F=u(t/2)=\e^{-(t/2)\mathscr L_L}d_A$ and $s=t/2$.  Equation \eqref{eq:GNO-drift-moment} then gives
+\begin{equation}
+ \norm{D\e^{-t\mathscr L_L}d_A}_{L^{2p}}
+ \le C_p\abs A(1+t)^{-1-d/4}.
+\end{equation}
+Under the exact stationary extension, this derivative is the physical oriented edge gradient $w_{x,\mu}(t)=b_{x,\mu}^*\e^{-tL_{J,L}}g_L$.  Spatial stationarity and restoration of $j_+$ prove the periodic gradient-propagator estimate in the main text for $p=1,2$.
+
+
+\section{Reproducibility manifest}
+\label{app:manifest}
+
+The Paper~II directory contains the TeX and PDF, the seven fluctuation and sharp-cutoff verifiers, retained CSV/PNG/JSON certificates, the detailed gradient-propagator source map, a claim-status file, and SHA-256 checksums.  The root archive contains Paper~I and the reviewer-response matrix.
+
+\begin{thebibliography}{99}
+
+\bibitem{Sledgianowski2026RobustnessI}
+N.~Sledgianowski,
+\newblock Quenched pair-coupling disorder in frustration-free QGN parents I: exact weighted Hodge response, random-conductance homogenization, and annealed dynamical bounds,
+\newblock companion research draft (2026), included in the consolidated archive.
+
+\bibitem{GloriaMourrat2012}
+A.~Gloria and J.-C.~Mourrat,
+\newblock Spectral measure and approximation of homogenized coefficients,
+\newblock \emph{Probability Theory and Related Fields} \textbf{154} (2012), 287--326.
+
+\bibitem{GloriaNeukammOtto2013Long}
+A.~Gloria, S.~Neukamm, and F.~Otto,
+\newblock Quantification of ergodicity in stochastic homogenization: optimal bounds via spectral gap on Glauber dynamics---long version,
+\newblock MiS Preprint 3/2013, Theorem 2 under (69b), Theorem 3(b), equation (74), and Corollary 8.
+
+\bibitem{GloriaNeukammOtto2015}
+A.~Gloria, S.~Neukamm, and F.~Otto,
+\newblock Quantification of ergodicity in stochastic homogenization: optimal bounds via spectral gap on Glauber dynamics,
+\newblock \emph{Inventiones Mathematicae} \textbf{199} (2015), 455--515.
+
+\bibitem{deBuyerMourrat2015}
+P.~de Buyer and J.-C.~Mourrat,
+\newblock Diffusive decay of the environment viewed by the particle,
+\newblock \emph{Electronic Communications in Probability} \textbf{20} (2015), 1--12.
+
+\bibitem{RudelsonVershynin2013}
+M.~Rudelson and R.~Vershynin,
+\newblock Hanson--Wright inequality and sub-Gaussian concentration,
+\newblock \emph{Electronic Communications in Probability} \textbf{18} (2013), no.~82, 1--9.
+
+\bibitem{Dicke2021}
+A.~Dicke,
+\newblock Wegner estimate for random divergence-type operators monotone in the randomness,
+\newblock \emph{Mathematical Physics, Analysis and Geometry} \textbf{24} (2021), article 22.
+
+\bibitem{DickeVeselic2023}
+A.~Dicke and I.~Veseli\'c,
+\newblock Unique continuation for the gradient of eigenfunctions and Wegner estimates for random divergence-type operators,
+\newblock \emph{Journal of Functional Analysis} \textbf{285} (2023), article 110040.
+
+\bibitem{KamperEtAl2026}
+M.~K\"amper, C.~Schumacher, F.~Schwarzenberger, and I.~Veseli\'c,
+\newblock Quantitative concentration inequalities for the uniform approximation of the IDS,
+\newblock arXiv:2602.18214 (2026).
+
+\bibitem{Duerinckx2022Eigenvalue}
+M.~Duerinckx,
+\newblock Eigenvalue fluctuations for random elliptic operators in homogenization regime,
+\newblock \emph{Journal of Statistical Physics} \textbf{187} (2022), article 32.
+
+\bibitem{DuerinckxGloria2025}
+M.~Duerinckx and A.~Gloria,
+\newblock Large-scale dispersive estimates for acoustic operators: homogenization meets localization,
+\newblock \emph{Journal of Functional Analysis} \textbf{289} (2025), article 111068.
+
+\end{thebibliography}
+\end{document}

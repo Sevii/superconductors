@@ -1,0 +1,26 @@
+Reviewer-integrated split source audit
+========================================
+
+paper_II_quenched_fluctuations/qgn_pair_disorder_II_quenched_fluctuations.tex
+  lines: 1691
+  bibliography entries: 11
+  uncited bibliography entries: []
+  citations without bibliography entries: []
+  references without labels: []
+  undefined dynamical-kernel definition: N/A
+  obsolete package-history wording absent: PASS
+  generic heat exponent collision absent: PASS
+  failure probability q absent: PASS
+
+paper_I_exact_annealed/qgn_pair_disorder_I_exact_annealed.tex
+  lines: 1406
+  bibliography entries: 8
+  uncited bibliography entries: []
+  citations without bibliography entries: []
+  references without labels: []
+  undefined dynamical-kernel definition: N/A
+  obsolete package-history wording absent: PASS
+  generic heat exponent collision absent: PASS
+  failure probability q absent: PASS
+
+All source-level citation and reference checks: PASS

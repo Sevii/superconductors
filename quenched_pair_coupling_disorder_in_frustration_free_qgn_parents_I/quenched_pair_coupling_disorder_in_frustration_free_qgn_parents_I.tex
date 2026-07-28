@@ -1,0 +1,1406 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm,mathrsfs}
+\usepackage{centernot}
+\usepackage{booktabs,array,tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\I}{\mathrm i}
+\newcommand{\e}{\mathrm e}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\eps}{\varepsilon}
+
+\title{\textbf{Quenched Pair-Coupling Disorder in Frustration-Free QGN Parents I}\\[0.35em]
+\large Exact weighted Hodge response, random-conductance homogenization, and annealed dynamical bounds}
+\author{Nicholas Sledgianowski}
+\date{Reviewer-integrated split draft --- July 27, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Spatially uniform pair exchange is not required for the exact response theory of a frustration-free quantum-geometric-nesting parent.  On any finite connected graph with conductances $0<j_-\le j_e\le j_+$, the fixed-pair-number Dicke/AGP state remains the unique zero state, and its Peierls curvature is exactly
+\[
+ \cC_{G,n}^{J}[a]=\gamma_{N,n}\min_{\phi}\sum_ej_e\bigl(a_e+(B^*\phi)_e\bigr)^2,
+ \qquad \gamma_{N,n}=\frac{2n(N-n)}{N(N-1)}.
+\]
+Thus the many-body stiffness is the weighted network cell energy and obeys sharp deterministic ellipticity bounds.  We define the imaginary-frequency current kernel self-containedly and prove its exact graph filter.  Disorder changes the finite-size source-kernel condition from $Ba=0$ to $BJa=0$.  A uniformly elliptic, macroscopically modulated ring then separates static curvature from the thermodynamic-first zero-frequency response, showing that ellipticity alone is insufficient.
+
+For a precisely defined space-periodization of a stationary ergodic conductance field, the curvature density converges almost surely to $2\rho(1-\rho)A\cdot\cA_{\rm hom}A$.  Cell-energy convergence and fixed-mass resolvent locality imply almost-sure low-energy $H^{-1}$ source tightness and hence equality between the thermodynamic Kohn curvature and the Abel-regularized zero-frequency harmonic response.  For the distinct product law on an $L$-periodic i.i.d. torus, the period-uniform divergence-semigroup estimate yields
+\[
+ \E L^{-d}\ip{g_L}{L_{J,L}^+\bm1_{(0,\delta]}(L_{J,L})g_L}
+ \le Cj_+\abs A^2\min\{1,(\delta/j_+)^{d/2}\}.
+\]
+This gives explicit dynamical-defect rates, an exact subgap cutoff, and a diffusive diagonal limit.  Quenched sharp-cutoff fluctuations are separated into the companion paper.
+\end{abstract}
+
+\paragraph{Claim hierarchy.}
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.2em]
+ \item The finite-graph zero space, weighted Hodge curvature, ellipticity bounds, ring law, dynamical filter, and site/target source identities are proved exactly.
+ \item The imaginary-frequency kernel and its positive-square least-squares representation are defined and derived in this paper.
+ \item Almost-sure homogenization is stated for one explicit space-periodization; quantitative finite-torus estimates use a separate product law on periodic bonds.
+ \item The QGN consequences of the imported random-conductance homogenization and period-uniform divergence-semigroup estimates are derived here.
+ \item Centered quenched fluctuations of the low-energy sharp cutoff are not claimed here; they are treated in the companion paper.
+\end{enumerate}
+\section{Problem and result map}
+
+The robustness question is deliberately narrower than perturbing a generic QGN Hamiltonian.  We keep the frustration-free local rows and their exact common kernel, but allow their positive coefficients to vary arbitrarily in space.  This breaks translation invariance before any thermodynamic limit and removes momentum-space diagonalization.  The resulting problem has four layers:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.5em]
+ \item derive the exact finite-volume curvature without Fourier analysis;
+ \item compare it deterministically with the clean response;
+ \item identify its random thermodynamic limit and fluctuations;
+ \item audit whether the static curvature is also a zero-frequency matter response.
+\end{enumerate}
+
+The main structural answer is that all four layers reduce to the weighted graph Laplacian.  Static curvature is a weighted Hodge residual.  The thermodynamic tensor is the effective conductivity tensor.  Dynamical noncommutation is exactly low-energy $H^{-1}$ mass of the random-conductance drift.
+
+\subsection{What disorder does and does not destroy}
+
+Let $J=\diag(j_e)$.  Three statements survive without smallness of the disorder:
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.2em]
+ \item the complete fixed-$2n$ zero space is unchanged whenever the positive-weight edge graph is connected;
+ \item the static stiffness remains uniformly positive at every interior filling, with lower bound proportional to $j_-$;
+ \item in stationary ergodic media, the stiffness self-averages to a deterministic homogenized tensor.
+\end{enumerate}
+A fourth clean statement does not survive literally.  In the uniform model, an ordinary solenoidal bond field $Ba=0$ places the Peierls source exactly in the target kernel.  With nonuniform weights the exact condition is $BJa=0$.  The mismatch $BJa$ is the random-conductance local drift and is the only possible temporal infrared obstruction.
+
+\section{Weighted swap parent on a finite graph}
+\label{sec:model}
+
+Let $G=(V,E)$ be a finite connected graph with $N=\abs V$.  Fix an arbitrary orientation of every edge, writing $t(e)$ and $h(e)$ for its tail and head.  The incidence map is
+\begin{equation}
+ B:\R^E\longrightarrow\R^V,
+ \qquad
+ (Ba)_x=\sum_{h(e)=x}a_e-\sum_{t(e)=x}a_e,
+ \label{eq:incidence}
+\end{equation}
+so $B^*$ is the oriented graph gradient.
+
+At each vertex there is one spinful electronic orbital.  Put
+\begin{equation}
+ q_x=(n_{x\uparrow}-n_{x\downarrow})^2,
+ \qquad
+ p_x^\dagger=c_{x\uparrow}^\dagger c_{x\downarrow}^\dagger.
+\end{equation}
+Let $W_e$ be the fermionic unitary that swaps the complete spinful orbitals at $t(e)$ and $h(e)$, and define the swap projector
+\begin{equation}
+ \Pi_e=\frac{\Id-W_e}{2}.
+\end{equation}
+Choose deterministic conductances
+\begin{equation}
+ 0<j_-\le j_e\le j_+<\infty,
+ \qquad J=\diag(j_e).
+ \label{eq:ellipticity}
+\end{equation}
+
+\subsection{Complete bondwise Peierls lift}
+
+Let $a\in\R^E$ be an electronic link one-form and write $A=ta$.  On each oriented lifted edge, define
+\begin{equation}
+ Y_{h(e)}=n_{h(e),\uparrow}+n_{h(e),\downarrow},
+ \qquad
+ \Pi_e(ta)=\e^{-\I t a_eY_{h(e)}}\Pi_e\e^{\I t a_eY_{h(e)}}.
+ \label{eq:Peierls-row}
+\end{equation}
+For a periodic quotient, $h(e)$ is the covering-lattice head even when its torus label wraps around.  Thus a pair carries phase $2ta_e$, as required by the electronic Peierls convention.
+
+The weighted parent is
+\begin{equation}
+ \boxed{
+ H_G^J(ta)=
+ \frac12\sum_{x\in V}(\sqrt U\,q_x)^2
+ +\frac12\sum_{e\in E}(\sqrt{j_e}\,\Pi_e(ta))^2,}
+ \label{eq:weighted-parent}
+\end{equation}
+where $U>0$.  All conclusions below are unchanged if additional positive-square rows are appended and annihilate the same zero state, but the exact scalar formulas are first stated for the weighted swap parent itself.
+
+\subsection{Exact zero state}
+
+At fixed electron number $2n$, define the normalized Dicke/AGP state
+\begin{equation}
+ \ket{\Omega_{N,n}}
+ =\binom Nn^{-1/2}
+ \sum_{\substack{S\subset V\\\abs S=n}}
+ \prod_{x\in S}p_x^\dagger\ket0.
+ \label{eq:Dicke}
+\end{equation}
+
+\begin{theorem}[Disorder-independent exact kernel]
+\label{thm:kernel}
+Assume $G$ is connected and every $j_e>0$.  Then
+\begin{equation}
+ \ker H_G^J(0)\big|_{2n}
+ =\Span\{\ket{\Omega_{N,n}}\},
+ \qquad 0\le n\le N.
+ \label{eq:kernel}
+\end{equation}
+Every odd-particle sector has zero nullity.
+\end{theorem}
+
+\begin{proof}
+A zero vector is annihilated by every positive-square row.  The $q_x$ rows restrict each vertex to empty or doubly occupied configurations.  In that hard-core-pair sector, $W_e$ is the transposition of the two endpoint occupations.  The equations $\Pi_e\psi=0$ make $\psi$ invariant under every edge transposition.  Edge transpositions of a connected graph generate the full symmetric group on $V$, whose invariant subspace at fixed Hamming weight $n$ is one dimensional and is exactly \eqref{eq:Dicke}.  The positive values of $j_e$ change no row kernel.  Odd particle number is incompatible with zero seniority at every vertex.
+\end{proof}
+
+\begin{remark}
+No perturbative assumption such as $j_e=j+O(\eps)$ appears in \cref{thm:kernel}.  The disorder contrast $j_+/j_-$ may be arbitrarily large but finite.
+\end{remark}
+
+\section{Dicke tangent space and exact source algebra}
+\label{sec:source-algebra}
+
+Write $\nu_x=p_x^\dagger p_x$ in the seniority-zero sector.  For a site function $f\in\R^V$ with $\sum_xf_x=0$, define
+\begin{equation}
+ \ket f=\sum_{x\in V}f_x\nu_x\ket{\Omega_{N,n}}.
+ \label{eq:site-state}
+\end{equation}
+Put
+\begin{equation}
+ \alpha_{N,n}=\frac{n(N-n)}{N(N-1)},
+ \qquad
+ \gamma_{N,n}=2\alpha_{N,n}.
+ \label{eq:alpha-gamma}
+\end{equation}
+For an oriented edge $e$, let
+\begin{equation}
+ \ket{z_e}=(\nu_{h(e)}-\nu_{t(e)})\ket{\Omega_{N,n}}.
+ \label{eq:zedge}
+\end{equation}
+
+\begin{lemma}[Exact tangent-space identities]
+\label{lem:tangent}
+For zero-mean site functions $f,g$,
+\begin{align}
+ \ip f g&=\alpha_{N,n}\,f^*g,
+ \label{eq:tangent-inner}\\
+ \Pi_e\ket f&=\frac12(B^*f)_e\ket{z_e},
+ \label{eq:Pi-site}\\
+ \norm{z_e}^2&=\gamma_{N,n}.
+ \label{eq:z-norm}
+\end{align}
+Moreover, differentiating the fully covariant row gives
+\begin{equation}
+ \left.\partial_t\bigl(\sqrt{j_e}\Pi_e(ta)\bigr)\right|_{t=0}
+ \ket{\Omega_{N,n}}
+ =\I\sqrt{j_e}\,a_e\ket{z_e}.
+ \label{eq:weighted-source}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For \eqref{eq:tangent-inner}, expand the two occupation sums.  Under the uniform $n$-subset measure, $\E\nu_x=n/N$ and $\E\nu_x\nu_y=n(n-1)/[N(N-1)]$ for $x\ne y$.  The zero-mean conditions leave the coefficient $\alpha_{N,n}$.  Since $W_e\ket\Omega=\ket\Omega$ and swaps the two endpoint occupations,
+\[
+ (\Id-W_e)\sum_xf_x\nu_x\ket\Omega
+ =(f_{h(e)}-f_{t(e)})(\nu_{h(e)}-\nu_{t(e)})\ket\Omega,
+\]
+which proves \eqref{eq:Pi-site}.  Taking $f=B\mathbf e_e$ gives \eqref{eq:z-norm}.  Finally, because a pair at the head has $Y_{h(e)}=2$,
+\[
+ \left.\partial_t\Pi_e(ta)\right|_0\ket\Omega
+ =-\I a_e[Y_{h(e)},\Pi_e]\ket\Omega
+ =\I a_e(\nu_{h(e)}-\nu_{t(e)})\ket\Omega.
+\]
+\end{proof}
+
+\section{Exact weighted Hodge curvature}
+\label{sec:Hodge}
+
+Stack the rows as
+\begin{equation}
+ D_J(ta):\cH\longrightarrow\bigoplus_{e\in E}\cH,
+ \qquad
+ [D_J(ta)\psi]_e=\sqrt{j_e}\Pi_e(ta)\psi,
+ \label{eq:Dstack}
+\end{equation}
+so the swap part of \eqref{eq:weighted-parent} is $D_J(ta)^\dagger D_J(ta)/2$.  Let
+\begin{equation}
+ S_J[a]=(\partial_tD_J(ta))_{t=0}\ket{\Omega_{N,n}}.
+\end{equation}
+The positive-square branch curvature is the squared distance of this source to $\ran D_J(0)$.
+
+\begin{theorem}[Finite-graph weighted Hodge formula]
+\label{thm:weighted-Hodge}
+For every finite connected graph, every positive conductance field, and every real bond profile $a$,
+\begin{equation}
+ \boxed{
+ \cC_{G,n}^{J}[a]
+ =\gamma_{N,n}\cE_J[a],
+ \qquad
+ \cE_J[a]=\min_{\phi\in\R^V}
+ \sum_{e\in E}j_e\bigl(a_e+(B^*\phi)_e\bigr)^2.}
+ \label{eq:weighted-Hodge}
+\end{equation}
+Equivalently,
+\begin{equation}
+ \boxed{
+ \cE_J[a]
+ =a^*\Bigl[J-JB^*(BJB^*)^+BJ\Bigr]a,}
+ \label{eq:Hodge-matrix}
+\end{equation}
+where $+$ denotes the Moore--Penrose inverse.  The minimizing residual
+\begin{equation}
+ h_J[a]=a+B^*\phi_*
+ \label{eq:weighted-harmonic}
+\end{equation}
+satisfies the weighted co-closed equation
+\begin{equation}
+ BJh_J[a]=0.
+ \label{eq:weighted-coclosed}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \cref{lem:tangent}, the source has edge component
+$[S_J[a]]_e=\I\sqrt{j_e}a_ez_e$.  Its normal vector is
+\begin{equation}
+ D_J^\dagger S_J[a]
+ =\I\sum_ej_ea_ez_e
+ =\I\ket{BJa}.
+ \label{eq:normal-source}
+\end{equation}
+On the tangent space,
+\begin{equation}
+ D_J^\dagger D_J\ket f
+ =\frac12\ket{BJB^*f}.
+ \label{eq:normal-tangent}
+\end{equation}
+Choose $\phi_*$ solving
+$BJB^*\phi_*=-BJa$, with its constant part fixed arbitrarily, and put
+$\chi_*=2\I\ket{\phi_*}$.  Equations \eqref{eq:normal-source}--\eqref{eq:normal-tangent} give
+\[
+ D_J^\dagger(S_J[a]+D_J\chi_*)=0.
+\]
+Hence $S_J[a]+D_J\chi_*$ is the orthogonal residual from $S_J[a]$ to $\ran D_J$.  Its $e$th component is
+\[
+ \I\sqrt{j_e}\bigl(a_e+(B^*\phi_*)_e\bigr)z_e.
+\]
+The row labels are orthogonal, and \eqref{eq:z-norm} yields \eqref{eq:weighted-Hodge}.  The normal equation gives \eqref{eq:weighted-coclosed}; substitution of
+$\phi_*=-(BJB^*)^+BJa$ gives \eqref{eq:Hodge-matrix}.
+\end{proof}
+
+\begin{corollary}[Gauge invariance]
+\label{cor:gauge}
+For every site potential $\theta$,
+\begin{equation}
+ \cE_J[a+B^*\theta]=\cE_J[a].
+\end{equation}
+In particular, every exact bond field has zero curvature on a simply connected graph, while on a periodic graph only its nontrivial cohomology class contributes.
+\end{corollary}
+
+\begin{corollary}[Effective-resistance interpretation]
+\label{cor:resistance}
+The matrix in \eqref{eq:Hodge-matrix} is the Schur complement of the weighted graph Laplacian $BJB^*$.  Thus the QGN curvature is exactly the dissipated power of the unique weighted divergence-free current in the affine class $a+\ran B^*$.
+\end{corollary}
+
+\subsection{Deterministic ellipticity bounds}
+
+\begin{theorem}[Sharp form comparison]
+\label{thm:ellipticity}
+Let $\cE_1$ denote the unit-conductance cell form.  Under \eqref{eq:ellipticity},
+\begin{equation}
+ \boxed{
+ j_-\cE_1[a]\le\cE_J[a]\le j_+\cE_1[a]}
+ \label{eq:ellipticity-form}
+\end{equation}
+for every $a$.  Both constants are optimal.
+\end{theorem}
+
+\begin{proof}
+For every $\phi$,
+\[
+ j_-\norm{a+B^*\phi}^2
+ \le\sum_ej_e\abs{a_e+(B^*\phi)_e}^2
+ \le j_+\norm{a+B^*\phi}^2.
+\]
+Taking the infimum proves both inequalities.  Constant environments $j_e=j_-$ and $j_e=j_+$ saturate them.
+\end{proof}
+
+This already answers the basic static robustness objection.  A positive clean cycle-space stiffness cannot be destroyed by any bounded positive disorder, regardless of its amplitude or spatial regularity.
+
+\subsection{Periodic tori and the effective tensor}
+
+Let $\Lambda_L=(\Z/L\Z)^d$ with $N=L^d$, and orient the $d$ positive coordinate edges from every site.  For $A\in\R^d$, let $R A\in\R^E$ be the harmonic bond field whose edge in direction $\mu$ has value $A_\mu$.  Define the normalized finite-volume conductivity tensor $\cA_L(J)$ by
+\begin{equation}
+ A\cdot\cA_L(J)A
+ =\frac1N\cE_J[RA]
+ =\frac1N\min_{\phi}\sum_{x,\mu}
+ j_{x,\mu}\bigl(A_\mu+\nabla_\mu\phi(x)\bigr)^2.
+ \label{eq:finite-cell}
+\end{equation}
+Then
+\begin{equation}
+ \frac1N\cC_{L,n}^{J}[RA]
+ =\gamma_{N,n}\,A\cdot\cA_L(J)A.
+ \label{eq:curvature-density}
+\end{equation}
+
+\begin{corollary}[Uniform disordered stiffness window]
+\label{cor:tensor-bounds}
+For every $L$ and every realization,
+\begin{equation}
+ \boxed{j_-\Id_d\preceq\cA_L(J)\preceq j_+\Id_d.}
+ \label{eq:tensor-bounds}
+\end{equation}
+If $n_L/N\to\rho\in(0,1)$, every subsequential curvature-density tensor lies between
+$2\rho(1-\rho)j_-\Id_d$ and $2\rho(1-\rho)j_+\Id_d$.
+\end{corollary}
+
+\subsection{Exact one-dimensional law}
+
+\begin{proposition}[Ring stiffness is the harmonic mean]
+\label{prop:ring}
+On an $N$-edge ring, for the uniform harmonic field $a_e=A$,
+\begin{equation}
+ \boxed{
+ \cE_J[A\bm{1}]
+ =\frac{(NA)^2}{\sum_{e=1}^Nj_e^{-1}},
+ \qquad
+ \cA_N(J)=\left(\frac1N\sum_{e=1}^Nj_e^{-1}\right)^{-1}.}
+ \label{eq:ring-harmonic}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The weighted co-closed condition says $j_eh_e$ is independent of $e$.  The affine constraint gives $\sum_eh_e=NA$.  Solving these two equations and substituting into $\sum_ej_eh_e^2$ proves the result.
+\end{proof}
+
+\section{Exact imaginary-frequency response}
+\label{sec:dynamic}
+
+For the one-parameter Peierls family $H_G^J(ta)$, put
+\[
+ \widehat H=H_G^J(0),\qquad
+ \mathcal J_a=\left.\partial_tH_G^J(ta)\right|_{t=0},\qquad
+ \mathcal T_a=\left.\partial_t^2H_G^J(ta)\right|_{t=0}.
+\]
+The ground energy is zero in the selected fixed-pair sector.  For $\zeta>0$ we define the imaginary-frequency, or Abel-regularized, current kernel by
+\begin{equation}
+ \boxed{
+ \cK_{G,n}^J(\I\zeta;a)
+ =\bra\Omega\mathcal T_a\ket\Omega
+ -2\ip{\mathcal J_a\Omega}
+ {\widehat H(\widehat H^2+\zeta^2)^{-1}\mathcal J_a\Omega}.}
+ \label{eq:K-definition}
+\end{equation}
+The static Kohn curvature is the same expression with
+$\widehat H(\widehat H^2+\zeta^2)^{-1}$ replaced by $\widehat H^+$.
+For a positive-square parent, Appendix~\ref{app:curvature} derives the exact target-space identity
+\begin{equation}
+ \cK(\I\zeta)=\ip S{\frac{\zeta^2}{\cL^2+\zeta^2}S},
+ \qquad \cL=\frac12DD^\dagger,\quad S=D'(0)\ket\Omega.
+ \label{eq:positive-square-dynamic-general}
+\end{equation}
+
+The finite-volume dynamical least-squares identity therefore uses the target Laplacian
+\begin{equation}
+ \cL_J=\frac12D_JD_J^\dagger.
+\end{equation}
+On the source-generated edge subspace, identify a coefficient vector $u\in\R^E$ with the stacked target vector $(u_ez_e)_e$.  By \cref{lem:tangent},
+\begin{equation}
+ \cL_J\ \longleftrightarrow\ 
+ \mathsf M_J=\frac14J^{1/2}B^*BJ^{1/2}.
+ \label{eq:target-lap}
+\end{equation}
+
+\begin{theorem}[Exact weighted dynamical filter]
+\label{thm:dynamic}
+For every finite graph and every $\zeta>0$,
+\begin{equation}
+ \boxed{
+ \cK_{G,n}^{J}(\I\zeta;a)
+ =\gamma_{N,n}\ip{J^{1/2}a}
+ {\frac{\zeta^2}{\mathsf M_J^2+\zeta^2}J^{1/2}a}.}
+ \label{eq:dynamic-filter}
+\end{equation}
+Its static limit is \eqref{eq:weighted-Hodge}, equivalently
+\begin{equation}
+ \cC_{G,n}^{J}[a]
+ =\gamma_{N,n}\norm{P_{\ker(BJ^{1/2})}J^{1/2}a}^2.
+ \label{eq:static-target}
+\end{equation}
+At finite volume, the response is independent of $\zeta$ if and only if the positive target-spectrum component of $J^{1/2}a$ vanishes, i.e.
+\begin{equation}
+ \boxed{BJa=0.}
+ \label{eq:weighted-source-kernel}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The source coefficient vector is $\I J^{1/2}a$, with the common state norm $\gamma_{N,n}^{1/2}$.  If a target vector has coefficients $u_e$, then
+\[
+ D_J^\dagger u=\ket{BJ^{1/2}u},
+ \qquad
+ D_JD_J^\dagger u=\frac12J^{1/2}B^*BJ^{1/2}u.
+\]
+Thus \eqref{eq:target-lap} holds.  Substitution into the positive-square dynamical least-squares formula gives \eqref{eq:dynamic-filter}.  Sending $\zeta\downarrow0$ projects onto $\ker\mathsf M_J=\ker(BJ^{1/2})$, yielding \eqref{eq:static-target}.  The multiplier equals one on the kernel and is strictly less than one on every positive eigenvalue for finite $\zeta$, proving \eqref{eq:weighted-source-kernel}.
+\end{proof}
+
+
+\paragraph{Kohn--Abelian terminology.}
+For a torus sequence and a fixed harmonic direction, the \emph{Kohn limit} is the thermodynamic limit of the static ground-energy curvature, while the \emph{Abelian limit} is obtained from \eqref{eq:K-definition} by taking the thermodynamic limit first and then $\zeta\downarrow0$.  We call their equality the \emph{Kohn--Abelian equality}.  This terminology combines Kohn's flux-curvature criterion with the upper-half-plane current kernel used in the standard order-of-limits analysis \cite{Kohn1964,ScalapinoWhiteZhang1993}.
+
+\subsection{Ordinary versus weighted transversality}
+
+For clean $J=j\Id$, ordinary graph transversality $Ba=0$ implies \eqref{eq:weighted-source-kernel}.  In a disordered medium,
+\begin{equation}
+ Ba=0\quad\centernot\Longrightarrow\quad BJa=0.
+\end{equation}
+For a harmonic uniform field $a=RA$ on a torus, $Ba=0$ but
+\begin{equation}
+ g_J^A:=BJRA
+ \label{eq:drift}
+\end{equation}
+is generally nonzero.  This site function is exactly the divergence of the microscopic conductance flux and is the familiar local drift of the random-conductance model.
+
+\begin{remark}[Static robustness is strictly easier]
+The ellipticity theorem controls $\cC$ but says nothing about how the positive source component is distributed over the small eigenvalues of $\mathsf M_J$.  A local operator bound cannot distinguish fixed-scale disorder from coherent modulation on the system scale.  That distinction is precisely what the zero-frequency limit detects.
+\end{remark}
+
+\section{Exact source-tail reduction to the weighted site Laplacian}
+\label{sec:source-tail}
+
+Put
+\begin{equation}
+ L_J=BJB^*.
+ \label{eq:site-lap}
+\end{equation}
+For $s=J^{1/2}a$ and $g=BJa$, singular-value correspondence between
+$BJ^{1/2}$ and $J^{1/2}B^*$ gives the following identity.
+
+\begin{proposition}[Target source mass equals a site $H^{-1}$ tail]
+\label{prop:tail-identity}
+For every $\delta>0$,
+\begin{equation}
+ \boxed{
+ \norm{\bm{1}_{(0,\delta]}(\mathsf M_J)s}^2
+ =\ip g{L_J^+\bm{1}_{(0,4\delta]}(L_J)g}.}
+ \label{eq:tail-identity}
+\end{equation}
+The total positive source mass obeys
+\begin{equation}
+ \boxed{
+ \ip g{L_J^+g}
+ =\sum_ej_ea_e^2-\cE_J[a].}
+ \label{eq:total-Hminus1}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Let $C=BJ^{1/2}$.  If $C^*Cu=\mu u$ with $\mu>0$, then $v=Cu/\sqrt\mu$ satisfies $CC^*v=\mu v$ and
+$\ip v g=\sqrt\mu\ip u s$.  Since $\mathsf M_J=C^*C/4$, summing over $0<\mu\le4\delta$ proves \eqref{eq:tail-identity}.  The same singular decomposition with no cutoff shows
+$\ip g{L_J^+g}=\norm{P_{(\ker C)^\perp}s}^2$.  Subtracting the kernel component \eqref{eq:static-target} from $\norm s^2=\sum_ej_ea_e^2$ gives \eqref{eq:total-Hminus1}.
+\end{proof}
+
+The sharp temporal criterion is now a statement purely about the random-conductance Laplacian:
+\begin{equation}
+ \lim_{\delta\downarrow0}\limsup_{L\to\infty}
+ \frac1{N_L}\ip{g_L}{L_{J,L}^+
+ \bm{1}_{(0,\delta]}(L_{J,L})g_L}=0.
+ \label{eq:site-tightness}
+\end{equation}
+
+\section{A deterministic bounded-disorder counterexample}
+\label{sec:counterexample}
+
+The deterministic form bounds do not imply \eqref{eq:site-tightness}.  The obstruction can occur even in a smooth, uniformly elliptic family.
+
+\begin{proposition}[Macroscopic modulation separates static and dynamical limits]
+\label{prop:macro-counterexample}
+Let $G_N$ be the $N$-edge ring, $a_e=1$, and
+\begin{equation}
+ j_{e,N}=1+\eps\cos\left(\frac{2\pi e}{N}\right),
+ \qquad 0<\eps<1.
+ \label{eq:macro-j}
+\end{equation}
+Choose $n_N/N\to\rho\in(0,1)$.  Then
+\begin{align}
+ \lim_{N\to\infty}\frac1N\cC_{N,n_N}^{J_N}[\bm{1}]
+ &=2\rho(1-\rho)\sqrt{1-\eps^2},
+ \label{eq:macro-static}\\
+ \lim_{\zeta\downarrow0}\lim_{N\to\infty}
+ \frac1N\cK_{N,n_N}^{J_N}(\I\zeta;\bm{1})
+ &=2\rho(1-\rho).
+ \label{eq:macro-dynamic}
+\end{align}
+Thus bounded deterministic disorder alone does not imply Kohn--Abelian equality.
+\end{proposition}
+
+\begin{proof}
+The ring formula gives
+\[
+ \frac1N\cE_{J_N}[\bm{1}]
+ =\left(\frac1N\sum_ej_{e,N}^{-1}\right)^{-1}
+ \longrightarrow
+ \left(\frac1{2\pi}\int_0^{2\pi}\frac{\dd\theta}{1+\eps\cos\theta}\right)^{-1}
+ =\sqrt{1-\eps^2},
+\]
+which proves \eqref{eq:macro-static}.
+
+For the dynamical statement, write $s_N=J_N^{1/2}\bm{1}$.  The kernel of
+$BJ_N^{1/2}$ is spanned by $k_N=J_N^{-1/2}\bm{1}$, so
+\begin{equation}
+ \frac1N\norm{P_{(\ker BJ_N^{1/2})^\perp}s_N}^2
+ =\frac1N\sum_ej_{e,N}
+ -\frac{N}{\sum_ej_{e,N}^{-1}}
+ \longrightarrow1-\sqrt{1-\eps^2}>0.
+ \label{eq:macro-positive-mass}
+\end{equation}
+On the other hand,
+\begin{equation}
+ \ip{s_N}{\mathsf M_{J_N}s_N}
+ =\frac14\norm{BJ_N\bm{1}}^2
+ =\frac{N\eps^2}{2}\sin^2\left(\frac\pi N\right)
+ =O(N^{-1}).
+ \label{eq:macro-first-moment}
+\end{equation}
+By the spectral Markov inequality, the source mass above $N^{-1}$ is $O(1)$, hence negligible after division by $N$.  Therefore asymptotically all positive source mass lies at target eigenvalues tending to zero.  At every fixed $\zeta>0$, the multiplier in \eqref{eq:dynamic-filter} tends to one on this mass.  Since $N^{-1}\norm{s_N}^2=N^{-1}\sum_ej_{e,N}=1$, the thermodynamic-first kernel tends to $\gamma_{N,n_N}\to2\rho(1-\rho)$.  Sending $\zeta\downarrow0$ proves \eqref{eq:macro-dynamic}.
+\end{proof}
+
+\begin{remark}
+The counterexample is intentionally not stationary at a fixed microscopic scale: its wavelength grows with $N$.  It proves that $j_-$ and $j_+$ alone cannot control the temporal limit and explains why an ergodic or mixing hypothesis must enter the random theorem.
+\end{remark}
+
+\section{Stationary ergodic disorder and stochastic homogenization}
+\label{sec:homogenization}
+
+Let $j_{x,\mu}(\omega)$ be a stationary ergodic conductance field on the positive nearest-neighbor edges of $\Z^d$, satisfying \eqref{eq:ellipticity} almost surely.  Its homogenized tensor $\cA_{\mathrm hom}$ is characterized by the stationary cell formula
+\begin{equation}
+ A\cdot\cA_{\mathrm hom}A
+ =\inf_{\psi}
+ \E\sum_{\mu=1}^d
+ j_{0,\mu}\bigl(A_\mu+D_\mu\psi\bigr)^2,
+ \label{eq:hom-cell}
+\end{equation}
+where the infimum is over the $L^2$ closure of stationary potential gradients with zero mean.
+
+\begin{definition}[Finite-volume schemes used in this paper]
+\label{def:periodization}
+Let $Q_L=\{0,\ldots,L-1\}^d$ and $\Lambda_L=(\Z/L\Z)^d$.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.5em]
+ \item For the almost-sure statements, a single infinite realization is \emph{periodized in space}: for $x\in\Z^d$ and a positive coordinate bond, set
+ \[
+  j^{\rm sp,L}_{x,\mu}(\omega)=j_{\bar x,\mu}(\omega),
+  \qquad \bar x\in Q_L,\quad \bar x\equiv x\pmod L,
+ \]
+ and extend this field $L$-periodically.  The bond based at $x_\mu=L-1$ is therefore the sampled covering-lattice bond $(x,x+e_\mu)$, represented after quotienting as a wrap bond.
+ \item For the quantitative i.i.d. theory, $\Prob_L^{\rm prod}=\beta^{\otimes dL^d}$ is the product law on the $dL^d$ positively oriented torus bonds, extended periodically.  No coupling between different $L$ is assumed.  This is the ``periodic i.i.d. ensemble'' below.
+\end{enumerate}
+The two constructions have the same one-volume law in the i.i.d. case but serve different logical roles: the first supplies a common probability space for almost-sure limits; the second supplies an exactly translation-invariant product measure with a period-independent vertical spectral gap.
+\end{definition}
+
+Standard stochastic homogenization identifies $\cA_{\mathrm hom}$ with the effective conductivity and random-walk diffusion tensor \cite{Kozlov1979,PapanicolaouVaradhan1979}.  We isolate the only finite-volume convergence input.
+
+\begin{theorem}[Space-periodized cell-energy input]
+\label{thm:hom-input}
+For the space-periodization in \cref{def:periodization}, assume the standard periodic-cell convergence theorem for the stationary ergodic uniformly elliptic field:
+\begin{equation}
+ A\cdot\cA_L(J_L^{\rm sp}(\omega))A
+ \longrightarrow A\cdot\cA_{\mathrm hom}A
+ \qquad\text{for almost every }\omega.
+ \label{eq:hom-convergence}
+\end{equation}
+This is the precise homogenization input used in the almost-sure QGN statements.  For i.i.d. uniformly elliptic conductances, quantitative variance and central-limit estimates for the product-torus effective conductance are available \cite{GloriaOtto2011,GloriaNolen2016}.
+\end{theorem}
+
+\begin{corollary}[Almost-sure QGN stiffness tensor]
+\label{cor:qgn-hom}
+Let $n_L/L^d\to\rho\in[0,1]$.  Under \cref{thm:hom-input},
+\begin{equation}
+ \boxed{
+ \lim_{L\to\infty}\frac1{L^d}
+ \cC_{L,n_L}^{J_L}[RA]
+ =2\rho(1-\rho)A\cdot\cA_{\mathrm hom}A}
+ \label{eq:qgn-hom}
+\end{equation}
+almost surely.  The limit is strictly positive for $A\ne0$ and interior filling.
+\end{corollary}
+
+\begin{proof}
+Combine \eqref{eq:curvature-density}, \eqref{eq:hom-convergence}, and
+$\gamma_{L^d,n_L}\to2\rho(1-\rho)$.  Positivity follows from
+$j_-\Id\preceq\cA_{\mathrm hom}\preceq j_+\Id$.
+\end{proof}
+
+\subsection{Self-averaging}
+
+\begin{corollary}[Qualitative self-averaging]
+\label{cor:self-average}
+Under the hypotheses of \cref{cor:qgn-hom}, the normalized curvature converges in every finite $L^p(\Prob)$, and its variance tends to zero.
+\end{corollary}
+
+\begin{proof}
+The almost-sure limit is deterministic.  The uniform ellipticity bound \eqref{eq:tensor-bounds} supplies a deterministic $L^\infty$ bound, so dominated convergence applies.
+\end{proof}
+
+For i.i.d. conductances, Gloria and Nolen prove for each fixed direction a mean-square error of order $L^{-d}$ and a quantitative central limit theorem for the torus effective conductance \cite{GloriaNolen2016}.  Transferring their result through \eqref{eq:curvature-density} gives, at fixed interior density,
+\begin{equation}
+ \Var\left[\frac1{L^d}\cC_{L,n_L}^{J_L}[RA]\right]
+ =O(L^{-d}),
+ \label{eq:qgn-var}
+\end{equation}
+and Gaussian fluctuations after multiplication by $L^{d/2}$, up to the same logarithmic accuracy as the conductance theorem.  Tensor entries follow from polarization using finitely many directions.
+
+\section{Almost-sure zero-frequency source tightness}
+\label{sec:ergodic-source}
+
+The static homogenization theorem also supplies the missing temporal compactness.  The key is to compare the total $H^{-1}$ norm with its massive regularization.
+
+For $a_L=RA$, define
+\begin{equation}
+ g_L=BJ_LRA,
+ \qquad
+ \nu_L(\mathcal B)=\frac1{L^d}\ip{g_L}{\bm{1}_{\mathcal B}(L_{J,L})g_L},
+ \label{eq:finite-spectral-measure}
+\end{equation}
+for Borel sets $\mathcal B\subset(0,\infty)$.  Put
+\begin{align}
+ I_L&=\int\lambda^{-1}\dd\nu_L(\lambda)
+ =\frac1{L^d}\ip{g_L}{L_{J,L}^+g_L},
+ \label{eq:I-total}\\
+ I_L(m)&=\int(\lambda+m)^{-1}\dd\nu_L(\lambda)
+ =\frac1{L^d}\ip{g_L}{(L_{J,L}+m)^{-1}g_L}.
+ \label{eq:I-massive}
+\end{align}
+
+\begin{lemma}[Massive resolvents converge by locality and ergodicity]
+\label{lem:massive-convergence}
+For every fixed $m>0$, there is a deterministic limit $I(m)$ such that
+\begin{equation}
+ I_L(m)\longrightarrow I(m)
+ \qquad\text{almost surely.}
+ \label{eq:massive-limit}
+\end{equation}
+The limit is the environment-space resolvent quadratic form of the local drift.
+\end{lemma}
+
+\begin{proof}
+Uniform ellipticity bounds the spectrum of $L_{J,L}$ in a fixed compact interval $[0,4dj_+]$.  Approximate the continuous function $(\lambda+m)^{-1}$ uniformly on this interval by a polynomial $p$.  The error in \eqref{eq:I-massive} is at most the approximation error times $L^{-d}\norm{g_L}^2$, which is uniformly bounded.
+
+For fixed polynomial degree, $L^{-d}\ip{g_L}{p(L_{J,L})g_L}$ is a spatial average of a bounded cylinder function of the conductances in a fixed-radius neighborhood.  For the space-periodization of \cref{def:periodization}, only the $O(L^{d-1})$ wrap layer differs from the corresponding infinite-lattice cylinder function; its fraction is $O(L^{-1})$.  Birkhoff's ergodic theorem gives almost-sure convergence to the expectation of the corresponding environment-space polynomial form.  Sending the polynomial approximation error to zero proves the result.
+\end{proof}
+
+\begin{lemma}[Total $H^{-1}$ norm converges]
+\label{lem:total-convergence}
+Under \cref{thm:hom-input},
+\begin{equation}
+ I_L\longrightarrow
+ I:=\E\sum_{\mu}j_{0,\mu}A_\mu^2-A\cdot\cA_{\mathrm hom}A.
+ \label{eq:total-limit}
+\end{equation}
+Moreover $I(m)\uparrow I$ as $m\downarrow0$.
+\end{lemma}
+
+\begin{proof}
+The exact identity \eqref{eq:total-Hminus1}, divided by $L^d$, gives
+\[
+ I_L=\frac1{L^d}\sum_{x,\mu}j_{x,\mu}A_\mu^2
+ -A\cdot\cA_L(J_L)A.
+\]
+The first term converges by the ergodic theorem and the second by \cref{thm:hom-input}, proving \eqref{eq:total-limit}.
+
+On environment space, expand the cell functional \eqref{eq:hom-cell} and use stationary integration by parts.  Its decrease from the uncorrected arithmetic energy is the dual norm
+\[
+ I=\sup_F\{-2\E[d_AF]-\E[F\mathscr L F]\}
+ =\ip{d_A}{\mathscr L^+d_A},
+\]
+where $d_A$ is the local drift and $\mathscr L$ the positive generator of the environment viewed from the particle.  The spectral theorem then gives
+$I(m)=\ip{d_A}{(\mathscr L+m)^{-1}d_A}\uparrow I$.
+\end{proof}
+
+\begin{theorem}[Ergodic homogenization forces $H^{-1}$ source tightness]
+\label{thm:ergodic-tightness}
+Under \cref{thm:hom-input}, for every fixed harmonic direction $A$,
+\begin{equation}
+ \boxed{
+ \lim_{\delta\downarrow0}\limsup_{L\to\infty}
+ \frac1{L^d}\ip{g_L}{L_{J,L}^+
+ \bm{1}_{(0,\delta]}(L_{J,L})g_L}=0}
+ \label{eq:ergodic-tightness}
+\end{equation}
+almost surely.
+\end{theorem}
+
+\begin{proof}
+For $0<\lambda\le m$,
+\begin{equation}
+ \frac1\lambda-\frac1{\lambda+m}
+ =\frac{m}{\lambda(\lambda+m)}\ge\frac1{2\lambda}.
+\end{equation}
+Therefore
+\begin{equation}
+ \int_{(0,m]}\lambda^{-1}\dd\nu_L(\lambda)
+ \le2\bigl(I_L-I_L(m)\bigr).
+ \label{eq:tail-massive-bound}
+\end{equation}
+Take $L\to\infty$ and use \cref{lem:massive-convergence,lem:total-convergence}; the limsup is bounded by $2[I-I(m)]$.  This tends to zero as $m\downarrow0$.
+\end{proof}
+
+\begin{corollary}[Almost-sure harmonic Kohn--Abelian equality]
+\label{cor:ergodic-dynamic}
+At fixed interior density, under \cref{thm:hom-input},
+\begin{equation}
+ \boxed{
+ \lim_{\zeta\downarrow0}\lim_{L\to\infty}
+ \frac1{L^d}\cK_{L,n_L}^{J_L}(\I\zeta;RA)
+ =\lim_{L\to\infty}\frac1{L^d}\cC_{L,n_L}^{J_L}[RA]
+ =2\rho(1-\rho)A\cdot\cA_{\mathrm hom}A}
+ \label{eq:ergodic-Kohn-Abelian}
+\end{equation}
+almost surely.
+\end{corollary}
+
+\begin{proof}
+By \cref{prop:tail-identity}, \eqref{eq:ergodic-tightness} is exactly the target source-tightness criterion for \eqref{eq:dynamic-filter}.  Splitting the positive target spectrum at $\delta$ shows that the normalized dynamical-static defect is bounded by the low source mass plus $O(\zeta^2/\delta^2)$ times the uniformly bounded total source norm.  First send $L\to\infty$, then $\zeta\downarrow0$, and finally $\delta\downarrow0$.  The common value is \cref{cor:qgn-hom}.
+\end{proof}
+
+\begin{remark}[Why this proof is useful]
+The argument needs no uniform many-body gap and no quantitative heat-kernel estimate.  It uses only: (i) exact finite-volume source reduction; (ii) convergence of the cell energy; and (iii) ergodicity for fixed-mass resolvents.  Heat-kernel estimates become necessary when one wants rates, finite-size tails, or spatially varying probes.
+\end{remark}
+
+\section{Uniform finite-torus quantitative source tails}
+\label{sec:heat-kernel}
+
+We now close the quantitative finite-torus problem for the product-torus i.i.d. ensemble of \cref{def:periodization}, and more generally for periodic ensembles satisfying a volume-uniform vertical spectral-gap estimate.  Throughout this quantitative section $d\ge2$.  The exactly solvable one-dimensional rings are used only for the obstruction in \cref{sec:counterexample}.  The result is stronger than the provisional target: the error term is zero.
+
+Let $d\ge2$, let $\Lambda_L=(\Z/L\Z)^d$, write $N_L=\abs{\Lambda_L}=L^d$, and orient the nearest-neighbor bonds in the positive coordinate directions.  Write the conductance on $(x,x+e_\mu)$ as $j_{x,\mu}$.  For a fixed harmonic direction $A\in\R^d$, let
+\begin{align}
+ a_{x,\mu}&=A_\mu,\\
+ g_L(x)&=\sum_{\mu=1}^d
+ \bigl(j_{x-e_\mu,\mu}-j_{x,\mu}\bigr)A_\mu,
+ \label{eq:torus-drift-coordinate}\\
+ (L_{J,L}f)(x)&=\sum_{\mu=1}^d\left[
+ j_{x,\mu}\bigl(f(x)-f(x+e_\mu)\bigr)
+ +j_{x-e_\mu,\mu}\bigl(f(x)-f(x-e_\mu)\bigr)
+ \right].
+ \label{eq:torus-laplacian-coordinate}
+\end{align}
+These are precisely $g_L=BJ_LRA$ and $L_{J,L}=BJ_LB^*$.
+
+\subsection{Generic heat-kernel implication}
+
+For a positive finite graph Laplacian $L_L$ and $g_L\perp\ker L_L$, set
+\begin{equation}
+ H_L(t)=\frac1{N_L}\ip{g_L}{\e^{-tL_L}g_L}.
+ \label{eq:heat-correlation}
+\end{equation}
+
+\begin{proposition}[A divergence heat-kernel estimate implies a source tail]
+\label{prop:heat-tail}
+Suppose that for some decay exponent $\sigma>0$ and all $t\ge0$,
+\begin{equation}
+ H_L(t)\le C(1+t)^{-1-\sigma/2}
+ \label{eq:heat-assumption}
+\end{equation}
+uniformly in $L$.  Then for $0<\delta\le1$,
+\begin{equation}
+ \frac1{N_L}\ip{g_L}{L_L^+
+ \bm{1}_{(0,\delta]}(L_L)g_L}
+ \le C_\sigma\delta^{\sigma/2}.
+ \label{eq:heat-tail}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Let $F_L(\lambda)=N_L^{-1}\ip{g_L}{\bm{1}_{(0,\lambda]}(L_L)g_L}$.  At $t=\lambda^{-1}$,
+$H_L(t)\ge\e^{-1}F_L(\lambda)$, hence
+$F_L(\lambda)\le C'\lambda^{1+\sigma/2}$ for $0<\lambda\le1$.  The same estimate implies $F_L(\lambda)/\lambda\to0$ as $\lambda\downarrow0$, so Stieltjes integration by parts has no lower-end boundary term and gives
+\[
+ \int_{(0,\delta]}\lambda^{-1}\dd F_L(\lambda)
+ =\delta^{-1}F_L(\delta)
+ +\int_0^\delta\lambda^{-2}F_L(\lambda)\dd\lambda
+ \le C_\sigma\delta^{\sigma/2}.
+\]
+\end{proof}
+
+The remaining issue is therefore to establish \eqref{eq:heat-assumption} with a constant independent of the period.  For i.i.d. conductances, this is already contained in the periodic divergence-semigroup theory of stochastic homogenization once the physical graph problem is intertwined with the environment process.
+
+\subsection{Exact environment--site intertwining}
+
+Let $\Omega_L$ be the probability space of $L$-periodic conductance fields and let $\tau_x$ denote translation of an environment.  For a function $F$ on $\Omega_L$, define
+\begin{equation}
+ D_\mu F(J)=F(\tau_{e_\mu}J)-F(J),
+ \qquad
+ D_\mu^*F(J)=F(\tau_{-e_\mu}J)-F(J).
+\end{equation}
+The positive environment generator and its local drift are
+\begin{equation}
+ \mathscr L_L=D^*j(0)D,
+ \qquad
+ d_A=D^*\bigl(j(0)A\bigr).
+ \label{eq:environment-generator-drift}
+\end{equation}
+By construction, $d_A(J)=g_L^J(0)$.
+
+\begin{lemma}[Environment--site semigroup identity]
+\label{lem:environment-site-intertwining}
+For every periodic environment $J$, every $t\ge0$, and every $x\in\Lambda_L$,
+\begin{equation}
+ \bigl(\e^{-t\mathscr L_L}d_A\bigr)(\tau_xJ)
+ =\bigl(\e^{-tL_{J,L}}g_L^J\bigr)(x).
+ \label{eq:pointwise-intertwining}
+\end{equation}
+If the ensemble is stationary and $\mathscr L_L$ is self-adjoint in $L^2(\Omega_L)$, then
+\begin{equation}
+ \boxed{
+ \E\frac1{L^d}\ip{g_L}{\e^{-tL_{J,L}}g_L}
+ =\ip{d_A}{\e^{-t\mathscr L_L}d_A}_{L^2(\Omega_L)}
+ =\norm{\e^{-t\mathscr L_L/2}d_A}_{L^2(\Omega_L)}^2.}
+ \label{eq:annealed-intertwining}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The stationary extension of a function $F$ is $F^J(x)=F(\tau_xJ)$.  Direct substitution shows
+\[
+ (\mathscr L_LF)^J(x)=L_{J,L}F^J(x).
+\]
+The same identity holds for every power of the bounded generators and therefore for their exponential series.  Since the stationary extension of $d_A$ is $g_L^J$, this proves \eqref{eq:pointwise-intertwining}.  Spatial averaging followed by stationarity gives the first equality in \eqref{eq:annealed-intertwining}; self-adjointness and the semigroup property give the second.
+\end{proof}
+
+\subsection{Periodic divergence decay and the closed estimate}
+
+We use the period-uniform divergence-semigroup estimate restated precisely in Appendix~\ref{app:GNO-input}.  It is the specialization of Theorem~2 under hypothesis~(69b), Remark~11/equation~(70), and Corollary~8 of the long version of Gloria--Neukamm--Otto \cite{GloriaNeukammOtto2013Long,GloriaNeukammOtto2015}.  After normalizing by $j_+$ and writing $\lambda_*=j_-/j_+$, the product-torus law satisfies the required $L$-periodic vertical spectral-gap inequality with a constant independent of $L$.  Applied to $d_A=D^*(j(0)A)$, the imported theorem gives
+\begin{equation}
+ \norm{\e^{-t\mathscr L_L}d_A}_{L^2(\Omega_L)}
+ \le C(d,\lambda_*)j_+\abs{A}
+ (1+j_+t)^{-d/4-1/2}.
+ \label{eq:GNO-periodic-drift-decay}
+\end{equation}
+The datum depends on one outgoing coefficient block, so the vertical-derivative norm appearing in the imported theorem is bounded by $C\abs A$ independently of $L$.  Jensen extends the high-moment statement to the displayed $L^2$ estimate.
+
+\begin{theorem}[Uniform quantitative finite-torus source tail]
+\label{thm:quantitative-finite-torus}
+Let $d\ge2$.  Suppose that the conductance vectors
+$\{(j_{x,1},\ldots,j_{x,d})\}_{x\in\Lambda_L}$ are i.i.d. and take values in $[j_-,j_+]^d$.  More generally, assume the periodic ensemble satisfies the volume-uniform spectral-gap hypothesis required for \eqref{eq:GNO-periodic-drift-decay}.  Then, for every $L$, $A\in\R^d$, and $t\ge0$,
+\begin{equation}
+ \boxed{
+ \E\frac1{L^d}\ip{g_L}{\e^{-tL_{J,L}}g_L}
+ \le Cj_+^2\abs{A}^2(1+j_+t)^{-1-d/2}.}
+ \label{eq:uniform-annealed-heat}
+\end{equation}
+For every $\delta>0$,
+\begin{equation}
+ \boxed{
+ \E\frac1{L^d}\ip{g_L}{L_{J,L}^+
+ \bm{1}_{(0,\delta]}(L_{J,L})g_L}
+ \le Cj_+\abs{A}^2
+ \min\left\{1,\left(\frac{\delta}{j_+}\right)^{d/2}\right\}.}
+ \label{eq:uniform-finite-torus-tail}
+\end{equation}
+Here $C<\infty$ depends only on $d$ and $j_-/j_+$, and not on $L$, $\delta$, or the disorder strength inside the fixed ellipticity interval.
+\end{theorem}
+
+\begin{proof}
+Combining \cref{lem:environment-site-intertwining} with \eqref{eq:GNO-periodic-drift-decay} at time $t/2$ proves \eqref{eq:uniform-annealed-heat}.
+
+Define the annealed finite-volume spectral measure
+\[
+ \overline\nu_L(\mathcal B)
+ =\E\frac1{L^d}\ip{g_L}{\bm{1}_{\mathcal B}(L_{J,L})g_L},
+ \qquad
+ \overline F_L(r)=\overline\nu_L((0,r]).
+\]
+For $0<r\le j_+$, evaluate \eqref{eq:uniform-annealed-heat} at $t=r^{-1}$.  Since $\e^{-\lambda/r}\ge\e^{-1}$ on $(0,r]$,
+\begin{equation}
+ \overline F_L(r)
+ \le Cj_+^2\abs{A}^2\left(\frac r{j_+}\right)^{1+d/2}.
+ \label{eq:annealed-spectral-edge}
+\end{equation}
+Stieltjes integration by parts then gives
+\begin{align}
+ \int_{(0,\delta]}\frac1\lambda\dd\overline\nu_L(\lambda)
+ &=\frac{\overline F_L(\delta)}\delta
+ +\int_0^\delta\frac{\overline F_L(r)}{r^2}\dd r\\
+ &\le Cj_+\abs{A}^2
+ \left(\frac\delta{j_+}\right)^{d/2}
+ \qquad (0<\delta\le j_+).
+\end{align}
+For $\delta>j_+$, use the exact total identity \eqref{eq:total-Hminus1} and
+$L^{-d}\sum_{x,\mu}j_{x,\mu}A_\mu^2\le j_+\abs{A}^2$.  This proves \eqref{eq:uniform-finite-torus-tail}.
+\end{proof}
+
+\begin{remark}[The provisional error term vanishes]
+The original target allowed
+$C\delta^{d/2}+\operatorname{Err}(L,\delta)$ in the window $L^{-2}\ll\delta\ll1$.  Under the periodic i.i.d. or uniform spectral-gap hypothesis, \cref{thm:quantitative-finite-torus} gives the stronger estimate with $\operatorname{Err}=0$, uniformly across and below the diffusive window.  The deterministic modulated counterexample in \cref{sec:counterexample} does not contradict this result because it is neither sampled from nor controlled by a volume-uniform mixing ensemble.
+\end{remark}
+
+
+\begin{corollary}[Deterministic finite-size cutoff]
+\label{cor:finite-size-cutoff}
+Let
+\begin{equation}
+ \lambda_{\mathrm{gap},L}=4j_-\sin^2\left(\frac{\pi}{L}\right).
+ \label{eq:finite-size-gap}
+\end{equation}
+For every realization, the positive spectrum of $L_{J,L}$ lies above
+$\lambda_{\mathrm{gap},L}$.  Consequently,
+\begin{equation}
+ \frac1{L^d}\ip{g_L}{L_{J,L}^+
+ \bm{1}_{(0,\delta]}(L_{J,L})g_L}=0
+ \qquad\text{for }0<\delta<\lambda_{\mathrm{gap},L},
+ \label{eq:exact-subgap-tail-zero}
+\end{equation}
+and the annealed heat bound may be sharpened to
+\begin{equation}
+ \E\frac1{L^d}\ip{g_L}{\e^{-tL_{J,L}}g_L}
+ \le Cj_+^2\abs{A}^2
+ \min\left\{(1+j_+t)^{-1-d/2},
+ \e^{-\lambda_{\mathrm{gap},L}t}\right\}.
+ \label{eq:finite-size-heat-crossover}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+On the mean-zero subspace,
+$L_{J,L}\succeq j_-L_{1,L}$, while the first positive eigenvalue of the
+unweighted nearest-neighbor torus Laplacian is
+$4\sin^2(\pi/L)$.  This proves the spectral cutoff and
+\eqref{eq:exact-subgap-tail-zero}.  Moreover,
+\[
+ \frac1{L^d}\norm{g_L}^2
+ \le \norm{B}^2\frac1{L^d}\norm{J_LRA}^2
+ \le4dj_+^2\abs{A}^2.
+\]
+The spectral theorem gives the exponential estimate, and taking its minimum
+with \eqref{eq:uniform-annealed-heat} proves
+\eqref{eq:finite-size-heat-crossover}.
+\end{proof}
+
+\begin{corollary}[One-cutoff high-probability bound]
+\label{cor:high-probability-tail}
+Under the hypotheses of \cref{thm:quantitative-finite-torus}, for every
+$0<\vartheta<1$ and $\delta>0$, with probability at least $1-\vartheta$,
+\begin{equation}
+ \frac1{L^d}\ip{g_L}{L_{J,L}^+
+ \bm{1}_{(0,\delta]}(L_{J,L})g_L}
+ \le \frac{C}{\vartheta}j_+\abs{A}^2
+ \min\left\{1,\left(\frac\delta{j_+}\right)^{d/2}\right\}.
+ \label{eq:high-probability-tail}
+\end{equation}
+This is a direct one-sided consequence of the annealed theorem, not a sharp
+concentration estimate around the mean.
+\end{corollary}
+
+\begin{proof}
+Apply Markov's inequality to the nonnegative random variable in
+\eqref{eq:uniform-finite-torus-tail}.
+\end{proof}
+
+\section{Target-space and dynamical consequences}
+
+By the exact source identity \eqref{eq:tail-identity}, \cref{thm:quantitative-finite-torus} immediately controls the low target spectrum.
+
+\begin{corollary}[Uniform low-target source mass]
+\label{cor:uniform-target-tail}
+For $s_L=J_L^{1/2}RA$ and
+$\mathsf M_{J,L}=J_L^{1/2}B^*BJ_L^{1/2}/4$,
+\begin{equation}
+ \E\frac1{L^d}
+ \norm{\bm{1}_{(0,\eta]}(\mathsf M_{J,L})s_L}^2
+ \le Cj_+\abs{A}^2
+ \min\left\{1,\left(\frac\eta{j_+}\right)^{d/2}\right\}.
+ \label{eq:uniform-target-tail}
+\end{equation}
+The factor four between site and target eigenvalues is absorbed into $C$.
+\end{corollary}
+
+For $0<r\le1$, define
+\begin{equation}
+ \Psi_d(r)=
+ \begin{cases}
+ r^{d/2},&2\le d<4,\\
+ r^2\log(2/r),&d=4,\\
+ r^2,&d>4.
+ \end{cases}
+ \label{eq:Psi-dynamic-rate}
+\end{equation}
+
+\begin{corollary}[Uniform QGN dynamical-defect rate]
+\label{cor:uniform-dynamic-rate}
+For $0<\zeta\le j_+$,
+\begin{equation}
+ \boxed{
+ 0\le
+ \E\frac{\cK_{L,n}^{J}(\I\zeta;RA)-\cC_{L,n}^{J}[RA]}{L^d}
+ \le C\gamma_{L^d,n}j_+\abs{A}^2
+ \Psi_d\left(\frac\zeta{j_+}\right).}
+ \label{eq:uniform-dynamic-defect}
+\end{equation}
+Consequently the dynamical and static responses agree in annealed mean, uniformly in volume, along every sequence $\zeta_L\downarrow0$.  They agree in probability as well.  If
+$\sum_L\Psi_d(\zeta_L/j_+)<\infty$, then the defect converges to zero almost surely along the chosen sequence of periodized tori.
+\end{corollary}
+
+\begin{proof}
+Let $\sigma_L$ be the annealed target spectral measure of $s_L/L^{d/2}$ restricted to the positive spectrum.  By \cref{cor:uniform-target-tail}, its cumulative distribution satisfies
+$\sigma_L((0,\eta])\le Cj_+\abs{A}^2(\eta/j_+)^{d/2}$ for $\eta\le j_+$.  The defect divided by $\gamma_{L^d,n}$ is
+\[
+ \int_{(0,\infty)}\frac{\zeta^2}{\mu^2+\zeta^2}\dd\sigma_L(\mu).
+\]
+Stieltjes integration by parts on $(0,j_+]$ reduces the bound to
+\[
+ Cj_+\abs{A}^2 r^2
+ \int_0^1\frac{x^{d/2+1}}{(x^2+r^2)^2}\dd x
+ +Cj_+\abs{A}^2r^2,
+ \qquad r=\frac\zeta{j_+}.
+\]
+After $x=ru$, the integral is $O(r^{d/2})$ for $d<4$, $O(r^2\log(2/r))$ for $d=4$, and $O(r^2)$ for $d>4$.  This proves \eqref{eq:uniform-dynamic-defect}.  Markov's inequality gives convergence in probability; the summable case follows from the first Borel--Cantelli lemma.
+\end{proof}
+
+
+\begin{corollary}[Deterministic finite-size dynamical crossover]
+\label{cor:finite-size-dynamic-crossover}
+Put
+\begin{equation}
+ \mu_{\mathrm{gap},L}=j_-\sin^2\left(\frac{\pi}{L}\right)
+ =\frac14\lambda_{\mathrm{gap},L}.
+\end{equation}
+For every realization and every $\zeta>0$,
+\begin{equation}
+ 0\le
+ \frac{\cK_{L,n}^{J}(\I\zeta;RA)-\cC_{L,n}^{J}[RA]}{L^d}
+ \le \gamma_{L^d,n}j_+\abs{A}^2
+ \frac{\zeta^2}{\mu_{\mathrm{gap},L}^2+\zeta^2}.
+ \label{eq:deterministic-dynamic-crossover}
+\end{equation}
+Combining this with \eqref{eq:uniform-dynamic-defect} gives
+\begin{equation}
+ \E\frac{\cK_{L,n}^{J}(\I\zeta;RA)-\cC_{L,n}^{J}[RA]}{L^d}
+ \le C\gamma_{L^d,n}j_+\abs{A}^2
+ \min\left\{
+ \Psi_d\left(\frac\zeta{j_+}\right),
+ \frac{\zeta^2}{\mu_{\mathrm{gap},L}^2+\zeta^2}
+ \right\}.
+ \label{eq:combined-dynamic-crossover}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The nonzero spectra of $L_{J,L}/4$ and $\mathsf M_{J,L}$ coincide.  Hence the
+positive target spectrum begins at $\mu_{\mathrm{gap},L}$.  Bound the response
+filter on that spectrum by
+$\zeta^2/(\mu_{\mathrm{gap},L}^2+\zeta^2)$ and use
+$L^{-d}\norm{s_L}^2\le j_+\abs{A}^2$.  The combined estimate is the minimum of
+this deterministic bound and \cref{cor:uniform-dynamic-rate}.
+\end{proof}
+
+\begin{corollary}[Diffusive diagonal limit]
+\label{cor:diffusive-diagonal}
+Let $n_L/L^d\to\rho\in(0,1)$ and choose $\zeta_L=j_+L^{-2}$.  Under the standard almost-sure periodized cell-energy homogenization used in \cref{thm:hom-input},
+\begin{equation}
+ \frac1{L^d}\cK_{L,n_L}^{J_L}(\I\zeta_L;RA)
+ \longrightarrow
+ 2\rho(1-\rho)A\cdot\cA_{\mathrm hom}A
+ \qquad\text{almost surely.}
+ \label{eq:diffusive-diagonal-limit}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For every $d\ge2$, the series
+$\sum_L\Psi_d(L^{-2})$ converges.  Hence \cref{cor:uniform-dynamic-rate} and Borel--Cantelli make the dynamical--static defect vanish almost surely.  The static term converges by \cref{cor:qgn-hom}.
+\end{proof}
+
+\section{Multiblock weighted swap backbones}
+\label{sec:multiblock}
+
+Consider $r$ paired blocks on the same graph, with conductance matrices $J_b$ and block fillings $n_b$.  Let the zero basis be the product-AGP composition vectors
+$\ket{\bm n}=\bigotimes_b\ket{\Omega_{N,n_b}}$.
+
+\begin{theorem}[Exact block-diagonal weighted response]
+\label{thm:multiblock}
+For the direct sum of weighted swap rows, the static and dynamical response operators are diagonal in composition:
+\begin{align}
+ Q_{\rm sw}^{J}[a]
+ &=\sum_{\bm n}\left[
+ \sum_{b=1}^r\gamma_{N,n_b}\cE_{J_b}[a]
+ \right]\ket{\bm n}\bra{\bm n},
+ \label{eq:multiblock-static}\\
+ K_{\rm sw}^{J}(\I\zeta;a)
+ &=\sum_{\bm n}\left[
+ \sum_{b=1}^r\gamma_{N,n_b}
+ \ip{J_b^{1/2}a}
+ {\frac{\zeta^2}{\mathsf M_{J_b}^2+\zeta^2}J_b^{1/2}a}
+ \right]\ket{\bm n}\bra{\bm n}.
+ \label{eq:multiblock-dynamic}
+\end{align}
+At a selected composition with $n_{b,L}/N\to\rho_b$, stationary ergodic disorder gives the almost-sure harmonic response
+\begin{equation}
+ 2\sum_{b=1}^r\rho_b(1-\rho_b)
+ A\cdot\cA_{{\rm hom},b}A.
+ \label{eq:multiblock-hom}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Different block charges are preserved by the swap rows, and different row labels occupy orthogonal target summands.  Apply the single-block theorems to each direct summand and add the quadratic forms.
+\end{proof}
+
+\begin{remark}[Additional multiplicative rows]
+If extra positive-square rows annihilate the product-AGP manifold, the weighted swap source gives an exact protected floor only for profiles satisfying $BJ_ba=0$ in each protected block, because only then does it already lie in the full target kernel.  For an ordinary harmonic field in a disordered medium, the source has a positive longitudinal component and one must use the $H^{-1}$ comparison developed above rather than the clean finite-size kernel identity.
+\end{remark}
+
+
+\section{Numerical and reproducibility audit}
+\label{sec:numerics}
+
+The Paper~I archive contains two independent programs.  The script
+\path{verify_weighted_qgn_hodge.py} constructs the complete hard-core-pair
+Hilbert space on small graphs and compares the direct many-body residual with
+the weighted Hodge formula and the full target-space dynamical filter.  It also
+checks gauge invariance, ellipticity, the ring resistance law, random-torus cell
+tensors, and the modulated-ring soft source.  The exact comparisons agree at
+absolute error below $3\times10^{-15}$.
+
+The Monte Carlo stream is now reproducible independently of the exact checks:
+each size uses a separate \texttt{numpy.random.default\_rng} seed derived from
+the master seed and the lattice size, the default sample count is fixed at 24,
+and the certificate records the Python, NumPy, and SciPy versions.  The retained Monte Carlo rows are generated directly from the CSV-producing command recorded in \texttt{README.md}; they are diagnostic and are not used in any theorem.
+
+The script \path{verify_finite_torus_source_tail.py} assembles the physical
+weighted Laplacian and the environment generator independently.  In the
+retained scan the maximum generator/drift intertwining discrepancy is
+$2.21\times10^{-14}$.  In $d=2$, the fitted heat-correlation and source-tail
+powers at $L=48$ are $-1.9898$ and $1.0588$, compared with the analytic powers
+$-2$ and $1$.  The fitted slopes are diagnostics only.
+
+\section{Theorem boundary and next problems}
+\label{sec:boundary}
+
+The following statements are closed in this paper: the exact weighted finite-graph response; deterministic ellipticity; the space-periodized homogenized stiffness; qualitative self-averaging; almost-sure harmonic Kohn--Abelian equality; the product-torus annealed source-tail estimate; the finite-size spectral cutoff; and the corresponding QGN dynamical-defect rates.  The proof does not assume a volume-uniform many-body gap.
+
+Three independent extensions remain.  First, a real-space transverse magnetic theorem must control slowly varying gauge-covariant probes rather than only harmonic flat connections.  Second, finite-range dependent ensembles should be treated without assuming a ready-made period-uniform vertical spectral gap.  Third, conductances that vanish or are unbounded require percolation and moment hypotheses in place of uniform ellipticity.  Centered quenched fluctuations of the physical sharp spectral cutoff, including the fixed-cutoff disorder-noise problem, are developed separately in Paper~II.
+
+\section{Conclusion}
+
+Bounded disorder in the pair-exchange strengths is an exact deformation of the frustration-free parent, not a perturbative one.  The paired zero state survives row by row, and the many-body curvature becomes the classical weighted cell problem.  Static robustness therefore holds at arbitrary contrast as long as $j_->0$.
+
+The temporal statement has a sharper hypothesis boundary.  Weighted transversality is $BJa=0$, and a bounded deterministic modulation can accumulate current source in modes whose energies vanish with volume.  For stationary ergodic disorder under the stated space-periodized cell convergence, the total drift $H^{-1}$ norm and all fixed-mass resolvents converge; their difference forces low-energy source tightness.  The thermodynamic Kohn curvature and Abelian harmonic response then agree almost surely and equal the effective random-conductance tensor multiplied by the exact filling factor.
+
+For the product law on periodic i.i.d. bonds, the period-uniform divergence-semigroup estimate supplies an annealed $\delta^{d/2}$ source-tail bound with no finite-size error.  This establishes quantitative dynamical convergence while leaving the genuinely centered sharp-cutoff fluctuation problem to the companion paper.
+
+\appendix
+
+\section{Dynamical kernel and positive-square residual}
+\label{app:curvature}
+
+Let
+\[
+ H(t)=\frac12D(t)^\dagger D(t),\qquad D(0)\ket\Omega=0,
+\]
+and put $D=D(0)$, $S=D'(0)\ket\Omega$,
+$\widehat H=H(0)$, and $\cL=DD^\dagger/2$.  The selected analytic branch has
+$E(t)=t^2\cC/2+O(t^3)$.  Direct expansion, or the second-order Feshbach formula, gives
+\begin{equation}
+ \cC=\min_\chi\norm{S+D\chi}^2
+ =\norm{P_{\ker D^\dagger}S}^2.
+ \label{eq:positive-square-curvature}
+\end{equation}
+
+For completeness we derive the dynamical identity used in \cref{sec:dynamic}.  Differentiating $H(t)$ and using $D\ket\Omega=0$ gives
+\begin{equation}
+ \mathcal J\ket\Omega=\frac12D^\dagger S,
+ \qquad
+ \bra\Omega\mathcal T\ket\Omega=\norm S^2.
+ \label{eq:positive-square-current-stress}
+\end{equation}
+With the definition \eqref{eq:K-definition}, functional calculus and the intertwining $D\widehat H=\cL D$ yield
+\begin{align}
+ 2\ip{\mathcal J\Omega}
+ {\widehat H(\widehat H^2+\zeta^2)^{-1}\mathcal J\Omega}
+ &=\ip S{\frac{\cL^2}{\cL^2+\zeta^2}S}.
+\end{align}
+Therefore
+\begin{equation}
+ \boxed{
+ \cK(\I\zeta)=\ip S{\frac{\zeta^2}{\cL^2+\zeta^2}S}.}
+ \label{eq:positive-square-dynamical-proof}
+\end{equation}
+As $\zeta\downarrow0$, the multiplier converges to the projection onto
+$\ker\cL=\ker D^\dagger$, reproducing \eqref{eq:positive-square-curvature}.
+This is the electronic-link convention used throughout.  If the pair momentum
+$Q=2A$ is used instead, divide the reported stiffness by four.
+
+\section{Matrix identities for the weighted Hodge form}
+\label{app:matrix}
+
+The minimizer of
+\begin{equation}
+ F(\phi)=(a+B^*\phi)^*J(a+B^*\phi)
+\end{equation}
+satisfies
+\begin{equation}
+ BJB^*\phi=-BJa.
+\end{equation}
+Because $BJa$ is orthogonal to constants, the equation is solvable on a connected graph.  Choosing the zero-mean solution gives
+\begin{equation}
+ \phi_*=-(BJB^*)^+BJa.
+\end{equation}
+Substitution yields
+\begin{align}
+ F(\phi_*)
+ &=a^*Ja-a^*JB^*(BJB^*)^+BJa,
+\end{align}
+which is \eqref{eq:Hodge-matrix}.  The operator
+\begin{equation}
+ P_J=J^{1/2}\left[
+ \Id-J^{1/2}B^*(BJB^*)^+BJ^{1/2}
+ \right]J^{1/2}
+\end{equation}
+is positive semidefinite and represents the orthogonal projection of $J^{1/2}a$ onto $\ker(BJ^{1/2})$.
+
+
+\section{Imported periodic divergence-semigroup estimate}
+\label{app:GNO-input}
+
+We state the external result in the normalization actually used above.  Let an
+$L$-periodic diagonal coefficient field satisfy
+$\lambda_*\Id\preceq a(x)\preceq\Id$, and let its stationary ensemble satisfy
+the $L$-periodic vertical spectral-gap inequality $\mathrm{SG}_L(\rho)$ with
+$\rho$ independent of $L$.  Write
+$\mathscr L_L=D^*a(0)D$ and
+$d_A=-D^*(a(0)A)$.
+
+\begin{theorem}[Imported GNO divergence decay]
+\label{thm:GNO-imported-divergence}
+For every finite moment $p$, after increasing to the threshold moment in the
+source theorem and applying Jensen if necessary,
+\begin{equation}
+ \norm{\e^{-t\mathscr L_L}d_A}_{L^p(\Omega_L)}
+ \le C_p\abs A(1+t)^{-d/4-1/2},\qquad t\ge0,
+ \label{eq:GNO-imported-divergence}
+\end{equation}
+where $C_p$ depends on $d,\lambda_*,\rho,p$ but not on $L$.  Its spectral
+corollary is
+\begin{equation}
+ \ip{d_A}{\bm1_{(0,r]}(\mathscr L_L)d_A}_{L^2(\Omega_L)}
+ \le Cr^{1+d/2},\qquad 0<r\le1.
+ \label{eq:GNO-imported-spectral-edge}
+\end{equation}
+\end{theorem}
+
+This is Theorem~2 under hypothesis~(69b), specialized as in Remark~11 and
+equation~(70), together with Corollary~8 of the long version
+\cite{GloriaNeukammOtto2013Long}; the core argument appears in the published
+Inventiones article \cite{GloriaNeukammOtto2015}.  The product law on the
+$dL^d$ torus bonds satisfies $\mathrm{SG}_L(\rho)$ by tensorization, with a
+constant determined only by the one-block law.  Hence the constants above are
+uniform in the period.  Restoring $j_+$ by scaling gives
+\eqref{eq:GNO-periodic-drift-decay}.
+
+\section{Environment-space duality for the drift}
+\label{app:environment}
+
+Let $D_\mu F(\omega)=F(\tau_{e_\mu}\omega)-F(\omega)$ and let $D_\mu^*$ be its stationary adjoint.  Define
+\begin{equation}
+ \mathscr L=D^*jD,
+ \qquad
+ d_A=D^*(jA).
+\end{equation}
+For a cylinder function $F$,
+\begin{align}
+ \E\sum_\mu j_\mu(A_\mu+D_\mu F)^2
+ &=\E\sum_\mu j_\mu A_\mu^2
+ +2\E[d_AF]+\E[F\mathscr LF].
+\end{align}
+Taking the infimum over the Dirichlet closure gives
+\begin{align}
+ \E\sum_\mu j_\mu A_\mu^2-A\cdot\cA_{\mathrm hom}A
+ &=\sup_F\{-2\E[d_AF]-\E[F\mathscr LF]\}\\
+ &=\ip{d_A}{\mathscr L^+d_A}.
+\end{align}
+The last equality is the spectral completion of the square.  It proves both finiteness of the drift $H^{-1}$ norm and the monotone massive-resolvent limit used in \cref{lem:total-convergence}.
+
+
+\section{Reproducibility manifest}
+\label{app:manifest}
+
+The Paper~I directory contains the TeX and PDF, the exact finite-graph verifier,
+the finite-torus source-tail verifier, retained CSV/JSON certificates, scaling
+figures, a claim-status file, a source map, and SHA-256 checksums.  The root
+archive contains Paper~II and a line-by-line response to the external review.
+Exact identity checks and Monte Carlo diagnostics are separated in every
+certificate.
+
+\begin{thebibliography}{99}
+
+\bibitem{Kohn1964}
+W.~Kohn,
+\newblock Theory of the insulating state,
+\newblock \emph{Physical Review} \textbf{133} (1964), A171--A181.
+
+\bibitem{ScalapinoWhiteZhang1993}
+D.~J.~Scalapino, S.~R.~White, and S.-C.~Zhang,
+\newblock Insulator, metal, or superconductor: The criteria,
+\newblock \emph{Physical Review B} \textbf{47} (1993), 7995--8007.
+
+\bibitem{Kozlov1979}
+S.~M.~Kozlov,
+\newblock The averaging of random operators,
+\newblock \emph{Mathematics of the USSR-Sbornik} \textbf{37} (1980), 167--180.
+
+\bibitem{PapanicolaouVaradhan1979}
+G.~C.~Papanicolaou and S.~R.~S. Varadhan,
+\newblock Boundary value problems with rapidly oscillating random coefficients,
+\newblock in \emph{Random Fields, Vol.~I, II}, North-Holland (1981), 835--873.
+
+\bibitem{GloriaOtto2011}
+A.~Gloria and F.~Otto,
+\newblock An optimal variance estimate in stochastic homogenization of discrete elliptic equations,
+\newblock \emph{Annals of Probability} \textbf{39} (2011), 779--856.
+
+\bibitem{GloriaNeukammOtto2013Long}
+A.~Gloria, S.~Neukamm, and F.~Otto,
+\newblock Quantification of ergodicity in stochastic homogenization: optimal bounds via spectral gap on Glauber dynamics---long version,
+\newblock MiS Preprint 3/2013, Theorem 2 under (69b), Remark 11/equation (70), and Corollary 8.
+
+\bibitem{GloriaNeukammOtto2015}
+A.~Gloria, S.~Neukamm, and F.~Otto,
+\newblock Quantification of ergodicity in stochastic homogenization: optimal bounds via spectral gap on Glauber dynamics,
+\newblock \emph{Inventiones Mathematicae} \textbf{199} (2015), 455--515.
+
+\bibitem{GloriaNolen2016}
+A.~Gloria and J.~Nolen,
+\newblock A quantitative central limit theorem for the effective conductance on the discrete torus,
+\newblock \emph{Communications on Pure and Applied Mathematics} \textbf{69} (2016), 2304--2348.
+
+\end{thebibliography}
+\end{document}

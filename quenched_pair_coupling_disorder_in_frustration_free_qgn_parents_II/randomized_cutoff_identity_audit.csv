@@ -1,0 +1,5 @@
+identity,exact_left,exact_right,absolute_error
+exponential mean equals Abel tail,0.0004841516947106619,0.00048355253008331486,5.991646273470182e-07
+exponential second moment spectral formula,2.636091348015915e-06,2.6207542510683803e-06,1.5337096947534655e-08
+uniform mean equals triangular spectral filter,0.0002530578564473956,0.00025287855436678186,1.793020806137237e-07
+uniform mean equals integrated difference quotient,0.00025287855436678186,0.00025287855436678186,0.0

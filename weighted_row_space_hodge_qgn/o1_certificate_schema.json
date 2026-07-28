@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weighted row-Hodge current certificate",
+  "type": "object",
+  "required": [
+    "certificate_type",
+    "version",
+    "branch",
+    "factorization",
+    "metric",
+    "cost",
+    "status"
+  ],
+  "properties": {
+    "certificate_type": {
+      "const": "weighted_row_hodge_current"
+    },
+    "version": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "object",
+      "required": [
+        "projector",
+        "full_zero_cokernel_norm",
+        "tolerance"
+      ],
+      "properties": {
+        "projector": {
+          "type": "string"
+        },
+        "full_zero_cokernel_norm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "factorization": {
+      "type": "object",
+      "required": [
+        "method",
+        "identity",
+        "factorization_residual_norm"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "cluster_pseudoinverse",
+            "covariant_row_metric",
+            "fourier_module",
+            "direct_witness",
+            "approximate"
+          ]
+        },
+        "identity": {
+          "type": "string"
+        },
+        "factorization_residual_norm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "eta_range_cells": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "eta_decay_exponent": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "cluster_frustration_free_residual": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "parent_row_buffer_cells": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "buffer_overlap_constant": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "laurent_coefficient_field": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "module_decision_status": {
+          "enum": [
+            "not_run",
+            "member",
+            "nonmember"
+          ]
+        },
+        "module_obstruction_hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eta_local_norm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "required": [
+        "g_minus"
+      ],
+      "properties": {
+        "g_minus": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "g_plus": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "condition_number_upper": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "required": [
+        "method",
+        "b_eta_upper_per_cell",
+        "b_remainder_upper_per_cell",
+        "b_total_upper_per_cell"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "sparse_local_row",
+            "local_zero_compression",
+            "chebyshev",
+            "momentum",
+            "hybrid"
+          ]
+        },
+        "row_norm_bounds": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "b_eta_upper_per_cell": {
+          "type": "number",
+          "minimum": 0
+        },
+        "b_remainder_upper_per_cell": {
+          "type": "number",
+          "minimum": 0
+        },
+        "theta": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "b_total_upper_per_cell": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "status": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "norm_equality_diagnostic": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "rank_P": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "projected_witness": {
+          "type": "boolean"
+        },
+        "spectral_slack_residual": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "attains_exact_norm": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

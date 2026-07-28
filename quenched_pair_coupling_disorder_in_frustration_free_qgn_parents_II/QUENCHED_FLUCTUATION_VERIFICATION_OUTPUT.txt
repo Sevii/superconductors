@@ -1,0 +1,14 @@
+QUENCHED LOW-ENERGY SOURCE-TAIL FLUCTUATION AUDIT
+==========================================================
+sizes=(8, 12, 16, 20, 24)
+samples=(360, 280, 220, 160, 120)
+scaled_cutoffs_tau=(40.0, 80.0, 160.0, 320.0)
+max_delta=1.5
+epsilon=0.45
+Born mean max relative error: 0.0525449
+Born variance max relative error: 0.266659
+Born scaled-variance range: [0.000178692, 0.000510183]
+Exact scaled-variance range: [0.000259109, 0.000602688]
+Richardson k=1 >= sharp/4: True
+Abel >= exp(-1) sharp: True
+OVERALL: PASS

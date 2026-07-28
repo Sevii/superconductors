@@ -1,0 +1,95 @@
+{
+  "abel_energy_excess_abs_error": 5.5294310796760726e-18,
+  "abel_envelope_holds": true,
+  "abel_heat_abs_error": 4.336808689942018e-19,
+  "abel_tail": 0.0007101324434919343,
+  "configuration": {
+    "A": [
+      1.0,
+      -0.35
+    ],
+    "L": 6,
+    "delta": 0.72,
+    "seed": 20260727
+  },
+  "derivatives": [
+    {
+      "duhamel_abs_error": 1.3552527156068805e-20,
+      "duhamel_derivative": 8.528310389083198e-05,
+      "edge": 36,
+      "fd_abs_error": 1.254551340200069e-13,
+      "finite_difference": 8.528310401628712e-05,
+      "spectral_derivative": 8.528310389083199e-05
+    },
+    {
+      "duhamel_abs_error": 1.096907666694319e-19,
+      "duhamel_derivative": -1.449843509535804e-06,
+      "edge": 23,
+      "fd_abs_error": 1.0499052707970145e-12,
+      "finite_difference": -1.4498424596304236e-06,
+      "spectral_derivative": -1.4498435095356944e-06
+    },
+    {
+      "duhamel_abs_error": 1.0842021724855044e-19,
+      "duhamel_derivative": -0.000576689179943798,
+      "edge": 50,
+      "fd_abs_error": 6.342948085172329e-13,
+      "finite_difference": -0.000576689179309503,
+      "spectral_derivative": -0.0005766891799437978
+    },
+    {
+      "duhamel_abs_error": 1.6940658945086007e-20,
+      "duhamel_derivative": 1.5469640563824586e-05,
+      "edge": 0,
+      "fd_abs_error": 7.593129819566738e-13,
+      "finite_difference": 1.546964132313755e-05,
+      "spectral_derivative": 1.546964056382457e-05
+    },
+    {
+      "duhamel_abs_error": 6.776263578034403e-21,
+      "duhamel_derivative": 3.696690913656457e-05,
+      "edge": 51,
+      "fd_abs_error": 2.6228379955113915e-13,
+      "finite_difference": 3.696690887428078e-05,
+      "spectral_derivative": 3.696690913656458e-05
+    },
+    {
+      "duhamel_abs_error": 1.6263032587282567e-19,
+      "duhamel_derivative": 0.0003456676713819344,
+      "edge": 18,
+      "fd_abs_error": 2.914752857477443e-14,
+      "finite_difference": 0.0003456676713527867,
+      "spectral_derivative": 0.00034566767138193423
+    },
+    {
+      "duhamel_abs_error": 1.6263032587282567e-19,
+      "duhamel_derivative": -0.00013719551433691464,
+      "edge": 65,
+      "fd_abs_error": 4.897347176228972e-13,
+      "finite_difference": -0.00013719551384717976,
+      "spectral_derivative": -0.00013719551433691448
+    },
+    {
+      "duhamel_abs_error": 2.168404344971009e-19,
+      "duhamel_derivative": -0.0007290486750283772,
+      "edge": 48,
+      "fd_abs_error": 1.0438243151777993e-13,
+      "finite_difference": -0.0007290486749239946,
+      "spectral_derivative": -0.000729048675028377
+    }
+  ],
+  "integrated_heat_tail": 0.0007101324434919347,
+  "max_duhamel_derivative_error": 2.168404344971009e-19,
+  "max_finite_difference_derivative_error": 1.0499052707970145e-12,
+  "parabolic_energy_excess": 0.0007101324434919398,
+  "richardson_envelope_holds": true,
+  "richardson_k1_tail": 0.0010791499602185541,
+  "sharp_tail": 0.0,
+  "status": "PASS",
+  "thresholds": {
+    "abel_energy_excess_abs_error": 2e-10,
+    "abel_heat_abs_error": 2e-09,
+    "max_duhamel_derivative_error": 2e-10,
+    "max_finite_difference_derivative_error": 2e-07
+  }
+}

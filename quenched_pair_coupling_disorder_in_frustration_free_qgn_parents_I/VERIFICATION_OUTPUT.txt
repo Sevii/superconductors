@@ -1,0 +1,29 @@
+PASS static_many_body_vs_hodge_case_0: value=0.405037156098, abs_err=2.220e-16
+PASS dynamic_full_target_vs_graph_case_0_zeta_0.03: value=0.414918412787, abs_err=1.110e-16
+PASS dynamic_full_target_vs_graph_case_0_zeta_0.21: value=0.836934467247, abs_err=2.220e-15
+PASS dynamic_full_target_vs_graph_case_0_zeta_1.1: value=6.39572307215, abs_err=1.332e-14
+PASS gauge_invariance_case_0: value=0.708815023171, abs_err=3.331e-16
+PASS ellipticity_case_0: 0.32514426 <= 0.70881502 <= 1.4113739
+PASS static_many_body_vs_hodge_case_1: value=5.61676875803, abs_err=8.882e-16
+PASS dynamic_full_target_vs_graph_case_1_zeta_0.03: value=5.61820957631, abs_err=8.882e-16
+PASS dynamic_full_target_vs_graph_case_1_zeta_0.21: value=5.68281077355, abs_err=2.665e-15
+PASS dynamic_full_target_vs_graph_case_1_zeta_1.1: value=6.4033254651, abs_err=4.441e-15
+PASS gauge_invariance_case_1: value=10.5314414213, abs_err=0.000e+00
+PASS ellipticity_case_1: 3.8560303 <= 10.531441 <= 21.715522
+PASS static_many_body_vs_hodge_case_2: value=7.80719036381e-30, abs_err=2.308e-30
+PASS dynamic_full_target_vs_graph_case_2_zeta_0.03: value=0.142116958441, abs_err=4.718e-16
+PASS dynamic_full_target_vs_graph_case_2_zeta_0.21: value=1.13889435688, abs_err=1.554e-15
+PASS dynamic_full_target_vs_graph_case_2_zeta_1.1: value=2.12546972259, abs_err=8.882e-16
+PASS gauge_invariance_case_2: value=1.04208912332e-28, abs_err=8.524e-29
+PASS ellipticity_case_2: 1.6412977e-28 <= 1.896557e-29 <= 5.7716184e-28
+PASS ring_effective_resistance: value=4.05862844702, abs_err=0.000e+00
+PASS random_torus L=4: mean Kxx=1.19558130, std=0.1344, N*var=0.2888
+PASS random_torus L=6: mean Kxx=1.18138773, std=0.07693, N*var=0.213
+PASS random_torus L=8: mean Kxx=1.19069155, std=0.05241, N*var=0.1758
+PASS random_torus L=12: mean Kxx=1.17429470, std=0.04356, N*var=0.2732
+PASS macroscopic_modulation N=32: soft_mass/N=0.063249512, positive_mass/N=0.0632503, (K-C)/N=0.025764142
+PASS macroscopic_modulation N=64: soft_mass/N=0.06324958, positive_mass/N=0.0632503, (K-C)/N=0.027702167
+PASS macroscopic_modulation N=128: soft_mass/N=0.063249596, positive_mass/N=0.0632503, (K-C)/N=0.027947607
+PASS macroscopic_modulation N=256: soft_mass/N=0.0632496, positive_mass/N=0.0632503, (K-C)/N=0.028125716
+PASS macroscopic_modulation N=512: soft_mass/N=0.063249601, positive_mass/N=0.0632503, (K-C)/N=0.028100921
+OVERALL: PASS

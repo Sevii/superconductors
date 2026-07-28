@@ -1,0 +1,49 @@
+PASS sample L=16 idx= 0: lambda_max_audited=2.2738, total_Hminus1/N=0.0736122
+PASS sample L=16 idx= 1: lambda_max_audited=2.3315, total_Hminus1/N=0.08322
+PASS sample L=16 idx= 2: lambda_max_audited=2.2379, total_Hminus1/N=0.0678781
+PASS sample L=16 idx= 3: lambda_max_audited=2.2915, total_Hminus1/N=0.0685327
+PASS sample L=16 idx= 4: lambda_max_audited=2.2956, total_Hminus1/N=0.0835031
+PASS sample L=16 idx= 5: lambda_max_audited=2.2890, total_Hminus1/N=0.0801522
+PASS sample L=16 idx= 6: lambda_max_audited=2.2971, total_Hminus1/N=0.0803721
+PASS sample L=16 idx= 7: lambda_max_audited=2.3573, total_Hminus1/N=0.0725089
+PASS sample L=24 idx= 0: lambda_max_audited=1.1251, total_Hminus1/N=0.078081
+PASS sample L=24 idx= 1: lambda_max_audited=1.1326, total_Hminus1/N=0.0767107
+PASS sample L=24 idx= 2: lambda_max_audited=1.1253, total_Hminus1/N=0.0800183
+PASS sample L=24 idx= 3: lambda_max_audited=1.1537, total_Hminus1/N=0.0822606
+PASS sample L=24 idx= 4: lambda_max_audited=1.1306, total_Hminus1/N=0.073579
+PASS sample L=24 idx= 5: lambda_max_audited=1.1124, total_Hminus1/N=0.0799987
+PASS sample L=24 idx= 6: lambda_max_audited=1.1249, total_Hminus1/N=0.0736124
+PASS sample L=24 idx= 7: lambda_max_audited=1.1105, total_Hminus1/N=0.0739132
+PASS sample L=32 idx= 0: lambda_max_audited=0.6890, total_Hminus1/N=0.0771383
+PASS sample L=32 idx= 1: lambda_max_audited=0.6721, total_Hminus1/N=0.0827808
+PASS sample L=32 idx= 2: lambda_max_audited=0.6766, total_Hminus1/N=0.0793685
+PASS sample L=32 idx= 3: lambda_max_audited=0.6619, total_Hminus1/N=0.0782883
+PASS sample L=32 idx= 4: lambda_max_audited=0.6704, total_Hminus1/N=0.0817125
+PASS sample L=32 idx= 5: lambda_max_audited=0.6753, total_Hminus1/N=0.0823402
+PASS sample L=32 idx= 6: lambda_max_audited=0.6855, total_Hminus1/N=0.0812842
+PASS sample L=32 idx= 7: lambda_max_audited=0.6697, total_Hminus1/N=0.0743559
+PASS sample L=48 idx= 0: lambda_max_audited=0.5601, total_Hminus1/N=0.0815299
+PASS sample L=48 idx= 1: lambda_max_audited=0.5685, total_Hminus1/N=0.0814333
+PASS sample L=48 idx= 2: lambda_max_audited=0.5637, total_Hminus1/N=0.0758481
+PASS sample L=48 idx= 3: lambda_max_audited=0.5693, total_Hminus1/N=0.0799676
+PASS sample L=48 idx= 4: lambda_max_audited=0.5665, total_Hminus1/N=0.0805965
+PASS sample L=48 idx= 5: lambda_max_audited=0.5794, total_Hminus1/N=0.0729992
+PASS sample L=48 idx= 6: lambda_max_audited=0.5733, total_Hminus1/N=0.075986
+PASS sample L=48 idx= 7: lambda_max_audited=0.5674, total_Hminus1/N=0.0787099
+
+Quantitative finite-torus source-tail numerical audit
+====================================================
+seed: 20260727
+dimension: 2
+conductances: Uniform[0.5, 2.0]
+sizes: [16, 24, 32, 48]
+samples per size: 8
+max environment/physical intertwining error: 2.202e-14
+largest-L tail log-log slope: 1.058799 (theorem predicts exponent 1 in d=2)
+largest-L late-time heat log-log slope: -1.989785 (theorem predicts exponent -2 in d=2 before finite-size saturation)
+max observed tail/delta ratio: 0.029922
+max observed mean (1+t)^2 H_L(t): 0.075888
+OVERALL: PASS
+
+Interpretation: the exact theorem is proved analytically in the paper.
+The fitted slopes are finite-size diagnostics and are not used as proof.

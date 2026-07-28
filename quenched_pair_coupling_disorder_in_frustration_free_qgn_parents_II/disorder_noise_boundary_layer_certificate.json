@@ -1,0 +1,42 @@
+{
+  "all_checks_pass": true,
+  "checks": {
+    "gaussian_small_time_profile": true,
+    "gaussian_variance_closure": true,
+    "majority_min_profile_uniform": true,
+    "majority_variance_closure": true
+  },
+  "gaussian": {
+    "absolute_closure_error": 7.918665723138929e-14,
+    "exact_variance": 0.12249999999999998,
+    "q": 0.7,
+    "quadrature_error_estimate": 2.2590262993560373e-13,
+    "small_time_limit": 0.038992961057514354,
+    "twice_integrated_noise_energy": 0.1224999999999208
+  },
+  "interpretation": "The Gaussian identity is exact. The Bernoulli-majority computation is an exact finite product-space model evaluated numerically and illustrates the same integrable boundary layer. Neither is a proof for the random-conductance spectral tail.",
+  "majority": [
+    {
+      "M": 15,
+      "absolute_closure_error": 0.0001473734877038696,
+      "exact_variance": 0.12249999999999998,
+      "max_profile_ratio": 0.20217349020293282,
+      "twice_integrated_noise_energy_numeric": 0.12264737348770385
+    },
+    {
+      "M": 31,
+      "absolute_closure_error": 0.00014737348788716742,
+      "exact_variance": 0.12249999999999998,
+      "max_profile_ratio": 0.1998050786243563,
+      "twice_integrated_noise_energy_numeric": 0.12264737348788715
+    },
+    {
+      "M": 63,
+      "absolute_closure_error": 0.00014737348824458985,
+      "exact_variance": 0.12249999999999998,
+      "max_profile_ratio": 0.19772503080583786,
+      "twice_integrated_noise_energy_numeric": 0.12264737348824457
+    }
+  ],
+  "quick": true
+}

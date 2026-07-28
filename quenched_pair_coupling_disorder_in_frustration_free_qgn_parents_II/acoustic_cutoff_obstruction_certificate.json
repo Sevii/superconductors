@@ -1,0 +1,24 @@
+{
+  "actual_model_loglog_exponents": {
+    "loglog_exponent_centered_tail_variance_vs_N": -2.0203487533190216,
+    "loglog_exponent_moving_shell_second_moment_vs_N": -1.9499924219470044,
+    "loglog_exponent_r_pi_kde_vs_N": -1.453793397371851,
+    "loglog_exponent_relative_log_eigenvalue_width_vs_N": -0.4960522872019003
+  },
+  "checks": {
+    "actual_centered_variance_near_N_minus_2": true,
+    "actual_participation_density_slower_than_N_minus_1p8": true,
+    "actual_relative_eigenvalue_width_near_N_minus_half": true,
+    "toy_holder_ratio_grows": true,
+    "toy_participation_density_has_sqrtN_excess": true
+  },
+  "exact_gaussian_parameters": {
+    "a": 1.0,
+    "alpha": 0.5,
+    "q_star": 0.7
+  },
+  "interpretation": "The Gaussian one-mode statements are exact. The random-conductance fits are diagnostics supporting, but not proving, the acoustic-CLT scaling mechanism.",
+  "overall_pass": true,
+  "quick": false,
+  "seed": 20260727
+}

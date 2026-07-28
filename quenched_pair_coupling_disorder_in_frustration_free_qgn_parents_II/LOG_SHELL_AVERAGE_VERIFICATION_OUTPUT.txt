@@ -1,0 +1,40 @@
+LOGARITHMIC SHELL / RANDOMIZATION NO-GO AUDIT
+================================================
+seed: 20260727
+
+Exact logarithmic shell identity:
+ L  eta   R  full_pair_kernel_integral  full_interval_sweep_integral  full_identity_absolute_error  localized_integral  localized_deterministic_bound  localized_bound_margin  pointwise_cutoff  pointwise_shell_square  pointwise_maximalization_rhs  pointwise_maximalization_margin
+ 8  0.3 0.8                   0.000057                      0.000057                  1.355253e-20            0.000005                       0.000005            1.810610e-07          2.706157                0.000013                      0.000074                         0.000061
+
+Exceptional-cutoff set audit:
+ L  eta  beta  window_lower  window_upper  bad_threshold  exact_bad_log_measure  exact_markov_bound  localized_analytic_bound  markov_margin
+ 8  0.3   0.5           0.4           0.8        0.00001               0.262364            0.461037                  0.479009       0.198673
+
+Positive heat-mixture variance ratios:
+count    500.000000
+mean       2.416066
+std        1.373206
+min        1.000003
+25%        1.429932
+50%        2.013149
+75%        2.963345
+max        9.575330
+
+Gamma threshold comparison:
+ gamma_shape  coefficient_of_variation  variance_to_mean_squared  compatible_with_positive_heat_mixture_bound
+           1                  1.000000                  1.000000                                         True
+           2                  0.707107                  0.500000                                        False
+           4                  0.500000                  0.250000                                        False
+           8                  0.353553                  0.125000                                        False
+          16                  0.250000                  0.062500                                        False
+          32                  0.176777                  0.031250                                        False
+          64                  0.125000                  0.015625                                        False
+
+log_shell_identity_exact: PASS
+localized_log_shell_bound: PASS
+pointwise_log_shell_maximalization: PASS
+exceptional_set_markov_bound: PASS
+positive_heat_mixture_cv_bound: PASS
+gamma_narrowness_requires_non_heat_mixture: PASS
+
+OVERALL: PASS

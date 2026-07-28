@@ -1,0 +1,136 @@
+{
+  "seed": 20260727,
+  "rng": {
+    "generator": "numpy.random.default_rng(PCG64)",
+    "exact_seed_sequence": [
+      20260727,
+      100
+    ],
+    "torus_seed_sequence_template": [
+      20260727,
+      200,
+      "L",
+      24
+    ]
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "python_implementation": "CPython",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "samples_per_size": 24,
+  "tolerance": 5e-09,
+  "exact_values": {
+    "static_case_0": 0.40503715609797886,
+    "dynamic_case_0": 6.395723072154456,
+    "static_case_1": 5.616768758033069,
+    "dynamic_case_1": 6.403325465103807,
+    "static_case_2": 7.807190363811148e-30,
+    "dynamic_case_2": 2.1254697225876775,
+    "ring_energy": 4.058628447022654
+  },
+  "random_torus": [
+    {
+      "L": 4.0,
+      "N": 16.0,
+      "samples": 24.0,
+      "mean_Kxx": 1.1955813042924277,
+      "std_Kxx": 0.13436054073196094,
+      "mean_Kyy": 1.148825048745339,
+      "std_Kyy": 0.11344222790026326,
+      "mean_Kxy": 0.004438250006869242,
+      "std_Kxy": 0.012397320933666895,
+      "N_var_Kxx": 0.288844078492559
+    },
+    {
+      "L": 6.0,
+      "N": 36.0,
+      "samples": 24.0,
+      "mean_Kxx": 1.1813877347589996,
+      "std_Kxx": 0.07692551403092138,
+      "mean_Kyy": 1.1798502938586595,
+      "std_Kyy": 0.08195778155602322,
+      "mean_Kxy": -0.000444196440120625,
+      "std_Kxy": 0.012868316401968522,
+      "N_var_Kxx": 0.21303124952117333
+    },
+    {
+      "L": 8.0,
+      "N": 64.0,
+      "samples": 24.0,
+      "mean_Kxx": 1.1906915534412652,
+      "std_Kxx": 0.05241158165328426,
+      "mean_Kyy": 1.1835749215979796,
+      "std_Kyy": 0.0658580763595117,
+      "mean_Kxy": -0.00028030518497051504,
+      "std_Kxy": 0.007060150457269653,
+      "N_var_Kxx": 0.17580632904952853
+    },
+    {
+      "L": 12.0,
+      "N": 144.0,
+      "samples": 24.0,
+      "mean_Kxx": 1.1742946954912978,
+      "std_Kxx": 0.04355628355666587,
+      "mean_Kyy": 1.1834885504914003,
+      "std_Kyy": 0.04697007933216632,
+      "mean_Kxy": 0.0007840234000837725,
+      "std_Kxy": 0.004636987784598769,
+      "N_var_Kxx": 0.2731895765666901
+    }
+  ],
+  "macroscopic_modulation": [
+    {
+      "N": 32.0,
+      "epsilon": 0.35,
+      "cutoff": 0.07710628438351061,
+      "soft_source_mass_per_site": 0.06324951168638598,
+      "soft_Hminus1_mass_per_site": 6.855407989388767,
+      "total_positive_source_mass_per_site": 0.06325030024023943,
+      "static_network_energy_per_site": 0.9367496997597596,
+      "dynamic_minus_static_per_site_at_zeta_1_over_N": 0.02576414182047221
+    },
+    {
+      "N": 64.0,
+      "epsilon": 0.35,
+      "cutoff": 0.019276571095877652,
+      "soft_source_mass_per_site": 0.06324957990219356,
+      "soft_Hminus1_mass_per_site": 27.35393518278427,
+      "total_positive_source_mass_per_site": 0.06325030024024686,
+      "static_network_energy_per_site": 0.9367496997597597,
+      "dynamic_minus_static_per_site_at_zeta_1_over_N": 0.027702167431641778
+    },
+    {
+      "N": 128.0,
+      "epsilon": 0.35,
+      "cutoff": 0.004819142773969413,
+      "soft_source_mass_per_site": 0.0632495958702791,
+      "soft_Hminus1_mass_per_site": 109.34817867962084,
+      "total_positive_source_mass_per_site": 0.06325030024024297,
+      "static_network_energy_per_site": 0.9367496997597596,
+      "dynamic_minus_static_per_site_at_zeta_1_over_N": 0.0279476066989805
+    },
+    {
+      "N": 256.0,
+      "epsilon": 0.35,
+      "cutoff": 0.0012047856934923533,
+      "soft_source_mass_per_site": 0.06324959979782808,
+      "soft_Hminus1_mass_per_site": 437.32518627923923,
+      "total_positive_source_mass_per_site": 0.06325030024008109,
+      "static_network_energy_per_site": 0.9367496997597597,
+      "dynamic_minus_static_per_site_at_zeta_1_over_N": 0.02812571578595674
+    },
+    {
+      "N": 512.0,
+      "epsilon": 0.35,
+      "cutoff": 0.0003011964233730883,
+      "soft_source_mass_per_site": 0.06324960077610771,
+      "soft_Hminus1_mass_per_site": 1749.2332250882785,
+      "total_positive_source_mass_per_site": 0.06325030024039976,
+      "static_network_energy_per_site": 0.9367496997597597,
+      "dynamic_minus_static_per_site_at_zeta_1_over_N": 0.02810092108582507
+    }
+  ],
+  "overall": "PASS"
+}

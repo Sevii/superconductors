@@ -1,0 +1,48 @@
+{
+  "certificate_type": "weighted_row_hodge_current",
+  "version": "1.1",
+  "branch": {
+    "projector": "complete_parent_zero_projector",
+    "full_zero_cokernel_norm": 0.0,
+    "tolerance": 1e-10
+  },
+  "factorization": {
+    "method": "cluster_pseudoinverse",
+    "identity": "J_R P = D^dagger eta P",
+    "factorization_residual_norm": 0.0,
+    "eta_range_cells": 3,
+    "eta_decay_exponent": null,
+    "cluster_frustration_free_residual": 0.0,
+    "parent_row_buffer_cells": 1,
+    "buffer_overlap_constant": 5,
+    "laurent_coefficient_field": null,
+    "module_decision_status": "not_run",
+    "module_obstruction_hash": null,
+    "eta_local_norm": 0.046
+  },
+  "metric": {
+    "g_minus": 0.8,
+    "g_plus": 1.4,
+    "condition_number_upper": 1.75
+  },
+  "cost": {
+    "method": "sparse_local_row",
+    "row_norm_bounds": [
+      0.021,
+      0.018,
+      0.007
+    ],
+    "b_eta_upper_per_cell": 0.0010175,
+    "b_remainder_upper_per_cell": 0.0,
+    "theta": null,
+    "b_total_upper_per_cell": 0.0010175
+  },
+  "status": "illustrative_schema_only",
+  "notes": "Numerical values are illustrative and are not a certificate for a physical model.",
+  "norm_equality_diagnostic": {
+    "rank_P": 1,
+    "projected_witness": false,
+    "spectral_slack_residual": null,
+    "attains_exact_norm": null
+  }
+}

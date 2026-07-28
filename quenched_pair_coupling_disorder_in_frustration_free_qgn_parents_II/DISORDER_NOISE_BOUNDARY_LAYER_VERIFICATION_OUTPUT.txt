@@ -1,0 +1,26 @@
+FIXED-CUTOFF DISORDER-NOISE BOUNDARY-LAYER AUDIT
+========================================================
+quick: True
+
+Gaussian half-space closure:
+q                                7.000000e-01
+twice_integrated_noise_energy    1.225000e-01
+quadrature_error_estimate        2.259026e-13
+exact_variance                   1.225000e-01
+absolute_closure_error           7.918666e-14
+small_time_limit                 3.899296e-02
+
+Bernoulli-majority summaries:
+ M  twice_integrated_noise_energy_numeric  exact_variance  absolute_closure_error  max_profile_ratio
+15                               0.122647          0.1225                0.000147           0.202173
+31                               0.122647          0.1225                0.000147           0.199805
+63                               0.122647          0.1225                0.000147           0.197725
+
+Checks:
+  gaussian_variance_closure: PASS
+  gaussian_small_time_profile: PASS
+  majority_variance_closure: PASS
+  majority_min_profile_uniform: PASS
+
+OVERALL: PASS
+

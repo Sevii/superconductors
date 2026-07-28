@@ -1,0 +1,64 @@
+SHARP CUTOFF THREE-ROUTE AUDIT
+================================
+seed: 20260727
+
+Relative Wegner count:
+ L  N  samples    E   eta  mean_eigenvalue_count  wegner_theorem_bound  count_to_bound_ratio  mean_drift_shell  drift_shell_second_moment  mean_drift_shell_over_eta
+ 6 36      700 0.85 0.025               0.261429                   2.7              0.096825          0.000391                   0.000003                   0.015642
+ 6 36      700 0.85 0.050               0.615714                   5.4              0.114021          0.000841                   0.000006                   0.016823
+ 6 36      700 0.85 0.100               1.454286                  10.8              0.134656          0.002119                   0.000018                   0.021189
+ 6 36      700 0.85 0.200               3.061429                  21.6              0.141733          0.004068                   0.000038                   0.020339
+ 6 36      700 0.85 0.400               3.691429                  43.2              0.085450          0.004720                   0.000045                   0.011800
+
+Modulated-cycle obstruction:
+  N  epsilon   cutoff  positive_mode_count  normalized_mode_count  low_Hminus1_mass  total_Hminus1_mass_spectral  total_Hminus1_mass_network  first_moment  low_mass_to_normalized_count
+ 32      0.5 0.195312                    4               0.125000          0.133966                     0.133975                    0.133975      0.004804                      1.071729
+ 64      0.5 0.048828                    4               0.062500          0.133967                     0.133975                    0.133975      0.001204                      2.143470
+128      0.5 0.012207                    4               0.031250          0.133967                     0.133975                    0.133975      0.000301                      4.286946
+256      0.5 0.003052                    4               0.015625          0.133967                     0.133975                    0.133975      0.000075                      8.573894
+
+Randomized cutoff identities:
+                                          identity  exact_left  exact_right  absolute_error
+                 exponential mean equals Abel tail    0.000484     0.000484    5.991646e-07
+        exponential second moment spectral formula    0.000003     0.000003    1.533710e-08
+    uniform mean equals triangular spectral filter    0.000253     0.000253    1.793021e-07
+uniform mean equals integrated difference quotient    0.000253     0.000253    0.000000e+00
+
+Randomization summary:
+{
+  "L": 8.0,
+  "abel_2delta_squared": 5.920912780049458e-06,
+  "abel_tail": 0.00048355253008331486,
+  "delta": 0.5,
+  "eta": 0.25,
+  "exponential_randomized_variance_mc": 2.4016884845247085e-06,
+  "exponential_second_moment_exact": 2.6207542510683803e-06,
+  "second_moment_bound_margin": 3.3001585289810777e-06,
+  "sharp_tail": 7.467801406085176e-05,
+  "shell_tail": 0.00027179364854434203,
+  "uniform_conditional_variance_mc": 1.6239333092496406e-08,
+  "uniform_mean_minus_sharp": 0.0001782005403059301,
+  "uniform_randomized_mean": 0.00025287855436678186,
+  "uniform_range_variance_bound": 1.8467946847261328e-08,
+  "uniform_sandwich_residual": 9.359310823841194e-05
+}
+
+Integrated martingale:
+                    observable     h  variance  sum_doob_quadratic_variation  decomposition_error  L2_distance_to_sharp
+                         sharp 0.000  0.000433                      0.000433         5.421011e-20              0.000000
+integrated_difference_quotient 0.200  0.000410                      0.000410         5.421011e-20              0.000130
+integrated_difference_quotient 0.100  0.000408                      0.000408         2.710505e-19              0.000097
+integrated_difference_quotient 0.050  0.000396                      0.000396         2.168404e-19              0.000049
+integrated_difference_quotient 0.025  0.000415                      0.000415         4.336809e-19              0.000009
+
+relative_wegner_empirical_below_bound: PASS
+modulated_low_mass_stays_positive: PASS
+modulated_normalized_count_decays: PASS
+modulated_network_spectral_identity: PASS
+randomized_identity_mc_tolerance: PASS
+exponential_second_moment_bound: PASS
+uniform_sandwich: PASS
+uniform_variance_range_bound: PASS
+doob_decomposition_exact: PASS
+
+OVERALL: PASS

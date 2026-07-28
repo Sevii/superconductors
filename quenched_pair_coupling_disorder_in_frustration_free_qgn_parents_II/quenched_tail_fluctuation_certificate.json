@@ -1,0 +1,46 @@
+{
+  "abel_dominates_exp_minus_one_sharp_all_samples": true,
+  "born_mean_max_relative_error": 0.052544854859060706,
+  "born_scaled_variance_range": [
+    0.00017869183195000552,
+    0.0005101834407112195
+  ],
+  "born_variance_max_relative_error": 0.2666589950503633,
+  "configuration": {
+    "conductance_interval": [
+      0.55,
+      1.45
+    ],
+    "dimension": 2,
+    "epsilon": 0.45,
+    "max_delta": 1.5,
+    "samples": [
+      360,
+      280,
+      220,
+      160,
+      120
+    ],
+    "scaled_cutoffs_tau": [
+      40.0,
+      80.0,
+      160.0,
+      320.0
+    ],
+    "seed": 20260727,
+    "sizes": [
+      8,
+      12,
+      16,
+      20,
+      24
+    ]
+  },
+  "exact_scaled_variance_range": [
+    0.0002591093514547558,
+    0.000602688470369311
+  ],
+  "richardson_dominates_quarter_sharp_all_samples": true,
+  "status": "PASS",
+  "theory_normalization": "Var(T_L) * L^2 / delta in d=2"
+}

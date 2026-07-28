@@ -1,0 +1,28 @@
+Build date: 2026-07-27 (America/Denver)
+Revision: reviewer-integrated O1 weighted row-space Hodge theorem
+
+PDF build:
+  pdflatex -interaction=nonstopmode -halt-on-error weighted_row_space_hodge_qgn.tex
+  pdflatex -interaction=nonstopmode -halt-on-error weighted_row_space_hodge_qgn.tex
+
+Finite-matrix verification:
+  python verify_weighted_row_hodge.py
+  python verify_weighted_row_hodge_exact.py
+
+Certificate-schema verification:
+  Draft202012Validator(o1_certificate_schema.json).validate(example_o1_certificate.json)
+
+PDF preflight:
+  python /home/oai/skills/pdfs/scripts/pdf_preflight.py weighted_row_space_hodge_qgn.pdf --json
+  pdffonts weighted_row_space_hodge_qgn.pdf
+
+PDF render inspection:
+  python /home/oai/skills/pdfs/scripts/render_pdf.py weighted_row_space_hodge_qgn.pdf --out_dir rendered_final --dpi 170
+  All 17 rendered pages inspected; no clipping, overlap, or missing-glyph defects found.
+
+Environment:
+  pdfTeX 1.40.26
+  Python 3
+  NumPy
+  SymPy
+  jsonschema

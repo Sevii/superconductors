@@ -1,0 +1,36 @@
+ACOUSTIC CUTOFF / MAXIMAL-SHELL OBSTRUCTION AUDIT
+==========================================================
+seed: 20260727
+quick: False
+
+Exact Gaussian one-mode model:
+    N   a  alpha    eta_N  shell_second_moment  centered_variance  nominal_N_minus_2_scale  holder_rhs_without_constant  shell_to_holder_ratio  r_pi_at_center  r_pi_to_N_minus_2_ratio
+   16 1.0    0.5 0.284025         6.533552e-04       4.785156e-04             1.914062e-03                 1.020081e-03               0.640493    3.054402e-03                 1.595769
+   64 1.0    0.5 0.133148         4.083470e-05       2.990723e-05             1.196289e-04                 4.365200e-05               0.935460    3.818002e-04                 3.191538
+  256 1.0    0.5 0.064494         2.552169e-06       1.869202e-06             7.476807e-06                 1.898792e-06               1.344101    4.772503e-05                 6.383076
+ 1024 1.0    0.5 0.031743         1.595105e-07       1.168251e-07             4.673004e-07                 8.325742e-08               1.915872    5.965629e-06                12.766153
+ 4096 1.0    0.5 0.015748         9.969409e-09       7.301569e-09             2.920628e-08                 3.665092e-09               2.720098    7.457036e-07                25.532306
+16384 1.0    0.5 0.007843         6.230881e-10       4.563481e-10             1.825392e-09                 1.616590e-10               3.854335    9.321295e-08                51.064612
+
+Random-conductance low-mode diagnostic:
+ L   N  samples  cutoff_r  relative_log_eigenvalue_width  moving_shell_eta  r_pi_kde  centered_tail_variance  moving_shell_second_moment  nominal_variance_scale_Ninv_r  r_pi_to_nominal_ratio  variance_to_nominal_ratio
+ 4  16    12000  1.910205                       0.097196          0.102077  0.000397                0.000050                    0.000037                       0.119388               0.003328                   0.000422
+ 5  25     9000  1.321843                       0.077845          0.080955  0.000201                0.000023                    0.000016                       0.052874               0.003797                   0.000431
+ 6  36     6000  0.957834                       0.065183          0.067355  0.000120                0.000011                    0.000008                       0.026607               0.004515                   0.000416
+ 8  64     2500  0.561803                       0.048713          0.049919  0.000047                0.000004                    0.000002                       0.008778               0.005411                   0.000399
+10 100     1100  0.366944                       0.039223          0.040002  0.000029                0.000001                    0.000001                       0.003669               0.007844                   0.000336
+
+Fitted log-log exponents:
+  loglog_exponent_relative_log_eigenvalue_width_vs_N: -0.4960522872019003
+  loglog_exponent_r_pi_kde_vs_N: -1.453793397371851
+  loglog_exponent_centered_tail_variance_vs_N: -2.0203487533190216
+  loglog_exponent_moving_shell_second_moment_vs_N: -1.9499924219470044
+
+Checks:
+  toy_holder_ratio_grows: PASS
+  toy_participation_density_has_sqrtN_excess: PASS
+  actual_relative_eigenvalue_width_near_N_minus_half: PASS
+  actual_participation_density_slower_than_N_minus_1p8: PASS
+  actual_centered_variance_near_N_minus_2: PASS
+
+OVERALL: PASS

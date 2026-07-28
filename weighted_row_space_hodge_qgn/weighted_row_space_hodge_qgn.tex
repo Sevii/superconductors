@@ -1,0 +1,1193 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,longtable,enumitem,xcolor}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+\usepackage{fancyhdr,titlesec}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,
+ pdftitle={Weighted Row-Space Hodge Theorem for QGN Response Certificates},pdfauthor={Nicholas Sledgianowski}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Weighted row-space Hodge theorem}
+\fancyhead[R]{\small Research note -- July 2026}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.22em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.75em,itemsep=0.22em,topsep=0.35em}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{algorithm}[theorem]{Certificate}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\I}{\mathrm i}
+\newcommand{\e}{\mathrm e}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cQ}{\mathcal Q}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\supp}{\operatorname{supp}}
+
+\title{\textbf{Weighted Row-Space Hodge Theorem for QGN Response Certificates}\\[0.3em]
+\large Exact Schur-complement minimization, quasi-local factorization, and local current bounds}
+\author{Nicholas Sledgianowski}
+\date{Reviewer-integrated revision, July 27, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+ H_s=\frac12D^\dagger GD,
+ \qquad G\succ0,
+\]
+be a finite-volume positive-square quantum-geometric-nesting (QGN) parent and let $K=J_RP$ be the current source produced by a state-safe residual on a zero manifold $P$.  We solve the finite-dimensional weighted row-space problem underlying the variational QGN functional and isolate the additional hypotheses needed for locality.
+
+If $P$ is the complete zero projector $P_{\Ker D}$, the condition $PJ_RP=0$ already implies algebraic existence of a target field $\eta$ satisfying $K=D^\dagger\eta P$.  For a selected subspace $P<P_{\Ker D}$, the exact obstruction is the component $P_{\Ker D}J_RP$ that mixes the selected branch with the rest of the zero manifold.  Among all target fields with the required divergence, the explicit weighted Hodge representative
+\[
+ \eta_*P
+ =GD(D^\dagger GD)^+J_RP
+ =\frac12GDH_s^+J_RP
+\]
+minimizes the target energy in Loewner order and obeys
+\[
+ \min_{D^\dagger\eta P=J_RP}
+ P\eta^\dagger G^{-1}\eta P
+ =\frac12PJ_RH_s^+J_RP.
+\]
+Consequently the proposed operator-norm upper bound attains the exact Schur-complement value, with no duality gap and without a uniform many-body gap.  The Loewner minimizer is unique, whereas the operator-norm minimizer can be nonunique on a multidimensional $P$; we give the exact spectral-slack criterion.
+
+Locality is a separate problem.  We prove a cluster-current sufficient theorem with an explicit parent-row buffer and exponential-decay estimate, and an analytically separated finite-fiber theorem when the reduced row range stays uniformly invertible in a complex strip.  Finite-range translation-invariant factorization is characterized by Laurent-module membership: Smith divisibility decides the one-dimensional case, while Groebner-basis saturation and syzygy computation give a terminating decision procedure in every dimension.  At real-axis rank drops, a channel-resolved theorem gives the necessary and sufficient vanishing orders for bounded Hodge cost under a controlled spectral decomposition.  A general positive theorem for exponentially local, non-polynomial factorization through soft singular modes is not claimed; analytic divisibility across the rank-drop set remains the substantive open branch.
+
+Finally, we derive three volume-independent certificates for
+$V^{-1}\|P\eta^\dagger G^{-1}\eta P\|$: a sparse local-row bound using only $G\succeq g_-\Id$, a Chebyshev-localized inverse-metric bound, and an exact momentum-symbol formula with a rigorous grid-and-Lipschitz enclosure.  If a quasi-local factorization is unavailable, an approximate row witness plus a separately certified $H_s^+$ remainder yields a controlled two-term bound.  These results close O1b and the finite-dimensional part of O1a, give practical sufficient and decision procedures for important local classes, and reduce a microscopic application to a proof-carrying local current-row audit.
+\end{abstract}
+
+\begin{quote}\small
+\textbf{Claim hierarchy.}
+The finite-volume range criterion, weighted Hodge identity, Loewner minimality, and approximate-factorization inequality are exact finite-dimensional theorems.  Quasi-locality is proved under the cluster criterion or a uniformly reduced-gapped analytic splitting; finite-range Fourier factorization is decidable by Laurent-module methods.  The general exponentially local soft-rank-drop branch is not closed.  Polynomial-cost local certification is proved for sparse local-row data and finite-fiber translation-invariant symbols.  No universal polynomial-time algorithm is claimed for arbitrary many-body cluster operators presented as dense matrices; their local Hilbert-space dimension itself grows exponentially with cluster volume.
+\end{quote}
+
+The QGN terminology, the notions of state-safe and response-safe residuals, and the stiffness-floor functional used below follow the companion certificate and transport manuscripts \cite{QGNFunctional,PeierlsEscape,MicroscopicTransfer,ZeroFrequency}.  This note isolates the row-space theorem needed to replace the residual many-body pseudoinverse by a mechanically checked target-space witness.
+
+\section{Setup and the correct zero-space projector}
+
+Let $\cH$ be a finite-dimensional state space and $\cT$ a target-row space.  Let
+\begin{equation}
+ D:\cH\longrightarrow\cT,
+ \qquad
+ G=G^\dagger\succ0,
+ \qquad
+ H_s=\frac12D^\dagger GD.
+ \label{eq:setup}
+\end{equation}
+If $G$ is specified only on the active row space, extend it block-diagonally by any strictly positive block on the unused target complement.  All minimizing quantities below are independent of that harmless extension after the target space is reduced to the active support.
+
+Write
+\begin{equation}
+ Z=P_{\Ker D}=P_{\Ker H_s},
+ \qquad
+ Q_D=\Id-Z=P_{\Ran D^\dagger}=P_{\Ran H_s}.
+ \label{eq:ZD}
+\end{equation}
+Let $P\preceq Z$ be the selected zero-space projector used by the response certificate.  The distinction between $P=Z$ and a strict subprojection $P<Z$ is load bearing.  Let $J_R=J_R^\dagger$ be the residual current and set
+\begin{equation}
+ K=J_RP,
+ \qquad
+ K_\parallel=Q_DK,
+ \qquad
+ K_0=ZK.
+ \label{eq:Ksplit}
+\end{equation}
+The proposed current defect is
+\begin{equation}
+ b=\frac1{2V}\norm{PK^\dagger H_s^+KP}
+ =\frac1{2V}\norm{PJ_RQ_DH_s^+Q_DJ_RP}.
+ \label{eq:bdef}
+\end{equation}
+The explicit $Q_D$ is redundant next to $H_s^+$ but clarifies which zero-space component is ignored by the inverse-energy form.  Under the target range condition $ZJ_RP=0$, one has $K=K_\parallel$, so \eqref{eq:bdef} is verbatim the O1 target expression $b=(2V)^{-1}\|PJ_RH_s^+J_RP\|$.
+
+\begin{remark}[State safety versus branch safety]
+The conditions $R(0)P=PR(0)=0$ remove the zero-field state source for the selected branch.  The condition $PJ_RP=0$ removes linear splitting \emph{inside $P$}.  If $P<Z$, neither condition excludes a current map from $P$ into $Z-P$.  Such a map has zero $H_s^+$ weight but produces first-order mixing with other exact zero states.  A selected-branch curvature theorem therefore needs $ZJ_RP=0$, an exact selector that gaps $Z-P$, or an operator-valued treatment on the complete zero manifold.
+\end{remark}
+
+\section{Finite-volume weighted row-space Hodge theorem}
+
+\subsection{The exact range obstruction}
+
+\begin{theorem}[Algebraic existence and cokernel obstruction]
+\label{thm:existence}
+There exists a target map $\eta P:P\cH\to\cT$ satisfying
+\begin{equation}
+ D^\dagger\eta P=J_RP
+ \label{eq:factor}
+\end{equation}
+if and only if
+\begin{equation}
+ ZJ_RP=0.
+ \label{eq:cokernelzero}
+\end{equation}
+Equivalently, the exact obstruction is $K_0=P_{\Ker D}J_RP$, the component of the current in the cokernel of $D^\dagger$.
+
+If $P=Z$, the assumed state-safety condition $PJ_RP=0$ is exactly \eqref{eq:cokernelzero}; hence finite-volume algebraic factorization is automatic.  If $P<Z$, the weaker condition $PJ_RP=0$ need not imply factorization.
+\end{theorem}
+
+\begin{proof}
+In finite dimension,
+\[
+ \Ran D^\dagger=(\Ker D)^\perp=Q_D\cH.
+\]
+Thus \eqref{eq:factor} is solvable precisely when the range of $J_RP$ is orthogonal to $\Ker D$, which is \eqref{eq:cokernelzero}.  The final two statements follow by setting $P=Z$ or $P<Z$.
+\end{proof}
+
+\begin{corollary}[What the algebraic cokernel does to $b$]
+For arbitrary $J_RP$, the inverse-energy form sees only $K_\parallel$:
+\begin{equation}
+ PJ_RH_s^+J_RP=K_\parallel^\dagger H_s^+K_\parallel,
+ \qquad H_s^+K_0=0.
+ \label{eq:cokernelweightzero}
+\end{equation}
+Thus $K_0$ contributes no $H_s^+$ weight; it is instead a zero-manifold branch-selection obstruction.
+\end{corollary}
+
+\subsection{Exact minimizer and no duality gap}
+
+Set, using standard Moore--Penrose and singular-subspace conventions \cite{GolubVanLoan},
+\begin{equation}
+ B=G^{1/2}D,
+ \qquad
+ M=B^\dagger B=D^\dagger GD=2H_s,
+ \qquad
+ \Pi=B M^+B^\dagger=P_{\Ran(G^{1/2}D)}.
+ \label{eq:BMPi}
+\end{equation}
+
+\begin{theorem}[Weighted row-space Hodge identity]
+\label{thm:hodge}
+Assume $ZJ_RP=0$.  Define
+\begin{equation}
+ \boxed{
+ \eta_*P
+ =GD(D^\dagger GD)^+J_RP
+ =\frac12GDH_s^+J_RP.}
+ \label{eq:etastar}
+\end{equation}
+Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $D^\dagger\eta_*P=J_RP$.
+\item For every other feasible $\eta$, writing $\kappa P=(\eta-\eta_*)P$, one has $D^\dagger\kappa P=0$ and the operator Pythagorean identity
+\begin{equation}
+ \boxed{
+ P\eta^\dagger G^{-1}\eta P
+ =P\eta_*^\dagger G^{-1}\eta_*P
+ +P\kappa^\dagger G^{-1}\kappa P.}
+ \label{eq:pythagorean}
+\end{equation}
+In particular, $\eta_*P$ is the unique map attaining the minimum \emph{as an operator in Loewner order} on $P\cH$ (its extension to $P^\perp\cH$ is irrelevant).  This does not imply uniqueness after applying the operator norm; see Corollary~\ref{cor:normequality}.
+\item The minimum is the exact Schur-complement form
+\begin{equation}
+ \boxed{
+ P\eta_*^\dagger G^{-1}\eta_*P
+ =\frac12PJ_RH_s^+J_RP.}
+ \label{eq:exactcost}
+\end{equation}
+Consequently
+\begin{equation}
+ \boxed{
+ b
+ =\min_{D^\dagger\eta P=J_RP}
+ \frac1V\norm{P\eta^\dagger G^{-1}\eta P}.}
+ \label{eq:bmin}
+\end{equation}
+\item If $\eta_0$ is any feasible witness and $z_0=G^{-1/2}\eta_0P$, then the minimizing field is obtained by the advertised weighted row projection:
+\begin{equation}
+ G^{-1/2}\eta_*P=\Pi z_0,
+ \qquad
+ G^{-1/2}(\eta_0-\eta_*)P=(\Id-\Pi)z_0.
+ \label{eq:projectionformula}
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Because $J_RP\in\Ran M$, one has
+\[
+ D^\dagger\eta_*P
+ =D^\dagger GD M^+J_RP
+ =MM^+J_RP
+ =J_RP.
+\]
+For a feasible $\eta$, put $z=G^{-1/2}\eta P$.  The constraint is
+\begin{equation}
+ B^\dagger z=J_RP.
+ \label{eq:Bconstraint}
+\end{equation}
+The canonical solution is
+\[
+ z_*=BM^+J_RP=\Pi z,
+\]
+and every difference $z-z_*$ lies in $\Ker B^\dagger=(\Ran B)^\perp$.  Hence $z_*^\dagger(z-z_*)=0$ as an operator on $P\cH$, which proves \eqref{eq:pythagorean} and \eqref{eq:projectionformula}.
+
+Finally,
+\begin{align}
+ P\eta_*^\dagger G^{-1}\eta_*P
+ &=(J_RP)^\dagger M^+B^\dagger BM^+(J_RP)\\
+ &=PJ_RM^+J_RP
+ =\frac12PJ_RH_s^+J_RP,
+\end{align}
+where $M^+=H_s^+/2$.  Positivity and \eqref{eq:pythagorean} show that taking the operator norm preserves the minimum value, proving \eqref{eq:bmin}; it need not preserve uniqueness of the minimizing witness.
+\end{proof}
+
+\begin{remark}[Explicit dual problem]
+For each $\psi\in P\cH$, the scalar primal problem
+\[
+ \min_{B^\dagger z=J_R\psi}\norm z^2
+\]
+has the dual
+\[
+ \sup_{x\in\cH}
+ \left[2\operatorname{Re}\ip{J_R\psi}{x}-\norm{Bx}^2\right].
+\]
+Both are attained, at $z_*=BM^+J_R\psi$ and $x_*=M^+J_R\psi$, and both equal
+$\ip{J_R\psi}{M^+J_R\psi}$.  Thus the absence of a duality gap is not an appeal to an abstract closure theorem; it follows from the explicit Hodge projection.
+\end{remark}
+
+\begin{corollary}[Elementary witness bound and exact norm-equality criterion]
+\label{cor:normequality}
+Every feasible $\eta$ obeys
+\begin{equation}
+ \boxed{
+ b\le\frac1V\norm{P\eta^\dagger G^{-1}\eta P}.}
+ \label{eq:elementarybound}
+\end{equation}
+Write $\kappa P=(\eta-\eta_*)P$ and set
+\begin{equation}
+ C_*=P\eta_*^\dagger G^{-1}\eta_*P,
+ \qquad
+ C_\kappa=P\kappa^\dagger G^{-1}\kappa P,
+ \qquad
+ \lambda_*=\norm{C_*}.
+ \label{eq:Cspectral}
+\end{equation}
+Equality in \eqref{eq:elementarybound} holds if and only if
+\begin{equation}
+ \boxed{C_\kappa\preceq \lambda_*P-C_*.}
+ \label{eq:normequalitycriterion}
+\end{equation}
+In particular, equality holds when the witness is Hodge projected,
+$G^{-1/2}\eta P\in\Ran(G^{1/2}D)$, because then $\kappa P=0$; this condition is sufficient but need not be necessary when $\rank P\ge2$.  The projected witness is the unique Loewner-order minimizer.  If $\rank P=1$, it is also the unique operator-norm minimizer.
+\end{corollary}
+
+\begin{proof}
+By \eqref{eq:pythagorean}, the witness cost is $C_*+C_\kappa$ with $C_\kappa\succeq0$, so its norm is at least $\lambda_*$.  Equality holds exactly when the positive operator $C_*+C_\kappa$ is bounded above by $\lambda_*P$, which is equivalent to \eqref{eq:normequalitycriterion}.  Since $G^{-1}\succ0$, $C_\kappa=0$ if and only if $\kappa P=0$.  For $\rank P=1$, the positive slack $\lambda_*P-C_*$ vanishes identically.
+\end{proof}
+
+\begin{example}[A nonprojected norm minimizer]
+Let
+\[
+ D=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&0\end{pmatrix},
+ \qquad G=\Id_3,
+ \qquad P=\operatorname{diag}(0,0,1,1),
+\]
+and represent maps on $P\cH$ in the basis $(e_3,e_4)$.  Take
+\[
+ K=\begin{pmatrix}2&0\\0&1\\0&0\\0&0\end{pmatrix},
+ \qquad
+ \eta_*=\begin{pmatrix}2&0\\0&1\\0&0\end{pmatrix},
+ \qquad
+ \kappa=\begin{pmatrix}0&0\\0&0\\0&1\end{pmatrix}.
+\]
+Then $D^\dagger\eta_*=K$, $D^\dagger\kappa=0$, and
+\[
+ C_*=\operatorname{diag}(4,1),
+ \qquad
+ C_\kappa=\operatorname{diag}(0,1).
+\]
+Thus $\kappa\ne0$ while $\|C_*+C_\kappa\|=\|C_*\|=4$.  The example can be embedded in a Hermitian current by taking $E=(e_3,e_4)$ and $J_R=KE^\dagger+EK^\dagger$, for which $PJ_RP=0$ and $J_RE=K$.
+\end{example}
+
+\subsection{Approximate factorization and a separately controlled remainder}
+
+The exact quasi-local row module may be smaller than the finite-volume algebraic range.  The following bound makes that failure certifiable rather than fatal.
+
+\begin{theorem}[Approximate row witness]
+\label{thm:approx}
+Assume $ZJ_RP=0$.  Let $\eta$ be any, not necessarily exact, target witness and define the compatible residual
+\begin{equation}
+ cP=Q_D\bigl(J_RP-D^\dagger\eta P\bigr).
+ \label{eq:cdef}
+\end{equation}
+Then for every $\theta>0$,
+\begin{equation}
+ \boxed{
+ b\le
+ \frac{1+\theta}{V}\norm{P\eta^\dagger G^{-1}\eta P}
+ +\frac{1+\theta^{-1}}{2V}
+ \norm{Pc^\dagger H_s^+cP}.}
+ \label{eq:approxbound}
+\end{equation}
+If $cP$ lies in a spectral sector $H_s\succeq\Delta_c>0$, then
+\begin{equation}
+ \frac1{2V}\norm{Pc^\dagger H_s^+cP}
+ \le\frac1{2V\Delta_c}\norm{Pc^\dagger cP}.
+ \label{eq:gapc}
+\end{equation}
+More generally, for every cutoff $\delta>0$,
+\begin{align}
+ Pc^\dagger H_s^+cP
+ &\preceq
+ Pc^\dagger H_s^+\mathbf1_{(0,\delta]}(H_s)cP
+ +\delta^{-1}Pc^\dagger\mathbf1_{(\delta,\infty)}(H_s)cP.
+ \label{eq:shellsplit}
+\end{align}
+Thus a nonfactorable quasi-local-module component can be bounded by a low-energy shell certificate plus an ordinary norm above the shell.
+\end{theorem}
+
+\begin{proof}
+Write $J_RP=D^\dagger\eta P+cP$.  For a positive operator $H_s^+$,
+\[
+ (a+c)^\dagger H_s^+(a+c)
+ \preceq(1+\theta)a^\dagger H_s^+a
+ +(1+\theta^{-1})c^\dagger H_s^+c.
+\]
+With $a=D^\dagger\eta P$, use
+\begin{equation}
+ DH_s^+D^\dagger
+ =2G^{-1/2}\Pi G^{-1/2}
+ \preceq2G^{-1}
+ \label{eq:DHplusD}
+\end{equation}
+to obtain \eqref{eq:approxbound}.  The remaining statements follow from the spectral calculus.
+\end{proof}
+
+\section{Quasi-local existence: cluster theorem}
+
+Finite-volume existence is automatic under full zero-manifold current safety, but the canonical $\eta_*$ can be nonlocal when $D$ has soft singular modes.  This section gives a local construction that never forms $H_s^+$.
+
+Let the lattice have bounded degree and finite-dimensional onsite Hilbert space.  Assume the parent rows have a fixed support radius $R_D$.  For a finite connected current cluster $X$, let
+\[
+ X^{+R_D}=\{x:\dist(x,X)\le R_D\}
+\]
+and let $D_X$ denote the stack of all parent rows needed to test the current term supported in $X$; every such row and every component of the resulting target witness is supported in $X^{+R_D}$.  Put
+\begin{equation}
+ p_X=P_{\Ker D_X},
+ \qquad q_X=\Id-p_X=D_X^+D_X.
+ \label{eq:pxqx}
+\end{equation}
+
+\begin{theorem}[Clusterwise current-row factorization]
+\label{thm:clusterfactor}
+Suppose the following hypotheses hold.
+\begin{enumerate}[label=\textup{(H\arabic*)}]
+\item The residual current has a Hermitian connected-cluster decomposition
+\begin{equation}
+ J_R=\sum_Xj_X,
+ \label{eq:Jclusters}
+\end{equation}
+which is finite in finite volume, or converges in a specified quasi-local interaction topology in infinite volume.
+\item The parent is frustration free on the declared global zero manifold cluster by cluster:
+\begin{equation}
+ \boxed{p_XP=P\quad\text{for every cluster }X.}
+ \label{eq:localFF}
+\end{equation}
+\item Every current cluster is locally zero-sector safe:
+\begin{equation}
+ \boxed{p_Xj_Xp_X=0.}
+ \label{eq:localcurrentsafe}
+\end{equation}
+\end{enumerate}
+Define
+\begin{equation}
+ \eta_X=(D_X^+)^\dagger j_X
+ \label{eq:etaX}
+\end{equation}
+and embed each local target space into the global target stack.  Every finite partial sum obeys the corresponding partial factorization, and in finite volume
+\begin{equation}
+ \boxed{J_RP=D^\dagger\eta P,\qquad \eta=\sum_X\eta_X.}
+ \label{eq:globalclusterfactor}
+\end{equation}
+In infinite volume, the same identity holds in any topology in which the series for $J_R$ and $\eta$ converge; \cref{thm:locality} supplies an explicit sufficient convergence criterion.  Moreover,
+\begin{equation}
+ \supp\eta_X\subseteq X^{+R_D},
+ \qquad
+ \norm{\eta_X}\le\norm{D_X^+}\,\norm{j_X}.
+ \label{eq:etaXnorm}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Hypothesis \eqref{eq:localFF} and the local safety condition give
+\[
+ p_Xj_XP=p_Xj_Xp_XP=0,
+ \qquad
+ j_XP=q_Xj_XP.
+\]
+Therefore
+\[
+ D_X^\dagger\eta_XP
+ =D_X^\dagger(D_X^+)^\dagger j_XP
+ =(D_X^+D_X)^\dagger j_XP
+ =q_Xj_XP
+ =j_XP.
+\]
+Summing the embedded identities proves \eqref{eq:globalclusterfactor} whenever the sums converge.  The norm bound is immediate, and the support inclusion follows from the fixed parent-row buffer used to define $D_X$.
+\end{proof}
+
+\begin{definition}[Exponential interaction and buffered target norms]
+For a cluster family $a=\{a_X\}$, define
+\begin{equation}
+ \norm{a}_\mu
+ =\sup_x\sum_{X\ni x}\e^{\mu\diam X}\norm{a_X}.
+ \label{eq:interactionnorm}
+\end{equation}
+For the target family produced above, whose actual support is $X^{+R_D}$, define
+\begin{equation}
+ \norm{\eta}_{\mu;R_D}
+ =\sup_x\sum_{X:\,x\in X^{+R_D}}
+ \e^{\mu\diam(X^{+R_D})}\norm{\eta_X}.
+ \label{eq:bufferedinteractionnorm}
+\end{equation}
+Only summability and one application of the triangle inequality are used below; no submultiplicativity of \eqref{eq:interactionnorm} is assumed.  Standard site-anchored $F$-function interaction norms may be substituted directly \cite{NachtergaeleSims,BachmannEtAl}.
+\end{definition}
+
+\begin{theorem}[Explicit preservation of exponential locality]
+\label{thm:locality}
+Assume the hypotheses of \cref{thm:clusterfactor}, $\norm{J_R}_\mu<\infty$, and the finite-cluster right-inverse bound
+\begin{equation}
+ \norm{D_X^+}\le C_D(1+\diam X)^\nu.
+ \label{eq:polyrightinverse}
+\end{equation}
+Let
+\begin{equation}
+ N_{R_D}=\sup_x\abs{\{y:\dist(x,y)\le R_D\}},
+ \label{eq:bufferdegree}
+\end{equation}
+which is finite on a bounded-degree lattice.  Then for every $0<\mu'<\mu$, the series $\eta=\sum_X\eta_X$ converges in the buffered interaction norm, is exponentially local, and obeys
+\begin{equation}
+ \boxed{
+ \norm{\eta}_{\mu';R_D}
+ \le N_{R_D}\e^{2\mu'R_D}
+ C_D\,M_\nu(\mu-\mu')\,\norm{J_R}_\mu,}
+ \label{eq:etalocalbound}
+\end{equation}
+where
+\begin{equation}
+ M_\nu(a)=\sup_{r\ge0}(1+r)^\nu\e^{-ar}
+ \le\max\left\{1,\e^a\left(\frac{\nu}{a\e}\right)^\nu\right\}.
+ \label{eq:Mnu}
+\end{equation}
+If the current has strict cluster diameter $R_J$, then every $\eta_X$ has support diameter at most $R_J+2R_D$, and
+\begin{equation}
+ \norm{\eta}_{0;R_D}
+ \le N_{R_D}C_D(1+R_J)^\nu\norm{J_R}_0.
+ \label{eq:finiteRbound}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If $x\in X^{+R_D}$, then $X$ contains at least one site in the radius-$R_D$ ball about $x$; a union bound therefore contributes at most $N_{R_D}$.  Also
+$\diam(X^{+R_D})\le\diam X+2R_D$.  Combining these facts with \eqref{eq:etaXnorm}, \eqref{eq:polyrightinverse}, and
+\[
+ \e^{\mu'\diam X}(1+\diam X)^\nu
+ \le M_\nu(\mu-\mu')\e^{\mu\diam X}
+\]
+gives \eqref{eq:etalocalbound}.  Completeness of the interaction norm gives convergence of the series and hence the infinite-volume identity in \cref{thm:clusterfactor}.  The finite-range statement is the same estimate without a tail.
+\end{proof}
+
+\begin{remark}[Why the polynomial cluster pseudoinverse is the key input]
+The theorem allows a closing global gap.  Only the finite-cluster pseudoinverse enters, and polynomial growth is harmless against exponential cluster decay.  This is exactly the mechanism already available for swap-type QGN rows, where finite-cluster spectral gaps scale polynomially with cluster diameter.
+\end{remark}
+
+\subsection{Covariant two-sided row ideals}
+
+The strongest practical sufficient condition comes from the Peierls-covariant row-ideal form itself.
+
+\begin{corollary}[Closed-form $\eta$ for a row-metric residual]
+\label{cor:metriceta}
+Let $D(A)$ be differentiable, $P=P_{\Ker D(0)}$, and
+\begin{equation}
+ R(A)=\frac12D(A)^\dagger Y(A)D(A),
+ \qquad Y(A)=Y(A)^\dagger.
+ \label{eq:rowmetricresidual}
+\end{equation}
+Put $S=\dot D(0)P$.  Then $R(0)P=0$ and
+\begin{equation}
+ \boxed{
+ J_RP=D(0)^\dagger\eta_0P,
+ \qquad
+ \eta_0P=\frac12Y(0)S.}
+ \label{eq:metriceta}
+\end{equation}
+If $Y$ and $S$ are finite range or exponentially local, so is $\eta_0$.  The exact minimizing field is
+\begin{equation}
+ G^{-1/2}\eta_*P
+ =\Pi G^{-1/2}\eta_0P.
+ \label{eq:metricetaprojected}
+\end{equation}
+The unprojected local field $\eta_0$ is already a rigorous upper-bound witness even when the Hodge projection is nonlocal.
+\end{corollary}
+
+\begin{proof}
+Differentiate \eqref{eq:rowmetricresidual}.  Every term containing $D(0)P$ on the right vanishes, leaving
+\[
+ J_RP=\frac12D(0)^\dagger Y(0)\dot D(0)P.
+\]
+The remaining statements follow from \cref{thm:hodge}.
+\end{proof}
+
+\begin{corollary}[Quasi-locality from a cluster row-ideal audit]
+Suppose a quasi-local residual has a covariant cluster decomposition
+\[
+ R_X(A)=D_X(A)^\dagger Y_X(A)D_X(A)
+\]
+and
+\begin{equation}
+ \norm{Y_X(0)}\le\norm{D_X^+}^2\norm{R_X(0)}.
+ \label{eq:Ycluster}
+\end{equation}
+If $\norm{D_X^+}\le C_D(1+\diam X)^\nu$ and $R$ decays with exponent $\mu$, then $Y$ and the current witness $\eta_0=Y\dot DP$ decay exponentially with every exponent $\mu'<\mu$, with at most the explicit polynomial-loss factor $M_{2\nu}(\mu-\mu')$ followed by the fixed multiplication constant for $\dot D$.
+\end{corollary}
+
+\begin{remark}[Zero-field safety alone is not enough for a local current witness]
+At a fixed finite volume, $R(0)P=0$ implies a global two-sided factorization through $D$ by Moore--Penrose inversion.  It does not imply that the Peierls derivative of an arbitrarily chosen lift $R(A)$ is locally generated by the same rows.  The verifiable sufficient input is a covariant row-ideal lift, or the direct cluster-current condition \eqref{eq:localcurrentsafe}.
+\end{remark}
+
+\section{Fourier-module obstruction theory}
+
+The cluster theorem is tailored to interacting rows.  Translation-invariant finite-fiber models admit a complementary exact description in momentum space.
+
+Let $\Gamma=\mathbb Z^d$.  A finite-range or exponentially local convolution map has a matrix symbol.  For the adjoint row map use the Laurent-analytic symbol
+\begin{equation}
+ D^\sharp(z)=\sum_{x\in\mathbb Z^d}D_x^\dagger z^{-x},
+ \qquad z_j=\e^{\I k_j}
+ \label{eq:Dsharp}
+\end{equation}
+which equals $D(k)^\dagger$ on the unit torus.  Let $K(z)$ be the source symbol and seek $\eta(z)$ with
+\begin{equation}
+ D^\sharp(z)\eta(z)=K(z).
+ \label{eq:symboleq}
+\end{equation}
+
+\begin{proposition}[Exact finite-range module criterion]
+\label{prop:module}
+A finite-range translation-invariant target field exists if and only if every column of $K(z)$ belongs to the Laurent-polynomial column module generated by $D^\sharp(z)$.  A proposed range-$L$ witness is verified by matching finitely many Laurent coefficients in \eqref{eq:symboleq}.  For fixed spatial dimension and fiber sizes, the resulting linear system has
+\begin{equation}
+ O\bigl(r s(2L+1)^d\bigr)
+ \label{eq:unknowncount}
+\end{equation}
+unknown scalar coefficients and size polynomial in the number of retained monomials.  The check is independent of the physical torus volume.
+\end{proposition}
+
+\begin{proof}
+Finite range is equivalent to Laurent-polynomial symbols.  Equation \eqref{eq:symboleq} is then exactly a finite system of coefficient identities.  The count follows from the number of target-source matrix entries and lattice monomials in the ansatz.
+\end{proof}
+
+\begin{theorem}[Higher-dimensional Laurent-module decision by Groebner saturation]
+\label{thm:groebner}
+Let the coefficients of $D^\sharp$ and $K$ lie in an effective field $\mathbb F$ (for example $\mathbb Q(\I)$ or a specified algebraic number field), and set
+\[
+ S=\mathbb F[z_1,\ldots,z_d],
+ \qquad h=z_1\cdots z_d,
+ \qquad R=S[h^{-1}]
+   =\mathbb F[z_1^{\pm1},\ldots,z_d^{\pm1}].
+\]
+For one source column $k$ and the columns $d_1,\ldots,d_t$ of $D^\sharp$, choose powers of $h$ that clear all negative exponents:
+\[
+ \widetilde d_j=h^{a_j}d_j\in S^n,
+ \qquad
+ \widetilde k=h^b k\in S^n,
+ \qquad
+ N=\sum_{j=1}^t S\widetilde d_j\subset S^n.
+\]
+Then
+\begin{equation}
+ k\in\sum_jR d_j
+ \quad\Longleftrightarrow\quad
+ \widetilde k\in N:h^\infty
+ :=\{v\in S^n:\exists q\ge0,\ h^qv\in N\}.
+ \label{eq:saturationcriterion}
+\end{equation}
+The saturated module $N:h^\infty$ is computable by a terminating module Groebner-basis algorithm.  One explicit elimination construction is
+\begin{equation}
+ N:h^\infty
+ =\left(
+ N S[t]+(1-th)S[t]^n
+ \right)\cap S^n.
+ \label{eq:saturationelimination}
+\end{equation}
+Consequently Laurent-module membership, and hence existence or nonexistence of a finite-range witness, is decidable in every dimension.  On membership, the reduction and syzygy data construct Laurent-polynomial coefficients for $\eta$; on nonmembership, a nonzero normal form with respect to the saturated module is a finite algebraic obstruction certificate.
+
+No polynomial worst-case complexity is asserted: Groebner calculations can be very expensive.  The theorem changes the logical status of a failed range scan from ``not yet found'' to a decision problem with a terminating exact algorithm.  For floating-point Wannier data, a proposed witness remains exactly checkable after rational or interval reconstruction, but exact nonmembership requires an exact coefficient field or a separate enclosure argument.
+\end{theorem}
+
+\begin{proof}
+Multiplication by a power of $h$ is multiplication by a unit in the Laurent ring $R$, so the $R$-module generated by the $d_j$ is the localization $N_h$.  The standard localization criterion gives $\widetilde k/1\in N_h$ if and only if $h^q\widetilde k\in N$ for some $q$, which is \eqref{eq:saturationcriterion}.  Saturation of a submodule and module membership are computable by Groebner bases; the elimination identity \eqref{eq:saturationelimination} follows by adjoining $t$ with $th=1$.  Back-substitution or a syzygy basis recovers the witness coefficients \cite{CoxLittleOShea,Eisenbud,AdamsLoustaunau}.
+\end{proof}
+
+\begin{theorem}[One-dimensional Smith-normal-form obstruction]
+\label{thm:smith}
+For $d=1$, let the Laurent-polynomial Smith form be
+\begin{equation}
+ U(z)D^\sharp(z)V(z)
+ =\operatorname{diag}\bigl(s_1(z),\ldots,s_\rho(z),0,\ldots,0\bigr),
+ \label{eq:smith}
+\end{equation}
+where $U,V$ are unimodular and $s_i$ divide $s_{i+1}$.  Put $\widetilde K=UK$.  A finite-range $\eta$ exists if and only if
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\widetilde K_i(z)=0$ for every zero row $i>\rho$;
+\item every entry of $\widetilde K_i(z)$ is divisible by $s_i(z)$ for $1\le i\le\rho$.
+\end{enumerate}
+When these conditions hold, division followed by $V$ constructs an explicit finite-range witness \cite{Kailath}.
+\end{theorem}
+
+\begin{proof}
+Multiply \eqref{eq:symboleq} by $U$ and write $\widetilde\eta=V^{-1}\eta$.  The equation becomes diagonal.  Solvability over the principal ideal domain $\mathbb C[z,z^{-1}]$ is exactly the stated divisibility condition.
+\end{proof}
+
+\begin{example}[Gradient row: the simplest gapless obstruction]
+Let
+\[
+ D^\sharp(z)=1-z^{-1}.
+\]
+If $K(z)=(1-z^{-1})f(z)$, then $\eta=f$ is finite range whenever $f$ is.  If $K(z)=1$, the fiberwise range condition fails at $z=1$ and the formal solution $(1-z^{-1})^{-1}$ is nonlocal.  If $K(z)$ vanishes at $z=1$ but is not analytically divisible by $1-z^{-1}$ in the chosen function class, the inverse-energy cost may remain finite while exponential locality fails.  This is the prototype of the longitudinal soft-mode obstruction.
+\end{example}
+
+\subsection{Analytically separated row range: a uniformly reduced-gapped route}
+
+\begin{proposition}[Explicit exponential decay from an analytic reduced gap]
+\label{prop:analyticgap}
+Suppose $D^\sharp,G,D,K$ have Laurent-analytic symbols in the strip
+$\abs{\operatorname{Im}k_j}<\mu_0$, and define the analytic continuation
+\begin{equation}
+ M^\sharp(k)=D^\sharp(k)G(k)D(k).
+ \label{eq:Msharp}
+\end{equation}
+On the real torus this is $D(k)^\dagger G(k)D(k)$.  Assume that throughout a strip of width $\mu\le\mu_0$ there is an analytic projector $Q(k)$ satisfying
+\begin{equation}
+ Q(k)^2=Q(k),
+ \qquad
+ M^\sharp(k)Q(k)=Q(k)M^\sharp(k)=M^\sharp(k),
+ \label{eq:analyticQ}
+\end{equation}
+and that the restriction of $M^\sharp(k)$ to $\Ran Q(k)$ has an analytic inverse with
+\begin{equation}
+ \norm{\bigl(M^\sharp(k)|_{\Ran Q(k)}\bigr)^{-1}}\le m_*^{-1}.
+ \label{eq:reducedgap}
+\end{equation}
+Assume also $Q(k)K(k)=K(k)$.  Extending the reduced inverse by zero on $\Ker Q(k)$, set
+\begin{equation}
+ \eta_*(k)=G(k)D(k)\bigl(M^\sharp(k)|_{\Ran Q(k)}\bigr)^{-1}K(k).
+ \label{eq:analyticeta}
+\end{equation}
+Then $\eta_*$ is analytic in the same strip and its real-space coefficients satisfy
+\begin{equation}
+ \boxed{
+ \norm{\eta_{*,x}}
+ \le C_*\e^{-\mu\abs{x}_1},
+ \qquad
+ C_*=m_*^{-1}
+ \sup_{\abs{\Im k}<\mu}\norm{G(k)D(k)}
+ \sup_{\abs{\Im k}<\mu}\norm{K(k)}.}
+ \label{eq:analyticdecay}
+\end{equation}
+For finite-range symbols, a conservative admissible strip is certified by bounding
+\begin{equation}
+ \delta_M(\mu)
+ =\sup_{\abs{\Im k}<\mu}
+ \norm{M^\sharp(k)-M^\sharp(\operatorname{Re}k)}
+ \le\sum_x\norm{M_x}\bigl(\e^{\mu\abs x_1}-1\bigr)
+ \label{eq:deltamu}
+\end{equation}
+and requiring that it be smaller than half the real-axis reduced spectral margin, together with persistence of the analytic kernel projector.
+\end{proposition}
+
+\begin{proof}
+The reduced inverse is analytic by the assumed analytic splitting and uniform invertibility.  The product \eqref{eq:analyticeta} is therefore analytic and bounded in the strip.  Shifting each Fourier contour by $\pm\I\mu$ according to the sign of $x_j$ gives \eqref{eq:analyticdecay}.  The coefficient estimate \eqref{eq:deltamu} follows term by term.
+\end{proof}
+
+\begin{remark}[Scope of the analytic-strip theorem]
+The hypotheses of \cref{prop:analyticgap} require a constant-rank analytic splitting and a uniformly invertible reduced matrix throughout a complex strip.  They therefore do not cover a genuine real-axis soft-mode rank drop, except when the apparent singularity has already been removed by an analytic factorization.  The proposition is a positive quasi-local theorem for the uniformly reduced-gapped branch; the general exponentially local soft-mode branch remains open beyond the finite-range module decision and the channelwise tests below.
+\end{remark}
+
+\subsection{Channel-resolved criterion at rank drops}
+
+\begin{proposition}[Channel-resolved soft singular-value test]
+\label{prop:vanishingorder}
+Let $M(k)=D(k)^\dagger G(k)D(k)$, let $\Sigma$ be a rank-drop set, and put $r=\dist(k,\Sigma)$.  On a punctured neighborhood of $k_0\in\Sigma$, assume the positive spectral subspace of $M(k)$ has a mutually orthogonal decomposition
+\begin{equation}
+ Q_D(k)=E_{\rm h}(k)+\sum_{a=1}^NE_a(k),
+ \label{eq:softdecomp}
+\end{equation}
+where all $E_a(k)$ and $E_{\rm h}(k)$ are spectral projectors of $M(k)$.  Assume the hard block satisfies
+\[
+ E_{\rm h}ME_{\rm h}\succeq \Delta_{\rm h}E_{\rm h}
+\]
+and each soft block has two-sided scaling
+\begin{equation}
+ c_a^2r^{2m_a}E_a
+ \preceq E_aME_a
+ \preceq C_a^2r^{2m_a}E_a
+ \qquad (c_a,C_a>0).
+ \label{eq:softblocks}
+\end{equation}
+Write
+\begin{equation}
+ K_a(k)=E_a(k)K_\parallel(k),
+ \qquad
+ K_{\rm h}(k)=E_{\rm h}(k)K_\parallel(k).
+ \label{eq:projectedsourcechannels}
+\end{equation}
+Then there are no cross-channel terms and
+\begin{equation}
+ K_\parallel^\dagger M^+K_\parallel
+ =K_{\rm h}^\dagger(E_{\rm h}ME_{\rm h})^{-1}K_{\rm h}
+ +\sum_{a=1}^N
+ K_a^\dagger(E_aME_a)^+K_a.
+ \label{eq:channelcostdecomp}
+\end{equation}
+If $\norm{K_a(k)}\le L_ar^{n_a}$ and $K_{\rm h}$ is bounded, then
+\begin{equation}
+ \norm{K_\parallel^\dagger M^+K_\parallel}
+ \le \Delta_{\rm h}^{-1}\norm{K_{\rm h}}^2
+ +\sum_{a=1}^N c_a^{-2}L_a^2r^{2(n_a-m_a)}.
+ \label{eq:channelupper}
+\end{equation}
+Conversely, if the left-hand side of \eqref{eq:channelcostdecomp} is bounded by $B$ near $\Sigma$, then every soft source component satisfies
+\begin{equation}
+ \boxed{\norm{K_a(k)}\le C_a\sqrt{B}\,r^{m_a}.}
+ \label{eq:channelnecessary}
+\end{equation}
+Hence, under the controlled spectral decomposition \eqref{eq:softdecomp}--\eqref{eq:softblocks}, a bounded symbol cost is equivalent to channelwise vanishing at least as fast as the associated soft singular value.  In particular, if $\norm{K_a}\asymp r^{n_a}$, boundedness requires and, with the other channels controlled, is ensured by $n_a\ge m_a$.
+
+This proposition controls the inverse-energy cost, not exponential locality.  Exponential locality still requires analytic divisibility of the full matrix source through $D^\sharp$ across the rank-drop set.  If one uses approximate rather than spectral channel projectors, the off-block couplings must be bounded separately; they are not suppressed by \eqref{eq:channelupper} automatically.
+\end{proposition}
+
+\begin{proof}
+Because the $E_a$ and $E_{\rm h}$ are mutually orthogonal spectral projectors of $M$, the pseudoinverse is block diagonal in \eqref{eq:softdecomp}, which proves \eqref{eq:channelcostdecomp}.  The lower bound in \eqref{eq:softblocks} gives
+\[
+ (E_aME_a)^+\preceq c_a^{-2}r^{-2m_a}E_a,
+\]
+and the hard block gives $(E_{\rm h}ME_{\rm h})^{-1}\preceq\Delta_{\rm h}^{-1}E_{\rm h}$, proving \eqref{eq:channelupper}.  The upper bound in \eqref{eq:softblocks} gives the reverse inverse estimate
+\[
+ (E_aME_a)^+\succeq C_a^{-2}r^{-2m_a}E_a.
+\]
+Every summand in \eqref{eq:channelcostdecomp} is positive, so
+\[
+ B\ge
+ \norm{K_\parallel^\dagger M^+K_\parallel}
+ \ge C_a^{-2}r^{-2m_a}\norm{K_a}^2,
+\]
+which yields \eqref{eq:channelnecessary}.
+\end{proof}
+
+\begin{remark}[Three distinct obstructions]
+It is useful to distinguish:
+\begin{enumerate}
+\item the \emph{algebraic cokernel} $ZJ_RP$, which mixes exact zero states and has zero $H_s^+$ weight;
+\item the \emph{finite-range module obstruction}, detected by failed Laurent-polynomial divisibility;
+\item the \emph{analytic locality obstruction}, where fiberwise range membership holds but the quotient develops a pole or insufficient smoothness at a rank drop.
+\end{enumerate}
+Only the first is visible from $PJ_RP=0$ alone.  The second is now an exact decision problem over an effective coefficient field by \cref{thm:groebner}.  The third---exponentially local but not finite-range division through a genuine soft rank drop---is the substantive unsolved branch of O1a.
+\end{remark}
+
+\section{Volume-independent local certificates for the current cost}
+
+The exact minimizing cost contains $H_s^+$ only implicitly.  Any feasible local $\eta$ eliminates it.  This section gives three mechanically checkable upper bounds.
+
+\subsection{Sparse local-row certificate}
+
+Let the target stack have $m$ row types per unit cell and write
+\begin{equation}
+ (\eta\psi)_{x,\alpha}=\eta_{x,\alpha}\psi,
+ \qquad \alpha=1,\ldots,m.
+ \label{eq:etacomponents}
+\end{equation}
+Assume $G\succeq g_-\Id$.
+
+\begin{theorem}[Coarse polynomial-cost local certificate]
+\label{thm:sparserow}
+If
+\begin{equation}
+ \norm{\eta_{x,\alpha}P}\le a_\alpha
+ \label{eq:arow}
+\end{equation}
+uniformly in $x$, then
+\begin{equation}
+ \boxed{
+ \frac1V\norm{P\eta^\dagger G^{-1}\eta P}
+ \le\frac1{g_-}\sum_{\alpha=1}^{m}a_\alpha^2.}
+ \label{eq:sparserowbound}
+\end{equation}
+If a local row is supplied as a sparse monomial expansion
+\begin{equation}
+ \eta_{0,\alpha}=\sum_{\ell=1}^{N_\alpha}c_{\alpha\ell}\cO_{\alpha\ell},
+ \qquad \norm{\cO_{\alpha\ell}}\le1,
+ \label{eq:monomialeta}
+\end{equation}
+then the completely mechanical choice
+\begin{equation}
+ a_\alpha=\sum_{\ell=1}^{N_\alpha}\abs{c_{\alpha\ell}}
+ \label{eq:l1row}
+\end{equation}
+produces a certificate whose arithmetic cost is linear in the sparse input size and independent of $V$.
+\end{theorem}
+
+\begin{proof}
+Since $G^{-1}\preceq g_-^{-1}\Id$ and the target labels form a direct sum,
+\begin{align}
+ P\eta^\dagger G^{-1}\eta P
+ &\preceq g_-^{-1}P\eta^\dagger\eta P\\
+ &=g_-^{-1}\sum_{x,\alpha}P\eta_{x,\alpha}^\dagger\eta_{x,\alpha}P
+ \preceq Vg_-^{-1}\sum_\alpha a_\alpha^2P.
+\end{align}
+The sparse bound is the triangle inequality.
+\end{proof}
+
+\begin{remark}[Local-zero-space sharpening]
+If $X_\alpha$ contains the support of $\eta_{0,\alpha}$ and $p_{X_\alpha}P=P$, replace $a_\alpha^2$ by any certified upper bound on
+\[
+ \norm{p_{X_\alpha}\eta_{0,\alpha}^\dagger\eta_{0,\alpha}p_{X_\alpha}}.
+\]
+This can be dramatically sharper in the exact escape and product-AGP sectors.  Exact dense diagonalization of a generic many-body cluster is not polynomial in the cluster volume; sparse coefficient bounds, symmetry reduction, few-body closure, or model-specific reduced-density formulas are the polynomial-cost routes.
+\end{remark}
+
+\subsection{Chebyshev-localized inverse metric}
+
+Suppose $G$ is finite range on the target lattice and
+\begin{equation}
+ g_-\Id\preceq G\preceq g_+\Id,
+ \qquad
+ \kappa=g_+/g_-,
+ \qquad
+ q=\frac{\sqrt\kappa-1}{\sqrt\kappa+1}.
+ \label{eq:kappaq}
+\end{equation}
+
+\begin{proposition}[Finite-range approximation of $G^{-1}$]
+\label{prop:cheb}
+For every $m\ge0$, there is a degree-$m$ polynomial $p_m$ such that
+\begin{equation}
+ \sup_{x\in[g_-,g_+]}
+ \abs{x^{-1}-p_m(x)}
+ \le\epsilon_m,
+ \qquad
+ \epsilon_m=\frac{2}{g_-}q^{m+1}.
+ \label{eq:cheberror}
+\end{equation}
+Consequently
+\begin{equation}
+ \boxed{
+ P\eta^\dagger G^{-1}\eta P
+ \preceq
+ P\eta^\dagger p_m(G)\eta P
+ +\epsilon_mP\eta^\dagger\eta P.}
+ \label{eq:chebupper}
+\end{equation}
+If $G$ has range $R_G$ and $\eta$ has range $R_\eta$, the first term is generated by operators supported within range at most
+\begin{equation}
+ 2R_\eta+mR_G.
+ \label{eq:chebrange}
+\end{equation}
+Thus a desired tolerance is reached with
+\begin{equation}
+ m=O\bigl(\sqrt\kappa\log(1/\epsilon)\bigr).
+ \label{eq:chebdegree}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Use the standard Chebyshev residual polynomial $r_{m+1}$ with $r_{m+1}(0)=1$ and
+$\sup_{[g_-,g_+]}\abs{r_{m+1}}\le2q^{m+1}$.  Since $1-r_{m+1}(x)$ vanishes at $x=0$, $p_m(x)=(1-r_{m+1}(x))/x$ is a polynomial of degree $m$ and obeys \eqref{eq:cheberror}.  Functional calculus gives
+$G^{-1}\preceq p_m(G)+\epsilon_m\Id$, proving \eqref{eq:chebupper}.  Polynomial powers enlarge support linearly, yielding \eqref{eq:chebrange}; solving \eqref{eq:cheberror} gives \eqref{eq:chebdegree}.  This is the standard Chebyshev inverse-approximation mechanism underlying decay estimates for banded positive matrices \cite{Saad,DemkoMossSmith}.
+\end{proof}
+
+\begin{algorithm}[Cluster implementation of the Chebyshev certificate]
+Choose $m$, form a local density for $\eta^\dagger p_m(G)\eta$, and bound its compression to the corresponding local parent kernel by sparse operator norms, exact symmetry-reduced diagonalization, or an interval-arithmetic semidefinite certificate.  Add $\epsilon_m$ times the sparse-row bound for $\eta^\dagger\eta$.  The support and all matrix operations are independent of the thermodynamic volume.
+\end{algorithm}
+
+\subsection{Exact momentum-symbol certificate}
+
+The sharpest polynomial-cost route applies when $G$ and $\eta$ act as block convolutions between fixed finite-dimensional fibers.
+
+\begin{theorem}[Momentum-space current certificate]
+\label{thm:momentum}
+Let $\widehat G(k)\succeq g_-\Id$ and $\widehat\eta(k)$ be continuous finite-fiber symbols.  Then the convolution operator obeys
+\begin{equation}
+ \boxed{
+ \norm{\eta^\dagger G^{-1}\eta}
+ =\operatorname*{ess\,sup}_{k\in\mathrm{BZ}}
+ \lambda_{\max}\!\left[
+ \widehat\eta(k)^\dagger\widehat G(k)^{-1}\widehat\eta(k)
+ \right].}
+ \label{eq:momexact}
+\end{equation}
+Hence the same right-hand side is a volume-independent certificate for the compressed cost.
+
+For a rectangular grid with mesh widths $h_i$, define
+\begin{align}
+ E&=\sup_k\norm{\widehat\eta(k)},
+ &E_i&=\sup_k\norm{\partial_i\widehat\eta(k)},
+ &G_i&=\sup_k\norm{\partial_i\widehat G(k)},\\
+ L_i&=\frac{2EE_i}{g_-}+\frac{E^2G_i}{g_-^2}.
+ \label{eq:Lipschitzdata}
+\end{align}
+Then
+\begin{equation}
+ \boxed{
+ \sup_k\lambda_{\max}F(k)
+ \le\max_{k\in\mathrm{grid}}\lambda_{\max}F(k)
+ +\frac12\sum_iL_ih_i,}
+ \qquad
+ F(k)=\widehat\eta(k)^\dagger\widehat G(k)^{-1}\widehat\eta(k).
+ \label{eq:gridcert}
+\end{equation}
+For finite-range symbols, $E,E_i,G_i$ are bounded directly by weighted coefficient sums, so the certificate cost is polynomial in the number of Fourier coefficients, fiber dimension, and requested grid accuracy, and independent of $V$.
+\end{theorem}
+
+\begin{proof}
+Bloch transform diagonalizes block convolutions, proving \eqref{eq:momexact}.  Differentiate $F$ and use
+\[
+ \partial_iG^{-1}=-G^{-1}(\partial_iG)G^{-1}
+\]
+to obtain $\norm{\partial_iF}\le L_i$.  Every point lies within $h_i/2$ of a grid point in coordinate $i$, and the maximum eigenvalue is 1-Lipschitz in operator norm, proving \eqref{eq:gridcert}.
+\end{proof}
+
+\section{Application to the QGN functional}
+
+The current defect in the variational QGN certificate can now be replaced by a local witness problem.
+
+\begin{definition}[Row-Hodge current certificate]
+For a candidate parent $(D,G,P)$ and residual current $J_R$, a row-Hodge witness consists of:
+\begin{enumerate}
+\item a proof that $ZJ_RP=0$, or an explicit declaration of the zero-manifold mixing obstruction;
+\item a finite-range or exponentially local target map $\eta$;
+\item a mechanical verification of $D^\dagger\eta P=J_RP$, either exactly, clusterwise, or by Fourier coefficient matching;
+\item one of the local cost certificates in \cref{thm:sparserow,prop:cheb,thm:momentum}.
+\end{enumerate}
+Its certified current defect is
+\begin{equation}
+ b_{\rm cert}=\frac1V\norm{P\eta^\dagger G^{-1}\eta P}.
+ \label{eq:bcert}
+\end{equation}
+Then $b\le b_{\rm cert}$.  A Hodge-projected witness attains equality.  This is a sufficient condition; nonprojected witnesses can also attain the same operator norm when the target cost fits inside the spectral slack characterized in Corollary~\ref{cor:normequality}.
+\end{definition}
+
+\begin{corollary}[Target-metric deformation]
+Suppose the residual is a covariant target-metric term
+\begin{equation}
+ R(A)=\frac12D(A)^\dagger X(A)D(A),
+ \qquad S=\dot D(0)P.
+ \label{eq:targetmetricapp}
+\end{equation}
+Then
+\begin{equation}
+ J_RP=\frac12D^\dagger XS,
+ \qquad
+ \eta_0=\frac12XS,
+ \label{eq:etaXS}
+\end{equation}
+and
+\begin{equation}
+ \boxed{
+ b\le\frac1{4V}\norm{PS^\dagger X^\dagger G^{-1}XSP}.}
+ \label{eq:XScost}
+\end{equation}
+Projecting $G^{-1/2}XS$ onto $\Ran(G^{1/2}D)$ produces the Loewner-minimal witness and therefore attains the exact Schur-complement value.  This recovers the gap-independent target-metric current estimate without ever applying $H_s^+$ in state space.
+\end{corollary}
+
+\begin{remark}[Exact escape interpretation]
+For the covariant many-body escape parent, the unperturbed transverse Peierls source lies in the target cokernel and therefore produces the protected ideal stiffness rather than a residual paramagnetic source.  A row-metric microscopic correction rotates that source by $X$; equation \eqref{eq:etaXS} is the expected closed-form residual target field.  The remaining model-specific task is to verify that the complete microscopic current through the desired order is a sum of such covariant row-metric terms or passes the cluster-current condition \eqref{eq:localcurrentsafe}.
+\end{remark}
+
+\subsection{Insertion into the stiffness floor}
+
+If the rest of the QGN functional supplies
+\begin{equation}
+ D_s\ge F_{\rm par}-\tau-
+ \frac{\alpha a+b+2\sqrt{ab}}{1-\alpha},
+ \label{eq:floorold}
+\end{equation}
+then any row-Hodge witness gives the fully local certificate
+\begin{equation}
+ \boxed{
+ D_s\ge F_{\rm par}-\tau-
+ \frac{\alpha a+b_{\rm cert}+2\sqrt{a b_{\rm cert}}}{1-\alpha}.}
+ \label{eq:floornew}
+\end{equation}
+No many-body pseudoinverse is evaluated.  Equations \eqref{eq:floorold}--\eqref{eq:floornew} use the $b$ normalization of \eqref{eq:bdef}; the factor-of-four conversion used in some pair-momentum conventions is recorded in \cref{app:normalization}.  The outer parent search may be heuristic; the inner current certificate consists only of finite coefficient identities, local kernel compressions, ellipticity bounds, and finite-fiber matrix inequalities.
+
+\section{What is closed and what remains model specific}
+
+\begin{center}
+\small
+\begin{tabular}{p{0.20\linewidth}p{0.34\linewidth}p{0.36\linewidth}}
+\toprule
+Item & Result established here & Remaining application-specific work\\
+\midrule
+O1a finite volume & Exact iff $ZJ_RP=0$; automatic from $PJ_RP=0$ when $P=Z$ & Identify the correct full zero projector or selector\\
+O1a finite range & Laurent-module membership; Smith decision in $d=1$; Groebner-saturation decision in all $d$ & Encode an exact coefficient field and run the module audit\\
+O1a quasi-local & Buffered cluster-current theorem and uniformly reduced-gapped analytic theorem & General soft-rank-drop exponential locality remains open; audit the microscopic current\\
+O1b sharpness & Exact Loewner minimum and explicit $\eta_*$; no duality gap; exact norm-equality criterion & None at finite volume\\
+Cokernel & Exact zero-space component isolated; approximate local-module remainder bounded separately & Prove a shell or sector bound if exact local factorization fails\\
+O1c local & Sparse-row, Chebyshev-cluster, and momentum-symbol certificates & Choose the sharpest representation for the model\\
+Thermodynamic use & Bounds are volume uniform when witness norms and ellipticity are uniform & Verify uniform cluster and symbol constants\\
+Meissner use & Current $H^{-1}$ norm is locally bounded & Still requires the separate low-energy tightness and transverse-continuity hypotheses\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Recommended next calculation}
+
+The most informative immediate test is the full weighted-degree-eight microscopic current audit:
+\begin{enumerate}
+\item Decompose $J_R^{(8)}$ into canonical connected clusters $j_X^{(8)}$ after the complete Peierls lift.
+\item For each cluster, build $D_X$ from the exact parent rows and evaluate
+\[
+ p_Xj_X^{(8)}p_X.
+\]
+A zero result gives the explicit local witness
+$\eta_X=(D_X^+)^\dagger j_X^{(8)}$.
+\item If a cluster fails, separate its local zero-space component.  Determine whether cancellation occurs only after summing symmetry-related clusters, or whether a counterchannel is required.
+\item Assemble the safe witnesses and certify their cost first with \eqref{eq:sparserowbound}; then sharpen with \eqref{eq:chebupper} or \eqref{eq:momexact} if needed.
+\item Insert $b_{\rm cert}$ into \eqref{eq:floornew} and solve for the explicit coupling interval in which the microscopic stiffness floor remains positive.
+\end{enumerate}
+This calculation is finite-cluster and target-space based.  It directly tests the unmodified microscopic model and does not require diagonalizing the parent on large tori.
+
+\section{Conclusion}
+
+The weighted row-space Hodge problem has a clean exact solution.  Once the complete zero projector is used, finite-volume existence is simply the Fredholm range condition $ZJ_RP=0$, and full zero-manifold current safety makes it automatic.  The unique weighted representative is the orthogonal projection of any target witness onto $\Ran(G^{1/2}D)$, and its target energy is exactly one half of the physical current $H_s^+$ form.  This proves the sharpness half of O1b in operator order.
+
+The meaningful open content is locality, not finite-dimensional linear algebra.  A buffered clusterwise current-row condition with polynomial finite-cluster pseudoinverses gives a constructive exponentially local witness.  In translation-invariant finite-fiber systems, finite-range existence is an exact Laurent-module decision problem in every dimension, and a uniformly reduced-gapped analytic splitting gives exponential decay.  What is not proved is a general positive theorem for exponentially local, non-polynomial division through genuine soft singular modes; the channel-resolved cost test diagnoses that regime without pretending to solve it.  When exact local factorization fails, the remainder can be isolated and charged a separate low-energy shell budget rather than hidden in an uncontrolled pseudoinverse.  The QGN functional can therefore replace its most expensive state-space quantity by a proof-carrying target witness in all certified cases while retaining an explicit obstruction channel elsewhere.
+
+\begin{thebibliography}{99}
+
+\bibitem{GolubVanLoan}
+G.~H. Golub and C.~F. Van Loan,
+\emph{Matrix Computations}, 4th ed., Johns Hopkins University Press, 2013.
+
+\bibitem{Kailath}
+T. Kailath,
+\emph{Linear Systems}, Prentice--Hall, 1980.
+
+\bibitem{CoxLittleOShea}
+D. Cox, J. Little, and D. O'Shea,
+\emph{Ideals, Varieties, and Algorithms}, 4th ed., Springer, 2015.
+
+\bibitem{Eisenbud}
+D. Eisenbud,
+\emph{Commutative Algebra with a View Toward Algebraic Geometry}, Springer, 1995.
+
+\bibitem{AdamsLoustaunau}
+W.~W. Adams and P. Loustaunau,
+\emph{An Introduction to Groebner Bases}, American Mathematical Society, 1994.
+
+\bibitem{Saad}
+Y. Saad,
+\emph{Iterative Methods for Sparse Linear Systems}, 2nd ed., SIAM, 2003.
+
+\bibitem{DemkoMossSmith}
+S. Demko, W.~F. Moss, and P.~W. Smith,
+``Decay rates for inverses of band matrices,''
+\emph{Mathematics of Computation} \textbf{43} (1984), 491--499.
+
+\bibitem{NachtergaeleSims}
+B. Nachtergaele and R. Sims,
+``Lieb--Robinson bounds in quantum many-body physics,''
+in \emph{Entropy and the Quantum}, Contemporary Mathematics \textbf{529},
+American Mathematical Society, 2010, pp.~141--176.
+
+\bibitem{BachmannEtAl}
+S. Bachmann, S. Michalakis, B. Nachtergaele, and R. Sims,
+``Automorphic equivalence within gapped phases of quantum lattice systems,''
+\emph{Communications in Mathematical Physics} \textbf{309} (2012), 835--871.
+
+\bibitem{QGNFunctional}
+N. Sledgianowski,
+``Variational QGN certificate functional: response-safe distance and certified stiffness,''
+companion research note, July 2026.
+
+\bibitem{PeierlsEscape}
+N. Sledgianowski,
+``Peierls-transport obstruction and the minimal many-body escape,''
+review-integrated research manuscript, July 2026.
+
+\bibitem{MicroscopicTransfer}
+N. Sledgianowski,
+``Microscopic transfer of exact Meissner weight,''
+research manuscript, July 2026.
+
+\bibitem{ZeroFrequency}
+N. Sledgianowski,
+``Exact zero-frequency Meissner weight in a gapless frustration-free QGN parent,''
+reviewer-revised research manuscript, July 2026.
+
+\end{thebibliography}
+
+\appendix
+\section{Finite-matrix identities used by the verifier}
+\label{app:verifier}
+
+For numerical checking, let $D$ be an $m\times n$ matrix, $G$ an $m\times m$ positive matrix, and $K$ an $n\times r$ source with $ZK=0$.  Define
+\[
+ M=D^\dagger GD,
+ \qquad
+ H_s=M/2,
+ \qquad
+ \eta_*=GDM^+K.
+\]
+Then the verifier checks
+\begin{align}
+ D^\dagger\eta_*&=K,\\
+ \eta_*^\dagger G^{-1}\eta_*&=K^\dagger M^+K
+ =\frac12K^\dagger H_s^+K,\\
+ \Pi&=G^{1/2}DM^+D^\dagger G^{1/2},\\
+ \Pi^2&=\Pi=\Pi^\dagger,\\
+ G^{-1/2}\eta_*&=\Pi G^{-1/2}\eta_0
+\end{align}
+for every feasible $\eta_0$.  Adding any $\kappa$ with $D^\dagger\kappa=0$ increases the cost operator by $\kappa^\dagger G^{-1}\kappa$ with vanishing cross term.  The verifier also includes a rank-two source for which this positive increment lies below the spectral slack and hence leaves the operator norm unchanged, confirming Corollary~\ref{cor:normequality}.
+
+\section{Normalization note}
+\label{app:normalization}
+
+The quantity $b$ in this note follows the functional convention
+\[
+ b=\frac1{2V}\norm{PJ_RH_s^+J_RP}.
+\]
+If a companion paper uses an electronic-link curvature and subsequently divides by four to convert to a pair-momentum stiffness, the same common factor must be applied to both the parent floor and the current-defect term.  The Hodge identity itself is convention independent.
+
+\end{document}

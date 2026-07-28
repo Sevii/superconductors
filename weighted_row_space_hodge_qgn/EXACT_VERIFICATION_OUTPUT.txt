@@ -1,0 +1,23 @@
+PASS  D^T eta_* = K
+PASS  eta_*^T G^{-1} eta_* = (1/2) K^T H^+ K
+PASS  full-zero-space PJP condition
+
+Exact data
+D =
+⎡1  0  0⎤
+⎢       ⎥
+⎣0  2  0⎦
+G =
+⎡2  1⎤
+⎢    ⎥
+⎣1  3⎦
+eta_* =
+⎡1⎤
+⎢ ⎥
+⎣1⎦
+minimum cost = 3/5
+PASS  norm example D^T eta = K
+PASS  norm example D^T kappa = 0
+PASS  nonprojected rank-two witness has the same operator norm
+PASS  selected P J P = 0
+PASS  selected branch has nonzero Z J P obstruction

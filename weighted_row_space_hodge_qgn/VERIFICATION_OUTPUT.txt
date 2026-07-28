@@ -1,0 +1,19 @@
+Weighted row-space Hodge finite-matrix verification
+seed=20260727 tolerance=5.00e-09
+PASS  range factorization                      error=1.270e-14 limit=5.000e-09
+PASS  zero-space orthogonality                 error=0.000e+00 limit=5.000e-09
+PASS  Schur cost identity                      error=2.623e-15 limit=1.000e-07
+PASS  target projection is Hermitian           error=2.836e-15 limit=1.000e-07
+PASS  target projection is idempotent          error=7.835e-15 limit=2.500e-07
+PASS  projected witness                        error=9.191e-15 limit=2.500e-07
+PASS  Pythagorean identity                     error=0.000e+00 limit=2.500e-07
+PASS  approximate-witness Loewner bound        error=0.000e+00 limit=5.000e-07
+PASS  norm-example factorization               error=0.000e+00 limit=5.000e-09
+PASS  norm-example target cokernel             error=0.000e+00 limit=5.000e-09
+PASS  nonprojected norm equality               error=0.000e+00 limit=5.000e-09
+PASS  spectral-slack criterion                 error=0.000e+00 limit=5.000e-09
+PASS  nonprojected perturbation is nonzero     error=0.000e+00 limit=5.000e-09
+PASS  selected PJP is zero                     error=0.000e+00 limit=5.000e-09
+PASS  selected-branch cokernel detected        error=0.000e+00 limit=5.000e-09
+
+All checks passed.

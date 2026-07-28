@@ -1,0 +1,55 @@
+{
+  "checks": {
+    "affine_resolvent": true,
+    "conditional_variance_bound": true,
+    "count_drop_nonnegative": true,
+    "crossing_eigenvalue": true,
+    "crossing_eigenvector": true,
+    "crossing_speed": true,
+    "jump_finite_difference": true,
+    "jump_formula": true,
+    "regularized_continuity": true,
+    "single_crossing": true
+  },
+  "density_diagnostic": {
+    "maximum_relative_density_discrepancy": 0.2567165033025558,
+    "mean_relative_density_discrepancy": 0.20474547701653067,
+    "samples": 160
+  },
+  "exact_identity_metrics": {
+    "L": 4,
+    "N": 16,
+    "affine_resolvent_absolute_error": 8.400361489980555e-16,
+    "conditional_variance": 2.4586732964369904e-08,
+    "conditional_variance_bound": 1.6626754947427513e-07,
+    "conditional_variance_bound_slack": 1.4168081650990524e-07,
+    "count_drop": 1,
+    "count_total_variation": 1,
+    "crossing_eigenvalue_absolute_error": 6.661338147750939e-16,
+    "crossing_eigenvector_alignment": 1.0,
+    "crossing_t": 0.7568764203461626,
+    "cutoff_r": 1.9824636768498078,
+    "edge": 28,
+    "jump_finite_difference_absolute_error": 6.786309601400885e-09,
+    "jump_weight_absolute_error": 3.979021973021801e-17,
+    "jump_weight_direct": 0.0006111070069017827,
+    "jump_weight_formula": 0.0006111070069018225,
+    "regularized_continuity_absolute_error": 1.6967190769783327e-09,
+    "speed_finite_difference_absolute_error": 2.7100760524589873e-10
+  },
+  "note": "The direct/coarea density comparison is a finite-sample, finite-bandwidth diagnostic and is not a theorem pass criterion.",
+  "overall_pass": true,
+  "quick": true,
+  "seed": 20260727,
+  "tolerances": {
+    "affine_resolvent_absolute_error": 2e-10,
+    "conditional_variance_bound_slack_min": -2e-10,
+    "count_total_variation_max": 1,
+    "crossing_eigenvalue_absolute_error": 2e-09,
+    "crossing_eigenvector_alignment_min": 0.99999998,
+    "jump_finite_difference_absolute_error": 2.5e-05,
+    "jump_weight_absolute_error": 2e-09,
+    "regularized_continuity_absolute_error": 2.5e-05,
+    "speed_finite_difference_absolute_error": 2.5e-06
+  }
+}

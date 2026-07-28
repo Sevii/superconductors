@@ -1,0 +1,19 @@
+{
+  "all_checks_pass": true,
+  "checks": {
+    "exceptional_set_markov_bound": true,
+    "gamma_narrowness_requires_non_heat_mixture": true,
+    "localized_log_shell_bound": true,
+    "log_shell_identity_exact": true,
+    "pointwise_log_shell_maximalization": true,
+    "positive_heat_mixture_cv_bound": true
+  },
+  "exceptional_set_bad_log_measure": 0.26236426446749106,
+  "exceptional_set_markov_bound": 0.46103741270221654,
+  "localized_bound_margin": 1.8106096033456922e-07,
+  "max_log_shell_identity_error": 1.3552527156068805e-20,
+  "median_positive_heat_mixture_variance_ratio": 2.013148878871619,
+  "minimum_positive_heat_mixture_variance_ratio": 1.000002952711458,
+  "pointwise_maximalization_margin": 6.088175943799742e-05,
+  "seed": 20260727
+}

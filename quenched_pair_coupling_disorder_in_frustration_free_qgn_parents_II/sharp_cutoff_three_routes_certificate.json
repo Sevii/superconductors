@@ -1,0 +1,35 @@
+{
+  "all_checks_pass": true,
+  "checks": {
+    "doob_decomposition_exact": true,
+    "exponential_second_moment_bound": true,
+    "modulated_low_mass_stays_positive": true,
+    "modulated_network_spectral_identity": true,
+    "modulated_normalized_count_decays": true,
+    "randomized_identity_mc_tolerance": true,
+    "relative_wegner_empirical_below_bound": true,
+    "uniform_sandwich": true,
+    "uniform_variance_range_bound": true
+  },
+  "largest_modulated_weight_to_normalized_count_ratio": 8.573894489381923,
+  "max_doob_decomposition_error": 4.336808689942018e-19,
+  "max_randomized_identity_error": 5.991646273470182e-07,
+  "randomization_summary": {
+    "L": 8.0,
+    "abel_2delta_squared": 5.920912780049458e-06,
+    "abel_tail": 0.00048355253008331486,
+    "delta": 0.5,
+    "eta": 0.25,
+    "exponential_randomized_variance_mc": 2.4016884845247085e-06,
+    "exponential_second_moment_exact": 2.6207542510683803e-06,
+    "second_moment_bound_margin": 3.3001585289810777e-06,
+    "sharp_tail": 7.467801406085176e-05,
+    "shell_tail": 0.00027179364854434203,
+    "uniform_conditional_variance_mc": 1.6239333092496406e-08,
+    "uniform_mean_minus_sharp": 0.0001782005403059301,
+    "uniform_randomized_mean": 0.00025287855436678186,
+    "uniform_range_variance_bound": 1.8467946847261328e-08,
+    "uniform_sandwich_residual": 9.359310823841194e-05
+  },
+  "seed": 20260727
+}

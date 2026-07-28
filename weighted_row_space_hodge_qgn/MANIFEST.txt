@@ -1,0 +1,16 @@
+BUILD_INFO.txt
+CLAIM_STATUS.md
+EXACT_VERIFICATION_OUTPUT.txt
+MANIFEST.txt
+O1_IMPLEMENTATION_SPEC.md
+PDF_PREFLIGHT.txt
+README.md
+REVIEW_RESPONSE.md
+SHA256SUMS.txt
+VERIFICATION_OUTPUT.txt
+example_o1_certificate.json
+o1_certificate_schema.json
+verify_weighted_row_hodge.py
+verify_weighted_row_hodge_exact.py
+weighted_row_space_hodge_qgn.pdf
+weighted_row_space_hodge_qgn.tex

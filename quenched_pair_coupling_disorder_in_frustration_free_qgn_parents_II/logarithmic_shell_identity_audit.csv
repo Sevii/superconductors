@@ -1,0 +1,2 @@
+L,eta,R,full_pair_kernel_integral,full_interval_sweep_integral,full_identity_absolute_error,localized_integral,localized_deterministic_bound,localized_bound_margin,pointwise_cutoff,pointwise_shell_square,pointwise_maximalization_rhs,pointwise_maximalization_margin
+8,0.3,0.8,5.717031187376851e-05,5.7170311873768526e-05,1.3552527156068805e-20,4.644772081505476e-06,4.825833041840045e-06,1.8106096033456922e-07,2.7061566260705923,1.2952527120634355e-05,7.383428655863178e-05,6.088175943799742e-05

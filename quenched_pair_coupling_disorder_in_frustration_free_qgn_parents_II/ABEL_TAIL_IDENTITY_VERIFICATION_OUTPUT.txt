@@ -1,0 +1,10 @@
+ABEL-TAIL IDENTITY AND SENSITIVITY AUDIT
+=================================================
+L=6, delta=0.72, seed=20260727
+Abel vs heat absolute error: 4.336809e-19
+Abel vs energy-excess absolute error: 5.529431e-18
+Maximum finite-difference derivative error: 1.049905e-12
+Maximum Duhamel/spectral derivative error: 2.168404e-19
+Sharp <= e Abel: True
+Sharp <= 4 Richardson-k1: True
+OVERALL: PASS
